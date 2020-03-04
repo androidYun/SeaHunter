@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:id="@+id/tvDateTitle"
+          android:textColor="#000000"
+          android:textStyle="bold"
+          android:gravity="center_vertical|right"
+          android:textSize="16dp"
+          android:paddingEnd="18dp"
+          tools:text="2018年9月"
+          android:layout_height="50dp">
+</TextView>

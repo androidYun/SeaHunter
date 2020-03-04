@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.xhs.baselibrary">
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <application android:networkSecurityConfig="@xml/network_security_config">
+        <activity
+                android:name=".ui.photo_selector.PhotoSelectActivity"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".ui.photo_selector.ClipImageActivity"
+                android:screenOrientation="portrait"/>
+
+        <activity
+                android:name=".ui.image.ImageZoomActivity"
+                android:screenOrientation="portrait"/>
+        <activity android:name=".ui.crash.CrashActivity"/>
+        <activity android:name=".ui.update.UpdateActivity"/>
+        <activity android:name=".ui.date.SelectDateSlotActivity"/>
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="${applicationId}.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/provider_paths"/>
+        </provider>
+    </application>
+</manifest>

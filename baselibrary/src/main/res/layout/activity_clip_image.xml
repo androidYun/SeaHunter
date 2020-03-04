@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.xhs.baselibrary.ui.photo_selector.view.ClipZoomImageView
+        android:id="@+id/clipZoomImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.xhs.baselibrary.ui.photo_selector.view.ClipImageBorderView
+        android:id="@+id/clipImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/base_transparent">
+
+        <RelativeLayout
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/ic_back_icon" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/bt_use"
+            android:layout_width="58dp"
+            android:layout_height="26dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/shape_button_use"
+            android:text="使用"
+            android:textColor="@color/base_white"
+            android:textSize="16dp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

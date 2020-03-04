@@ -1,0 +1,4 @@
+rootProject.name='SeaHunter'
+include ':app', ':baselibrary'
+include ':usermodule'
+include ':servicemodule'

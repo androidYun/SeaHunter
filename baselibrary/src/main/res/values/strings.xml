@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BaseLibrary</string>
+    <string name="base_please_install_bai_du_and_gao_de_map">请安装百度地图或者高德地图</string>
+    <string name="base_yes">是</string>
+    <string name="base_no">否</string>
+    <string name="base_confirm">确定</string>
+    <string name="base_please_open_get_phone_device_permission">请开启获取手机设备权限</string>
+</resources>

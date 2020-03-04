@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="20dp"
+            android:drawableLeft="@mipmap/ic_base_block_back"
+            android:paddingTop="20dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="20dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="设置IP"
+            android:textColor="@color/base_color3"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvSaveIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:text="保存"
+            android:textColor="@color/base_color3"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#F2F5F8" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:background="#f4f8fb">
+
+        <TextView
+            android:id="@+id/tvIp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:gravity="center_vertical"
+            android:text="IP地址："
+            android:textColor="@color/base_color9"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/evSetIp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/tvIp"
+            android:background="@null"
+            android:hint="192.168.1.0"
+            android:textColor="@color/base_color3"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tvSelectIp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginRight="38dp"
+        android:background="@drawable/shape_color_theme_radius_5dp_bg"
+        android:gravity="center"
+        android:text="选择常用ip地址"
+        android:textColor="@color/base_white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+</LinearLayout>

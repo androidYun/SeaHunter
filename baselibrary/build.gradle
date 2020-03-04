@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion VERSION_COMPILE_SDK
+    buildToolsVersion BUILD_TOOLS_VERSION
+    defaultConfig {
+        minSdkVersion VERSION_MIN_SDK
+        targetSdkVersion VERSION_TARGET_SDK
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api deps.supports.junit
+    api deps.supports.runner
+    api deps.supports.espresso
+    api deps.supports.appcompat
+    api deps.supports.constraint_layout
+    api deps.supports.recyclerview
+    api deps.supports.design
+    api deps.kotlin.stdlib
+    api deps.flowlayout
+    api deps.recycleviewadapter
+    api deps.rxandroid
+    api deps.rxjava
+    api deps.retrofit
+    api deps.cover_gson
+    api deps.adapter_rxjava
+    api deps.okhttp
+    api deps.okhttp_log
+    api deps.rxlifecycle
+    api deps.rxlifecycle_components
+    api deps.multidex
+    api deps.mp3Recorder
+    api deps.glide
+    api deps.androidx_annotation
+    kapt deps.glideprocessor
+}
+repositories {
+    mavenCentral()
+}

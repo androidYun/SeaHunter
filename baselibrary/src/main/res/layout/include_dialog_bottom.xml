@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/base_shape_dialog_bottom">
+
+    <View
+        android:id="@+id/view_line_one"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvNegative"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/base_color9"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/tvPositive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_line_one"
+        tools:text="取消" />
+
+
+    <TextView
+        android:id="@+id/tvPositive"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:background="@drawable/base_shape_dialog_positive"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/base_color_theme"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvNegative"
+        app:layout_constraintTop_toBottomOf="@+id/view_line_one"
+        tools:text="确定" />
+
+    <View
+        android:id="@+id/view_line_two"
+        android:layout_width="0.5dp"
+        android:layout_height="45dp"
+        android:background="@android:color/darker_gray"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_line_one" />
+</androidx.constraintlayout.widget.ConstraintLayout>
