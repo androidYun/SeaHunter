@@ -2,14 +2,14 @@
 
 buildscript {
     apply from: 'dependencies.gradle'
-    ext.kotlin_version = '1.3.61'
+    ext.kotlin_version = '1.3.41'
     repositories {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.0'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -29,11 +29,11 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 ext {
-    VERSION_COMPILE_SDK = 28
-    BUILD_TOOLS_VERSION = '28.0.3'
+    VERSION_COMPILE_SDK = 29
+    BUILD_TOOLS_VERSION = '29.0.3'
 
     VERSION_MIN_SDK = 19
-    VERSION_TARGET_SDK = 28
+    VERSION_TARGET_SDK = 29
 
     SOURCE_COMPATIBILITY = JavaVersion.VERSION_1_8
     TARGET_COMPATIBILITY = JavaVersion.VERSION_1_8

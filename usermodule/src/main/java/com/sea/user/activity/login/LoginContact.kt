@@ -1,7 +1,6 @@
-package com.sea.usermodule.activity.login
+package com.sea.user.activity.login
 
 import com.xhs.baselibrary.base.IBaseView
-import com.sea.usermodule.R
 
 interface LoginContact {
 

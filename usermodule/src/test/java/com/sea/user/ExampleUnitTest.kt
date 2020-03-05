@@ -1,4 +1,4 @@
-package com.sea.usermodule
+package com.sea.user
 
 import org.junit.Test
 

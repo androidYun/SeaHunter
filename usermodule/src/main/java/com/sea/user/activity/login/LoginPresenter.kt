@@ -1,15 +1,15 @@
-package com.sea.usermodule.activity.login
+package com.sea.user.activity.login
 
+import com.sea.user.api.UserInformApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.usermodule.api.LoginApi
 
 
 class LoginPresenter : IPresenter<LoginContact.ILoginView>(), LoginContact.ILoginPresenter {
     override fun loadLogin(nLoginModelReq: NLoginModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(LoginApi::class.java)
+            .create(UserInformApi::class.java)
             .loadLogin(nLoginModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))

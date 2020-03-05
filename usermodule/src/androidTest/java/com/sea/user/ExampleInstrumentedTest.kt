@@ -1,4 +1,4 @@
-package com.sea.usermodule
+package com.sea.user
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

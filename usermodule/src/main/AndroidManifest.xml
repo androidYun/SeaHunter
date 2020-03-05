@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sea.usermodule">
+    package="com.sea.user">
 
     <application>
         <activity
-            android:name=".activity.login.LoginActivity"
-            android:label="@string/title_Login" />
+            android:name="com.sea.user.activity.login.LoginActivity"
+            android:label="@string/title_Login"
+            android:launchMode="singleTask" />
+
+
+        <activity
+            android:name=".activity.register.RegisterActivity"
+            android:launchMode="singleTask" />
+
+        <activity android:name=".activity.inform.FillInformActivity" />
+
+
+        <activity android:name=".activity.password.ForgetPasswordActivity" />
     </application>
 
 </manifest>

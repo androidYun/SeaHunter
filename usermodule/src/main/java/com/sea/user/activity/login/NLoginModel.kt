@@ -1,4 +1,4 @@
-package com.sea.usermodule.activity.login
+package com.sea.user.activity.login
 
 class NLoginResponse(
     val code: Int = -1,

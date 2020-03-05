@@ -1,4 +1,17 @@
 <resources>
     <string name="title_activity_null">蓝海猎人</string>
     <string name="title_Login">蓝海猎人</string>
+    <string name="new_user_register">新用户注册</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="login">登录</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="please_input_version_code">请输入验证码</string>
+    <string name="please_input_account">请输入账号</string>
+    <string name="get_version_code">获取验证码</string>
+    <string name="next_step">下一步</string>
+    <string name="account_login">账户登录</string>
+    <string name="confirm">确定</string>
+    <string name="please_input_nick">请输入昵称</string>
+    <string name="balance">余额</string>
+    <string name="integral">积分</string>
 </resources>
