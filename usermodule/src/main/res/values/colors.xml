@@ -9,5 +9,8 @@
     <color name="color_9">#999999</color>
     <color name="color_8">#888888</color>
     <color name="black">#000000</color>
+    <color name="color_bf0008">#bf0008</color>
+    <color name="color_ffe9ea">#ffe9ea</color>
+    <color name="color_c">#cccccc</color>
 
 </resources>

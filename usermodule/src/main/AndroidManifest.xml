@@ -4,6 +4,12 @@
 
     <application>
         <activity
+            android:name=".activity.integral.exchange.ExchangeListActivity"
+            android:label="@string/title_ExchangeList" />
+        <activity
+            android:name=".activity.integral.mall.IntegralMallActivity"
+            android:label="@string/title_IntegralMall" />
+        <activity
             android:name=".activity.address.list.AddressListActivity"
             android:label="@string/title_AddressList" />
         <activity
