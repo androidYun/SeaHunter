@@ -8,7 +8,7 @@
     <include layout="@layout/include_head_logo" />
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="600dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/shape_user_name_background"
@@ -25,14 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:hint="@string/please_input_account"
+            android:hint="@string/please_input_nick"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/shape_user_name_background"
         android:gravity="center_vertical"
@@ -43,78 +43,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/evPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:hint="@string/please_input_password"
-            android:textColor="@color/color_3"
-            android:textColorHint="@color/color_c5c5c5" />
-
-        <CheckBox
-            android:id="@+id/cbEye"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/select_password_checkbox"
-            android:button="@null"
-            android:checked="true" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/evPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/ivShowPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/ivHead"
+            android:background="@color/user_theme_color"
+            android:layout_width="96dp"
+            android:layout_height="96dp" />
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登录" />
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/tvLogin"
+        android:id="@+id/tvConfirm"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_base_btn"
         android:gravity="center"
-        android:text="@string/login"
+        android:text="@string/confirm"
         android:textColor="@color/white"
         android:textSize="16dp" />
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="600dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:paddingStart="@dimen/default_padding"
         android:paddingEnd="@dimen/default_padding">
 
         <TextView
-            android:id="@+id/tvRegister"
+            android:id="@+id/tvAccountLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/new_user_register"
+            android:text="@string/account_login"
             android:textColor="@color/user_theme_color"
             android:textSize="16dp" />
 
