@@ -1,10 +1,13 @@
 package com.sea.user.activity.center
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sea.user.R
+import com.sea.user.activity.integral.detail.IntegralDetailActivity
+import com.sea.user.activity.integral.mall.IntegralMallActivity
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_user_center.*
 
@@ -62,6 +65,7 @@ class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
         tvSeaFoodMall.setOnClickListener {
 
         }
+        //积分商城
         tvIntegralMall.setOnClickListener {
 
         }
