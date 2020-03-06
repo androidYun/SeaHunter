@@ -1,4 +1,4 @@
-package com.sea.user.activity.integral.mall
+package com.sea.user.activity.integral.detail
 
 import com.sea.user.api.IntegralApi
 import com.xhs.baselibrary.base.IPresenter
@@ -6,12 +6,12 @@ import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
 
 
-class IntegralMallPresenter : IPresenter<IntegralMallContact.IIntegralMallView>(),
-    IntegralMallContact.IIntegralMallPresenter {
-    override fun loadIntegralMall(nIntegralMallModelReq: NIntegralMallModelReq) {
+class IntegralDetailPresenter : IPresenter<IntegralDetailContact.IIntegralDetailView>(),
+    IntegralDetailContact.IIntegralDetailPresenter {
+    override fun loadIntegralDetail(nIntegralDetailModelReq: NIntegralDetailModelReq) {
         RetrofitUtils.getRetrofit()
             .create(IntegralApi::class.java)
-            .loadIntegralMall(nIntegralMallModelReq)
+            .loadIntegralMall(nIntegralDetailModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -24,12 +24,12 @@ class IntegralMallPresenter : IPresenter<IntegralMallContact.IIntegralMallView>(
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadIntegralMallSuccess(it.data.mList)
+                        softView.get()?.loadIntegralDetailSuccess(it.data.mList, it.data.totalCount)
                     } else {
-                        softView.get()?.loadIntegralMallFail(Throwable(it.msg))
+                        softView.get()?.loadIntegralDetailFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadIntegralMallFail(throwable) }
+                }, { throwable -> softView.get()?.loadIntegralDetailFail(throwable) }
             )
     }
 }

@@ -17,4 +17,6 @@
     <string name="title_AddressList">我的地址</string>
     <string name="title_IntegralMall">积分商城</string>
     <string name="title_ExchangeList">兑换列表</string>
+    <string name="title_Test">测试</string>
+    <string name="title_IntegralDetail">积分明细</string>
 </resources>

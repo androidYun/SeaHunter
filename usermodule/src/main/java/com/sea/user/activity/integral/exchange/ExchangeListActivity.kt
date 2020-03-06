@@ -45,7 +45,7 @@ class ExchangeListActivity : BaseActivity(), ExchangeListContact.IExchangeListVi
             if (nExchangeListReq.pageIndex * nExchangeListReq.pageSize < totalCount) {
                 mExchangeListPresenter.loadExchangeList(nExchangeListReq)
             } else {
-                rvExchangeList.adapter.loadMoreEnd()
+                mExchangeListAdapter.loadMoreEnd()
             }
         }, rvExchangeList)
     }
