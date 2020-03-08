@@ -15,6 +15,7 @@
     <string name="balance">余额</string>
     <string name="integral">积分</string>
     <string name="title_AddressList">我的地址</string>
+    <string name="edit_address">编辑地址</string>
     <string name="title_IntegralMall">积分商城</string>
     <string name="title_ExchangeList">兑换列表</string>
     <string name="title_Test">测试</string>
@@ -27,4 +28,6 @@
     <string name="need_integral">所需积分:</string>
     <string name="title_IntegralShopDetail">商品详情</string>
     <string name="user_center">个人中心</string>
+    <string name="set">设置</string>
+    <string name="mine_wallet">我的钱包</string>
 </resources>

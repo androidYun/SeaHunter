@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_mine_wallet.*
  */
 class MineWalletActivity : BaseActivity() {
 
+    private val walletList = mutableListOf<String>("余额明细", "提现明细")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,7 @@ class MineWalletActivity : BaseActivity() {
 
     }
 
-    class BalanceViewPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    inner class BalanceViewPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return if (position == 0) {
                 WalletFragment.getInstance(WalletFragment.WALLET_BALANCE_CODE)
@@ -50,8 +51,12 @@ class MineWalletActivity : BaseActivity() {
             }
         }
 
+        override fun getPageTitle(position: Int): CharSequence? {
+            return walletList[position]
+        }
+
         override fun getCount(): Int {
-            return 2
+            return walletList.size
         }
     }
 }

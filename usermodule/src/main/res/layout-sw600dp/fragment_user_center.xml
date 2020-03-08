@@ -21,6 +21,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
+            <ImageView
+                android:id="@+id/ivSet"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="60dp"
+                android:background="@color/color_bf0008" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

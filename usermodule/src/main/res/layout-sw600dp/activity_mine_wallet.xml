@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="@dimen/default_padding"
+    android:paddingEnd="@dimen/default_padding"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -58,16 +60,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:tabIndicatorColor="@color/color_bf0008"
-        app:tabSelectedTextColor="@color/color_bf0008"
-        app:tabTextColor="@color/color_3" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include layout="@layout/include_tab_layout_view_pager" />
 </LinearLayout>

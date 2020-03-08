@@ -5,6 +5,7 @@
     <application>
         <activity
             android:name=".activity.center.UserCenterActivity"
+            android:theme="@style/NoActionBarTheme"
             android:label="@string/user_center" />
         <activity
             android:name=".activity.integral.mall.detail.IntegralShopDetailActivity"
@@ -18,37 +19,49 @@
         <activity
             android:name=".activity.integral.detail.IntegralDetailActivity"
             android:label="@string/title_IntegralDetail"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.integral.exchange.ExchangeListActivity"
             android:label="@string/title_ExchangeList"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.integral.mall.IntegralMallActivity"
             android:label="@string/title_IntegralMall"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.address.list.AddressListActivity"
             android:label="@string/title_AddressList"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.address.AddAddressActivity"
+            android:label="@string/edit_address"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.set.SetActivity"
+            android:label="@string/set"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.login.LoginActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".activity.register.RegisterActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".activity.inform.FillInformActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".activity.password.ForgetPasswordActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".activity.wallet.MineWalletActivity"
+            android:label="@string/mine_wallet"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

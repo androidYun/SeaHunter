@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.sea.user.R
 import com.sea.user.activity.integral.exchange.ExchangeListActivity
 import com.sea.user.activity.integral.mall.IntegralMallActivity
+import com.sea.user.activity.set.SetActivity
 import com.sea.user.activity.shop.order.MineOrderActivity
 import com.sea.user.activity.wallet.MineWalletActivity
 import com.xhs.baselibrary.base.BaseFragment
@@ -43,6 +44,10 @@ class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
     }
 
     private fun initListener() {
+        //设置
+        ivSet.setOnClickListener {
+            startActivity(Intent(context, SetActivity::class.java))
+        }
         //余额
         tvBalance.setOnClickListener {
 

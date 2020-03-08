@@ -1,9 +1,11 @@
 package com.sea.user.activity.address.list
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.activity.address.AddAddressActivity
 import kotlinx.android.synthetic.main.activity_address_list.*
 
 class AddressListActivity : BaseActivity(), AddressListContact.IAddressListView {
@@ -32,12 +34,16 @@ class AddressListActivity : BaseActivity(), AddressListContact.IAddressListView 
     }
 
     private fun initData() {
+        mAddressListList.add(AddressListItem())
         mAddressListPresenter.loadAddressList(nAddressListReq)
     }
 
     private fun initListener() {
         swipeAddressList.setOnRefreshListener {
             mAddressListPresenter.loadAddressList(nAddressListReq)
+        }
+        tvAddAddress.setOnClickListener {
+            startActivity(Intent(this, AddAddressActivity::class.java))
         }
     }
 

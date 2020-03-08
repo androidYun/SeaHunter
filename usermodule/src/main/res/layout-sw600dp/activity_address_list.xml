@@ -25,6 +25,7 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/tvAddAddress"
             style="@style/baseBtnStyle"
             android:text="添加地址" />
 
