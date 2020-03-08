@@ -19,4 +19,12 @@
     <string name="title_ExchangeList">兑换列表</string>
     <string name="title_Test">测试</string>
     <string name="title_IntegralDetail">积分明细</string>
+    <string name="title_WalletList">钱包列表</string>
+    <string name="mine_order">我的订单</string>
+    <string name="title_ExchangeShop">兑换商品</string>
+    <string name="shop_inform">商品信息</string>
+    <string name="once_exchange">立即兑换</string>
+    <string name="need_integral">所需积分:</string>
+    <string name="title_IntegralShopDetail">商品详情</string>
+    <string name="user_center">个人中心</string>
 </resources>

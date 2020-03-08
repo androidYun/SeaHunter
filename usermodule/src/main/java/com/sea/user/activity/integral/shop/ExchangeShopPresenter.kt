@@ -1,17 +1,17 @@
-package com.sea.user.activity.shop.order
+package com.sea.user.activity.integral.shop
 
-import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
+import com.sea.user.api.IntegralApi
 
 
-class ShopOrderPresenter : IPresenter<ShopOrderContact.IShopOrderView>(),
-    ShopOrderContact.IShopOrderPresenter {
-    override fun loadShopOrder(nShopOrderModelReq: NShopOrderModelReq) {
+class ExchangeShopPresenter : IPresenter<ExchangeShopContact.IExchangeShopView>(),
+    ExchangeShopContact.IExchangeShopPresenter {
+    override fun loadExchangeShop(nExchangeShopModelReq: NExchangeShopModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(ShopApi::class.java)
-            .loadShopOrder(nShopOrderModelReq)
+            .create(IntegralApi::class.java)
+            .loadExchangeShop(nExchangeShopModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -24,12 +24,12 @@ class ShopOrderPresenter : IPresenter<ShopOrderContact.IShopOrderView>(),
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadShopOrderSuccess(it.data.mList, it.data.totalCount)
+                        softView.get()?.loadExchangeShopSuccess(it.data)
                     } else {
-                        softView.get()?.loadShopOrderFail(Throwable(it.msg))
+                        softView.get()?.loadExchangeShopFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadShopOrderFail(throwable) }
+                }, { throwable -> softView.get()?.loadExchangeShopFail(throwable) }
             )
     }
 }

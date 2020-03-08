@@ -16,22 +16,22 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface UserInformApi {
-    @POST
+    @POST("/")
     fun loadLogin(@Body nLoginModelReq: NLoginModelReq): Observable<NLoginResponse>
 
-    @POST
+    @POST("/")
     fun loadRegister(@Body nRegisterReq: NRegisterModelReq): Observable<NRegisterModelResponse>
 
 
-    @GET
+    @GET("/")
     fun loadVersionCode(@Query("phoneNumber") phoneNumber: String): Observable<BaseEntry>
 
-    @GET
+    @GET("/")
     fun loadForgetPassword(@Body nForgetPasswordModelReq: NForgetPasswordModelReq): Observable<BaseEntry>
 
-    @POST
+    @POST("/")
     fun loadFillInform(@Body nFillInformReq: NFillInformReq): Observable<BaseEntry>
 
-    @GET
+    @POST("/")
     fun loadUserInform(@Body nUserCenterModelReq: NUserCenterModelReq): Observable<NUserCenterResponse>
 }

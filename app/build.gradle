@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+
 android {
     compileSdkVersion VERSION_COMPILE_SDK
     buildToolsVersion BUILD_TOOLS_VERSION
@@ -10,7 +11,7 @@ android {
         targetSdkVersion VERSION_TARGET_SDK
         versionCode VERSION_CODE
         versionName VERSION_NAME
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {

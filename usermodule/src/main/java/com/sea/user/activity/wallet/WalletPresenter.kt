@@ -23,7 +23,7 @@ class WalletPresenter : IPresenter<WalletContact.IWalletView>(), WalletContact.I
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadWalletSuccess(it.data)
+                        softView.get()?.loadWalletSuccess(it.data.mList, it.data.totalCount)
                     } else {
                         softView.get()?.loadWalletFail(Throwable(it.msg))
                     }

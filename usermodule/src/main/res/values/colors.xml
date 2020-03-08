@@ -3,7 +3,9 @@
     <color name="user_theme_color">#bf0008</color>
     <color name="white">#FFFFFF</color>
     <color name="color_f7f7f7">#f7f7f7</color>
+    <color name="color_F8F6F9">#B760E3</color>
     <color name="color_c5c5c5">#c5c5c5</color>
+    <color name="color_e4e4e4">#e4e4e4</color>
     <color name="color_3">#333333</color>
     <color name="color_6">#666666</color>
     <color name="color_9">#999999</color>
@@ -13,5 +15,6 @@
     <color name="color_ffe9ea">#ffe9ea</color>
     <color name="color_c">#cccccc</color>
     <color name="color_e2e2e2">#e2e2e2</color>
+    <color name="line_view">#e2e2e2</color>
 
 </resources>

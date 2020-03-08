@@ -1,4 +1,4 @@
-package com.sea.user.activity.order
+package com.sea.user.activity.shop.order
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

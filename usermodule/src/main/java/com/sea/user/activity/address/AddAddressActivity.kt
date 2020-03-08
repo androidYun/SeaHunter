@@ -1,6 +1,7 @@
 package com.sea.user.activity.address
 
 import android.os.Bundle
+import android.view.View
 import com.sea.user.R
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_address.*
@@ -45,6 +46,7 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
     private fun initData() {
         if (operatorType == EDIT_ADDRESS_CODE) {//编辑的话需要先加载地址
             addressPresenter.loadAddress(addressId)
+            tvDeleteAddress.visibility=View.VISIBLE//只有编辑的时候才能显示地址
         }
     }
 

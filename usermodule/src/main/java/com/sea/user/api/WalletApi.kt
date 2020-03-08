@@ -14,6 +14,6 @@ import retrofit2.http.POST
  */
 interface WalletApi {
 
-    @POST
+    @POST("/")
     fun loadWallet(@Body nWalletModelReq: NWalletModelReq): Observable<NWalletResponse>
 }

@@ -1,4 +1,4 @@
-package com.sea.user.activity.order
+package com.sea.user.activity.shop.order
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,7 +45,7 @@ class ShopOrderFragment : BaseFragment(), ShopOrderContact.IShopOrderView {
     }
 
     private fun initData() {
-        mShopOrderPresenter.loadShopOrder(nShopOrderReq)
+        //mShopOrderPresenter.loadShopOrder(nShopOrderReq)
     }
 
     private fun initListener() {

@@ -5,7 +5,15 @@ class NWalletResponse(
     val msg: String = "",
     val data: Data = Data()
 ) {
-    class Data
+    class Data(
+        val totalCount: Int = 0,
+        val mList: List<WalletListItem> = listOf()
+    )
 }
 
-class NWalletModelReq
+class WalletListItem
+
+class NWalletModelReq(
+    var pageSize: Int = 20,
+    var pageIndex: Int = 1
+)

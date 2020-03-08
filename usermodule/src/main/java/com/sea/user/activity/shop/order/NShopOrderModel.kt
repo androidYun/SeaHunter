@@ -1,4 +1,4 @@
-package com.sea.user.activity.order
+package com.sea.user.activity.shop.order
 
 class NShopOrderModelReq(
     var pageSize: Int = 20,

@@ -11,6 +11,7 @@ class NExchangeListModelResponse(
     val data: Data = Data()
 ) {
     class Data(
+        val totalCount: Int = 0,
         val mList: List<ExchangeListItem> = listOf()
     )
 }

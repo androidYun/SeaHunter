@@ -4,29 +4,51 @@
 
     <application>
         <activity
-            android:name=".activity.integral.detail.IntegralDetailActivity"
-            android:label="@string/title_IntegralDetail" />
+            android:name=".activity.center.UserCenterActivity"
+            android:label="@string/user_center" />
         <activity
-            android:name=".activity.integral.test.TestActivity"
-            android:label="@string/title_Test" />
+            android:name=".activity.integral.mall.detail.IntegralShopDetailActivity"
+            android:label="@string/title_IntegralShopDetail" />
+        <activity
+            android:name=".activity.integral.shop.ExchangeShopActivity"
+            android:label="@string/title_ExchangeShop" />
+        <activity
+            android:name=".activity.shop.order.MineOrderActivity"
+            android:label="@string/mine_order" />
+        <activity
+            android:name=".activity.integral.detail.IntegralDetailActivity"
+            android:label="@string/title_IntegralDetail"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.integral.exchange.ExchangeListActivity"
-            android:label="@string/title_ExchangeList" />
+            android:label="@string/title_ExchangeList"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.integral.mall.IntegralMallActivity"
-            android:label="@string/title_IntegralMall" />
+            android:label="@string/title_IntegralMall"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.address.list.AddressListActivity"
-            android:label="@string/title_AddressList" />
+            android:label="@string/title_AddressList"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.login.LoginActivity"
-            android:label="@string/title_Login"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".activity.register.RegisterActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".activity.inform.FillInformActivity" />
-        <activity android:name=".activity.password.ForgetPasswordActivity" />
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".activity.inform.FillInformActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".activity.password.ForgetPasswordActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>

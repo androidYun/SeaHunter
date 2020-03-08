@@ -23,11 +23,13 @@
         <EditText
             android:id="@+id/evUserName"
             android:layout_width="match_parent"
+            android:lines="1"
+            android:singleLine="true"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="@string/please_input_account"
             android:textColor="@color/color_3"
-            android:textColorHint="@color/color_c5c5c5" />
+            android:textColorHint="@color/color_e4e4e4" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,9 +51,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:singleLine="true"
             android:hint="@string/please_input_password"
             android:textColor="@color/color_3"
-            android:textColorHint="@color/color_c5c5c5" />
+            android:textColorHint="@color/color_e4e4e4" />
 
         <CheckBox
             android:id="@+id/cbEye"

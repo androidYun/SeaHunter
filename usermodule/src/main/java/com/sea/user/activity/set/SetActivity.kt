@@ -1,7 +1,9 @@
 package com.sea.user.activity.set
 
+import android.content.Intent
 import android.os.Bundle
 import com.sea.user.R
+import com.sea.user.activity.address.list.AddressListActivity
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_set.*
 
@@ -45,7 +47,7 @@ class SetActivity : BaseActivity() {
 
         }
         tvAddress.setOnClickListener {
-
+            startActivity(Intent(this, AddressListActivity::class.java))
 
         }
         tvMVersionUpdate.setOnClickListener {

@@ -18,17 +18,17 @@ import retrofit2.http.POST
 interface AddressApi {
 
 
-    @POST
+    @POST("/")
     fun loadAddAddress(@Body nAddressModelReq: NAddressModelReq): Observable<BaseEntry>
 
 
-    @POST
+    @POST("/")
     fun loadAddressList(@Body nAddressListModelReq: NAddressListModelReq): Observable<NAddressListModelResponse>
 
-    @POST
+    @POST("/")
     fun loadAddressDetail(@Body addressId: Int): Observable<NAddressDetailModelResponse>
 
-    @POST
+    @POST("/")
     fun modifyAddressDetail(@Body nAddressModelReq: NAddressModelReq): Observable<BaseEntry>
 
 

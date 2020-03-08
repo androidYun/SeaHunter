@@ -7,7 +7,7 @@ interface WalletContact {
 
     interface IWalletView : IBaseView {
 
-        fun loadWalletSuccess(content: Any)
+        fun loadWalletSuccess(mList: List<WalletListItem>, totalCount: Int)
 
         fun loadWalletFail(throwable: Throwable)
 

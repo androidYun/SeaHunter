@@ -1,7 +1,6 @@
-package com.sea.user.activity.order
+package com.sea.user.activity.shop.order
 
 import com.xhs.baselibrary.base.IBaseView
-import com.sea.user.R
 
 interface ShopOrderContact {
 

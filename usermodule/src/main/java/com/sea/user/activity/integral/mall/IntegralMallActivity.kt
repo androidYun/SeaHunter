@@ -29,6 +29,7 @@ class IntegralMallActivity : BaseActivity(), IntegralMallContact.IIntegralMallVi
 
 
     private fun initView() {
+        mIntegralMallList.add(IntegralMallItem())
         mIntegralMallAdapter = IntegralMallAdapter(mIntegralMallList)
         rvIntegralMall.layoutManager = LinearLayoutManager(this)
         rvIntegralMall.adapter = mIntegralMallAdapter
@@ -47,6 +48,10 @@ class IntegralMallActivity : BaseActivity(), IntegralMallContact.IIntegralMallVi
         //积分明细
         tvIntegralDetail.setOnClickListener {
             startActivity(Intent(this, IntegralDetailActivity::class.java))
+        }
+        //查看更多
+        tvLookMore.setOnClickListener {
+
         }
 
     }
