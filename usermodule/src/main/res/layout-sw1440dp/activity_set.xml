@@ -9,31 +9,31 @@
     <TextView
         android:id="@+id/tvModifyData"
         style="@style/BaseTextViewItemStyle"
-        android:drawableStart="@mipmap/ic_head_default"
+        android:drawableStart="@mipmap/ic_set_data"
         android:text="修改资料" />
 
     <TextView
         android:id="@+id/tvModifyPassword"
         style="@style/BaseTextViewItemStyle"
-        android:drawableStart="@mipmap/ic_head_default"
+        android:drawableStart="@mipmap/ic_set_password"
         android:text="修改密码" />
 
     <TextView
         android:id="@+id/tvModifyPhone"
         style="@style/BaseTextViewItemStyle"
-        android:drawableStart="@mipmap/ic_head_default"
+        android:drawableStart="@mipmap/ic_set_tel"
         android:text="修改手机号" />
 
     <TextView
         android:id="@+id/tvAddress"
         style="@style/BaseTextViewItemStyle"
-        android:drawableStart="@mipmap/ic_head_default"
+        android:drawableStart="@mipmap/ic_set_address"
         android:text="我的地址" />
 
     <TextView
         android:id="@+id/tvMVersionUpdate"
         style="@style/BaseTextViewItemStyle"
-        android:drawableStart="@mipmap/ic_head_default"
+        android:drawableStart="@mipmap/ic_set_version"
         android:text="版本更新" />
 
     <TextView

@@ -3,6 +3,8 @@ package com.sea.user.activity.password
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import com.sea.user.R
 import com.sea.user.activity.login.LoginActivity
 import com.sea.user.activity.register.RegisterActivity
@@ -46,8 +48,13 @@ class ForgetPasswordActivity : BaseActivity(), ForgetPasswordContract.IForgetPas
 
     private fun initListener() {
         cbEye.setOnCheckedChangeListener { _, b ->
-            evPassword.inputType =
-                if (b) InputType.TYPE_TEXT_VARIATION_PASSWORD else InputType.TYPE_NUMBER_VARIATION_PASSWORD
+            evPassword.transformationMethod = if (b) {
+                //否则隐藏密码
+                PasswordTransformationMethod.getInstance()
+            } else {
+                //如果选中，显示密码
+                HideReturnsTransformationMethod.getInstance()
+            }
         }
         tvConfirm.setOnClickListener {
             val userName = evUserName.text.toString()

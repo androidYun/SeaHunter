@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <include layout="@layout/include_head_logo" />
 
     <LinearLayout
-        android:layout_width="600dp"
+        android:id="@+id/lvUserName"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/shape_user_name_background"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/default_padding"
-        android:paddingEnd="@dimen/default_padding">
+        android:paddingEnd="@dimen/default_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
+        app:layout_constraintWidth_percent="0.6">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_account" />
 
         <EditText
             android:id="@+id/evUserName"
@@ -30,18 +35,25 @@
             android:textColorHint="@color/color_c5c5c5" />
     </LinearLayout>
 
+
     <LinearLayout
-        android:layout_width="600dp"
+        android:id="@+id/lvVersionCode"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/shape_user_name_background"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/default_padding"
-        android:paddingEnd="@dimen/default_padding">
+        android:paddingEnd="@dimen/default_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvUserName"
+        app:layout_constraintWidth_percent="0.6">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_verification_code" />
 
         <EditText
             android:id="@+id/evVersionCode"
@@ -59,6 +71,7 @@
             android:background="@color/user_theme_color" />
 
         <TextView
+            android:id="@+id/tvVersionCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -68,17 +81,23 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="600dp"
+        android:id="@+id/lvPassword"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/shape_user_name_background"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/default_padding"
-        android:paddingEnd="@dimen/default_padding">
+        android:paddingEnd="@dimen/default_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvVersionCode"
+        app:layout_constraintWidth_percent="0.6">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_password" />
 
         <EditText
             android:id="@+id/evPassword"
@@ -87,6 +106,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="@string/please_input_password"
+            android:src="@mipmap/ic_account"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
 
@@ -99,29 +119,39 @@
             android:checked="true" />
     </LinearLayout>
 
+
     <TextView
         android:id="@+id/tvNextStep"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_base_btn"
         android:gravity="center"
         android:text="@string/next_step"
         android:textColor="@color/white"
-        android:textSize="16dp" />
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvPassword"
+        app:layout_constraintWidth_percent="0.6" />
 
     <LinearLayout
-        android:layout_width="600dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:paddingStart="@dimen/default_padding"
-        android:paddingEnd="@dimen/default_padding">
+        android:paddingEnd="@dimen/default_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNextStep"
+        app:layout_constraintWidth_percent="0.6">
 
         <TextView
             android:id="@+id/tvLogin"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/account_login"
             android:textColor="@color/user_theme_color"
             android:textSize="16dp" />
@@ -129,12 +159,12 @@
         <TextView
             android:id="@+id/tvForgetPassword"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="end"
+            android:gravity="end|center_vertical"
             android:text="@string/forget_password"
             android:textColor="@color/user_theme_color"
             android:textSize="16dp" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

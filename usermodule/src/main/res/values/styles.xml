@@ -1,16 +1,16 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light" >
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
         <item name="backgroundColor">#f5f5f5</item>
 
     </style>
 
     <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="backgroundColor">#f5f5f5</item>
         <!-- 设置无标题 -->
         <item name="android:windowNoTitle">true</item>
         <!-- 设置全屏 -->
         <item name="android:windowFullscreen">true</item>
+        <item name="android:textSize">14sp</item>
 
     </style>
 
