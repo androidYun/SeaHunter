@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.sea.user.R
 import com.xhs.baselibrary.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_mine_order.*
 import kotlinx.android.synthetic.main.activity_mine_wallet.*
 
 class MineOrderActivity : BaseActivity() {

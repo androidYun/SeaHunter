@@ -4,7 +4,7 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.trello.rxlifecycle2.components.support.RxFragment;
+import com.trello.rxlifecycle3.components.support.RxFragment;
 import com.xhs.baselibrary.utils.ToastUtils;
 import com.xhs.baselibrary.weight.LoadingDialog;
 
@@ -18,6 +18,7 @@ import java.util.List;
  * description:
  */
 public class BaseFragment extends RxFragment {
+
     /**
      * 申请运行时权限
      *

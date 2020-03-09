@@ -8,7 +8,7 @@
     <include layout="@layout/include_head_logo" />
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="600dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/shape_user_name_background"
@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="600dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/shape_user_name_background"
@@ -45,9 +45,9 @@
 
         <ImageView
             android:id="@+id/ivHead"
+            android:background="@color/user_theme_color"
             android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:background="@color/user_theme_color" />
+            android:layout_height="96dp" />
     </LinearLayout>
 
     <TextView
@@ -62,9 +62,11 @@
         android:textSize="16dp" />
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="600dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="32dp"
+        android:paddingStart="@dimen/default_padding"
+        android:paddingEnd="@dimen/default_padding">
 
         <TextView
             android:id="@+id/tvAccountLogin"

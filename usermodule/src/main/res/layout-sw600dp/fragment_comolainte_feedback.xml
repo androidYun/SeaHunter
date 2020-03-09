@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/default_padding"
+    android:paddingEnd="@dimen/default_padding">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:text="投诉 / 反馈"
+        android:textColor="#ff000000"
+        android:textSize="8sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/color_FAF7F8"
+        android:gravity="top"
+        android:hint="请输入反馈内容"
+        android:padding="@dimen/default_padding" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvSubmit"
+        style="@style/baseBtnStyle"
+        android:text="提交" />
+
+</LinearLayout>

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.sea.user.R
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_mine_wallet.*
+import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
 
 /**
  * @ author guiyun.li

@@ -25,7 +25,7 @@ class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return LayoutInflater.from(context).inflate(R.layout.fragment_user_center, container, false)
+        return inflater.inflate(R.layout.fragment_user_center, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

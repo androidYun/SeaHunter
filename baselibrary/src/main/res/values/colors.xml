@@ -15,5 +15,5 @@
     <color name="base_color_5">#c2c2c2</color>
     <color name="base_color_24">#3975f9</color>
     <color name="base_color_22">#5084f8</color>
-    <color name="base_amount_view_divider">##ffd2d2d2</color>
+    <color name="base_amount_view_divider">#ffd2d2d2</color>
 </resources>

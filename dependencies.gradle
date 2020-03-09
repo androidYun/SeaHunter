@@ -20,11 +20,12 @@ versions.recycleviewadapter = "2.9.46"
 versions.butterknife = "10.0.0"
 versions.multidex = "1.0.1"
 versions.okhttplog = "3.9.0"
-versions.rxlifecycle="2.2.0"
+versions.rxlifecycle="3.1.0"
 versions.socket="0.8.3"
 versions.crashlytics="2.9.9"
 versions.mp3Recorder="1.0.4"
 versions.andrroidx_annotation="1.0.0"
+versions.picture_library="2.4.7"
 deps.versions = versions
 
 def supports = [:]
@@ -67,8 +68,8 @@ deps.butterknife = "com.jakewharton:butterknife:$versions.butterknife"
 deps.butterknife_compiler = "com.jakewharton:butterknife-compiler:$versions.butterknife"
 deps.multidex = "com.android.support:multidex:$versions.multidex"
 //rxLifecycle
-deps.rxlifecycle = "com.trello.rxlifecycle2:rxlifecycle:$versions.rxlifecycle"
-deps.rxlifecycle_components = "com.trello.rxlifecycle2:rxlifecycle-components:$versions.rxlifecycle"
+deps.rxlifecycle = "com.trello.rxlifecycle3:rxlifecycle:$versions.rxlifecycle"
+deps.rxlifecycle_components = "com.trello.rxlifecycle3:rxlifecycle-components:$versions.rxlifecycle"
 
 //androidX
 deps.androidx_annotation="androidx.annotation:annotation:$versions.andrroidx_annotation"
@@ -76,4 +77,7 @@ deps.androidx_annotation="androidx.annotation:annotation:$versions.andrroidx_ann
 //socket
 deps.socket="io.socket:socket.io-client:$versions.socket"
 deps.mp3Recorder="com.czt.mp3recorder:library:$versions.mp3Recorder"
+
+//选择图片
+deps.pictureLibrary="com.github.LuckSiege.PictureSelector:picture_library:v$versions.picture_library"
 ext.deps = deps

@@ -9,7 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.view.WindowManager;
 
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 import com.xhs.baselibrary.R;
 import com.xhs.baselibrary.dialog.base.CommonDialog;
 import com.xhs.baselibrary.utils.KindPhonePermissionUtils;
@@ -25,6 +25,7 @@ import java.util.List;
  * @ date 29/04/2019.
  * description:
  */
+
 public class BaseActivity extends RxAppCompatActivity {
 
     @Override
@@ -46,6 +47,12 @@ public class BaseActivity extends RxAppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
     /**

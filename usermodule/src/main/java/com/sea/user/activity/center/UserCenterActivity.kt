@@ -3,6 +3,7 @@ package com.sea.user.activity.center
 import android.os.Bundle
 import com.sea.user.R
 import com.xhs.baselibrary.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_user_center.*
 
 /**
  * @author guiyun.li
@@ -17,7 +18,7 @@ class UserCenterActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_center)
         val beginTransaction = supportFragmentManager.beginTransaction()
-        beginTransaction.add(R.id.frameLayout, UserCenterFragment.getInstance())
+        beginTransaction.add(R.id.frameLayout,UserCenterFragment.getInstance())
         beginTransaction.commit()
 
     }
