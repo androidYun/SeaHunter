@@ -4,9 +4,21 @@
 
     <application>
         <activity
+            android:name=".activity.mall.list.MallListActivity"
+            android:label="@string/title_MallList" />
+        <activity
+            android:name=".activity.mall.search.SearchStoreActivity"
+            android:label="@string/title_SearchStore" />
+        <activity
+            android:name=".activity.mall.select.SelectStoreActivity"
+            android:label="@string/title_SelectStore" />
+        <activity
+            android:name=".activity.mall.SeaFoodMallActivity"
+            android:label="@string/title_SeaFoodMall" />
+        <activity
             android:name=".activity.center.UserCenterActivity"
-            android:theme="@style/NoActionBarTheme"
-            android:label="@string/user_center" />
+            android:label="@string/user_center"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".activity.integral.mall.detail.IntegralShopDetailActivity"
             android:label="@string/title_IntegralShopDetail" />

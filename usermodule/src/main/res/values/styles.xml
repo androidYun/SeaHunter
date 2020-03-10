@@ -1,8 +1,12 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light">
-        <item name="backgroundColor">#f5f5f5</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:windowBackground">@mipmap/bg_white</item>
+    </style>
 
+    <style name="grayBgAppTheme" parent="AppTheme">
+        <item name="android:windowBackground">@mipmap/bg_white</item>
     </style>
 
     <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -11,7 +15,7 @@
         <!-- 设置全屏 -->
         <item name="android:windowFullscreen">true</item>
         <item name="android:textSize">14sp</item>
-
+        <item name="android:windowBackground">@mipmap/bg_white</item>
     </style>
 
     <style name="BaseTextViewItemStyle">

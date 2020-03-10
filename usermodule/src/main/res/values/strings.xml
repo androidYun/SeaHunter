@@ -30,4 +30,8 @@
     <string name="user_center">个人中心</string>
     <string name="set">设置</string>
     <string name="mine_wallet">我的钱包</string>
+    <string name="title_SeaFoodMall">海鲜商城</string>
+    <string name="title_SelectStore">选择门店</string>
+    <string name="title_SearchStore">搜索</string>
+    <string name="title_MallList">商城列表</string>
 </resources>

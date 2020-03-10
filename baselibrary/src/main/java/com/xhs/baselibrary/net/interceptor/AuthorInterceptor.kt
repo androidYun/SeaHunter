@@ -23,7 +23,6 @@ class AuthorInterceptor : Interceptor {
                 RouterManager.prisonRouter?.loginOut()
             }
         }
-
         if (response.code() == 401) {
             RouterManager.prisonRouter?.loginOut()
         }
