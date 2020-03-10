@@ -1,5 +1,6 @@
 package com.sea.user.activity.mall.list
 
+import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
@@ -8,7 +9,7 @@ import com.xhs.baselibrary.net.util.RxUtils
 class MallListPresenter : IPresenter<MallListContact.IMallListView>(), MallListContact.IMallListPresenter {
     override fun loadMallList(nMallListModelReq: NMallListModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(ShopApe::class.java)
+            .create(ShopApi::class.java)
             .loadMallList(nMallListModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))

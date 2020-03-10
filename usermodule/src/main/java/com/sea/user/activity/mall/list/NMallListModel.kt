@@ -11,7 +11,7 @@ class NMallListModelResponse(
     val data: Data = Data()
 ) {
     class Data(
-        val totalcount: Int = 0,
+        val totalCount: Int = 0,
         val mList: List<MallListItem> = listOf()
     )
 }

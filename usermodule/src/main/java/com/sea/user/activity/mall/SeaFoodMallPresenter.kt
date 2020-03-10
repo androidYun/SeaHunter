@@ -1,16 +1,16 @@
 package com.sea.user.activity.mall
 
+import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.user.api.SeaFoodMallApi
 
 
 class SeaFoodMallPresenter : IPresenter<SeaFoodMallContact.ISeaFoodMallView>(),
     SeaFoodMallContact.ISeaFoodMallPresenter {
     override fun loadSeaFoodMall(nSeaFoodMallModelReq: NSeaFoodMallModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(SeaFoodMallApi::class.java)
+            .create(ShopApi::class.java)
             .loadSeaFoodMall(nSeaFoodMallModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))

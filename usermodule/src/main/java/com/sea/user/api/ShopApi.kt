@@ -1,6 +1,9 @@
 package com.sea.user.api
 
 import com.sea.user.activity.mall.NSeaFoodMallModelReq
+import com.sea.user.activity.mall.NSeaFoodMallResponse
+import com.sea.user.activity.mall.list.NMallListModelReq
+import com.sea.user.activity.mall.list.NMallListModelResponse
 import com.sea.user.activity.mall.search.NSearchStoreModelReq
 import com.sea.user.activity.mall.search.NSearchStoreModelResponse
 import com.sea.user.activity.mall.select.NSelectStoreModelReq
@@ -21,4 +24,10 @@ interface ShopApi {
 
     @POST("api/v1")
     fun loadSearchStore(@Body nSearchStoreModelReq: NSearchStoreModelReq): Observable<NSearchStoreModelResponse>
+
+    @POST("api/v1")
+    fun loadMallList(@Body nMallListModelReq: NMallListModelReq): Observable<NMallListModelResponse>
+
+    @POST("api/v1")
+    fun loadSeaFoodMall(@Body nSeaFoodMallModelReq: NSeaFoodMallModelReq): Observable<NSeaFoodMallResponse>
 }
