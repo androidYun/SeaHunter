@@ -2,6 +2,10 @@ package com.sea.user.activity.mall.list
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import kotlinx.android.synthetic.main.activity_mall_list.*
@@ -29,11 +33,22 @@ class MallListActivity : BaseActivity(), MallListContact.IMallListView {
 
     private fun initView() {
         mMallListAdapter = MallListAdapter(mMallListList)
-        rvMallList.layoutManager = LinearLayoutManager(this)
+        val layoutManager = FlexboxLayoutManager(this)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.FLEX_START
+        layoutManager.flexWrap=FlexWrap.WRAP
+        rvMallList.layoutManager = layoutManager
         rvMallList.adapter = mMallListAdapter
     }
 
     private fun initData() {
+        mMallListList.add(MallListItem())
+        mMallListList.add(MallListItem())
+        mMallListList.add(MallListItem())
+        mMallListList.add(MallListItem())
+        mMallListList.add(MallListItem())
+        mMallListList.add(MallListItem())
+        mMallListList.add(MallListItem())
         mMallListPresenter.loadMallList(nMallListReq)
     }
 

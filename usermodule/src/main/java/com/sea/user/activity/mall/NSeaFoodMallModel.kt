@@ -1,5 +1,7 @@
 package com.sea.user.activity.mall
 
+import androidx.annotation.DrawableRes
+
 class NSeaFoodMallResponse(
     val code: Int = -1,
     val msg: String = "",
@@ -10,8 +12,9 @@ class NSeaFoodMallResponse(
 
 class NSeaFoodMallModelReq
 
-class NKindFood
+//海鲜种类
+class NKindFood(@DrawableRes val resId: Int, val kindName: String)
 
-class NFoodType
+class NFoodType(@DrawableRes val resId: Int, val typeName: String, val typeDesc: String)
 class NFoodRecommend
 class NFoodFine

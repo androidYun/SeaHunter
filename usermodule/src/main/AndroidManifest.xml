@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sea.user">
-    <supports-screens android:requiresSmallestWidthDp="600"/>
+
+    <supports-screens android:requiresSmallestWidthDp="600" />
 
     <application>
+        <activity
+            android:name=".activity.mall.detail.ShopDetailActivity"
+            android:label="@string/title_ShopDetail" />
         <activity
             android:name=".activity.mall.list.MallListActivity"
             android:label="@string/title_MallList" />

@@ -34,4 +34,5 @@
     <string name="title_SelectStore">选择门店</string>
     <string name="title_SearchStore">搜索</string>
     <string name="title_MallList">商城列表</string>
+    <string name="title_ShopDetail">商品详情</string>
 </resources>

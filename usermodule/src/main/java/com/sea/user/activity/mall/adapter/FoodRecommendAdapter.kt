@@ -10,7 +10,6 @@ class FoodRecommendAdapter(mList: List<NFoodRecommend>) :
     override fun convert(helper: BaseViewHolder?, item: NFoodRecommend?) {
         helper?.setText(R.id.tvRecommendName, "")
         helper?.setText(R.id.tvRecommendPrice, "")
-        helper?.setText(R.id.tvTypeNameDesc, "")
         helper?.addOnClickListener(R.id.fvFoodType)
     }
 }

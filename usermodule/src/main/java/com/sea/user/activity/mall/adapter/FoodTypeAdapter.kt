@@ -7,10 +7,10 @@ import com.sea.user.activity.mall.NFoodType
 
 class FoodTypeAdapter(mList: List<NFoodType>) :
     BaseQuickAdapter<NFoodType, BaseViewHolder>(R.layout.item_food_type_layout, mList) {
-    override fun convert(helper: BaseViewHolder?, item: NFoodType?) {
-        helper?.setText(R.id.tvTypeName, "")
-        helper?.setText(R.id.tvTypeName, "")
-        helper?.setText(R.id.tvRecommendDesc, "")
-        helper?.addOnClickListener(R.id.cvRecommend)
+    override fun convert(helper: BaseViewHolder?, item: NFoodType) {
+        helper?.setText(R.id.tvTypeName, item.typeName)
+        helper?.setText(R.id.tvTypeNameDesc, item.typeDesc)
+        helper?.addOnClickListener(R.id.fvFoodType)
+        helper?.setImageResource(R.id.ivFoodTypeBg, item.resId)
     }
 }

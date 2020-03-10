@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.address.AddAddressActivity">
+
+    <LinearLayout style="@style/itemLayoutStyle">
+
+        <TextView
+            style="@style/itemTitleStyle"
+            android:text="姓名" />
+
+        <EditText
+            android:id="@+id/evName"
+            style="@style/itemContentEditTextStyle"
+            android:hint="请输入姓名" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/itemLayoutStyle">
+
+        <TextView
+            style="@style/itemTitleStyle"
+            android:text="手机号" />
+
+        <EditText
+            android:id="@+id/evPhoneNumber"
+            style="@style/itemContentEditTextStyle"
+            android:hint="请填写手机号" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/itemLayoutStyle">
+
+        <TextView
+            style="@style/itemTitleStyle"
+            android:text="选择地址" />
+
+        <TextView
+            android:id="@+id/tvSelectAddress"
+            style="@style/itemContentTextViewStyle"
+            android:hint="请填写手机号" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/itemLayoutStyle">
+
+        <TextView
+            style="@style/itemTitleStyle"
+            android:text="详细地址" />
+
+        <EditText
+            android:id="@+id/evDetailAddress"
+            style="@style/itemContentEditTextStyle"
+            android:hint="请填写详细地址" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/itemLayoutStyle">
+
+        <TextView
+            style="@style/itemTitleStyle"
+            android:layout_width="wrap_content"
+            android:text="设置为默认地址" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <CheckBox
+            android:id="@+id/cbSelectDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDeleteAddress"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:textColor="@color/color_bf0008"
+        android:textSize="18dp"
+        android:background="@color/white"
+        android:text="删除收货地址"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvSaveAddress"
+        style="@style/baseBtnStyle"
+        android:layout_marginTop="30dp"
+        android:text="保存地址" />
+</LinearLayout>
