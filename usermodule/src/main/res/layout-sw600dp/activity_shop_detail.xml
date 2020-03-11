@@ -38,7 +38,7 @@
                         android:id="@+id/tvShopName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#ff000000"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -160,10 +160,58 @@
             android:layout_height="60dp"
             android:layout_alignParentBottom="true">
 
+            <ImageView
+                android:id="@+id/ivShopCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:src="@mipmap/ic_car_bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
+                android:id="@+id/tvShopCarNumber"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:background="@color/user_theme_color"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/ivShopCar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvShopPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="￥477.50"
+                android:textColor="@color/user_theme_color"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvShopCarNumber"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_goneMarginStart="30dp" />
+
+            <TextView
+                android:id="@+id/tvJoinShopCar"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="#287CE0"
+                android:background="@color/color_39A0F3"
+                android:gravity="center"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:text="加入购物车"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/tvOnceBuy" />
+
+            <TextView
+                android:id="@+id/tvOnceBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/user_theme_color"
                 android:gravity="center"
                 android:paddingStart="50dp"
                 android:paddingEnd="50dp"

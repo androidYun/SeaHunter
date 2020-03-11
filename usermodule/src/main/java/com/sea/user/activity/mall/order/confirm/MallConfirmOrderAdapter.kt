@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall
+package com.sea.user.activity.mall.order.confirm
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

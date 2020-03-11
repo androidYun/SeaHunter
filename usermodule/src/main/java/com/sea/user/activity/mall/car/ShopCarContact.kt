@@ -7,7 +7,7 @@ interface ShopCarContact {
 
     interface IShopCarView : IBaseView {
 
-        fun loadShopCarSuccess(mList: List<ShopCarItem>, totalCount: Int)
+        fun loadShopCarSuccess(mList: List<ShopCarItem>)
 
         fun loadShopCarFail(throwable: Throwable)
 

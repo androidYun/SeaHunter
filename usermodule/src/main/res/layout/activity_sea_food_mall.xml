@@ -25,6 +25,8 @@
                     android:id="@+id/tvStoreName"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:drawableEnd="@mipmap/ic_arrow_bottom"
+                    android:drawablePadding="5dp"
                     android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -43,14 +45,19 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.5">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_search" />
+
                     <TextView
                         android:id="@+id/tvSearchContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@mipmap/ic_search"
-                        android:drawablePadding="20dp"
+                        android:layout_marginStart="10dp"
                         android:text="搜索"
-                        android:textColor="@color/color_747474" />
+                        android:textColor="@color/color_747474"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -60,12 +67,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvKindFood"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="60dp"
-                android:paddingEnd="60dp" />
+                android:gravity="center">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvKindFood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="60dp"
+                    android:paddingEnd="60dp" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvFoodType"

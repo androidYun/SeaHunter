@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall
+package com.sea.user.activity.mall.order.confirm
 
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils

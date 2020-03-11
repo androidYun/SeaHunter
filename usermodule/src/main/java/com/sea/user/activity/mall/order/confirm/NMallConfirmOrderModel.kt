@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall
+package com.sea.user.activity.mall.order.confirm
 
 class NMallConfirmOrderModelReq(
     var pageSize: Int = 20,

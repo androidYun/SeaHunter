@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall
+package com.sea.user.activity.mall.order.confirm
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,13 +36,9 @@ class MallConfirmOrderActivity : BaseActivity(), MallConfirmOrderContact.IMallCo
     }
 
     private fun initListener() {
-        swipeMallConfirmOrder.setOnRefreshListener {
-            mMallConfirmOrderPresenter.loadMallConfirmOrder(nMallConfirmOrderReq)
-        }
     }
 
     override fun loadMallConfirmOrderSuccess(mList: List<MallConfirmOrderItem>) {
-        swipeMallConfirmOrder.isRefreshing = false
         mMallConfirmOrderList.clear()
         mMallConfirmOrderList.addAll(mList)
         mMallConfirmOrderAdapter.notifyDataSetChanged()
@@ -51,7 +47,6 @@ class MallConfirmOrderActivity : BaseActivity(), MallConfirmOrderContact.IMallCo
 
     override fun loadMallConfirmOrderFail(throwable: Throwable) {
         handleError(throwable)
-        swipeMallConfirmOrder.isRefreshing = false
     }
 
     override fun showLoading() {

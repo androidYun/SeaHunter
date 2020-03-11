@@ -1,15 +1,15 @@
 package com.sea.user.activity.mall.car
 
+import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.user.api.ShopCarApi
 
 
 class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarContact.IShopCarPresenter {
     override fun loadShopCar(nShopCarModelReq: NShopCarModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(ShopCarApi::class.java)
+            .create(ShopApi::class.java)
             .loadShopCar(nShopCarModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
