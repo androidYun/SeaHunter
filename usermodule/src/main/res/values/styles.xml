@@ -25,7 +25,7 @@
     <style name="BaseTextViewItemStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
-        <item name="android:drawableEnd">@mipmap/ic_base_block_back</item>
+        <item name="android:drawableEnd">@mipmap/ic_arrow_right</item>
         <item name="android:background">@drawable/shape_base_item_background</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:gravity">center_vertical</item>

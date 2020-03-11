@@ -91,7 +91,7 @@ class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
             startActivity(Intent(context, FeedBackActivity::class.java))
         }
         tvContactUs.setOnClickListener {
-
+            startActivity(Intent(context, SetActivity::class.java))
         }
     }
 
