@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.sea.user.R
-import com.sea.user.activity.shop.order.ShopOrderFragment
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
 
@@ -20,8 +19,9 @@ class ShopOrderListActivity : BaseActivity() {
 
 
     private val tabTitle = mutableListOf(
+        ShopOrderModel("全部", "1"),
         ShopOrderModel("待付款", "1"),
-        ShopOrderModel("代发货", "1"),
+        ShopOrderModel("待发货", "1"),
         ShopOrderModel("待收货", "1"),
         ShopOrderModel("已完成", "1")
     )
@@ -42,9 +42,9 @@ class ShopOrderListActivity : BaseActivity() {
     inner class ShopOrderPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return if (position == 0) {
-                ShopOrderFragment.getInstance()
+                ShopOrderListFragment.getInstance()
             } else {
-                ShopOrderFragment.getInstance()
+                ShopOrderListFragment.getInstance()
             }
         }
 

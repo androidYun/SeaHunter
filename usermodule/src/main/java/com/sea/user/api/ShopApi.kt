@@ -10,6 +10,10 @@ import com.sea.user.activity.mall.list.NMallListModelReq
 import com.sea.user.activity.mall.list.NMallListModelResponse
 import com.sea.user.activity.mall.order.confirm.NMallConfirmOrderModelReq
 import com.sea.user.activity.mall.order.confirm.NMallConfirmOrderModelResponse
+import com.sea.user.activity.mall.order.detail.NMallOrderDetailModelReq
+import com.sea.user.activity.mall.order.detail.NMallOrderDetailResponse
+import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
+import com.sea.user.activity.mall.order.list.NShopOrderListModelResponse
 import com.sea.user.activity.mall.search.NSearchStoreModelReq
 import com.sea.user.activity.mall.search.NSearchStoreModelResponse
 import com.sea.user.activity.mall.select.NSelectStoreModelReq
@@ -45,4 +49,10 @@ interface ShopApi {
 
     @POST("api/v1")
     fun loadMallConfirmOrder(@Body nMallConfirmOrderModelReq: NMallConfirmOrderModelReq): Observable<NMallConfirmOrderModelResponse>
+
+    @POST("api/v1")
+    fun loadShopOrderList(@Body nShopOrderListModelReq: NShopOrderListModelReq): Observable<NShopOrderListModelResponse>
+
+    @POST("api/v1")
+    fun loadMallOrderDetail(@Body nMallOrderDetailModelReq: NMallOrderDetailModelReq): Observable<NMallOrderDetailResponse>
 }

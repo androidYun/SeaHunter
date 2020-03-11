@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall.order.list
+package com.sea.user.activity.mall.order.detail
 
 import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
@@ -6,12 +6,12 @@ import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
 
 
-class ShopOrderListPresenter : IPresenter<ShopOrderListContact.IShopOrderListView>(),
-    ShopOrderListContact.IShopOrderListPresenter {
-    override fun loadShopOrderList(nShopOrderListModelReq: NShopOrderListModelReq) {
+class MallOrderDetailPresenter : IPresenter<MallOrderDetailContact.IMallOrderDetailView>(),
+    MallOrderDetailContact.IMallOrderDetailPresenter {
+    override fun loadMallOrderDetail(nMallOrderDetailModelReq: NMallOrderDetailModelReq) {
         RetrofitUtils.getRetrofit()
             .create(ShopApi::class.java)
-            .loadShopOrderList(nShopOrderListModelReq)
+            .loadMallOrderDetail(nMallOrderDetailModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -24,12 +24,12 @@ class ShopOrderListPresenter : IPresenter<ShopOrderListContact.IShopOrderListVie
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadShopOrderListSuccess(it.data.mList, it.data.totalCount)
+                        softView.get()?.loadMallOrderDetailSuccess(it.data)
                     } else {
-                        softView.get()?.loadShopOrderListFail(Throwable(it.msg))
+                        softView.get()?.loadMallOrderDetailFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadShopOrderListFail(throwable) }
+                }, { throwable -> softView.get()?.loadMallOrderDetailFail(throwable) }
             )
     }
 }

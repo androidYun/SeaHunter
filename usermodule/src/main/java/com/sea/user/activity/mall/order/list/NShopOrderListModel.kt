@@ -1,5 +1,7 @@
 package com.sea.user.activity.mall.order.list
 
+import com.chad.library.adapter.base.entity.MultiItemEntity
+
 class NShopOrderListModelReq(
     var pageSize: Int = 20,
     var pageIndex: Int = 1
@@ -16,4 +18,8 @@ class NShopOrderListModelResponse(
     )
 }
 
-class ShopOrderListItem
+class ShopOrderListItem : MultiItemEntity {
+    override fun getItemType(): Int {
+        return 0
+    }
+}

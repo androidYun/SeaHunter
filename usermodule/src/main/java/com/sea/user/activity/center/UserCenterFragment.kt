@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sea.user.R
+import com.sea.user.activity.feedback.FeedBackActivity
 import com.sea.user.activity.integral.exchange.ExchangeListActivity
 import com.sea.user.activity.integral.mall.IntegralMallActivity
 import com.sea.user.activity.set.SetActivity
@@ -61,16 +62,16 @@ class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
             startActivity(Intent(context, MineOrderActivity::class.java))
         }
         tvWaitPayment.setOnClickListener {
-
+            startActivity(Intent(context, MineOrderActivity::class.java))
         }
         tvWaitDelivery.setOnClickListener {
-
+            startActivity(Intent(context, MineOrderActivity::class.java))
         }
         tvWaitReceived.setOnClickListener {
-
+            startActivity(Intent(context, MineOrderActivity::class.java))
         }
         tvFinish.setOnClickListener {
-
+            startActivity(Intent(context, MineOrderActivity::class.java))
         }
         //下面商城Item
         tvSeaFoodMall.setOnClickListener {
@@ -87,7 +88,7 @@ class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
             startActivity(Intent(context, ExchangeListActivity::class.java))
         }
         tvFeedback.setOnClickListener {
-
+            startActivity(Intent(context, FeedBackActivity::class.java))
         }
         tvContactUs.setOnClickListener {
 

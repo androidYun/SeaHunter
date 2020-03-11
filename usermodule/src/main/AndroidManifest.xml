@@ -4,10 +4,20 @@
 
     <supports-screens android:requiresSmallestWidthDp="600" />
 
-    <application>
+    <application
+        >
+        <activity
+            android:name=".activity.mall.order.detail.MallOrderDetailActivity"
+            android:label="@string/title_MallOrderDetail" />
         <activity
             android:name=".activity.mall.order.confirm.MallConfirmOrderActivity"
             android:label="@string/title_MallConfirmOrder" />
+        <activity
+            android:name=".activity.mall.order.result.OrderResultActivity"
+            android:label="@string/order_successful" />
+        <activity
+            android:name=".activity.mall.order.list.ShopOrderListActivity"
+            android:label="@string/mine_order" />
         <activity
             android:name=".activity.mall.car.ShopCarActivity"
             android:label="@string/title_ShopCar" />
@@ -29,7 +39,7 @@
         <activity
             android:name=".activity.center.UserCenterActivity"
             android:label="@string/user_center"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/grayNoActionBarTheme" />
         <activity
             android:name=".activity.integral.mall.detail.IntegralShopDetailActivity"
             android:label="@string/title_IntegralShopDetail" />

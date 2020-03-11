@@ -6,7 +6,11 @@
     </style>
 
     <style name="grayBgAppTheme" parent="AppTheme">
-        <item name="android:windowBackground">@mipmap/bg_white</item>
+        <item name="android:windowBackground">@mipmap/bg_gray</item>
+    </style>
+
+    <style name="grayNoActionBarTheme" parent="NoActionBarTheme">
+        <item name="android:windowBackground">@mipmap/bg_gray</item>
     </style>
 
     <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
