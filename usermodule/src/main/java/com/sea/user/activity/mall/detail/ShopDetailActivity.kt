@@ -23,7 +23,7 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView {
     }
 
     private fun initData() {
-        mShopDetailPresenter.loadShopDetail("")
+        mShopDetailPresenter.loadShopDetail(NShopDetailModelReq())
     }
 
     private fun initListener() {
