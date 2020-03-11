@@ -28,6 +28,7 @@
     <string name="need_integral">所需积分:</string>
     <string name="title_IntegralShopDetail">商品详情</string>
     <string name="user_center">个人中心</string>
+    <string name="once_order">立即下单</string>
     <string name="set">设置</string>
     <string name="mine_wallet">我的钱包</string>
     <string name="title_SeaFoodMall">海鲜商城</string>
@@ -35,4 +36,7 @@
     <string name="title_SearchStore">搜索</string>
     <string name="title_MallList">商城列表</string>
     <string name="title_ShopDetail">商品详情</string>
+    <string name="title_ShopCar">购物车</string>
+    <string name="title_MallConfirmOrder">确认下单</string>
+    <string name="total">合计</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall.detail
+package com.sea.user.activity.mall.car
 
 import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
@@ -6,12 +6,11 @@ import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
 
 
-class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
-    ShopDetailContact.IShopDetailPresenter {
-    override fun loadShopDetail(nShopDetailModelReq: NShopDetailModelReq) {
+class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarContact.IShopCarPresenter {
+    override fun loadShopCar(nShopCarModelReq: NShopCarModelReq) {
         RetrofitUtils.getRetrofit()
             .create(ShopApi::class.java)
-            .loadShopDetail(nShopDetailModelReq)
+            .loadShopCar(nShopCarModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -24,12 +23,12 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadShopDetailSuccess(it.data)
+                        softView.get()?.loadShopCarSuccess(it.data.mList)
                     } else {
-                        softView.get()?.loadShopDetailFail(Throwable(it.msg))
+                        softView.get()?.loadShopCarFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadShopDetailFail(throwable) }
+                }, { throwable -> softView.get()?.loadShopCarFail(throwable) }
             )
     }
 }

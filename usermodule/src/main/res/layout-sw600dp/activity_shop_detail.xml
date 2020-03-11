@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeShopDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cvOperator">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/line_view" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/default_padding">
+
+                    <TextView
+                        android:id="@+id/tvShopName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="鲜有汇聚冰鲜三文鱼中段日料刺身拼盘新鲜生鱼片即食海鲜三文鱼肉" />
+
+                    <TextView
+                        android:id="@+id/tvRemark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/color_9"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvShopName"
+                        tools:text="当天现杀 送芥末酱油 4.9评分 不切片请备注  当天现杀 送芥末酱油 4.9评分 不切片请备注" />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/user_theme_color"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvRemark"
+                        tools:text="￥48-218" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="已售：1456    库存：32"
+                        android:textColor="@color/color_9"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvPrice" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/line_view" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/default_padding"
+                    android:paddingEnd="@dimen/default_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_6"
+                        android:textSize="18sp"
+                        tools:text="商品规格" />
+
+                    <TextView
+                        android:id="@+id/tvSelectShopSpec"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:drawableEnd="@mipmap/ic_arrow_right"
+                        android:gravity="center_vertical"
+                        tools:text="请选择商品规格" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/line_view" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/default_padding"
+                    android:paddingEnd="@dimen/default_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_6"
+                        android:textSize="18sp"
+                        tools:text="商品规格" />
+
+                    <TextView
+                        android:id="@+id/tvStoreName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:drawableEnd="@mipmap/ic_arrow_right"
+                        android:gravity="center_vertical"
+                        tools:text="郑州 • 绿都新都会店" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/line_view" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDetailParams"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <WebView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cvOperator"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/ivShopCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:src="@mipmap/ic_car_bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvShopCarNumber"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:background="@color/user_theme_color"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/ivShopCar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvShopPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="￥477.50"
+                android:textColor="@color/user_theme_color"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvShopCarNumber"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_goneMarginStart="30dp" />
+
+            <TextView
+                android:id="@+id/tvJoinShopCar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/color_39A0F3"
+                android:gravity="center"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:text="加入购物车"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/tvOnceBuy" />
+
+            <TextView
+                android:id="@+id/tvOnceBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/user_theme_color"
+                android:gravity="center"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:text="立即购买"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

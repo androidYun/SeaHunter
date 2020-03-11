@@ -2,8 +2,14 @@ package com.sea.user.api
 
 import com.sea.user.activity.mall.NSeaFoodMallModelReq
 import com.sea.user.activity.mall.NSeaFoodMallResponse
+import com.sea.user.activity.mall.car.NShopCarModelReq
+import com.sea.user.activity.mall.car.NShopCarModelResponse
+import com.sea.user.activity.mall.detail.NShopDetailModelReq
+import com.sea.user.activity.mall.detail.NShopDetailResponse
 import com.sea.user.activity.mall.list.NMallListModelReq
 import com.sea.user.activity.mall.list.NMallListModelResponse
+import com.sea.user.activity.mall.order.confirm.NMallConfirmOrderModelReq
+import com.sea.user.activity.mall.order.confirm.NMallConfirmOrderModelResponse
 import com.sea.user.activity.mall.search.NSearchStoreModelReq
 import com.sea.user.activity.mall.search.NSearchStoreModelResponse
 import com.sea.user.activity.mall.select.NSelectStoreModelReq
@@ -30,4 +36,13 @@ interface ShopApi {
 
     @POST("api/v1")
     fun loadSeaFoodMall(@Body nSeaFoodMallModelReq: NSeaFoodMallModelReq): Observable<NSeaFoodMallResponse>
+
+    @POST("api/v1")
+    fun loadShopDetail(@Body nShopDetailModelReq: NShopDetailModelReq): Observable<NShopDetailResponse>
+
+    @POST("api/v1")
+    fun loadShopCar(@Body nShopCarModelReq: NShopCarModelReq): Observable<NShopCarModelResponse>
+
+    @POST("api/v1")
+    fun loadMallConfirmOrder(@Body nMallConfirmOrderModelReq: NMallConfirmOrderModelReq): Observable<NMallConfirmOrderModelResponse>
 }

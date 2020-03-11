@@ -20,15 +20,14 @@
         app:layout_constraintTop_toBottomOf="@+id/ivLogo"
         app:layout_constraintWidth_percent="0.6">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/evUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:drawableStart="@mipmap/ic_account"
+            android:drawablePadding="10dp"
             android:hint="@string/please_input_account"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
@@ -49,16 +48,14 @@
         app:layout_constraintTop_toBottomOf="@+id/lvUserName"
         app:layout_constraintWidth_percent="0.6">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
         <EditText
             android:id="@+id/evVersionCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
+            android:drawableStart="@mipmap/ic_verification_code"
+            android:drawablePadding="10dp"
             android:hint="@string/please_input_version_code"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
@@ -92,24 +89,23 @@
         app:layout_constraintTop_toBottomOf="@+id/lvVersionCode"
         app:layout_constraintWidth_percent="0.6">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
         <EditText
             android:id="@+id/evPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
+            android:drawableStart="@mipmap/ic_password"
+            android:drawablePadding="10dp"
             android:hint="@string/please_input_password"
+            android:src="@mipmap/ic_account"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
 
         <CheckBox
             android:id="@+id/cbEye"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/select_password_checkbox"
             android:button="@null"
             android:checked="true" />
@@ -118,14 +114,9 @@
 
     <TextView
         android:id="@+id/tvNextStep"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        style="@style/baseBtnStyle"
         android:layout_marginTop="20dp"
-        android:background="@drawable/shape_base_btn"
-        android:gravity="center"
         android:text="@string/next_step"
-        android:textColor="@color/white"
-        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lvPassword"

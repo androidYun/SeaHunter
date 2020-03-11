@@ -6,6 +6,12 @@
 
     <application>
         <activity
+            android:name=".activity.mall.order.confirm.MallConfirmOrderActivity"
+            android:label="@string/title_MallConfirmOrder" />
+        <activity
+            android:name=".activity.mall.car.ShopCarActivity"
+            android:label="@string/title_ShopCar" />
+        <activity
             android:name=".activity.mall.detail.ShopDetailActivity"
             android:label="@string/title_ShopDetail" />
         <activity
