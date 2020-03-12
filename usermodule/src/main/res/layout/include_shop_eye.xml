@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBox
+        android:id="@+id/cbEye"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/select_password_checkbox"
+        android:button="@null"
+        android:checked="true" />
+</merge>

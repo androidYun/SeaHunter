@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="80dp"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivHead"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        tools:text="深海。" />
+
+    <TextView
+        android:id="@+id/tvSidebarOrdering"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableTop="@mipmap/ic_left_ordering"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:text="点餐"
+        android:textColor="@color/color_737373"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/rvSidebarCar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp">
+
+        <TextView
+            android:id="@+id/tvSidebarCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:drawableTop="@mipmap/ic_left_ordering"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="购物车"
+            android:textColor="@color/color_737373"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvSidebarCarNumber"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignTop="@+id/tvSidebarCar"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/tvSidebarCar"
+            android:background="@color/user_theme_color" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvSidebarOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableTop="@mipmap/ic_left_ordering"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:text="订单"
+        android:textColor="@color/color_737373"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvSidebarMine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableTop="@mipmap/ic_left_ordering"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:text="我的"
+        android:textColor="@color/color_737373"
+        android:textSize="14sp" />
+</LinearLayout>

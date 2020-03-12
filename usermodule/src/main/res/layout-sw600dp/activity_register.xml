@@ -102,13 +102,7 @@
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
 
-        <CheckBox
-            android:id="@+id/cbEye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/select_password_checkbox"
-            android:button="@null"
-            android:checked="true" />
+        <include layout="@layout/include_shop_eye" />
     </LinearLayout>
 
 

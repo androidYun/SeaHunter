@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import com.sea.user.R
+import com.sea.user.activity.inform.FillInformActivity
 import com.sea.user.activity.login.LoginActivity
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.password.ForgetPasswordActivity
 import com.xhs.baselibrary.base.BaseActivity
+import com.xhs.baselibrary.utils.TimeCountDown
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_user_login.*
@@ -32,6 +34,8 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView {
         }
     }
 
+    private lateinit var timeCountDown: TimeCountDown
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -42,7 +46,7 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView {
 
 
     private fun initView() {
-
+        timeCountDown = TimeCountDown(tvVersionCode, 60000, 1000)
     }
 
     private fun initData() {
@@ -55,6 +59,7 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView {
                 if (b) InputType.TYPE_TEXT_VARIATION_PASSWORD else InputType.TYPE_NUMBER_VARIATION_PASSWORD
         }
         tvNextStep.setOnClickListener {
+            startActivity(Intent(this, FillInformActivity::class.java))
             val userName = evUserName.text.toString()
             val password = evPassword.text.toString()
             val versionCode = evVersionCode.text.toString()
@@ -80,7 +85,7 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView {
     }
 
     override fun loadRegisterSuccess() {
-
+        startActivity(Intent(this, FillInformActivity::class.java))
     }
 
     override fun loadRegisterFail(throwable: Throwable) {

@@ -55,6 +55,7 @@ dependencies {
     api deps.glide
     api deps.androidx_annotation
     kapt deps.glideprocessor
+    api deps.pictureLibrary
 }
 repositories {
     mavenCentral()

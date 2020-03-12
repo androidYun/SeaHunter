@@ -8,6 +8,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.activity.base.BaseSeaUserActivity
 import com.sea.user.activity.mall.adapter.FoodFineAdapter
 import com.sea.user.activity.mall.adapter.FoodRecommendAdapter
 import com.sea.user.activity.mall.adapter.FoodTypeAdapter
@@ -15,7 +16,7 @@ import com.sea.user.activity.mall.adapter.KindFoodAdapter
 import com.sea.user.activity.mall.select.SelectStoreActivity
 import kotlinx.android.synthetic.main.activity_sea_food_mall.*
 
-class SeaFoodMallActivity : BaseActivity(), SeaFoodMallContact.ISeaFoodMallView {
+class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMallView {
 
     private val mSeaFoodMallPresenter by lazy { SeaFoodMallPresenter().apply { attachView(this@SeaFoodMallActivity) } }
 
