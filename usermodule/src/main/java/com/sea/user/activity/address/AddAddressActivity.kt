@@ -10,6 +10,9 @@ import com.lljjcoder.style.citypickerview.CityPickerView
 import com.sea.user.R
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_address.*
+import com.lljjcoder.citywheel.CityConfig
+
+
 
 
 /**
@@ -37,7 +40,7 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
     private val nAddressModelReq = NAddressModelReq()
 
     //申明对象
-    val mPicker by lazy { CityPickerView() }
+    private val mPicker by lazy { CityPickerView() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,8 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
 
 
     private fun initView() {
+        val cityConfig = CityConfig.Builder().build()
+        mPicker.setConfig(cityConfig)
         mPicker.init(this)
     }
 
