@@ -1,15 +1,23 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+    <style name="UserAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textSize">14sp</item>
         <item name="android:windowBackground">@mipmap/bg_white</item>
+        <item name="android:actionBarSize">44dp</item>
+        <item name="actionBarSize">44dp</item>
+        <item name="colorPrimary">@color/user_theme_color</item>
+        <item name="colorPrimaryDark">@color/user_theme_color</item>
     </style>
 
-    <style name="grayBgAppTheme" parent="AppTheme">
+    <style name="grayBgAppTheme" parent="UserAppTheme">
         <item name="android:windowBackground">@mipmap/bg_gray</item>
     </style>
 
     <style name="grayNoActionBarTheme" parent="NoActionBarTheme">
+        <item name="android:windowBackground">@mipmap/bg_gray</item>
+    </style>
+
+    <style name="grayTheme" parent="UserAppTheme">
         <item name="android:windowBackground">@mipmap/bg_gray</item>
     </style>
 

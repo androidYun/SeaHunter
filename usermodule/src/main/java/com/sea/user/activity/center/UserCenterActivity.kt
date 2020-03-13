@@ -2,6 +2,7 @@ package com.sea.user.activity.center
 
 import android.os.Bundle
 import com.sea.user.R
+import com.sea.user.activity.base.BaseSeaUserActivity
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_user_center.*
 
@@ -12,14 +13,18 @@ import kotlinx.android.synthetic.main.activity_user_center.*
  * 描述：
  *
  */
-class UserCenterActivity : BaseActivity() {
+class UserCenterActivity : BaseSeaUserActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_center)
-        val beginTransaction = supportFragmentManager.beginTransaction()
-        beginTransaction.add(R.id.frameLayout,UserCenterFragment.getInstance())
-        beginTransaction.commit()
+        initView()
+    }
 
+    private fun initView() {
+        selectTab("我的")
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.add(R.id.frameLayout, UserCenterFragment.getInstance())
+        beginTransaction.commit()
     }
 }

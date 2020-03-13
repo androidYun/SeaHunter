@@ -1,12 +1,16 @@
 package com.sea.user.weight
 
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.sea.user.R
+import com.sea.user.activity.center.UserCenterActivity
+import com.sea.user.activity.mall.SeaFoodMallActivity
+import com.sea.user.activity.mall.car.ShopCarActivity
+import com.sea.user.activity.mall.order.list.ShopOrderListActivity
 import com.xhs.baselibrary.utils.UIUtils
 
 class SideBarView @JvmOverloads constructor(
@@ -31,7 +35,7 @@ class SideBarView @JvmOverloads constructor(
     private fun initView() {
         val inflateView = View.inflate(context, R.layout.include_sidebar_layout, this)
         tvSidebarOrdering = inflateView.findViewById(R.id.tvSidebarOrdering)
-        tvSidebarCar = inflateView.findViewById(R.id.tvSidebarOrdering)
+        tvSidebarCar = inflateView.findViewById(R.id.tvSidebarCar)
         tvSidebarCarNumber = inflateView.findViewById(R.id.tvSidebarCarNumber)
         tvSidebarOrder = inflateView.findViewById(R.id.tvSidebarOrder)
         tvSidebarMine = inflateView.findViewById(R.id.tvSidebarMine)
@@ -42,10 +46,30 @@ class SideBarView @JvmOverloads constructor(
     }
 
     private fun initListener() {
-        tvSidebarOrdering.setOnClickListener { selectTab(tvSidebarOrdering) }
-        tvSidebarCar.setOnClickListener { selectTab(tvSidebarCar) }
-        tvSidebarOrder.setOnClickListener { selectTab(tvSidebarOrder) }
-        tvSidebarMine.setOnClickListener { selectTab(tvSidebarMine) }
+        tvSidebarOrdering.setOnClickListener {
+            if (tvSidebarOrdering.text == title) {
+                return@setOnClickListener
+            }
+            this.context.startActivity(Intent(this.context, SeaFoodMallActivity::class.java))
+        }
+        tvSidebarCar.setOnClickListener {
+            if (tvSidebarCar.text == title) {
+                return@setOnClickListener
+            }
+            this.context.startActivity(Intent(this.context, ShopCarActivity::class.java))
+        }
+        tvSidebarOrder.setOnClickListener {
+            if (tvSidebarOrder.text == title) {
+                return@setOnClickListener
+            }
+            this.context.startActivity(Intent(this.context, ShopOrderListActivity::class.java))
+        }
+        tvSidebarMine.setOnClickListener {
+            if (tvSidebarMine.text == title) {
+                return@setOnClickListener
+            }
+            this.context.startActivity(Intent(this.context, UserCenterActivity::class.java))
+        }
     }
 
     private fun selectTab(view: TextView) {
@@ -60,5 +84,25 @@ class SideBarView @JvmOverloads constructor(
         view.setTextColor(UIUtils.getInstance().getColor(R.color.base_color_theme))
         view.isActivated = true
     }
+
+    private var title: String = ""
+    fun selectTab(tabText: String) {
+        title = tabText
+        when (tabText) {
+            tvSidebarOrdering.text -> {
+                selectTab(tvSidebarOrdering)
+            }
+            tvSidebarCar.text -> {
+                selectTab(tvSidebarCar)
+            }
+            tvSidebarOrder.text -> {
+                selectTab(tvSidebarOrder)
+            }
+            tvSidebarMine.text -> {
+                selectTab(tvSidebarMine)
+            }
+        }
+    }
+
 
 }

@@ -2,9 +2,15 @@ package com.sea.user.activity.address
 
 import android.os.Bundle
 import android.view.View
+import com.lljjcoder.Interface.OnCityItemClickListener
+import com.lljjcoder.bean.CityBean
+import com.lljjcoder.bean.DistrictBean
+import com.lljjcoder.bean.ProvinceBean
+import com.lljjcoder.style.citypickerview.CityPickerView
 import com.sea.user.R
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_address.*
+
 
 /**
  * @ author guiyun.li
@@ -30,6 +36,9 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
 
     private val nAddressModelReq = NAddressModelReq()
 
+    //申明对象
+    val mPicker by lazy { CityPickerView() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_address)
@@ -40,13 +49,13 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
 
 
     private fun initView() {
-
+        mPicker.init(this)
     }
 
     private fun initData() {
         if (operatorType == EDIT_ADDRESS_CODE) {//编辑的话需要先加载地址
             addressPresenter.loadAddress(addressId)
-            tvDeleteAddress.visibility=View.VISIBLE//只有编辑的时候才能显示地址
+            tvDeleteAddress.visibility = View.VISIBLE//只有编辑的时候才能显示地址
         }
     }
 
@@ -63,6 +72,18 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
             }
 
         }
+        tvSelectAddress.setOnClickListener {
+            mPicker.showCityPicker()
+        }
+        mPicker.setOnCityItemClickListener(object : OnCityItemClickListener() {
+            override fun onSelected(
+                province: ProvinceBean?,
+                city: CityBean?,
+                district: DistrictBean?
+            ) {
+                super.onSelected(province, city, district)
+            }
+        })
 
     }
 

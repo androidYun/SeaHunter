@@ -4,9 +4,10 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.activity.base.BaseSeaUserActivity
 import kotlinx.android.synthetic.main.activity_shop_car.*
 
-class ShopCarActivity : BaseActivity(), ShopCarContact.IShopCarView {
+class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView {
 
     private val mShopCarPresenter by lazy { ShopCarPresenter().apply { attachView(this@ShopCarActivity) } }
 
@@ -26,6 +27,7 @@ class ShopCarActivity : BaseActivity(), ShopCarContact.IShopCarView {
 
 
     private fun initView() {
+        selectTab("购物车")
         mShopCarAdapter = ShopCarAdapter(mShopCarList)
         rvShopCar.layoutManager = LinearLayoutManager(this)
         rvShopCar.adapter = mShopCarAdapter

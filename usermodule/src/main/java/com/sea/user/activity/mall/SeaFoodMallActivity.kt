@@ -78,7 +78,7 @@ class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMa
 
 
     private fun initView() {
-
+        selectTab("点餐")
         //商品种类
         mKindFoodAdapter = KindFoodAdapter(mKindFoodList)
         val layoutManager = FlexboxLayoutManager(this)

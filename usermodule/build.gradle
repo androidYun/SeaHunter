@@ -39,4 +39,6 @@ dependencies {
     api deps.recycleviewadapter
     api deps.pictureLibrary
     implementation 'com.google.android:flexbox:2.0.1'
+    implementation 'io.github.meetsl:SCardView:1.2'
+    compile 'liji.library.dev:citypickerview:5.2.1'
 }

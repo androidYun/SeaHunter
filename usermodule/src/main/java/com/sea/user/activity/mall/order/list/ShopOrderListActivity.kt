@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.sea.user.R
+import com.sea.user.activity.base.BaseSeaUserActivity
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
 
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
  * @ date 11/03/2020.
  * description:
  */
-class ShopOrderListActivity : BaseActivity() {
+class ShopOrderListActivity : BaseSeaUserActivity() {
 
 
     private val tabTitle = mutableListOf(
@@ -33,6 +34,7 @@ class ShopOrderListActivity : BaseActivity() {
     }
 
     private fun initView() {
+        selectTab("订单")
         viewPage.adapter = ShopOrderPageAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(viewPage)
         tabLayout.tabMode = TabLayout.MODE_FIXED
