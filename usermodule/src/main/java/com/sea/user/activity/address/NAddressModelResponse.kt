@@ -10,6 +10,7 @@ data class NAddressModelResponse(val code: Int, val msg: String)
 
 class NAddressModelReq(
     val command: Int = 11,
+    var id: Int = 0,//默认添加时0
     var accept_name: String = "",
     var mobile: String = "",
     var province: String = "",

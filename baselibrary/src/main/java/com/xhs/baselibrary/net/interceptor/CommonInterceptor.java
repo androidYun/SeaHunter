@@ -35,7 +35,7 @@ public class CommonInterceptor implements Interceptor {
                 try {
                     //重新拼凑请求体
                     JSONObject jsonObject = new JSONObject(requestParams);
-                    for (Map.Entry<String, String> entry : getCommonParams().entrySet()) {
+                    for (Map.Entry<String, Integer> entry : getCommonParams().entrySet()) {
                         jsonObject.put(entry.getKey(), entry.getValue());
                     }
                     RequestBody newBody = RequestBody.create(body.contentType(), jsonObject.toString());
@@ -49,9 +49,9 @@ public class CommonInterceptor implements Interceptor {
         return response;
     }
 
-    private Map<String, String> getCommonParams() {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", "1");
+    private Map<String, Integer> getCommonParams() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("user_id", 1);
         return map;
     }
 }
