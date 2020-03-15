@@ -13,8 +13,6 @@ import kotlinx.android.synthetic.main.activity_add_address.*
 import com.lljjcoder.citywheel.CityConfig
 
 
-
-
 /**
  * @ author guiyun.li
  * @ Email xyz_6776.@163.com
@@ -73,6 +71,10 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
             if (operatorType == EDIT_ADDRESS_CODE) {//编辑的话需要先加载地址
                 addressPresenter.modifyAddress(nAddressModelReq)
             } else {
+                nAddressModelReq.accept_name = name
+                nAddressModelReq.mobile = phoneNumber
+                nAddressModelReq.address = detailAddress
+                nAddressModelReq.is_default = if (isDefaultAddress) 1 else 0
                 addressPresenter.loadAddAddress(nAddressModelReq)
             }
 
@@ -86,6 +88,12 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
                 city: CityBean?,
                 district: DistrictBean?
             ) {
+                nAddressModelReq.province = province?.name ?: ""
+                nAddressModelReq.city = city?.name ?: ""
+                nAddressModelReq.area = district?.name ?: ""
+                tvSelectAddress.text =
+                    nAddressModelReq.province.plus(nAddressModelReq.city)
+                        .plus(nAddressModelReq.area)
                 super.onSelected(province, city, district)
             }
         })
@@ -94,7 +102,7 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
 
 
     override fun loadAddAddressSuccess() {
-
+        finish()
     }
 
     override fun loadAddAddressFail(throwable: Throwable) {

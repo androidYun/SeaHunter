@@ -1,4 +1,4 @@
-package com.xhs.prison.model
+package com.sea.user.activity.register
 
 /**
  * @ author guiyun.li
@@ -8,6 +8,11 @@ package com.xhs.prison.model
  */
 data class NRegisterModelResponse(val code: Int, val msg: String)
 
-class NRegisterModelReq
+class NRegisterModelReq(
+    var phone: String = "",
+    var password: String = "",
+    var inputCode: String = "",
+    val command: Int = 1
+)
 
 data class NVersionCodeModelResponse(val code: Int, val msg: String)

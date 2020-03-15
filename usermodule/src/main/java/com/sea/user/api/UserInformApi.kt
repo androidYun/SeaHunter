@@ -5,10 +5,10 @@ import com.sea.user.activity.center.NUserCenterResponse
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.login.NLoginResponse
 import com.sea.user.activity.model.BaseEntry
+import com.sea.user.activity.register.NRegisterModelReq
+import com.sea.user.activity.register.NRegisterModelResponse
 import com.xhs.prison.model.NFillInformReq
 import com.xhs.prison.model.NForgetPasswordModelReq
-import com.xhs.prison.model.NRegisterModelReq
-import com.xhs.prison.model.NRegisterModelResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,22 +16,22 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface UserInformApi {
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadLogin(@Body nLoginModelReq: NLoginModelReq): Observable<NLoginResponse>
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadRegister(@Body nRegisterReq: NRegisterModelReq): Observable<NRegisterModelResponse>
 
 
-    @GET("/")
+    @GET("getdata.ashx")
     fun loadVersionCode(@Query("phoneNumber") phoneNumber: String): Observable<BaseEntry>
 
-    @GET("/")
+    @GET("getdata.ashx")
     fun loadForgetPassword(@Body nForgetPasswordModelReq: NForgetPasswordModelReq): Observable<BaseEntry>
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadFillInform(@Body nFillInformReq: NFillInformReq): Observable<BaseEntry>
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadUserInform(@Body nUserCenterModelReq: NUserCenterModelReq): Observable<NUserCenterResponse>
 }

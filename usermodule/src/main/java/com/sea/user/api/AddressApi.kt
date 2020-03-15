@@ -8,27 +8,20 @@ import com.sea.user.activity.model.BaseEntry
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.POST
-
-/**
- * @ author guiyun.li
- * @ Email xyz_6776.@163.com
- * @ date 05/03/2020.
- * description:
- */
 interface AddressApi {
 
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadAddAddress(@Body nAddressModelReq: NAddressModelReq): Observable<BaseEntry>
 
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadAddressList(@Body nAddressListModelReq: NAddressListModelReq): Observable<NAddressListModelResponse>
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadAddressDetail(@Body addressId: Int): Observable<NAddressDetailModelResponse>
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun modifyAddressDetail(@Body nAddressModelReq: NAddressModelReq): Observable<BaseEntry>
 
 

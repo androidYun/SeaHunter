@@ -47,7 +47,7 @@ class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMa
         NFoodType(R.mipmap.bg_mall_project4, "必吃榜单", "吃货大本营就在这里")
 
     )
-    private val mRecommendFoodList = mutableListOf<NFoodRecommend>(
+    private val mRecommendFoodList = mutableListOf(
         NFoodRecommend(),
         NFoodRecommend(),
         NFoodRecommend(),

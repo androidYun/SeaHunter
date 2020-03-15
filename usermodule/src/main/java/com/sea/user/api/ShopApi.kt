@@ -26,33 +26,33 @@ import retrofit2.http.POST
 
 interface ShopApi {
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadShopOrder(@Body nShopOrderModelReq: NShopOrderModelReq): Observable<NShopOrderModelResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadSelectStore(@Body nSelectStoreModelReq: NSelectStoreModelReq): Observable<NSelectStoreModelResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadSearchStore(@Body nSearchStoreModelReq: NSearchStoreModelReq): Observable<NSearchStoreModelResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadMallList(@Body nMallListModelReq: NMallListModelReq): Observable<NMallListModelResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadSeaFoodMall(@Body nSeaFoodMallModelReq: NSeaFoodMallModelReq): Observable<NSeaFoodMallResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadShopDetail(@Body nShopDetailModelReq: NShopDetailModelReq): Observable<NShopDetailResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadShopCar(@Body nShopCarModelReq: NShopCarModelReq): Observable<NShopCarModelResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadMallConfirmOrder(@Body nMallConfirmOrderModelReq: NMallConfirmOrderModelReq): Observable<NMallConfirmOrderModelResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadShopOrderList(@Body nShopOrderListModelReq: NShopOrderListModelReq): Observable<NShopOrderListModelResponse>
 
-    @POST("api/v1")
+    @POST("getdata.ashx")
     fun loadMallOrderDetail(@Body nMallOrderDetailModelReq: NMallOrderDetailModelReq): Observable<NMallOrderDetailResponse>
 }

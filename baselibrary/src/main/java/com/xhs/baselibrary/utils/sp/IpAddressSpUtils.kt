@@ -25,21 +25,21 @@ object IpAddressSpUtils {
 
     fun setIpAddress(ipAddress: String) {
         this.ipAddress = ipAddress
-        baseSharePreUtils.putString(IP_AND_PORT_KEY, ipAddress)
+        baseSharePreUtils.put(IP_AND_PORT_KEY, ipAddress)
     }
 
     fun getIpAddress(defaultIpAddress: String = ""): String {
         if (ipAddress.isNullOrEmpty()) {
-            return baseSharePreUtils.getString(IP_AND_PORT_KEY, defaultIpAddress)
+            return baseSharePreUtils.get(IP_AND_PORT_KEY, defaultIpAddress)
         }
         return ipAddress
     }
 
     fun setIpNum(ipNum: String) {
-        baseSharePreUtils.putString(IP_NUM_KEY, ipNum)
+        baseSharePreUtils.put(IP_NUM_KEY, ipNum)
     }
 
     fun getIpNum(defaultIpNum: String = ""): String {
-        return baseSharePreUtils.getString(IP_NUM_KEY, defaultIpNum)
+        return baseSharePreUtils.get(IP_NUM_KEY, defaultIpNum)
     }
 }

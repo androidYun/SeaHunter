@@ -1,7 +1,6 @@
 package com.sea.user.activity.register
 
 import com.xhs.baselibrary.base.IBaseView
-import com.xhs.prison.model.NRegisterModelReq
 
 /**
  * @ author guiyun.li

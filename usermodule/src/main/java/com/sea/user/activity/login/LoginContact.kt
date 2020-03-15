@@ -6,7 +6,7 @@ interface LoginContact {
 
     interface ILoginView : IBaseView {
 
-        fun loadLoginSuccess(content: Any)
+        fun loadLoginSuccess(content: UserInformModel,phone:String,password:String)
 
         fun loadLoginFail(throwable: Throwable)
 

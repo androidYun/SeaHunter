@@ -29,6 +29,7 @@
             android:drawableStart="@mipmap/ic_account"
             android:drawablePadding="10dp"
             android:hint="@string/please_input_account"
+            android:inputType="phone"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
     </LinearLayout>
@@ -57,6 +58,7 @@
             android:drawableStart="@mipmap/ic_verification_code"
             android:drawablePadding="10dp"
             android:hint="@string/please_input_version_code"
+            android:inputType="number"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
 
@@ -98,6 +100,7 @@
             android:drawableStart="@mipmap/ic_password"
             android:drawablePadding="10dp"
             android:hint="@string/please_input_password"
+            android:inputType="textPassword"
             android:src="@mipmap/ic_account"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />

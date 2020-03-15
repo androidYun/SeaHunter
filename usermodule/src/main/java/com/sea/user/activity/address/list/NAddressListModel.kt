@@ -1,18 +1,23 @@
 package com.sea.user.activity.address.list
 
 class NAddressListModelReq(
-    var pageSize: Int = 20,
-    var pageIndex: Int = 1
+    val command: Int = 12
 )
 
 class NAddressListModelResponse(
     val code: Int = -1,
     val msg: String = "",
-    val data: Data = Data()
-) {
-    class Data(
-        val mList: List<AddressListItem> = listOf()
-    )
-}
+    val data: List<AddressListItem> = listOf()
+)
 
-class AddressListItem
+
+data class AddressListItem(
+    val accept_name: String = "",
+    val address: String = "",
+    val area: String = "",
+    val city: String = "",
+    val id: Int = 0,
+    val is_default: Int = 0,
+    val phone: String = "",
+    val province: String = ""
+)

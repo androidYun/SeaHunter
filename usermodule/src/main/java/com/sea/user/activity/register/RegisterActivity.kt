@@ -59,7 +59,6 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView {
                 if (b) InputType.TYPE_TEXT_VARIATION_PASSWORD else InputType.TYPE_NUMBER_VARIATION_PASSWORD
         }
         tvNextStep.setOnClickListener {
-            startActivity(Intent(this, FillInformActivity::class.java))
             val userName = evUserName.text.toString()
             val password = evPassword.text.toString()
             val versionCode = evVersionCode.text.toString()
@@ -75,6 +74,7 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView {
                 ToastUtils.show("密码不能为空")
                 return@setOnClickListener
             }
+            registerPresenter.loadRegister(NRegisterModelReq(userName, password, versionCode))
         }
         tvLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))

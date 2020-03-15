@@ -1,16 +1,27 @@
 package com.xhs.baselibrary.net.retrifit;
 
 
+import android.util.Log;
+
 import com.xhs.baselibrary.BuildConfig;
 import com.xhs.baselibrary.init.BaseParamsClient;
 import com.xhs.baselibrary.net.converter.LenientGsonConverterFactory;
 import com.xhs.baselibrary.net.interceptor.AuthorInterceptor;
+import com.xhs.baselibrary.net.interceptor.CommonInterceptor;
 
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okio.Buffer;
+import okio.BufferedSource;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -34,7 +45,7 @@ public class RetrofitUtils {
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
             Retrofit.Builder builder = new Retrofit.Builder()
-                    .baseUrl("http://122.114.13.86:8080/")
+                    .baseUrl(BaseParamsClient.getInstance().getBaseUrl())
                     .client(httpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
@@ -42,7 +53,6 @@ public class RetrofitUtils {
         }
         return retrofit;
     }
-
 
 
     private static OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -55,17 +65,15 @@ public class RetrofitUtils {
                 Request request = chain.request()
                         .newBuilder()
                         .addHeader("Content-Type", "application/json; charset=UTF-8")
-                        .addHeader("Accept-Encoding", "gzip, deflate")
                         .addHeader("Connection", "keep-alive")
                         .addHeader("Accept", "*/*")
                         .addHeader("Versions", BuildConfig.VERSION_NAME)
-                        .addHeader("Authorization", BaseParamsClient.getInstance().getToken())
-                        .addHeader("Cookie", "add cookies here").build();
+                        .addHeader("Token", BaseParamsClient.getInstance().getToken()).build();
                 return chain.proceed(request);
             })
+            .addInterceptor(new CommonInterceptor())
             .addInterceptor(getLogInterceptor())
             .build();
-
 
 
     public static void addHead(String headKey, String headValue) {

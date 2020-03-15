@@ -22,8 +22,8 @@ class LoginPresenter : IPresenter<LoginContact.ILoginView>(), LoginContact.ILogi
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
-                        softView.get()?.loadLoginSuccess(it.data)
+                    if (it.code==1) {
+                        softView.get()?.loadLoginSuccess(it.data,nLoginModelReq.phone,nLoginModelReq.password)
                     } else {
                         softView.get()?.loadLoginFail(Throwable(it.msg))
                     }

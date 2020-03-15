@@ -36,6 +36,7 @@
                 android:drawableStart="@mipmap/ic_account"
                 android:drawablePadding="10dp"
                 android:hint="@string/please_input_account"
+                android:inputType="phone"
                 android:lines="1"
                 android:singleLine="true"
                 android:textColor="@color/color_3"

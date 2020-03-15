@@ -6,8 +6,10 @@ import android.text.InputType
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import com.sea.user.R
+import com.sea.user.activity.mall.SeaFoodMallActivity
 import com.sea.user.activity.password.ForgetPasswordActivity
 import com.sea.user.activity.register.RegisterActivity
+import com.sea.user.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_user_login.*
@@ -55,7 +57,7 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
                 ToastUtils.show("密码不能为空")
                 return@setOnClickListener
             }
-            mLoginPresenter.loadLogin(NLoginModelReq())
+            mLoginPresenter.loadLogin(NLoginModelReq(phone = userName, password = password))
         }
         tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -65,8 +67,11 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
         }
     }
 
-    override fun loadLoginSuccess(content: Any) {
-
+    override fun loadLoginSuccess(content: UserInformModel, phoneNumber: String, password: String) {
+        UserInformSpUtils.setUserInformModel(userInformModel = content)
+        UserInformSpUtils.setPassword(phoneNumber)
+        UserInformSpUtils.setPassword(password)
+        startActivity(Intent(this, SeaFoodMallActivity::class.java))
     }
 
     override fun loadLoginFail(throwable: Throwable) {

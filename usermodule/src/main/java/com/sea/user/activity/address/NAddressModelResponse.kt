@@ -8,5 +8,16 @@ package com.sea.user.activity.address
  */
 data class NAddressModelResponse(val code: Int, val msg: String)
 
-class NAddressModelReq
+class NAddressModelReq(
+    val command: Int = 11,
+    var accept_name: String = "",
+    var mobile: String = "",
+    var province: String = "",
+    var city: String = "",
+    var area: String = "",
+    var address: String = "",
+    var is_default: Int = 0//是否默认0 不是 1是（0,1）
+
+)
+
 data class NAddressDetailModelResponse(val code: Int, val msg: String)

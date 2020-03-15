@@ -4,7 +4,6 @@ import com.sea.user.api.UserInformApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.xhs.prison.model.NRegisterModelReq
 
 /**
  * @ author guiyun.li
