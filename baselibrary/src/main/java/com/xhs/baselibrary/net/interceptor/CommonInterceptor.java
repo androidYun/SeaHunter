@@ -1,5 +1,6 @@
 package com.xhs.baselibrary.net.interceptor;
 
+import com.xhs.baselibrary.init.BaseParamsClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,7 +52,7 @@ public class CommonInterceptor implements Interceptor {
 
     private Map<String, Integer> getCommonParams() {
         Map<String, Integer> map = new HashMap<>();
-        map.put("user_id", 1);
+        map.put("user_id", BaseParamsClient.getInstance().getUserId());
         return map;
     }
 }

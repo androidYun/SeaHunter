@@ -1,17 +1,17 @@
-package com.sea.user.activity.mall.select
+package com.sea.user.presenter.version
 
-import com.sea.user.api.ShopApi
+import com.sea.user.api.CommonApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
 
 
-class SelectStorePresenter : IPresenter<SelectStoreContact.ISelectStoreView>(),
-    SelectStoreContact.ISelectStorePresenter {
-    override fun loadSelectStore(nSelectStoreModelReq: NSelectStoreModelReq) {
+class VersionCodePresenter : IPresenter<VersionCodeContact.IVersionCodeView>(),
+    VersionCodeContact.IVersionCodePresenter {
+    override fun loadVersionCode(nVersionCodeModelReq: NVersionCodeModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(ShopApi::class.java)
-            .loadSelectStore(nSelectStoreModelReq)
+            .create(CommonApi::class.java)
+            .loadVersionCode(nVersionCodeModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -24,12 +24,12 @@ class SelectStorePresenter : IPresenter<SelectStoreContact.ISelectStoreView>(),
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadSelectStoreSuccess(it.data.mList, it.data.totalCount)
+                        softView.get()?.loadVersionCodeSuccess(it.data)
                     } else {
-                        softView.get()?.loadSelectStoreFail(Throwable(it.msg))
+                        softView.get()?.loadVersionCodeFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadSelectStoreFail(throwable) }
+                }, { throwable -> softView.get()?.loadVersionCodeFail(throwable) }
             )
     }
 }

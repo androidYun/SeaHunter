@@ -6,11 +6,12 @@ import com.xhs.baselibrary.net.util.RxUtils
 import com.sea.user.api.WalletApi
 
 
-class WalletPresenter : IPresenter<WalletContact.IWalletView>(), WalletContact.IWalletPresenter {
-    override fun loadWallet(nWalletModelReq: NWalletModelReq) {
+class RechargeDetailPresenter : IPresenter<RechargeDetailContact.IRechargeDetailView>(),
+    RechargeDetailContact.IRechargeDetailPresenter {
+    override fun loadRechargeDetail(nRechargeDetailReq: NRechargeDetailReq) {
         RetrofitUtils.getRetrofit()
             .create(WalletApi::class.java)
-            .loadWallet(nWalletModelReq)
+            .loadRechargeDetail(nRechargeDetailReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -23,12 +24,12 @@ class WalletPresenter : IPresenter<WalletContact.IWalletView>(), WalletContact.I
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadWalletSuccess(it.data.mList, it.data.totalCount)
+                        softView.get()?.loadRechargeDetailSuccess(it.data.mList)
                     } else {
-                        softView.get()?.loadWalletFail(Throwable(it.msg))
+                        softView.get()?.loadRechargeDetailFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadWalletFail(throwable) }
+                }, { throwable -> softView.get()?.loadRechargeDetailFail(throwable) }
             )
     }
 }

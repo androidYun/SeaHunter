@@ -1,16 +1,16 @@
-package com.sea.user.activity.center
+package com.sea.user.presenter.store
 
+import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.user.api.UserInformApi
 
 
-class UserCenterPresenter : IPresenter<UserCenterContact.IUserCenterView>(), UserCenterContact.IUserCenterPresenter {
-    override fun loadUserCenter(nUserCenterModelReq: NUserCenterModelReq) {
+class StoreListPresenter : IPresenter<StoreListContact.IStoreListView>(), StoreListContact.IStoreListPresenter {
+    override fun loadStoreList(nStoreListModelReq: NStoreListModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(UserInformApi::class.java)
-            .loadUserInform(nUserCenterModelReq)
+            .create(ShopApi::class.java)
+            .loadStoreList(nStoreListModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -23,12 +23,12 @@ class UserCenterPresenter : IPresenter<UserCenterContact.IUserCenterView>(), Use
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadUserCenterSuccess(it.data)
+                        softView.get()?.loadStoreListSuccess(it)
                     } else {
-                        softView.get()?.loadUserCenterFail(Throwable(it.msg))
+                        softView.get()?.loadStoreListFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadUserCenterFail(throwable) }
+                }, { throwable -> softView.get()?.loadStoreListFail(throwable) }
             )
     }
 }

@@ -42,7 +42,7 @@ class IntegralDetailActivity : BaseActivity(), IntegralDetailContact.IIntegralDe
             mIntegralDetailPresenter.loadIntegralDetail(nIntegralDetailReq)
         }
         mIntegralDetailAdapter.setOnLoadMoreListener({
-            if (nIntegralDetailReq.pageIndex * nIntegralDetailReq.pageSize < totalCount) {
+            if (nIntegralDetailReq.page_index * nIntegralDetailReq.page_size < totalCount) {
                 mIntegralDetailPresenter.loadIntegralDetail(nIntegralDetailReq)
             } else {
                 mIntegralDetailAdapter.loadMoreEnd()
@@ -51,7 +51,7 @@ class IntegralDetailActivity : BaseActivity(), IntegralDetailContact.IIntegralDe
     }
 
     override fun loadIntegralDetailSuccess(mList: List<IntegralDetailItem>, totalCount: Int) {
-        if (nIntegralDetailReq.pageIndex == 1) {
+        if (nIntegralDetailReq.page_index == 1) {
             mIntegralDetailList.clear()
         }
         this.totalCount = totalCount
@@ -59,7 +59,7 @@ class IntegralDetailActivity : BaseActivity(), IntegralDetailContact.IIntegralDe
         mIntegralDetailAdapter.notifyDataSetChanged()
         mIntegralDetailAdapter.loadMoreComplete()
         swipeIntegralDetail.isRefreshing = false
-        nIntegralDetailReq.pageIndex++
+        nIntegralDetailReq.page_index++
 
     }
 

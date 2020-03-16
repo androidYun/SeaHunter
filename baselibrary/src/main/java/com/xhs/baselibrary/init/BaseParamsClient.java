@@ -23,7 +23,6 @@ public class BaseParamsClient {
     }
 
 
-
     public String getBaseUrl() {
         if (baseParamsProvide != null) {
             return baseParamsProvide.getBaseUrl();
@@ -36,5 +35,12 @@ public class BaseParamsClient {
             return baseParamsProvide.getToken();
         }
         return "";
+    }
+
+    public int getUserId() {
+        if (baseParamsProvide != null) {
+            return baseParamsProvide.getUserId();
+        }
+        return -1;
     }
 }

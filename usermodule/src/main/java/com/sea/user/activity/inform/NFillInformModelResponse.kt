@@ -8,4 +8,4 @@ package com.xhs.prison.model
  */
 data class NFillInformModelResponse(val code: Int, val msg: String)
 
-class NFillInformReq
+class NFillInformReq(var nick_name: String = "", var avatar: String = "", val command: Int = 4)

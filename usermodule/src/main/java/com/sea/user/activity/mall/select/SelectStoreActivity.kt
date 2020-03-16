@@ -4,15 +4,19 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.presenter.store.NStoreListItemModel
+import com.sea.user.presenter.store.NStoreListModelReq
+import com.sea.user.presenter.store.StoreListContact
+import com.sea.user.presenter.store.StoreListPresenter
 import kotlinx.android.synthetic.main.activity_select_store.*
 
-class SelectStoreActivity : BaseActivity(), SelectStoreContact.ISelectStoreView {
+class SelectStoreActivity : BaseActivity(), StoreListContact.IStoreListView {
 
-    private val mSelectStorePresenter by lazy { SelectStorePresenter().apply { attachView(this@SelectStoreActivity) } }
+    private val mSelectStorePresenter by lazy { StoreListPresenter().apply { attachView(this@SelectStoreActivity) } }
 
-    private val nSelectStoreReq = NSelectStoreModelReq()
+    private val nSelectStoreReq = NStoreListModelReq()
 
-    private val mSelectStoreList = mutableListOf<SelectStoreItem>()
+    private val mSelectStoreList = mutableListOf<NStoreListItemModel>()
 
     private lateinit var mSelectStoreAdapter: SelectStoreAdapter
 
@@ -34,40 +38,28 @@ class SelectStoreActivity : BaseActivity(), SelectStoreContact.ISelectStoreView 
     }
 
     private fun initData() {
-        mSelectStorePresenter.loadSelectStore(nSelectStoreReq)
+        mSelectStorePresenter.loadStoreList(nSelectStoreReq)
     }
 
     private fun initListener() {
         swipeSelectStore.setOnRefreshListener {
-            mSelectStorePresenter.loadSelectStore(nSelectStoreReq)
+            mSelectStorePresenter.loadStoreList(nSelectStoreReq)
         }
-        mSelectStoreAdapter.setOnLoadMoreListener({
-            if (nSelectStoreReq.pageIndex * nSelectStoreReq.pageSize < totalCount) {
-                mSelectStorePresenter.loadSelectStore(nSelectStoreReq)
-            } else {
-                mSelectStoreAdapter.loadMoreEnd()
-            }
-        }, rvSelectStore)
     }
 
-    override fun loadSelectStoreSuccess(mList: List<SelectStoreItem>, totalCount: Int) {
-        if (nSelectStoreReq.pageIndex == 1) {
-            mSelectStoreList.clear()
-        }
+    override fun loadStoreListSuccess(mList: List<NStoreListItemModel>) {
+        mSelectStoreList.clear()
         this.totalCount = totalCount
         mSelectStoreList.addAll(mList)
         mSelectStoreAdapter.notifyDataSetChanged()
-        mSelectStoreAdapter.loadMoreComplete()
         swipeSelectStore.isRefreshing = false
-        nSelectStoreReq.pageIndex++
-
     }
 
-    override fun loadSelectStoreFail(throwable: Throwable) {
+    override fun loadStoreListFail(throwable: Throwable) {
         handleError(throwable)
-        swipeSelectStore.isRefreshing
-        mSelectStoreAdapter.loadMoreComplete()
+        swipeSelectStore.isRefreshing = false
     }
+
 
     override fun showLoading() {
         showProgressDialog()

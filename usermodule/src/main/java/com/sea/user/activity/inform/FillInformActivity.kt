@@ -9,9 +9,13 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.sea.user.R
 import com.sea.user.activity.login.LoginActivity
+import com.sea.user.activity.mall.SeaFoodMallActivity
 import com.sea.user.activity.password.ForgetPasswordActivity
 import com.sea.user.activity.register.RegisterActivity
+import com.sea.user.presenter.update.UpdateImageContact
+import com.sea.user.presenter.update.UpdateImagePresenter
 import com.xhs.baselibrary.base.BaseActivity
+import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.baselibrary.utils.imageLoader.GlideEngine
 import com.xhs.prison.model.NFillInformReq
 import kotlinx.android.synthetic.main.activity_fill_inform.*
@@ -22,13 +26,17 @@ import kotlinx.android.synthetic.main.activity_fill_inform.*
  * @ date 31/12/2019.
  * description:
  */
-class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView {
+class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView, UpdateImageContact.IUpdateImageView {
 
     private val fillInformPresenter by lazy {
         FillInformPresenter().apply {
             attachView(this@FillInformActivity)
         }
     }
+
+    private val nFillInformReq = NFillInformReq()
+
+    private val updateImagePresenter by lazy { UpdateImagePresenter().apply { attachView(this@FillInformActivity) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +58,16 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView {
     private fun initListener() {
 
         tvConfirm.setOnClickListener {
+            val nickname = evUserName.text.toString()
+            if (nickname.isNullOrBlank()) {
+                ToastUtils.show("请填写用户昵称")
+                return@setOnClickListener
+            }
+            if (nFillInformReq.nick_name.isNullOrBlank()) {
+                ToastUtils.show("请填写用户昵称")
+                return@setOnClickListener
+            }
+            nFillInformReq.nick_name = nickname
             fillInformPresenter.loadFillInform(NFillInformReq())
         }
         tvAccountLogin.setOnClickListener {
@@ -74,8 +92,8 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView {
                 .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .forResult(object : OnResultCallbackListener {
-                    override fun onResult(result: MutableList<LocalMedia>?) {
-
+                    override fun onResult(result: MutableList<LocalMedia>) {
+                        updateImagePresenter.loadUpdateImage("usericon", result[0].realPath)
                     }
 
                     override fun onCancel() {
@@ -86,19 +104,27 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView {
     }
 
     override fun loadFillInformSuccess() {
-
+        startActivity(Intent(this, SeaFoodMallActivity::class.java))
     }
 
     override fun loadFillInformFail(throwable: Throwable) {
+        handleError(throwable)
+    }
 
+    override fun loadUpdateImageSuccess(imageUrl: String) {
+        nFillInformReq.avatar = imageUrl
+    }
+
+    override fun loadUpdateImageFail(throwable: Throwable) {
+        handleError(throwable)
     }
 
     override fun showLoading() {
-
+        showProgressDialog()
     }
 
     override fun hideLoading() {
-
+        hideProgressDialog()
     }
 
     companion object {

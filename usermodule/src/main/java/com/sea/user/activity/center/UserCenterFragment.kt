@@ -12,13 +12,15 @@ import com.sea.user.activity.integral.mall.IntegralMallActivity
 import com.sea.user.activity.set.SetActivity
 import com.sea.user.activity.shop.order.MineOrderActivity
 import com.sea.user.activity.wallet.MineWalletActivity
+import com.sea.user.presenter.user.UserInformContact
+import com.sea.user.presenter.user.UserInformPresenter
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_user_center.*
 
 
-class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
+class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
 
-    private val mUserCenterPresenter by lazy { UserCenterPresenter().apply { attachView(this@UserCenterFragment) } }
+    private val mUserCenterPresenter by lazy { UserInformPresenter().apply { attachView(this@UserCenterFragment) } }
 
 
     override fun onCreateView(
@@ -41,7 +43,7 @@ class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
     }
 
     private fun initData() {
-        mUserCenterPresenter.loadUserCenter(NUserCenterModelReq())
+        mUserCenterPresenter.loadUserInform()
     }
 
     private fun initListener() {
@@ -95,12 +97,11 @@ class UserCenterFragment : BaseFragment(), UserCenterContact.IUserCenterView {
         }
     }
 
-    override fun loadUserCenterSuccess(content: Any) {
-
+    override fun loadUserInformSuccess(content: Any) {
 
     }
 
-    override fun loadUserCenterFail(throwable: Throwable) {
+    override fun loadUserInformFail(throwable: Throwable) {
         handleError(throwable)
     }
 

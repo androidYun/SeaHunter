@@ -9,17 +9,23 @@ object UserInformSpUtils {
     private const val sea_hunter_user_sp_key = "sea_hunter_user_sp_key"
     private const val sea_hunter_user_phone_key = "sea_hunter_user_phone_key"
     private const val sea_hunter_user_password_key = "sea_hunter_user_password_key"
+    private const val sea_hunter_user_id_key = "sea_hunter_user_id_key"
 
 
     init {
         baseSharePreUtils = BaseSharePreUtils(sea_hunter_user_sp_key)
     }
 
+    private var userInformModel: UserInformModel = UserInformModel()
     fun getUserInformModel(): UserInformModel {
-        return baseSharePreUtils.get(sea_hunter_user_sp_key, UserInformModel())
+        if (userInformModel == null) {
+            userInformModel = baseSharePreUtils.get(sea_hunter_user_sp_key, UserInformModel())
+        }
+        return userInformModel
     }
 
     fun setUserInformModel(userInformModel: UserInformModel) {
+        this.userInformModel = userInformModel
         baseSharePreUtils.put(sea_hunter_user_sp_key, userInformModel)
     }
 
@@ -28,7 +34,7 @@ object UserInformSpUtils {
 
     }
 
-    fun getPhoneNumber(default: String=""): String {
+    fun getPhoneNumber(default: String = ""): String {
         return baseSharePreUtils.get(sea_hunter_user_phone_key, default)
     }
 
@@ -36,7 +42,13 @@ object UserInformSpUtils {
         baseSharePreUtils.put(sea_hunter_user_password_key, password)
     }
 
-    fun getPassword(default: String=""):String {
+    fun getPassword(default: String = ""): String {
         return baseSharePreUtils.get(sea_hunter_user_password_key, default)
     }
+
+    fun getUserId(): Int {
+        return getUserInformModel().id
+    }
+
+
 }

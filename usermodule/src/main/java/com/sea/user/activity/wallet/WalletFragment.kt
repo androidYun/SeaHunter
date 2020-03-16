@@ -10,13 +10,13 @@ import kotlinx.android.synthetic.main.fragment_wallet.*
 import com.xhs.baselibrary.base.BaseFragment
 
 
-class WalletFragment : BaseFragment(), WalletContact.IWalletView {
+class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView {
 
-    private val mWalletPresenter by lazy { WalletPresenter().apply { attachView(this@WalletFragment) } }
+    private val mWalletPresenter by lazy { RechargeDetailPresenter().apply { attachView(this@WalletFragment) } }
 
-    private val nWalletReq = NWalletModelReq()
+    private val nRechargeDetailReq = NRechargeDetailReq()
 
-    private val mWalletList = mutableListOf<WalletListItem>()
+    private val mWalletList = mutableListOf<RechargeDetailListItem>()
 
     private lateinit var mWalletListAdapter: WalletListAdapter
 
@@ -41,40 +41,40 @@ class WalletFragment : BaseFragment(), WalletContact.IWalletView {
         mWalletListAdapter = WalletListAdapter(mWalletList)
         rvWalletList.layoutManager = LinearLayoutManager(context)
         rvWalletList.adapter = mWalletListAdapter
-        mWalletPresenter.loadWallet(NWalletModelReq())
+        mWalletPresenter.loadRechargeDetail(nRechargeDetailReq)
     }
 
     private fun initListener() {
         swipeWalletList.setOnRefreshListener {
-            mWalletPresenter.loadWallet(nWalletReq)
+            mWalletPresenter.loadRechargeDetail(nRechargeDetailReq)
         }
         mWalletListAdapter.setOnLoadMoreListener({
-            if (nWalletReq.pageIndex * nWalletReq.pageSize < totalCount) {
-                mWalletPresenter.loadWallet(nWalletReq)
+            if (nRechargeDetailReq.pageIndex * nRechargeDetailReq.pageSize < totalCount) {
+                mWalletPresenter.loadRechargeDetail(nRechargeDetailReq)
             } else {
                 mWalletListAdapter.loadMoreEnd()
             }
         }, rvWalletList)
     }
 
-    override fun loadWalletSuccess(mList: List<WalletListItem>, totalCount: Int) {
-        if (nWalletReq.pageIndex == 1) {
+    override fun loadRechargeDetailSuccess(nRechargeDetailListItemList: List<RechargeDetailListItem>, totalCount: Int) {
+        if (nRechargeDetailReq.pageIndex == 1) {
             mWalletList.clear()
         }
         this.totalCount = totalCount
-        mWalletList.addAll(mList)
+        mWalletList.addAll(nRechargeDetailListItemList)
         mWalletListAdapter.notifyDataSetChanged()
         mWalletListAdapter.loadMoreComplete()
         swipeWalletList.isRefreshing = false
-        nWalletReq.pageIndex++
-
+        nRechargeDetailReq.pageIndex++
     }
 
-    override fun loadWalletFail(throwable: Throwable) {
+    override fun loadRechargeDetailFail(throwable: Throwable) {
         handleError(throwable)
         swipeWalletList.isRefreshing
         mWalletListAdapter.loadMoreComplete()
     }
+
 
     override fun showLoading() {
         showProgressDialog()

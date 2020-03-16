@@ -14,5 +14,7 @@ public interface BaseParamsProvide {
 
     String getToken();
 
+    Integer getUserId();
+
 
 }

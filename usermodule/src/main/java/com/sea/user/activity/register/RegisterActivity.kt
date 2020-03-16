@@ -8,6 +8,8 @@ import com.sea.user.activity.inform.FillInformActivity
 import com.sea.user.activity.login.LoginActivity
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.password.ForgetPasswordActivity
+import com.sea.user.presenter.version.VersionCodeContact
+import com.sea.user.presenter.version.VersionCodePresenter
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.TimeCountDown
 import com.xhs.baselibrary.utils.ToastUtils
@@ -26,13 +28,15 @@ import kotlinx.android.synthetic.main.activity_user_login.tvLogin
  * @ date 31/12/2019.
  * description:
  */
-class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView {
+class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,VersionCodeContact.IVersionCodeView {
 
     private val registerPresenter by lazy {
         RegisterPresenter().apply {
             attachView(this@RegisterActivity)
         }
     }
+
+    private val versionCodePresenter by lazy { VersionCodePresenter().apply { attachView(this@RegisterActivity) } }
 
     private lateinit var timeCountDown: TimeCountDown
 
@@ -92,7 +96,8 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView {
         handleError(throwable)
     }
 
-    override fun loadVersionCodeSuccess() {
+
+    override fun loadVersionCodeSuccess(versionCode: String) {
 
     }
 

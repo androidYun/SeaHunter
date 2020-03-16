@@ -16,14 +16,10 @@ interface RegisterContract {
 
         fun loadRegisterFail(throwable: Throwable)
 
-        fun loadVersionCodeSuccess()
-
-        fun loadVersionCodeFail(throwable: Throwable)
     }
 
     interface IRegisterPresenter {
         fun loadRegister(nRegisterModelReq: NRegisterModelReq)
 
-        fun loadVersionCode(phoneNumber: String)
     }
 }

@@ -1,7 +1,7 @@
 package com.sea.user.api
 
-import com.sea.user.activity.wallet.NWalletModelReq
-import com.sea.user.activity.wallet.NWalletResponse
+import com.sea.user.activity.wallet.NRechargeDetailReq
+import com.sea.user.activity.wallet.NRechargeDetailResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -15,5 +15,5 @@ import retrofit2.http.POST
 interface WalletApi {
 
     @POST("/")
-    fun loadWallet(@Body nWalletModelReq: NWalletModelReq): Observable<NWalletResponse>
+    fun loadRechargeDetail(@Body nRechargeDetailReq: NRechargeDetailReq ): Observable<NRechargeDetailResponse>
 }

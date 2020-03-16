@@ -20,6 +20,8 @@ import com.sea.user.activity.mall.select.NSelectStoreModelReq
 import com.sea.user.activity.mall.select.NSelectStoreModelResponse
 import com.sea.user.activity.shop.order.NShopOrderModelReq
 import com.sea.user.activity.shop.order.NShopOrderModelResponse
+import com.sea.user.presenter.store.NStoreListModelReq
+import com.sea.user.presenter.store.NStoreListResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -55,4 +57,7 @@ interface ShopApi {
 
     @POST("getdata.ashx")
     fun loadMallOrderDetail(@Body nMallOrderDetailModelReq: NMallOrderDetailModelReq): Observable<NMallOrderDetailResponse>
+
+    @POST("getdata.ashx")
+    fun loadStoreList(@Body nStoreListModelReq: NStoreListModelReq ): Observable<NStoreListResponse>
 }

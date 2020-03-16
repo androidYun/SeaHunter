@@ -7,11 +7,10 @@ import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 
 class IntegralDetailAdapter(mList: List<IntegralDetailItem>) :
     BaseQuickAdapter<IntegralDetailItem, BaseViewHolder>(R.layout.item_integral_detail_layout, mList) {
-    override fun convert(helper: BaseViewHolder?, item: IntegralDetailItem?) {
-        helper?.setText(R.id.tvIntegralType, "")
-        helper?.setText(R.id.tvIntegralTime, "")
-        helper?.setText(R.id.tvIntegral, "")
-        helper?.setText(R.id.tvIntegralType, "")
+    override fun convert(helper: BaseViewHolder?, item: IntegralDetailItem) {
+        helper?.setText(R.id.tvIntegralTime, item.add_time)
+        helper?.setText(R.id.tvIntegral, item.point)
+        helper?.setText(R.id.tvIntegralType, item.title)
         ImageLoader.loadCircleImageView(helper?.getView(R.id.ivIntegralHead), "")
     }
 }
