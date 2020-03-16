@@ -6,4 +6,4 @@ class NVersionCodeResponse(
     val data: String = ""
 )
 
-data class NVersionCodeModelReq(val command: Int = 2, var phone: String = "")
+data class NVersionCodeModelReq(var phone: String = "",val command: Int = 2)

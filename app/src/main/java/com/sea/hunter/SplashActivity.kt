@@ -12,11 +12,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val phoneNumber = UserInformSpUtils.getPhoneNumber("")
         val password = UserInformSpUtils.getPassword("")
-        if (phoneNumber.isNotBlank() || password.isNotBlank()) {
+        if (phoneNumber.isNullOrBlank() || password.isNullOrBlank()) {
             startActivity(Intent(this, LoginActivity::class.java))
         } else {
             startActivity(Intent(this, MainActivity::class.java))
-
         }
 
     }

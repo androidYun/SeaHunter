@@ -11,7 +11,8 @@ data class NRegisterModelResponse(val code: Int, val msg: String)
 class NRegisterModelReq(
     var phone: String = "",
     var password: String = "",
-    var inputCode: String = "",
+    var input_code: String = "",
+    var auth_code: String = "",
     val command: Int = 1
 )
 

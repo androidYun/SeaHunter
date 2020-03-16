@@ -47,6 +47,11 @@ class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView {
         swipeShopCar.isRefreshing = false
         mShopCarList.clear()
         mShopCarList.addAll(mList)
+        mShopCarList.add(ShopCarItem())
+        mShopCarList.add(ShopCarItem())
+        mShopCarList.add(ShopCarItem())
+        mShopCarList.add(ShopCarItem())
+        mShopCarList.add(ShopCarItem())
         mShopCarAdapter.notifyDataSetChanged()
 
     }

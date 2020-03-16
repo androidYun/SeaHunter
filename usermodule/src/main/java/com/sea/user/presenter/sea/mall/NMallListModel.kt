@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall.list
+package com.sea.user.presenter.sea.mall
 
 class NMallListModelReq(
     val command: Int = 9,
@@ -8,7 +8,9 @@ class NMallListModelReq(
     var categor_id: Int = 1,//分类id
     var plate: Int = 1,//板块 { 0：全部 1：必吃 2：最新 3：限时 4：精品 }
     var key: String = "",
-    var sort: Int = 1//排序 (1:默认 2：销量 3：价格)
+    var sort: Int = 1,//排序 (1:默认 2：销量 3：价格)
+    var is_hot: Int = 1,
+    var is_red: Int = 1
 )
 
 class NMallListModelResponse(
@@ -18,7 +20,7 @@ class NMallListModelResponse(
 ) {
     class Data(
         val totalCount: Int = 0,
-        val mList: List<MallListItem> = listOf()
+        val goodList: List<MallListItem> = listOf()
     )
 }
 

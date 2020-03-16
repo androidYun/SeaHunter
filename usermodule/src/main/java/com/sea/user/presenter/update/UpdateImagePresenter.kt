@@ -10,28 +10,28 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 
-
+/**
+ *file部分，最终拼接成以下部分（注意“app_user_header”是后台定义好的，后台会用它作为key去查询你传的图片信息）：
+ *Content-Disposition: form-data; name="app_user_header"; filename=fileNameByTimeStamp
+ *Content-Type: image/jpeg
+ *Content-Length: 52251(图片流字节数组的长度，底层的Okhttp帮我们计算了)
+ *...(文件流)
+ */
+/**
+ * file部分，最终拼接成以下部分（注意“app_user_header”是后台定义好的，后台会用它作为key去查询你传的图片信息）：
+ * Content-Disposition: form-data; name="app_user_header"; filename=fileNameByTimeStamp
+ * Content-Type: image/jpeg
+ * Content-Length: 52251(图片流字节数组的长度，底层的Okhttp帮我们计算了)
+ * ...(文件流)
+ */
 class UpdateImagePresenter : IPresenter<UpdateImageContact.IUpdateImageView>(),
     UpdateImageContact.IUpdateImagePresenter {
-    override fun loadUpdateImage(type: String, imagePath: String) {
+    override fun loadUpdateImage(type: String,imagePath: String) {
         //图片文件
         //图片文件
         val file = File(imagePath)
         val requestFile: RequestBody = RequestBody.create(MediaType.parse("image/jpeg"), file)
-        /**
-         *file部分，最终拼接成以下部分（注意“app_user_header”是后台定义好的，后台会用它作为key去查询你传的图片信息）：
-         *Content-Disposition: form-data; name="app_user_header"; filename=fileNameByTimeStamp
-         *Content-Type: image/jpeg
-         *Content-Length: 52251(图片流字节数组的长度，底层的Okhttp帮我们计算了)
-         *...(文件流)
-         */
-        /**
-         * file部分，最终拼接成以下部分（注意“app_user_header”是后台定义好的，后台会用它作为key去查询你传的图片信息）：
-         * Content-Disposition: form-data; name="app_user_header"; filename=fileNameByTimeStamp
-         * Content-Type: image/jpeg
-         * Content-Length: 52251(图片流字节数组的长度，底层的Okhttp帮我们计算了)
-         * ...(文件流)
-         */
+
         val body = MultipartBody.Part.createFormData("","", requestFile)
         RetrofitUtils.getRetrofit()
             .create(CommonApi::class.java)
@@ -47,7 +47,7 @@ class UpdateImagePresenter : IPresenter<UpdateImageContact.IUpdateImageView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadUpdateImageSuccess(it.img_url)
                     } else {
                         softView.get()?.loadUpdateImageFail(Throwable(it.msg))

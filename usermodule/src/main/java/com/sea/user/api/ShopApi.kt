@@ -6,8 +6,6 @@ import com.sea.user.activity.mall.car.NShopCarModelReq
 import com.sea.user.activity.mall.car.NShopCarModelResponse
 import com.sea.user.activity.mall.detail.NShopDetailModelReq
 import com.sea.user.activity.mall.detail.NShopDetailResponse
-import com.sea.user.activity.mall.list.NMallListModelReq
-import com.sea.user.activity.mall.list.NMallListModelResponse
 import com.sea.user.activity.mall.order.confirm.NMallConfirmOrderModelReq
 import com.sea.user.activity.mall.order.confirm.NMallConfirmOrderModelResponse
 import com.sea.user.activity.mall.order.detail.NMallOrderDetailModelReq
@@ -16,23 +14,22 @@ import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
 import com.sea.user.activity.mall.order.list.NShopOrderListModelResponse
 import com.sea.user.activity.mall.search.NSearchStoreModelReq
 import com.sea.user.activity.mall.search.NSearchStoreModelResponse
-import com.sea.user.activity.mall.select.NSelectStoreModelReq
-import com.sea.user.activity.mall.select.NSelectStoreModelResponse
 import com.sea.user.activity.shop.order.NShopOrderModelReq
 import com.sea.user.activity.shop.order.NShopOrderModelResponse
+import com.sea.user.presenter.sea.mall.NMallListModelReq
+import com.sea.user.presenter.sea.mall.NMallListModelResponse
 import com.sea.user.presenter.store.NStoreListModelReq
 import com.sea.user.presenter.store.NStoreListResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ShopApi {
 
     @POST("getdata.ashx")
     fun loadShopOrder(@Body nShopOrderModelReq: NShopOrderModelReq): Observable<NShopOrderModelResponse>
 
-    @POST("getdata.ashx")
-    fun loadSelectStore(@Body nSelectStoreModelReq: NSelectStoreModelReq): Observable<NSelectStoreModelResponse>
 
     @POST("getdata.ashx")
     fun loadSearchStore(@Body nSearchStoreModelReq: NSearchStoreModelReq): Observable<NSearchStoreModelResponse>
@@ -41,7 +38,7 @@ interface ShopApi {
     fun loadMallList(@Body nMallListModelReq: NMallListModelReq): Observable<NMallListModelResponse>
 
     @POST("getdata.ashx")
-    fun loadSeaFoodMall(@Body nSeaFoodMallModelReq: NSeaFoodMallModelReq): Observable<NSeaFoodMallResponse>
+    fun loadSeaCategory(@Body nSeaFoodMallModelReq: NSeaFoodMallModelReq): Observable<NSeaFoodMallResponse>
 
     @POST("getdata.ashx")
     fun loadShopDetail(@Body nShopDetailModelReq: NShopDetailModelReq): Observable<NShopDetailResponse>
@@ -59,5 +56,5 @@ interface ShopApi {
     fun loadMallOrderDetail(@Body nMallOrderDetailModelReq: NMallOrderDetailModelReq): Observable<NMallOrderDetailResponse>
 
     @POST("getdata.ashx")
-    fun loadStoreList(@Body nStoreListModelReq: NStoreListModelReq ): Observable<NStoreListResponse>
+    fun loadStoreList(@Body nStoreListModelReq: NStoreListModelReq): Observable<NStoreListResponse>
 }

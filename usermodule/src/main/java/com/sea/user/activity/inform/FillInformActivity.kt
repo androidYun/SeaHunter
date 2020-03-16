@@ -17,6 +17,7 @@ import com.sea.user.presenter.update.UpdateImagePresenter
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.baselibrary.utils.imageLoader.GlideEngine
+import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 import com.xhs.prison.model.NFillInformReq
 import kotlinx.android.synthetic.main.activity_fill_inform.*
 
@@ -26,7 +27,8 @@ import kotlinx.android.synthetic.main.activity_fill_inform.*
  * @ date 31/12/2019.
  * description:
  */
-class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView, UpdateImageContact.IUpdateImageView {
+class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
+    UpdateImageContact.IUpdateImageView {
 
     private val fillInformPresenter by lazy {
         FillInformPresenter().apply {
@@ -63,8 +65,8 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView, U
                 ToastUtils.show("请填写用户昵称")
                 return@setOnClickListener
             }
-            if (nFillInformReq.nick_name.isNullOrBlank()) {
-                ToastUtils.show("请填写用户昵称")
+            if (nFillInformReq.avatar.isNullOrBlank()) {
+                ToastUtils.show("请选择头像")
                 return@setOnClickListener
             }
             nFillInformReq.nick_name = nickname
@@ -93,7 +95,8 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView, U
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .forResult(object : OnResultCallbackListener {
                     override fun onResult(result: MutableList<LocalMedia>) {
-                        updateImagePresenter.loadUpdateImage("usericon", result[0].realPath)
+                        ImageLoader.loadCircleImageView(ivUploadHead, result[0].cutPath)
+                        updateImagePresenter.loadUpdateImage("user", result[0].cutPath)
                     }
 
                     override fun onCancel() {
@@ -104,7 +107,7 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView, U
     }
 
     override fun loadFillInformSuccess() {
-        startActivity(Intent(this, SeaFoodMallActivity::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     override fun loadFillInformFail(throwable: Throwable) {

@@ -22,8 +22,8 @@ class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarConta
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
-                        softView.get()?.loadShopCarSuccess(it.data.mList)
+                    if (it.code == 1) {
+                        softView.get()?.loadShopCarSuccess(it.data)
                     } else {
                         softView.get()?.loadShopCarFail(Throwable(it.msg))
                     }

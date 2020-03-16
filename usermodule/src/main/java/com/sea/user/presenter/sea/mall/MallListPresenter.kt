@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall.list
+package com.sea.user.presenter.sea.mall
 
 import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
@@ -22,8 +22,8 @@ class MallListPresenter : IPresenter<MallListContact.IMallListView>(), MallListC
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
-                        softView.get()?.loadMallListSuccess(it.data.mList, it.data.totalCount)
+                    if (it.code == 1) {
+                        softView.get()?.loadMallListSuccess(it.data.goodList, it.data.totalCount)
                     } else {
                         softView.get()?.loadMallListFail(Throwable(it.msg))
                     }

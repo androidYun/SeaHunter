@@ -1,7 +1,5 @@
 package com.sea.user.api
 
-import com.sea.user.activity.center.NUserCenterModelReq
-import com.sea.user.activity.center.NUserCenterResponse
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.login.NLoginResponse
 import com.sea.user.activity.model.BaseEntry

@@ -9,7 +9,7 @@
         android:id="@+id/swipeShopCar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/cvOperator">
+        android:layout_above="@+id/cvOperator">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvShopCar"

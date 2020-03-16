@@ -1,4 +1,4 @@
-package com.sea.user.activity.mall.list
+package com.sea.user.presenter.sea.mall
 
 import com.xhs.baselibrary.base.IBaseView
 import com.sea.user.R

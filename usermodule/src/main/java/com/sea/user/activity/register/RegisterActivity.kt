@@ -8,6 +8,7 @@ import com.sea.user.activity.inform.FillInformActivity
 import com.sea.user.activity.login.LoginActivity
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.password.ForgetPasswordActivity
+import com.sea.user.presenter.version.NVersionCodeModelReq
 import com.sea.user.presenter.version.VersionCodeContact
 import com.sea.user.presenter.version.VersionCodePresenter
 import com.xhs.baselibrary.base.BaseActivity
@@ -28,7 +29,8 @@ import kotlinx.android.synthetic.main.activity_user_login.tvLogin
  * @ date 31/12/2019.
  * description:
  */
-class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,VersionCodeContact.IVersionCodeView {
+class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,
+    VersionCodeContact.IVersionCodeView {
 
     private val registerPresenter by lazy {
         RegisterPresenter().apply {
@@ -39,6 +41,9 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,VersionC
     private val versionCodePresenter by lazy { VersionCodePresenter().apply { attachView(this@RegisterActivity) } }
 
     private lateinit var timeCountDown: TimeCountDown
+
+    //加密验证码
+    private var authCode = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,10 +68,10 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,VersionC
                 if (b) InputType.TYPE_TEXT_VARIATION_PASSWORD else InputType.TYPE_NUMBER_VARIATION_PASSWORD
         }
         tvNextStep.setOnClickListener {
-            val userName = evUserName.text.toString()
+            val phoneNumber = evPhoneNumber.text.toString()
             val password = evPassword.text.toString()
             val versionCode = evVersionCode.text.toString()
-            if (userName.isNullOrBlank()) {
+            if (phoneNumber.isNullOrBlank()) {
                 ToastUtils.show("账号不能为空")
                 return@setOnClickListener
             }
@@ -78,13 +83,28 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,VersionC
                 ToastUtils.show("密码不能为空")
                 return@setOnClickListener
             }
-            registerPresenter.loadRegister(NRegisterModelReq(userName, password, versionCode))
+            if (authCode.isNullOrBlank()) {
+                ToastUtils.show("请获取验证码")
+                return@setOnClickListener
+            }
+            registerPresenter.loadRegister(
+                NRegisterModelReq(
+                    phoneNumber,
+                    password,
+                    versionCode,
+                    authCode
+                )
+            )
         }
         tvLogin.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, FillInformActivity::class.java))
         }
         tvForgetPassword.setOnClickListener {
             startActivity(Intent(this, ForgetPasswordActivity::class.java))
+        }
+        tvVersionCode.setOnClickListener {
+            val phoneNumber = evPhoneNumber.text.toString()
+            versionCodePresenter.loadVersionCode(NVersionCodeModelReq(phone = phoneNumber))
         }
     }
 
@@ -97,8 +117,9 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,VersionC
     }
 
 
-    override fun loadVersionCodeSuccess(versionCode: String) {
-
+    override fun loadVersionCodeSuccess(authCode: String) {
+        this.authCode = authCode
+        timeCountDown.start()
     }
 
     override fun loadVersionCodeFail(throwable: Throwable) {

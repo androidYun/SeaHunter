@@ -23,7 +23,7 @@ class VersionCodePresenter : IPresenter<VersionCodeContact.IVersionCodeView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadVersionCodeSuccess(it.data)
                     } else {
                         softView.get()?.loadVersionCodeFail(Throwable(it.msg))

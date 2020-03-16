@@ -28,7 +28,7 @@ class RegisterPresenter : IPresenter<RegisterContract.IRegisterView>(), Register
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadRegisterSuccess()
                     } else {
                         softView.get()?.loadRegisterFail(Throwable(it.msg))
@@ -36,29 +36,5 @@ class RegisterPresenter : IPresenter<RegisterContract.IRegisterView>(), Register
                     //这里面是回调成功的方法
                 }, { throwable -> softView.get()?.loadRegisterFail(throwable) }
             )
-    }
-
-    override fun loadVersionCode(phoneNumber: String) {
-        RetrofitUtils.getRetrofit()
-            .create(UserInformApi::class.java)
-            .loadVersionCode(phoneNumber)
-            .compose(RxUtils.getSchedulerTransformer())
-            .compose(RxUtils.bindToLifecycle(softView.get()))
-            .doOnSubscribe { disposable ->
-                addDisposable(disposable)
-                softView.get()?.showLoading()
-            }.doFinally {
-                softView.get()?.hideLoading()
-                onStop()
-            }
-            .subscribe(
-                {
-                    if (it.code == 200) {
-                        softView.get()?.loadVersionCodeSuccess()
-                    } else {
-                        softView.get()?.loadVersionCodeFail(Throwable(it.msg))
-                    }
-                    //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadVersionCodeFail(throwable) })
     }
 }

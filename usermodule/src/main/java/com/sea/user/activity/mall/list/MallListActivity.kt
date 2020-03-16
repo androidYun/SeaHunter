@@ -8,13 +8,17 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.presenter.sea.mall.MallListContact
+import com.sea.user.presenter.sea.mall.MallListItem
+import com.sea.user.presenter.sea.mall.MallListPresenter
+import com.sea.user.presenter.sea.mall.NMallListModelReq
 import kotlinx.android.synthetic.main.activity_mall_list.*
 
 class MallListActivity : BaseActivity(), MallListContact.IMallListView {
 
     private val mMallListPresenter by lazy { MallListPresenter().apply { attachView(this@MallListActivity) } }
 
-    private val nMallListReq = NMallListModelReq()
+    private val nMallListReq = NMallListModelReq(page_size = 20,page_index = 1)
 
     private val mMallListList = mutableListOf<MallListItem>()
 
@@ -42,13 +46,6 @@ class MallListActivity : BaseActivity(), MallListContact.IMallListView {
     }
 
     private fun initData() {
-        mMallListList.add(MallListItem())
-        mMallListList.add(MallListItem())
-        mMallListList.add(MallListItem())
-        mMallListList.add(MallListItem())
-        mMallListList.add(MallListItem())
-        mMallListList.add(MallListItem())
-        mMallListList.add(MallListItem())
         mMallListPresenter.loadMallList(nMallListReq)
     }
 
@@ -57,7 +54,7 @@ class MallListActivity : BaseActivity(), MallListContact.IMallListView {
             mMallListPresenter.loadMallList(nMallListReq)
         }
         mMallListAdapter.setOnLoadMoreListener({
-            if (nMallListReq.pageIndex * nMallListReq.pageSize < totalCount) {
+            if (nMallListReq.page_index * nMallListReq.page_size < totalCount) {
                 mMallListPresenter.loadMallList(nMallListReq)
             } else {
                 mMallListAdapter.loadMoreEnd()
@@ -66,7 +63,7 @@ class MallListActivity : BaseActivity(), MallListContact.IMallListView {
     }
 
     override fun loadMallListSuccess(mList: List<MallListItem>, totalCount: Int) {
-        if (nMallListReq.pageIndex == 1) {
+        if (nMallListReq.page_index == 1) {
             mMallListList.clear()
         }
         this.totalCount = totalCount
@@ -74,7 +71,7 @@ class MallListActivity : BaseActivity(), MallListContact.IMallListView {
         mMallListAdapter.notifyDataSetChanged()
         mMallListAdapter.loadMoreComplete()
         swipeMallList.isRefreshing = false
-        nMallListReq.pageIndex++
+        nMallListReq.page_index++
 
     }
 

@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sea.user.R
 import com.sea.user.activity.mall.detail.ShopDetailActivity
+import com.sea.user.presenter.sea.mall.MallListItem
 
 class MallListAdapter(mList: List<MallListItem>) :
     BaseQuickAdapter<MallListItem, BaseViewHolder>(R.layout.item_mall_list_layout, mList) {

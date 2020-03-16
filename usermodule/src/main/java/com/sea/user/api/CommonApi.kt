@@ -15,8 +15,10 @@ import retrofit2.http.*
  */
 interface CommonApi {
     @Multipart
-    @POST("getdata.ashx")
-    fun loadUpdateImage(@Query("type") type: String, @Part  file:MultipartBody.Part): Observable<NUpdateImageResponse>
+    @POST("upload.ashx")
+    fun loadUpdateImage(@Query("type") type: String,  @Part file: MultipartBody.Part): Observable<NUpdateImageResponse>
+
+
     @POST("getdata.ashx")
     fun loadVersionCode(@Body nVersionCodeModelReq: NVersionCodeModelReq): Observable<NVersionCodeResponse>
 }
