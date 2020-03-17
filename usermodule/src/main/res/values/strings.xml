@@ -42,4 +42,6 @@
     <string name="total">合计</string>
     <string name="title_MallOrderDetail">订单详情</string>
     <string name="order_successful">下单成功</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
 </resources>

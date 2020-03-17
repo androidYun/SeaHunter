@@ -11,9 +11,15 @@ interface ShopCarContact {
 
         fun loadShopCarFail(throwable: Throwable)
 
+        fun loadDeleteShopCarSuccess()
+
+        fun loadDeleteShopCarFail(throwable: Throwable)
+
     }
 
     interface IShopCarPresenter {
         fun loadShopCar(nShopCarModelReq: NShopCarModelReq)
+
+        fun loadDeleteShopCar(nDeleteShopCarModelReq: NDeleteShopCarModelReq)
     }
 }

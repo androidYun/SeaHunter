@@ -72,7 +72,7 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,
             val password = evPassword.text.toString()
             val versionCode = evVersionCode.text.toString()
             if (phoneNumber.isNullOrBlank()) {
-                ToastUtils.show("账号不能为空")
+                ToastUtils.show("手机号不能为空")
                 return@setOnClickListener
             }
             if (versionCode.isNullOrBlank()) {

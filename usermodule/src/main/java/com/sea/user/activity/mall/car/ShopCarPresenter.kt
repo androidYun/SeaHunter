@@ -31,4 +31,29 @@ class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarConta
                 }, { throwable -> softView.get()?.loadShopCarFail(throwable) }
             )
     }
+
+    override fun loadDeleteShopCar(nDeleteShopCarModelReq: NDeleteShopCarModelReq) {
+        RetrofitUtils.getRetrofit()
+            .create(ShopApi::class.java)
+            .loadDeleteShopCar(nDeleteShopCarModelReq)
+            .compose(RxUtils.getSchedulerTransformer())
+            .compose(RxUtils.bindToLifecycle(softView.get()))
+            .doOnSubscribe { disposable ->
+                addDisposable(disposable)
+                softView.get()?.showLoading()
+            }.doFinally {
+                softView.get()?.hideLoading()
+                onStop()
+            }
+            .subscribe(
+                {
+                    if (it.code == 1) {
+                        softView.get()?.loadDeleteShopCarSuccess()
+                    } else {
+                        softView.get()?.loadDeleteShopCarFail(Throwable(it.msg))
+                    }
+                    //这里面是回调成功的方法
+                }, { throwable -> softView.get()?.loadDeleteShopCarFail(throwable) }
+            )
+    }
 }

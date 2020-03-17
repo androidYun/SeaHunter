@@ -5,6 +5,23 @@ class NShopCarModelReq(
     var shop_id: Int = -1
 )
 
+class NDeleteShopCarModelReq(
+    val command: Int = 20,
+    var channel_id: Int = -1,//商品带入
+    var article_id: Int = -1,//商品带入
+    var quantity: Int = -1,//数量
+    var shop_id: Int = -1//门店Id
+)
+
+class NEditShopCarModelReq(
+    val command: Int = 19,
+    var channel_id: Int = -1,//商品带入
+    var article_id: Int = -1,//商品带入
+    var goods_id: Int = -1,//商品
+    var quantity: Int = -1,//数量
+    var shop_id: Int = -1//门店Id
+)
+
 class NShopCarModelResponse(
     val code: Int = -1,
     val msg: String = "",

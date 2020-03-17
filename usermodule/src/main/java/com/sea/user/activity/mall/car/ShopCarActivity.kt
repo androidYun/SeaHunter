@@ -1,15 +1,21 @@
 package com.sea.user.activity.mall.car
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import com.sea.user.activity.base.BaseSeaUserActivity
+import com.sea.user.presenter.car.ShopCarEditContact
+import com.sea.user.presenter.car.ShopCarEditPresenter
 import kotlinx.android.synthetic.main.activity_shop_car.*
 
-class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView {
+class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView, ShopCarEditContact.IShopCarEditView {
 
     private val mShopCarPresenter by lazy { ShopCarPresenter().apply { attachView(this@ShopCarActivity) } }
+
+    private val mShopCarEditPresenter by lazy { ShopCarEditPresenter().apply { attachView(this@ShopCarActivity) } }
 
     private val nShopCarReq = NShopCarModelReq()
 
@@ -61,12 +67,35 @@ class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView {
         swipeShopCar.isRefreshing = false
     }
 
+    override fun loadShopCarEditSuccess() {
+
+    }
+
+    override fun loadShopCarEditFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
     override fun showLoading() {
         showProgressDialog()
     }
 
     override fun hideLoading() {
         hideProgressDialog()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_edit -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_edit, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     companion object {

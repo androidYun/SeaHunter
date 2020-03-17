@@ -19,6 +19,8 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
 
     private lateinit var mShopOrderListAdapter: ShopOrderListAdapter
 
+    private val orderStatus by lazy { arguments?.getInt(order_status_key) ?: 0 }
+
     private var totalCount = 0
 
 
@@ -41,6 +43,7 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
     }
 
     private fun initData() {
+        nShopOrderListReq.order_status = orderStatus
         mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
     }
 
@@ -49,7 +52,7 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
             mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
         }
         mShopOrderListAdapter.setOnLoadMoreListener({
-            if (nShopOrderListReq.pageIndex * nShopOrderListReq.pageSize < totalCount) {
+            if (nShopOrderListReq.page_index * nShopOrderListReq.page_size < totalCount) {
                 mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
             } else {
                 mShopOrderListAdapter.loadMoreEnd()
@@ -58,7 +61,7 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
     }
 
     override fun loadShopOrderListSuccess(mList: List<ShopOrderListItem>, totalCount: Int) {
-        if (nShopOrderListReq.pageIndex == 1) {
+        if (nShopOrderListReq.page_index == 1) {
             mShopOrderListList.clear()
         }
         this.totalCount = totalCount
@@ -66,7 +69,7 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
         mShopOrderListAdapter.notifyDataSetChanged()
         mShopOrderListAdapter.loadMoreComplete()
         swipeShopOrderList.isRefreshing = false
-        nShopOrderListReq.pageIndex++
+        nShopOrderListReq.page_index++
 
     }
 
@@ -85,9 +88,10 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
     }
 
     companion object {
-        fun getInstance() = ShopOrderListFragment().apply {
+        private const val order_status_key = "order_status_key"
+        fun getInstance(orderStatus: Int) = ShopOrderListFragment().apply {
             arguments = Bundle().apply {
-
+                putInt(order_status_key, orderStatus)
             }
         }
     }

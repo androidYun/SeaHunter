@@ -2,6 +2,8 @@ package com.sea.user.api
 
 import com.sea.user.activity.mall.NSeaFoodMallModelReq
 import com.sea.user.activity.mall.NSeaFoodMallResponse
+import com.sea.user.activity.mall.car.NDeleteShopCarModelReq
+import com.sea.user.activity.mall.car.NEditShopCarModelReq
 import com.sea.user.activity.mall.car.NShopCarModelReq
 import com.sea.user.activity.mall.car.NShopCarModelResponse
 import com.sea.user.activity.mall.detail.NShopDetailModelReq
@@ -14,10 +16,13 @@ import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
 import com.sea.user.activity.mall.order.list.NShopOrderListModelResponse
 import com.sea.user.activity.mall.search.NSearchStoreModelReq
 import com.sea.user.activity.mall.search.NSearchStoreModelResponse
+import com.sea.user.activity.model.BaseEntry
 import com.sea.user.activity.shop.order.NShopOrderModelReq
 import com.sea.user.activity.shop.order.NShopOrderModelResponse
 import com.sea.user.presenter.sea.mall.NMallListModelReq
 import com.sea.user.presenter.sea.mall.NMallListModelResponse
+import com.sea.user.presenter.sea.order.NPlaceOrderModelReq
+import com.sea.user.presenter.sea.order.NPlaceOrderResponse
 import com.sea.user.presenter.store.NStoreListModelReq
 import com.sea.user.presenter.store.NStoreListResponse
 import io.reactivex.Observable
@@ -46,6 +51,13 @@ interface ShopApi {
     @POST("getdata.ashx")
     fun loadShopCar(@Body nShopCarModelReq: NShopCarModelReq): Observable<NShopCarModelResponse>
 
+
+    @POST("getdata.ashx")
+    fun loadDeleteShopCar(@Body nDeleteShopCarModelReq: NDeleteShopCarModelReq): Observable<BaseEntry>
+
+    @POST("getdata.ashx")
+    fun loadEditShopCar(@Body nEditShopCarModelReq: NEditShopCarModelReq): Observable<BaseEntry>
+
     @POST("getdata.ashx")
     fun loadMallConfirmOrder(@Body nMallConfirmOrderModelReq: NMallConfirmOrderModelReq): Observable<NMallConfirmOrderModelResponse>
 
@@ -57,4 +69,7 @@ interface ShopApi {
 
     @POST("getdata.ashx")
     fun loadStoreList(@Body nStoreListModelReq: NStoreListModelReq): Observable<NStoreListResponse>
+
+    @POST("getdata.ashx")
+    fun loadPlaceOrder(@Body nPlaceOrderModelReq: NPlaceOrderModelReq): Observable<NPlaceOrderResponse>
 }

@@ -37,6 +37,7 @@
                 android:drawablePadding="10dp"
                 android:hint="@string/please_input_account"
                 android:inputType="phone"
+                android:maxLength="11"
                 android:lines="1"
                 android:singleLine="true"
                 android:textColor="@color/color_3"
