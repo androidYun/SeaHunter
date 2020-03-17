@@ -22,7 +22,7 @@ class StoreListPresenter : IPresenter<StoreListContact.IStoreListView>(), StoreL
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadStoreListSuccess(it.data)
                     } else {
                         softView.get()?.loadStoreListFail(Throwable(it.msg))

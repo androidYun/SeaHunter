@@ -108,6 +108,7 @@ class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMa
         mKindFoodList.clear()
         mKindFoodList.addAll(seaCategoryItemModelList)
         mKindFoodAdapter.notifyDataSetChanged()
+        swipeSeaFoodMall.isRefreshing = false
     }
 
     override fun loadSeaFoodMallFail(throwable: Throwable) {
@@ -118,11 +119,13 @@ class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMa
     override fun loadMallListRecommendSuccess(seaCategoryItemModelList: List<MallListItem>) {
         mRecommendFoodList.clear()
         mRecommendFoodList.addAll(seaCategoryItemModelList)
+        swipeSeaFoodMall.isRefreshing = false
     }
 
     override fun loadMallListHotSuccess(seaCategoryItemModelList: List<MallListItem>) {
         mFineFoodList.clear()
         mFineFoodList.addAll(seaCategoryItemModelList)
+        swipeSeaFoodMall.isRefreshing = false
     }
 
     override fun showLoading() {

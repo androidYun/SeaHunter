@@ -7,7 +7,7 @@ class NSeaFoodMallResponse(
     val msg: String = "",
     val `data`: List<SeaCategoryItemModel> = listOf()
 )
-class SeaCategoryItemModel(
+data class SeaCategoryItemModel(
     val id: Int = 0,
     val img_url: String = "",
     val layer: Int = 0,

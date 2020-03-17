@@ -9,9 +9,6 @@
         <item name="colorPrimaryDark">@color/user_theme_color</item>
     </style>
 
-    <style name="grayBgAppTheme" parent="UserAppTheme">
-        <item name="android:windowBackground">@mipmap/bg_gray</item>
-    </style>
 
     <style name="grayNoActionBarTheme" parent="NoActionBarTheme">
         <item name="android:windowBackground">@mipmap/bg_gray</item>

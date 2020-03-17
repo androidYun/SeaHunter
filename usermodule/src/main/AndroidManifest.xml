@@ -4,8 +4,7 @@
 
     <supports-screens android:requiresSmallestWidthDp="600" />
 
-    <application
-        >
+    <application>
         <activity
             android:name=".activity.mall.order.detail.MallOrderDetailActivity"
             android:label="@string/title_MallOrderDetail" />
@@ -32,7 +31,8 @@
             android:label="@string/title_SearchStore" />
         <activity
             android:name=".activity.mall.select.SelectStoreActivity"
-            android:label="@string/title_SelectStore" />
+            android:label="@string/title_SelectStore"
+            android:theme="@style/grayTheme" />
         <activity
             android:name=".activity.mall.SeaFoodMallActivity"
             android:label="@string/title_SeaFoodMall" />

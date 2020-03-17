@@ -7,9 +7,9 @@ import com.sea.user.presenter.store.NStoreListItemModel
 
 class SelectStoreAdapter(mList: List<NStoreListItemModel>) :
     BaseQuickAdapter<NStoreListItemModel, BaseViewHolder>(R.layout.item_select_store_layout, mList) {
-    override fun convert(helper: BaseViewHolder?, item: NStoreListItemModel?) {
-        helper?.setText(R.id.tvStoreName, "")
-        helper?.setText(R.id.tvStoreAddress, "")
+    override fun convert(helper: BaseViewHolder?, item: NStoreListItemModel) {
+        helper?.setText(R.id.tvStoreName, item.title)
+        helper?.setText(R.id.tvStoreAddress, item.address)
         helper?.addOnClickListener(R.id.cvSelectStore)
     }
 }

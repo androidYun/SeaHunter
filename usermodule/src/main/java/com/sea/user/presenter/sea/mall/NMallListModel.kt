@@ -16,13 +16,9 @@ class NMallListModelReq(
 class NMallListModelResponse(
     val code: Int = -1,
     val msg: String = "",
-    val data: Data = Data()
-) {
-    class Data(
-        val totalCount: Int = 0,
-        val goodList: List<MallListItem> = listOf()
-    )
-}
+    val data: List<MallListItem> = listOf(),
+    val totalCount: Int = 0
+)
 
 data class MallListItem(
     val category_id: Int = 0,

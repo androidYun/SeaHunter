@@ -1,11 +1,12 @@
 package com.sea.user.base
 
+import com.sea.user.common.Constants
 import com.sea.user.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.init.BaseParamsProvide
 
 class UserBaseParamsProvide : BaseParamsProvide {
     override fun getBaseUrl(): String {
-        return "http://hunter.hnzhiling.com/handle/"
+        return Constants.netBaseUrl
     }
 
     override fun getToken(): String {

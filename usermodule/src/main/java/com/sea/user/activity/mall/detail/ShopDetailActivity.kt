@@ -9,6 +9,9 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView {
 
     private val mShopDetailPresenter by lazy { ShopDetailPresenter().apply { attachView(this@ShopDetailActivity) } }
 
+
+    private val goodId by lazy { intent.extras?.getInt(good_id_key) ?: -1 }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_detail)
@@ -23,11 +26,13 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView {
     }
 
     private fun initData() {
-        mShopDetailPresenter.loadShopDetail(NShopDetailModelReq())
+        mShopDetailPresenter.loadShopDetail(NShopDetailModelReq(good_id = goodId))
     }
 
     private fun initListener() {
+        tvJoinShopCar.setOnClickListener {
 
+        }
     }
 
     override fun loadShopDetailSuccess(content: Any) {
@@ -48,6 +53,10 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView {
     }
 
     companion object {
-        fun getInstance() = Bundle().apply { }
+        private const val good_id_key = "good_id_key"
+        fun getInstance(goodId: Int) = Bundle().apply {
+            putInt(good_id_key, goodId)
+
+        }
     }
 }

@@ -75,6 +75,14 @@ class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView, Shop
         handleError(throwable)
     }
 
+    override fun loadDeleteShopCarSuccess() {
+
+    }
+
+    override fun loadDeleteShopCarFail(throwable: Throwable) {
+
+    }
+
     override fun showLoading() {
         showProgressDialog()
     }

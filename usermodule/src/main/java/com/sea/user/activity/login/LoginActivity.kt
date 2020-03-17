@@ -69,7 +69,7 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
 
     override fun loadLoginSuccess(content: UserInformModel, phoneNumber: String, password: String) {
         UserInformSpUtils.setUserInformModel(userInformModel = content)
-        UserInformSpUtils.setPassword(phoneNumber)
+        UserInformSpUtils.setPhoneNumber(phoneNumber)
         UserInformSpUtils.setPassword(password)
         startActivity(Intent(this, SeaFoodMallActivity::class.java))
     }

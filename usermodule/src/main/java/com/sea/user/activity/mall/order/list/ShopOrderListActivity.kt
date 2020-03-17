@@ -44,9 +44,9 @@ class ShopOrderListActivity : BaseSeaUserActivity() {
     inner class ShopOrderPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return if (position == 0) {
-                ShopOrderListFragment.getInstance()
+                ShopOrderListFragment.getInstance(1)
             } else {
-                ShopOrderListFragment.getInstance()
+                ShopOrderListFragment.getInstance(1)
             }
         }
 
