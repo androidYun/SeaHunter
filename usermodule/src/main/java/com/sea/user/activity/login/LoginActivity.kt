@@ -13,6 +13,7 @@ import com.sea.user.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_user_login.*
+import kotlinx.android.synthetic.main.include_shop_eye.*
 
 class LoginActivity : BaseActivity(), LoginContact.ILoginView {
 
@@ -87,6 +88,7 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
     }
 
     companion object {
+
         fun getInstance() = Bundle().apply { }
     }
 }

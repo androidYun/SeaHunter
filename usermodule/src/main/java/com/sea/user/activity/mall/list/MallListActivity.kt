@@ -56,7 +56,7 @@ class MallListActivity : BaseActivity(), MallListContact.IMallListView {
 
     private fun initData() {
         nMallListReq.type = type
-        nMallListReq.categor_id = categoryId
+        nMallListReq.category_id = categoryId
         nMallListReq.plate = plate
         nMallListReq.is_hot = isHot
         nMallListReq.type = type

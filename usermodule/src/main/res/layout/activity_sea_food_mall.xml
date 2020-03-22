@@ -28,6 +28,7 @@
                     android:drawableEnd="@mipmap/ic_arrow_bottom"
                     android:drawablePadding="5dp"
                     android:gravity="center_vertical"
+                    android:text="选择门店"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -67,18 +68,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvKindFood"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvKindFood"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="60dp"
-                    android:paddingEnd="60dp" />
-            </LinearLayout>
+                android:layout_height="wrap_content" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvFoodType"
@@ -97,7 +90,7 @@
                     android:gravity="center"
                     android:text="为您推荐"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tvRecommend"
@@ -109,7 +102,7 @@
                     android:gravity="center|end"
                     android:text="查看更多"
                     android:textColor="@color/user_theme_color"
-                    android:textSize="16sp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -118,6 +111,11 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/default_padding"
                 android:paddingEnd="@dimen/default_padding" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/color_F8F6F7" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -131,7 +129,7 @@
                     android:gravity="center"
                     android:text="精品商品"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tvFineFood"
@@ -143,7 +141,7 @@
                     android:gravity="center|end"
                     android:text="查看更多"
                     android:textColor="@color/user_theme_color"
-                    android:textSize="16sp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

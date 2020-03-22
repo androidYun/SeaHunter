@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="80dp"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingStart="@dimen/default_padding"
+    android:paddingEnd="@dimen/default_padding">
 
     <ImageView
         android:id="@+id/ivHead"
@@ -25,7 +28,7 @@
         android:id="@+id/tvSidebarOrdering"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableTop="@mipmap/ic_left_ordering"
+        android:drawableTop="@drawable/select_left_sidebar_ordering"
         android:drawablePadding="5dp"
         android:gravity="center"
         android:paddingTop="25dp"
@@ -34,7 +37,7 @@
         android:textColor="@color/color_737373"
         android:textSize="14sp" />
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rvSidebarCar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,30 +48,39 @@
             android:id="@+id/tvSidebarCar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:drawableTop="@mipmap/ic_left_ordering"
+            android:drawableTop="@drawable/select_left_sidebar_car"
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="购物车"
             android:textColor="@color/color_737373"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvSidebarCarNumber"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_alignTop="@+id/tvSidebarCar"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/tvSidebarCar"
-            android:background="@color/user_theme_color" />
-    </RelativeLayout>
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_theme_color_circle"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tvSidebarOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableTop="@mipmap/ic_left_ordering"
+        android:drawableTop="@drawable/select_left_sidebar_order"
         android:drawablePadding="5dp"
         android:gravity="center"
         android:paddingTop="25dp"
@@ -81,7 +93,7 @@
         android:id="@+id/tvSidebarMine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableTop="@mipmap/ic_left_ordering"
+        android:drawableTop="@drawable/select_left_sidebar_my"
         android:drawablePadding="5dp"
         android:gravity="center"
         android:paddingTop="25dp"

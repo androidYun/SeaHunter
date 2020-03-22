@@ -2,9 +2,7 @@ package com.sea.user.activity.mall.select
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import com.sea.user.activity.mall.search.SearchStoreActivity
@@ -12,7 +10,7 @@ import com.sea.user.presenter.store.NStoreListItemModel
 import com.sea.user.presenter.store.NStoreListModelReq
 import com.sea.user.presenter.store.StoreListContact
 import com.sea.user.presenter.store.StoreListPresenter
-import com.sea.user.utils.sp.UserInformSpUtils
+import com.sea.user.utils.sp.StoreShopSpUtils
 import kotlinx.android.synthetic.main.activity_select_store.*
 
 class SelectStoreActivity : BaseActivity(), StoreListContact.IStoreListView {
@@ -55,8 +53,9 @@ class SelectStoreActivity : BaseActivity(), StoreListContact.IStoreListView {
         }
         mSelectStoreAdapter.setOnItemClickListener { _, _, position ->
             run {
-                UserInformSpUtils.setShopStoreId(mSelectStoreList[position].id)
-                UserInformSpUtils.setShopStoreName(mSelectStoreList[position].title)
+                StoreShopSpUtils.setStoreShopId(mSelectStoreList[position].id)
+                StoreShopSpUtils.setStoreShopName(mSelectStoreList[position].title)
+                setResult(select_store_name_result_key, Intent())
                 finish()
             }
         }
@@ -85,6 +84,7 @@ class SelectStoreActivity : BaseActivity(), StoreListContact.IStoreListView {
     }
 
     companion object {
+        const val select_store_name_result_key = 101
         fun getInstance() = Bundle().apply { }
     }
 }

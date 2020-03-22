@@ -19,8 +19,8 @@ object UserInformSpUtils {
     }
 
     private var userInformModel: UserInformModel = UserInformModel()
-    fun getUserInformModel(): UserInformModel {
-        if (userInformModel == null) {
+    private fun getUserInformModel(): UserInformModel {
+        if (userInformModel == null || userInformModel.id < 0) {
             userInformModel = baseSharePreUtils.get(sea_hunter_user_sp_key, UserInformModel())
         }
         return userInformModel

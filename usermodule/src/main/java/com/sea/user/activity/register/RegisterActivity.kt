@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.text.InputType
 import com.sea.user.R
 import com.sea.user.activity.inform.FillInformActivity
-import com.sea.user.activity.login.LoginActivity
-import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.password.ForgetPasswordActivity
 import com.sea.user.presenter.version.NVersionCodeModelReq
 import com.sea.user.presenter.version.VersionCodeContact
@@ -15,12 +13,10 @@ import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.TimeCountDown
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_user_login.*
-import kotlinx.android.synthetic.main.activity_user_login.cbEye
 import kotlinx.android.synthetic.main.activity_user_login.evPassword
-import kotlinx.android.synthetic.main.activity_user_login.evUserName
 import kotlinx.android.synthetic.main.activity_user_login.tvForgetPassword
 import kotlinx.android.synthetic.main.activity_user_login.tvLogin
+import kotlinx.android.synthetic.main.include_shop_eye.*
 
 
 /**

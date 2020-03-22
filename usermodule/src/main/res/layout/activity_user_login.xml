@@ -36,6 +36,8 @@
                 android:drawableStart="@mipmap/ic_account"
                 android:drawablePadding="10dp"
                 android:hint="@string/please_input_account"
+                android:inputType="phone"
+                android:maxLength="11"
                 android:lines="1"
                 android:singleLine="true"
                 android:textColor="@color/color_3"
@@ -72,13 +74,7 @@
                 android:textColor="@color/color_3"
                 android:textColorHint="@color/color_e4e4e4" />
 
-            <CheckBox
-                android:id="@+id/cbEye"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/select_password_checkbox"
-                android:button="@null"
-                android:checked="true" />
+            <include layout="@layout/include_shop_eye" />
         </LinearLayout>
 
         <TextView

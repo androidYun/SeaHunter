@@ -20,7 +20,6 @@ class SeaFoodMallPresenter : IPresenter<SeaFoodMallContact.ISeaFoodMallView>(),
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {
@@ -46,7 +45,6 @@ class SeaFoodMallPresenter : IPresenter<SeaFoodMallContact.ISeaFoodMallView>(),
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {
@@ -72,7 +70,6 @@ class SeaFoodMallPresenter : IPresenter<SeaFoodMallContact.ISeaFoodMallView>(),
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {

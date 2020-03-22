@@ -14,7 +14,8 @@
     <ImageView
         android:id="@+id/ivKindFood"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:scaleType="center" />
 
     <TextView
         android:id="@+id/tvKindName"

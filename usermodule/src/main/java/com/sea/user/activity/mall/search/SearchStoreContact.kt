@@ -7,13 +7,21 @@ interface SearchStoreContact {
 
     interface ISearchStoreView : IBaseView {
 
-        fun loadSearchStoreSuccess(mList: List<SearchStoreItem>, totalCount: Int)
+        fun loadHotSearchSuccess(mList: List<String>)
+
+        fun clearSearch()
+
+        fun loadAddSearch()
 
         fun loadSearchStoreFail(throwable: Throwable)
 
     }
 
     interface ISearchStorePresenter {
-        fun loadSearchStore(nSearchStoreModelReq: NSearchStoreModelReq)
+        fun loadAddSearch(nSearchStoreModelReq: NSearchStoreModelReq)
+
+        fun loadHotSearch()
+
+        fun clearHotSearch()
     }
 }

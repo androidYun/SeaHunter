@@ -14,7 +14,7 @@ class UserInformModel(
     val amount: Double = 0.0,
     val avatar: String = "",
     val exp: Int = 0,
-    val id: Int = 0,
+    val id: Int = -1,
     val nick_name: String = "",
     val phone: String = "",
     val point: Int = 0,

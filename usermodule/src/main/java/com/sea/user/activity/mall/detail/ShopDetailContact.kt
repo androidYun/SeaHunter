@@ -7,7 +7,9 @@ interface ShopDetailContact {
 
     interface IShopDetailView : IBaseView {
 
-        fun loadShopDetailSuccess(content: Any)
+        fun loadShopDetailSuccess(
+            nShopDetailModel: NShopDetailModel
+        )
 
         fun loadShopDetailFail(throwable: Throwable)
 

@@ -42,24 +42,24 @@ public class AmountView extends LinearLayout implements View.OnClickListener, Te
 
         TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R.styleable.AmountView);
         int btnWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.AmountView_btnWidth, LayoutParams.WRAP_CONTENT);
-        int tvWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.AmountView_tvWidth, 40);
+        int tvWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.AmountView_tvWidth, 0);
         int tvTextSize = obtainStyledAttributes.getDimensionPixelSize(R.styleable.AmountView_tvTextSize, 0);
         int btnTextSize = obtainStyledAttributes.getDimensionPixelSize(R.styleable.AmountView_btnTextSize, 0);
         obtainStyledAttributes.recycle();
-
-        LayoutParams btnParams = new LayoutParams(btnWidth, LayoutParams.MATCH_PARENT);
-        btnDecrease.setLayoutParams(btnParams);
-        btnIncrease.setLayoutParams(btnParams);
-        if (btnTextSize != 0) {
-            btnDecrease.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
-            btnIncrease.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
-        }
-
-        LayoutParams textParams = new LayoutParams(tvWidth, LayoutParams.MATCH_PARENT);
-        etAmount.setLayoutParams(textParams);
-        if (tvTextSize != 0) {
-            etAmount.setTextSize(tvTextSize);
-        }
+//
+//        LayoutParams btnParams = new LayoutParams(btnWidth, LayoutParams.MATCH_PARENT);
+//        btnDecrease.setLayoutParams(btnParams);
+//        btnIncrease.setLayoutParams(btnParams);
+//        if (btnTextSize != 0) {
+//            btnDecrease.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
+//            btnIncrease.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
+//        }
+//
+//        LayoutParams textParams = new LayoutParams(tvWidth, LayoutParams.MATCH_PARENT);
+//        etAmount.setLayoutParams(textParams);
+//        if (tvTextSize != 0) {
+//            etAmount.setTextSize(tvTextSize);
+//        }
     }
 
     public void setOnAmountChangeListener(OnAmountChangeListener onAmountChangeListener) {

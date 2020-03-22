@@ -22,13 +22,17 @@
 
 
         <EditText
-            android:id="@+id/evUserName"
+            android:id="@+id/evPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:drawableStart="@mipmap/ic_account"
             android:drawablePadding="10dp"
             android:hint="@string/please_input_account"
+            android:inputType="phone"
+            android:lines="1"
+            android:maxLength="11"
+            android:singleLine="true"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
     </LinearLayout>
@@ -57,6 +61,9 @@
             android:drawableStart="@mipmap/ic_verification_code"
             android:drawablePadding="10dp"
             android:hint="@string/please_input_version_code"
+            android:lines="1"
+            android:singleLine="true"
+            android:inputType="number"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
 
@@ -97,18 +104,15 @@
             android:background="@null"
             android:drawableStart="@mipmap/ic_password"
             android:drawablePadding="10dp"
+            android:lines="1"
+            android:singleLine="true"
             android:hint="@string/please_input_password"
+            android:inputType="textPassword"
             android:src="@mipmap/ic_account"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_c5c5c5" />
 
-        <CheckBox
-            android:id="@+id/cbEye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/select_password_checkbox"
-            android:button="@null"
-            android:checked="true" />
+        <include layout="@layout/include_shop_eye" />
     </LinearLayout>
 
 

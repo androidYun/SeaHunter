@@ -5,6 +5,11 @@ class NSearchStoreModelReq(
     var pageIndex: Int = 1
 )
 
+
+class NHotSearchStoreModelReq(
+    var command: Int = 27
+)
+
 class NSearchStoreModelResponse(
     val code: Int = -1,
     val msg: String = "",

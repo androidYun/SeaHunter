@@ -12,9 +12,13 @@ import com.sea.user.activity.mall.adapter.FoodFineAdapter
 import com.sea.user.activity.mall.adapter.FoodRecommendAdapter
 import com.sea.user.activity.mall.adapter.FoodTypeAdapter
 import com.sea.user.activity.mall.adapter.KindFoodAdapter
+import com.sea.user.activity.mall.list.MallListActivity
+import com.sea.user.activity.mall.search.SearchStoreActivity
 import com.sea.user.activity.mall.select.SelectStoreActivity
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.sea.user.presenter.sea.mall.NMallListModelReq
+import com.sea.user.utils.sp.StoreShopSpUtils
+import com.sea.user.utils.sp.UserInformSpUtils
 import kotlinx.android.synthetic.main.activity_sea_food_mall.*
 
 class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMallView {
@@ -34,9 +38,9 @@ class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMa
     private val mKindFoodList = mutableListOf<SeaCategoryItemModel>()
     private val mTypeFoodList = mutableListOf(
         NFoodType(R.mipmap.bg_mall_project1, "必吃榜单", "吃货大本营就在这里"),
-        NFoodType(R.mipmap.bg_mall_project2, "必吃榜单", "吃货大本营就在这里"),
-        NFoodType(R.mipmap.bg_mall_project3, "必吃榜单", "吃货大本营就在这里"),
-        NFoodType(R.mipmap.bg_mall_project4, "必吃榜单", "吃货大本营就在这里")
+        NFoodType(R.mipmap.bg_mall_project2, "最新上市", "新品先抢吃"),
+        NFoodType(R.mipmap.bg_mall_project3, "限时热卖", "买到就是赚到"),
+        NFoodType(R.mipmap.bg_mall_project4, "精品推荐", "品质生活必备")
 
     )
     private val mRecommendFoodList = mutableListOf<MallListItem>()
@@ -96,11 +100,31 @@ class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMa
     }
 
     private fun initListener() {
+
         tvStoreName.setOnClickListener {
-            startActivity(Intent(this, SelectStoreActivity::class.java))
+            startActivityForResult(
+                Intent(this, SelectStoreActivity::class.java),
+                select_store_name_key
+            )
+        }
+        lvSearchShop.setOnClickListener {
+            startActivityForResult(
+                Intent(this, SearchStoreActivity::class.java),
+                select_store_name_key
+            )
         }
         swipeSeaFoodMall.setOnRefreshListener {
             initData()
+        }
+        tvRecommend.setOnClickListener {
+            startActivity(Intent(this, MallListActivity::class.java).apply {
+                putExtras(MallListActivity.getInstance(isHot = 1))
+            })
+        }
+        tvFineFood.setOnClickListener {
+            startActivity(Intent(this, MallListActivity::class.java).apply {
+                putExtras(MallListActivity.getInstance(isRed = 1))
+            })
         }
     }
 
@@ -119,12 +143,14 @@ class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMa
     override fun loadMallListRecommendSuccess(seaCategoryItemModelList: List<MallListItem>) {
         mRecommendFoodList.clear()
         mRecommendFoodList.addAll(seaCategoryItemModelList)
+        mFoodRecommendAdapter.notifyDataSetChanged()
         swipeSeaFoodMall.isRefreshing = false
     }
 
     override fun loadMallListHotSuccess(seaCategoryItemModelList: List<MallListItem>) {
         mFineFoodList.clear()
         mFineFoodList.addAll(seaCategoryItemModelList)
+        mFoodFineAdapter.notifyDataSetChanged()
         swipeSeaFoodMall.isRefreshing = false
     }
 
@@ -136,7 +162,25 @@ class SeaFoodMallActivity : BaseSeaUserActivity(), SeaFoodMallContact.ISeaFoodMa
         hideProgressDialog()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            select_store_name_key -> {
+                if (resultCode == SelectStoreActivity.select_store_name_result_key) {
+                    tvStoreName.text = StoreShopSpUtils.getStoreShopName()
+                } else if (resultCode == SearchStoreActivity.search_store_name_result_key) {
+                    tvStoreName.text = StoreShopSpUtils.getStoreShopName()
+                }
+
+            }
+            else -> {
+
+            }
+        }
+    }
+
     companion object {
+        const val select_store_name_key = 100
         fun getInstance() = Bundle().apply { }
     }
 }

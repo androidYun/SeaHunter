@@ -14,6 +14,7 @@ import com.sea.user.activity.mall.order.detail.NMallOrderDetailModelReq
 import com.sea.user.activity.mall.order.detail.NMallOrderDetailResponse
 import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
 import com.sea.user.activity.mall.order.list.NShopOrderListModelResponse
+import com.sea.user.activity.mall.search.NHotSearchStoreModelReq
 import com.sea.user.activity.mall.search.NSearchStoreModelReq
 import com.sea.user.activity.mall.search.NSearchStoreModelResponse
 import com.sea.user.activity.model.BaseEntry
@@ -26,9 +27,7 @@ import com.sea.user.presenter.sea.order.NPlaceOrderResponse
 import com.sea.user.presenter.store.NStoreListModelReq
 import com.sea.user.presenter.store.NStoreListResponse
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ShopApi {
 
@@ -38,6 +37,11 @@ interface ShopApi {
 
     @POST("getdata.ashx")
     fun loadSearchStore(@Body nSearchStoreModelReq: NSearchStoreModelReq): Observable<NSearchStoreModelResponse>
+
+    @POST("getdata.ashx")
+    fun loadHotSearchStore(@Body nHotSearchStoreModelReq: NHotSearchStoreModelReq ): Observable<NSearchStoreModelResponse>
+
+
 
     @POST("getdata.ashx")
     fun loadMallList(@Body nMallListModelReq: NMallListModelReq): Observable<NMallListModelResponse>

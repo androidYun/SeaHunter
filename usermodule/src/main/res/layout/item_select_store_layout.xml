@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/cvSelectStore"
+    android:background="@color/white"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/default_padding">
 
@@ -11,7 +12,7 @@
         android:id="@+id/ivStore"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@color/user_theme_color"
+        android:src="@mipmap/ic_stores"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +46,6 @@
         android:layout_marginTop="12dp"
         android:background="@color/line_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvAddress"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+        app:layout_constraintStart_toStartOf="@+id/tvStoreAddress"
+        app:layout_constraintTop_toBottomOf="@+id/tvStoreAddress" />
 </androidx.constraintlayout.widget.ConstraintLayout>

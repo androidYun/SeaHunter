@@ -9,7 +9,7 @@
         android:id="@+id/swipeShopCar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/cvOperator">
+        android:layout_above="@+id/cvOperator">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvShopCar"
@@ -49,26 +49,24 @@
             tools:text="￥477.50" />
 
         <TextView
-            android:id="@+id/tvJoinShopCar"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvDelete"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
+            android:layout_marginEnd="1dp"
             android:background="@color/color_EA2125"
             android:gravity="center"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
-            android:text="加入购物车"
+            android:text="删除"
             android:textColor="@color/white"
             android:textSize="18sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/tvOnceOrder" />
 
         <TextView
             android:id="@+id/tvOnceOrder"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:background="@color/user_theme_color"
             android:gravity="center"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
             android:text="立即下单"
             android:textColor="@color/white"
             android:textSize="18sp"

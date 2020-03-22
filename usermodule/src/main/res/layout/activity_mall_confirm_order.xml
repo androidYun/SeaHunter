@@ -22,7 +22,7 @@
                 android:id="@+id/ivAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_set_address"
+                android:src="@mipmap/icon_place_address"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
                 app:layout_constraintStart_toEndOf="@+id/ivAddress"
                 app:layout_constraintTop_toTopOf="parent"
@@ -67,6 +67,11 @@
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_place_border" />
+
         <TextView
             android:id="@+id/tvShopInform"
             android:layout_width="match_parent"
@@ -75,7 +80,7 @@
             android:paddingStart="@dimen/default_padding"
             android:text="@string/shop_inform"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:text="商品价格"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvOrderTotalPrice"
@@ -111,7 +116,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:textColor="@color/user_theme_color"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 tools:text="￥477.50" />
         </LinearLayout>
 
@@ -133,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:text="赠送积分"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvGiveIntegral"
@@ -142,7 +147,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:textColor="@color/user_theme_color"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 tools:text="￥477.50" />
         </LinearLayout>
 
@@ -164,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:text="下单门店"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvOrderStore"
@@ -173,7 +178,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:textColor="@color/user_theme_color"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 tools:text="￥477.50" />
         </LinearLayout>
 
@@ -190,17 +195,20 @@
             android:paddingEnd="@dimen/default_padding"
             android:text="请选择支付方式"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/default_padding"
+            android:paddingEnd="@dimen/default_padding">
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:drawableEnd="@mipmap/ic_pay_alipay"
                 android:drawablePadding="10dp"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|end"
                 android:layoutDirection="rtl"
                 android:text="支付宝支付"
                 android:textColor="@color/black"
@@ -211,8 +219,9 @@
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:drawableEnd="@mipmap/ic_pay_wechat"
                 android:drawablePadding="10dp"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|end"
                 android:layoutDirection="rtl"
                 android:text="微信支付"
                 android:textColor="@color/black"
@@ -223,8 +232,9 @@
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:drawableEnd="@mipmap/ic_pay_wallet"
                 android:drawablePadding="10dp"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|end"
                 android:layoutDirection="rtl"
                 android:textColor="@color/black"
                 android:textDirection="ltr"
@@ -250,7 +260,7 @@
             android:paddingEnd="@dimen/default_padding"
             android:text="@string/total"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvNeedTotalIntegral"
@@ -258,7 +268,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/user_theme_color"
-            android:textSize="18sp"
+            android:textSize="16sp"
             tools:text="300" />
 
         <TextView
@@ -271,6 +281,6 @@
             android:paddingEnd="50dp"
             android:text="@string/once_order"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 </RelativeLayout>

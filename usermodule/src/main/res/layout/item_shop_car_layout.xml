@@ -35,13 +35,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
+        android:maxLines="2"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/cvShopImage"
         app:layout_constraintTop_toTopOf="@+id/cvShopImage"
         tools:text="鲜有汇聚冰鲜三文鱼中段日料刺身拼盘新鲜生鱼片即食海鲜三文鱼肉" />
 
     <TextView
+        android:id="@+id/tvTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -67,7 +69,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvShopPrice"
-        app:tvWidth="60dp" />
+        app:layout_constraintTop_toTopOf="@+id/tvShopPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,7 +27,9 @@
         <EditText
             android:id="@+id/evPhoneNumber"
             style="@style/itemContentEditTextStyle"
-            android:hint="请填写手机号" />
+            android:hint="请填写手机号"
+            android:inputType="phone"
+            android:maxLength="11" />
     </LinearLayout>
 
     <LinearLayout style="@style/itemLayoutStyle">
@@ -39,7 +41,9 @@
         <TextView
             android:id="@+id/tvSelectAddress"
             style="@style/itemContentTextViewStyle"
-            android:hint="请填写手机号" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:hint="请选择地址" />
     </LinearLayout>
 
     <LinearLayout style="@style/itemLayoutStyle">
@@ -77,12 +81,12 @@
         android:id="@+id/tvDeleteAddress"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
+        android:text="删除收货地址"
         android:textColor="@color/color_bf0008"
         android:textSize="18dp"
-        android:background="@color/white"
-        android:text="删除收货地址"
         android:visibility="visible" />
 
     <TextView

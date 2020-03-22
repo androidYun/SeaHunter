@@ -5,7 +5,7 @@ class NMallListModelReq(
     var page_size: Int = 20,
     var page_index: Int = 1,
     var type: Int = 1,//(1:正常商品 2：积分换购)
-    var categor_id: Int = 1,//分类id
+    var category_id: Int = 0,//分类id
     var plate: Int = 1,//板块 { 0：全部 1：必吃 2：最新 3：限时 4：精品 }
     var key: String = "",
     var sort: Int = 1,//排序 (1:默认 2：销量 3：价格)
@@ -35,5 +35,6 @@ data class MallListItem(
     val point: Int = 0,
     val sell_price: Int = 0,
     val stock_quantity: Int = 0,
-    val title: String = ""
+    val title: String = "",
+    val tags:String=""
 )

@@ -43,4 +43,7 @@ dependencies {
     implementation 'com.google.android:flexbox:2.0.1'
     implementation 'io.github.meetsl:SCardView:1.2'
     compile 'liji.library.dev:citypickerview:5.2.1'
+    compile 'com.youth.banner:banner:2.0.0-alpha02'  //预览版
+
+
 }

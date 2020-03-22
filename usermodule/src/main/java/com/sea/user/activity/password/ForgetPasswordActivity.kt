@@ -13,6 +13,7 @@ import com.xhs.baselibrary.utils.TimeCountDown
 import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.prison.model.NForgetPasswordModelReq
 import kotlinx.android.synthetic.main.activity_forget_password.*
+import kotlinx.android.synthetic.main.include_shop_eye.*
 
 /**
  * @ author guiyun.li

@@ -1,55 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.meetsl.scardview.SCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cvRecommend"
-    android:layout_width="220dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="3dp"
-    android:gravity="center"
-    android:minHeight="200dp"
-    android:orientation="vertical"
-    android:padding="@dimen/default_padding">
+    android:layout_marginStart="4dp"
+    app:cardShadowStartColor="@color/color_F8F6F7"
+    app:cardShadowEndColor="@color/color_F8F6F7"
+    android:layout_marginBottom="@dimen/default_margin"
+    app:cardElevation="5dp"
+    android:layout_marginEnd="4dp"
+    android:outlineAmbientShadowColor="@color/color_F8F6F7"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="8dp">
 
-    <ImageView
-        android:id="@+id/ivRecommend"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@color/user_theme_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvRecommendName"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cvRecommend"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivRecommend"
-        tools:text="三文鱼排" />
+        android:layout_margin="3dp"
+        android:gravity="center"
+        android:minHeight="200dp"
+        android:orientation="vertical"
+        android:padding="@dimen/default_padding">
 
-    <TextView
-        android:id="@+id/tvRecommendPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/user_theme_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvRecommendName"
-        app:layout_constraintTop_toTopOf="@+id/tvRecommendName"
-        tools:text="￥48" />
+        <ImageView
+            android:id="@+id/ivRecommend"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvRecommendDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="新鲜肥美，精品优选"
-        android:textColor="@color/color_9"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRecommendName" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvRecommendName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivRecommend"
+            tools:text="三文鱼排" />
+
+        <TextView
+            android:id="@+id/tvRecommendPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/user_theme_color"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvRecommendName"
+            app:layout_constraintTop_toTopOf="@+id/tvRecommendName"
+            tools:text="￥48" />
+
+        <TextView
+            android:id="@+id/tvRecommendDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="新鲜肥美，精品优选"
+            android:textColor="@color/color_9"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRecommendName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.meetsl.scardview.SCardView>
