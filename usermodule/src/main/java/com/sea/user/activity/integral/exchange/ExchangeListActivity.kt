@@ -42,7 +42,7 @@ class ExchangeListActivity : BaseActivity(), ExchangeListContact.IExchangeListVi
             mExchangeListPresenter.loadExchangeList(nExchangeListReq)
         }
         mExchangeListAdapter.setOnLoadMoreListener({
-            if (nExchangeListReq.pageIndex * nExchangeListReq.pageSize < totalCount) {
+            if (nExchangeListReq.page_index * nExchangeListReq.page_size < totalCount) {
                 mExchangeListPresenter.loadExchangeList(nExchangeListReq)
             } else {
                 mExchangeListAdapter.loadMoreEnd()
@@ -51,7 +51,7 @@ class ExchangeListActivity : BaseActivity(), ExchangeListContact.IExchangeListVi
     }
 
     override fun loadExchangeListSuccess(mList: List<ExchangeListItem>, totalCount: Int) {
-        if (nExchangeListReq.pageIndex == 1) {
+        if (nExchangeListReq.page_index == 1) {
             mExchangeListList.clear()
         }
         this.totalCount = totalCount
@@ -59,7 +59,7 @@ class ExchangeListActivity : BaseActivity(), ExchangeListContact.IExchangeListVi
         mExchangeListAdapter.notifyDataSetChanged()
         mExchangeListAdapter.loadMoreComplete()
         swipeExchangeList.isRefreshing = false
-        nExchangeListReq.pageIndex++
+        nExchangeListReq.page_index++
 
     }
 

@@ -7,7 +7,7 @@ interface PlaceOrderContact {
 
     interface IPlaceOrderView : IBaseView {
 
-        fun loadPlaceOrderSuccess(content: Any)
+        fun loadPlaceOrderSuccess(order: String)
 
         fun loadPlaceOrderFail(throwable: Throwable)
 

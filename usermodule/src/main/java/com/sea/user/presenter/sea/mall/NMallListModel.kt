@@ -38,3 +38,9 @@ data class MallListItem(
     val title: String = "",
     val tags:String=""
 )
+data class IntegralShopItemModel(
+    val point: Int = 0,
+    val img_url: String = "",
+    val title: String = "",
+    val tags:String=""
+)

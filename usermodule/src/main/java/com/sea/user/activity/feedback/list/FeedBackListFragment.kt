@@ -50,7 +50,7 @@ class FeedBackListFragment : BaseFragment(), FeedBackListContact.IFeedBackListVi
             mFeedBackListPresenter.loadFeedBackList(nFeedBackListReq)
         }
         mFeedBackListAdapter.setOnLoadMoreListener({
-            if (nFeedBackListReq.pageIndex * nFeedBackListReq.pageSize < totalCount) {
+            if (nFeedBackListReq.page_index * nFeedBackListReq.page_size < totalCount) {
                 mFeedBackListPresenter.loadFeedBackList(nFeedBackListReq)
             } else {
                 mFeedBackListAdapter.loadMoreEnd()
@@ -59,7 +59,7 @@ class FeedBackListFragment : BaseFragment(), FeedBackListContact.IFeedBackListVi
     }
 
     override fun loadFeedBackListSuccess(mList: List<FeedBackListItem>, totalCount: Int) {
-        if (nFeedBackListReq.pageIndex == 1) {
+        if (nFeedBackListReq.page_index == 1) {
             mFeedBackListList.clear()
         }
         this.totalCount = totalCount
@@ -67,7 +67,7 @@ class FeedBackListFragment : BaseFragment(), FeedBackListContact.IFeedBackListVi
         mFeedBackListAdapter.notifyDataSetChanged()
         mFeedBackListAdapter.loadMoreComplete()
         swipeFeedBackList.isRefreshing = false
-        nFeedBackListReq.pageIndex++
+        nFeedBackListReq.page_index++
 
     }
 

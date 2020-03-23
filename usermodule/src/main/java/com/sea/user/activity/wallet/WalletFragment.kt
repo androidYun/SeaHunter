@@ -49,7 +49,7 @@ class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView
             mWalletPresenter.loadRechargeDetail(nRechargeDetailReq)
         }
         mWalletListAdapter.setOnLoadMoreListener({
-            if (nRechargeDetailReq.pageIndex * nRechargeDetailReq.pageSize < totalCount) {
+            if (nRechargeDetailReq.page_index * nRechargeDetailReq.page_size < totalCount) {
                 mWalletPresenter.loadRechargeDetail(nRechargeDetailReq)
             } else {
                 mWalletListAdapter.loadMoreEnd()
@@ -58,7 +58,7 @@ class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView
     }
 
     override fun loadRechargeDetailSuccess(nRechargeDetailListItemList: List<RechargeDetailListItem>, totalCount: Int) {
-        if (nRechargeDetailReq.pageIndex == 1) {
+        if (nRechargeDetailReq.page_index == 1) {
             mWalletList.clear()
         }
         this.totalCount = totalCount
@@ -66,7 +66,7 @@ class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView
         mWalletListAdapter.notifyDataSetChanged()
         mWalletListAdapter.loadMoreComplete()
         swipeWalletList.isRefreshing = false
-        nRechargeDetailReq.pageIndex++
+        nRechargeDetailReq.page_index++
     }
 
     override fun loadRechargeDetailFail(throwable: Throwable) {

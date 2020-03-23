@@ -53,7 +53,7 @@ class ShopOrderFragment : BaseFragment(), ShopOrderContact.IShopOrderView {
             mShopOrderPresenter.loadShopOrder(nShopOrderReq)
         }
         mShopOrderAdapter.setOnLoadMoreListener({
-            if (nShopOrderReq.pageIndex * nShopOrderReq.pageSize < totalCount) {
+            if (nShopOrderReq.page_index * nShopOrderReq.page_size < totalCount) {
                 mShopOrderPresenter.loadShopOrder(nShopOrderReq)
             } else {
                 mShopOrderAdapter.loadMoreEnd()
@@ -62,7 +62,7 @@ class ShopOrderFragment : BaseFragment(), ShopOrderContact.IShopOrderView {
     }
 
     override fun loadShopOrderSuccess(mList: List<ShopOrderItem>, totalCount: Int) {
-        if (nShopOrderReq.pageIndex == 1) {
+        if (nShopOrderReq.page_index == 1) {
             mShopOrderList.clear()
         }
         this.totalCount = totalCount
@@ -70,7 +70,7 @@ class ShopOrderFragment : BaseFragment(), ShopOrderContact.IShopOrderView {
         mShopOrderAdapter.notifyDataSetChanged()
         mShopOrderAdapter.loadMoreComplete()
         swipeShopOrder.isRefreshing = false
-        nShopOrderReq.pageIndex++
+        nShopOrderReq.page_index++
 
     }
 

@@ -74,7 +74,7 @@ class SearchStoreActivity : BaseActivity(), SearchStoreContact.ISearchStoreView,
             //mSearchStorePresenter.loadSearchStore(nSearchStoreReq)
         }
         mSearchStoreAdapter.setOnLoadMoreListener({
-            if (nSearchStoreReq.pageIndex * nSearchStoreReq.pageSize < totalCount) {
+            if (nSearchStoreReq.page_index * nSearchStoreReq.page_size < totalCount) {
                 //mSearchStorePresenter.loadSearchStore(nSearchStoreReq)
             } else {
                 mSearchStoreAdapter.loadMoreEnd()
@@ -84,7 +84,7 @@ class SearchStoreActivity : BaseActivity(), SearchStoreContact.ISearchStoreView,
 
 
     override fun loadHotSearchSuccess(mList: List<String>) {
-        if (nSearchStoreReq.pageIndex == 1) {
+        if (nSearchStoreReq.page_index == 1) {
             mSearchStoreList.clear()
         }
         this.totalCount = totalCount
@@ -92,7 +92,7 @@ class SearchStoreActivity : BaseActivity(), SearchStoreContact.ISearchStoreView,
         mSearchStoreAdapter.notifyDataSetChanged()
         mSearchStoreAdapter.loadMoreComplete()
         swipeSearchStore.isRefreshing = false
-        nSearchStoreReq.pageIndex++
+        nSearchStoreReq.page_index++
 
     }
 

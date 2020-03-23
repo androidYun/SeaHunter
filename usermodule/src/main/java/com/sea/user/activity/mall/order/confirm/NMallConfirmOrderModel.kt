@@ -1,8 +1,8 @@
 package com.sea.user.activity.mall.order.confirm
 
 class NMallConfirmOrderModelReq(
-    var pageSize: Int = 20,
-    var pageIndex: Int = 1
+    var page_size: Int = 20,
+    var page_index: Int = 1
 )
 
 class NMallConfirmOrderModelResponse(
