@@ -23,7 +23,7 @@ class MallConfirmOrderPresenter : IPresenter<MallConfirmOrderContact.IMallConfir
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 0) {
                         softView.get()?.loadMallConfirmOrderSuccess(it.data.mList)
                     } else {
                         softView.get()?.loadMallConfirmOrderFail(Throwable(it.msg))

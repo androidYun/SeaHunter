@@ -11,6 +11,7 @@ import com.sea.user.R
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_address.*
 import com.lljjcoder.citywheel.CityConfig
+import com.sea.user.activity.address.list.AddressListItem
 
 
 /**
@@ -31,8 +32,8 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
         intent.extras?.getInt(ADDRESS_OPERATOR_TYPE_KEY) ?: ADD_ADDRESS_CODE
     }
 
-    private val addressId by lazy {
-        intent.extras?.getInt(ADDRESS_OPERATOR_TYPE_KEY) ?: ADD_ADDRESS_CODE
+    private val addressListItem by lazy {
+        intent.extras?.getParcelable(ADDRESS_OPERATOR_TYPE_KEY) ?: AddressListItem()
     }
 
     private val nAddressModelReq = NAddressModelReq()
@@ -57,7 +58,11 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
 
     private fun initData() {
         if (operatorType == EDIT_ADDRESS_CODE) {//编辑的话需要先加载地址
-            addressPresenter.loadAddress(addressId)
+            nAddressModelReq.accept_name = addressListItem.accept_name
+            nAddressModelReq.mobile = addressListItem.phone
+            nAddressModelReq.address = addressListItem.province.plus(addressListItem.city).plus(addressListItem.area)
+                .plus(addressListItem.address)
+            nAddressModelReq.is_default = addressListItem.is_default
             tvDeleteAddress.visibility = View.VISIBLE//只有编辑的时候才能显示地址
         }
     }
@@ -109,16 +114,8 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
         handleError(throwable)
     }
 
-    override fun loadAddressSuccess() {
-
-    }
-
-    override fun loadAddressFail(throwable: Throwable) {
-        handleError(throwable)
-    }
-
     override fun modifyAddressSuccess() {
-
+        finish()
     }
 
     override fun modifyAddressFail(throwable: Throwable) {
@@ -138,9 +135,9 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
         private const val EDIT_ADDRESS_CODE = 102
         private const val ADDRESS_OPERATOR_TYPE_KEY = "ADDRESS_OPERATOR_TYPE_KEY"
         private const val ADDRESS_ID_TYPE_KEY = "ADDRESS_ID_TYPE_KEY"
-        fun getInstance(operatorType: Int = ADD_ADDRESS_CODE, addressId: Int) = Bundle().apply {
+        fun getInstance(operatorType: Int = ADD_ADDRESS_CODE, addressListItem: AddressListItem) = Bundle().apply {
             putInt(ADDRESS_OPERATOR_TYPE_KEY, operatorType)
-            putInt(ADDRESS_ID_TYPE_KEY, addressId)
+            putParcelable(ADDRESS_ID_TYPE_KEY, addressListItem)
         }
     }
 }

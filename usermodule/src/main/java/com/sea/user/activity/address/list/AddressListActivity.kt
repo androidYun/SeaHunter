@@ -14,7 +14,7 @@ class AddressListActivity : BaseActivity(), AddressListContact.IAddressListView 
 
     private val nAddressListReq = NAddressListModelReq()
 
-    private val mAddressListList = mutableListOf<AddressListItem>()
+    private val mAddressList = mutableListOf<AddressListItem>()
 
     private lateinit var mAddressListAdapter: AddressListAdapter
 
@@ -28,13 +28,12 @@ class AddressListActivity : BaseActivity(), AddressListContact.IAddressListView 
 
 
     private fun initView() {
-        mAddressListAdapter = AddressListAdapter(mAddressListList)
+        mAddressListAdapter = AddressListAdapter(mAddressList)
         rvAddressList.layoutManager = LinearLayoutManager(this)
         rvAddressList.adapter = mAddressListAdapter
     }
 
     private fun initData() {
-        mAddressListList.add(AddressListItem())
         mAddressListPresenter.loadAddressList(nAddressListReq)
     }
 
@@ -45,12 +44,20 @@ class AddressListActivity : BaseActivity(), AddressListContact.IAddressListView 
         tvAddAddress.setOnClickListener {
             startActivity(Intent(this, AddAddressActivity::class.java))
         }
+        mAddressListAdapter.setOnItemClickListener { _, _, position ->
+            setResult(select_address_result_code, Intent().apply {
+                putExtras(Bundle().apply {
+                    putParcelable(select_address_result_key, mAddressList[position])
+                })
+            })
+            finish()
+        }
     }
 
     override fun loadAddressListSuccess(mList: List<AddressListItem>) {
         swipeAddressList.isRefreshing = false
-        mAddressListList.clear()
-        mAddressListList.addAll(mList)
+        mAddressList.clear()
+        mAddressList.addAll(mList)
         mAddressListAdapter.notifyDataSetChanged()
 
     }
@@ -69,6 +76,8 @@ class AddressListActivity : BaseActivity(), AddressListContact.IAddressListView 
     }
 
     companion object {
+         const val select_address_result_code = 101
+         const val select_address_result_key = "select_address_result_key"
         fun getInstance() = Bundle().apply { }
     }
 }

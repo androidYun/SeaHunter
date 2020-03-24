@@ -1,9 +1,12 @@
 package com.sea.user.activity.integral.shop
 
+import android.content.Intent
 import android.os.Bundle
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.activity.address.list.AddressListActivity
 import com.sea.user.activity.address.list.AddressListItem
+import com.sea.user.activity.mall.select.SelectStoreActivity
 import com.sea.user.presenter.address.DefaultAddressContact
 import com.sea.user.presenter.address.DefaultAddresspresenter
 import com.sea.user.presenter.sea.order.NPlaceOrderModelReq
@@ -40,7 +43,9 @@ class ExchangeShopActivity : BaseActivity(), ExchangeShopContact.IExchangeShopVi
     }
 
     private fun initListener() {
-
+        cvSelectAddress.setOnClickListener {
+            startActivityForResult(Intent(this, AddressListActivity::class.java), select_address_request_code)
+        }
     }
 
     override fun loadExchangeShopSuccess(content: Any) {
@@ -79,7 +84,19 @@ class ExchangeShopActivity : BaseActivity(), ExchangeShopContact.IExchangeShopVi
         hideProgressDialog()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == select_address_request_code && resultCode == AddressListActivity.select_address_result_code) {
+            val addressListItem = data?.extras?.getParcelable(AddressListActivity.select_address_result_key)?:AddressListItem()
+            tvNamePhoneNumber.text = addressListItem.accept_name.plus("  ${addressListItem.phone}")
+            tvDetailAddress.text =
+                addressListItem.province + addressListItem.city + addressListItem.area + addressListItem.address
+            nPlaceOrderModelReq.address_id = addressListItem.id
+        }
+    }
+
     companion object {
+        const val select_address_request_code = 100
         fun getInstance() = Bundle().apply { }
     }
 }

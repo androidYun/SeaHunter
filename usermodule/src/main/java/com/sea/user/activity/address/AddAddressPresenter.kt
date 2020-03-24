@@ -29,7 +29,7 @@ class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), Ad
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 0) {
                         softView.get()?.loadAddAddressSuccess()
                     } else {
                         softView.get()?.loadAddAddressFail(Throwable(it.msg))
@@ -54,7 +54,7 @@ class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), Ad
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 0) {
                         softView.get()?.loadAddressSuccess()
                     } else {
                         softView.get()?.loadAddressFail(Throwable(it.msg))
@@ -79,7 +79,7 @@ class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), Ad
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 0) {
                         softView.get()?.modifyAddressSuccess()
                     } else {
                         softView.get()?.modifyAddressFail(Throwable(it.msg))

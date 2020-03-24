@@ -16,7 +16,7 @@ class NEditShopCarModelReq(
     var channel_id: Int = -1,//商品带入
     var article_id: Int = -1,//商品带入
     var goods_id: Int = -1,//商品
-    var quantity: Int = -1,//数量
+    var quantity: Int = 1,//数量
     var shop_id: Int = -1//门店Id
 )
 

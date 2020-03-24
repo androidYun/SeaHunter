@@ -31,7 +31,7 @@ class ForgetPasswordPresenter : IPresenter<ForgetPasswordContract.IForgetPasswor
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 0) {
                         softView.get()?.loadForgetPasswordSuccess()
                     } else {
                         softView.get()?.loadForgetPasswordFail(Throwable(it.msg))

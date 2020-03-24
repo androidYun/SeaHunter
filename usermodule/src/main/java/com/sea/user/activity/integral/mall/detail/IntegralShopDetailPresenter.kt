@@ -23,7 +23,7 @@ class IntegralShopDetailPresenter : IPresenter<IntegralShopDetailContact.IIntegr
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 0) {
                         softView.get()?.loadIntegralShopDetailSuccess(it.data)
                     } else {
                         softView.get()?.loadIntegralShopDetailFail(Throwable(it.msg))

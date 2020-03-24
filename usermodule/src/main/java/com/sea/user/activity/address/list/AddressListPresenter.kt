@@ -23,7 +23,7 @@ class AddressListPresenter : IPresenter<AddressListContact.IAddressListView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 0) {
                         softView.get()?.loadAddressListSuccess(it.data)
                     } else {
                         softView.get()?.loadAddressListFail(Throwable(it.msg))

@@ -34,7 +34,8 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
                                 saleNumber = getSaleNumber(it.data.fields),
                                 sellPrice = it.data.fields.sell_price,
                                 channelId = it.data.channel_id,
-                                specs = it.specs
+                                specs = it.specs,
+                                goods = it.data.goods
                             )
                         )
                     } else {
@@ -47,7 +48,7 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
 
     private fun getImageList(imgUrl: String, albums: List<String>): List<String> {
         if (albums.isNullOrEmpty()) {
-            return listOf<String>(imgUrl)
+            return listOf(imgUrl)
         }
         return albums
     }

@@ -7,7 +7,7 @@ class NPlaceOrderResponse(
 )
 
 class NPlaceOrderModelReq(
-    var command: Int = 14,
+    private val command: Int = 14,
     var shop_id: Int = 14,//门店id
     var address_id: Int = -1,
     var remark: String = "",

@@ -10,19 +10,28 @@ import com.sea.user.dialog.SelectShopSpecDialog
 import com.sea.user.listener.DialogListener
 import com.sea.user.presenter.car.ShopCarEditContact
 import com.sea.user.presenter.car.ShopCarEditPresenter
+import com.sea.user.presenter.sea.order.NPlaceOrderModelReq
+import com.sea.user.presenter.sea.order.PlaceOrderContact
+import com.sea.user.presenter.sea.order.PlaceOrderPresenter
 import com.sea.user.utils.sp.StoreShopSpUtils
 import com.youth.banner.config.IndicatorConfig
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 
 class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
-    ShopCarEditContact.IShopCarEditView {
+    ShopCarEditContact.IShopCarEditView, PlaceOrderContact.IPlaceOrderView {
 
     private val mShopDetailPresenter by lazy { ShopDetailPresenter().apply { attachView(this@ShopDetailActivity) } }
 
     private val mShopCarEditPresenter by lazy { ShopCarEditPresenter().apply { attachView(this@ShopDetailActivity) } }
 
+    private val nPlaceOrderModelReq = NPlaceOrderModelReq()
+
+    private val nPlaceOrderPresenter by lazy { PlaceOrderPresenter().apply { attachView(this@ShopDetailActivity) } }
+
 
     private var nShopDetailModel: NShopDetailModel = NShopDetailModel()
+
+    private val nEditShopCarModelReq = NEditShopCarModelReq(shop_id = StoreShopSpUtils.getStoreShopId())
 
     private lateinit var shopBannerAdapter: ShopBannerAdapter
 
@@ -48,19 +57,14 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
     }
 
     private fun initData() {
+        nEditShopCarModelReq.goods_id = goodId
         mShopDetailPresenter.loadShopDetail(NShopDetailModelReq(good_id = goodId))
     }
 
     private fun initListener() {
         tvJoinShopCar.setOnClickListener {
             mShopCarEditPresenter.loadShopCarEdit(
-                NEditShopCarModelReq(
-                    channel_id = nShopDetailModel?.channelId,
-                    goods_id = goodId,
-                    quantity = 1,
-                    shop_id = StoreShopSpUtils.getStoreShopId(),
-                    article_id = goodId
-                )
+                nEditShopCarModelReq
             )
         }
         swipeShopDetail.setOnRefreshListener {
@@ -72,11 +76,28 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
                 nShopDetailModel,
                 object : DialogListener.SelectShopSpecListener {
                     override fun selectShopSpecSuccess(number: Int, mList: List<ShopSpecItemSon>) {
+                        nEditShopCarModelReq.quantity = number
+                        val goods = getGoods(mList)
+                        nEditShopCarModelReq.article_id = goods.article_id
+                        nEditShopCarModelReq.goods_id = goods.id
+                        nEditShopCarModelReq.channel_id = goods.channel_id
+                        nEditShopCarModelReq.article_id = goods.article_id
 
                     }
                 })
             selectShopSpecDialog?.show()
         }
+    }
+
+
+    private fun getGoods(mList: List<ShopSpecItemSon>): Good {
+        var articleId: String = ""
+        mList.forEach { articleId.plus("${it.article_id},") }
+        nShopDetailModel.goods.forEach {
+            if (it.spec_ids.contains(articleId))
+                return it
+        }
+        return Good()
     }
 
     override fun loadShopDetailSuccess(
@@ -93,11 +114,20 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
         shopBannerAdapter = ShopBannerAdapter(mBannerList)
         bannerView.adapter = shopBannerAdapter
         swipeShopDetail.isRefreshing = false
+        nEditShopCarModelReq.channel_id = nShopDetailModel.channelId
     }
 
     override fun loadShopDetailFail(throwable: Throwable) {
         handleError(throwable)
         swipeShopDetail.isRefreshing = false
+    }
+
+    override fun loadPlaceOrderSuccess(order: String) {
+
+    }
+
+    override fun loadPlaceOrderFail(throwable: Throwable) {
+
     }
 
     override fun loadShopCarEditSuccess() {

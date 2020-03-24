@@ -16,10 +16,6 @@ interface AddAddressContract {
 
         fun loadAddAddressFail(throwable: Throwable)
 
-        fun loadAddressSuccess()
-
-        fun loadAddressFail(throwable: Throwable)
-
         fun modifyAddressSuccess()
 
         fun modifyAddressFail(throwable: Throwable)
@@ -28,7 +24,6 @@ interface AddAddressContract {
     interface IAddAddressPresenter {
         fun loadAddAddress(nAddressModelReq: NAddressModelReq)
 
-        fun loadAddress(addressId: Int)
 
         fun modifyAddress(nAddressModelReq: NAddressModelReq)
     }

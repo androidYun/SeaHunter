@@ -1,5 +1,8 @@
 package com.sea.user.activity.address.list
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 class NAddressListModelReq(
     val command: Int = 12
 )
@@ -11,6 +14,7 @@ class NAddressListModelResponse(
 )
 
 
+@Parcelize
 data class AddressListItem(
     val accept_name: String = "",
     val address: String = "",
@@ -20,4 +24,4 @@ data class AddressListItem(
     val is_default: Int = 0,
     val phone: String = "",
     val province: String = ""
-)
+) : Parcelable

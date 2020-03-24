@@ -121,5 +121,6 @@ data class NShopDetailModel(
     val sellPrice: String = "",
     val imageUrl: String = "",
     val channelId: Int = -1,
-    val specs: List<ShopSpecItem> = listOf()
+    val specs: List<ShopSpecItem> = listOf(),
+    val goods: List<Good> = listOf()
 )
