@@ -20,9 +20,15 @@ class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView
 
     private lateinit var mWalletListAdapter: WalletListAdapter
 
+    private val walletType by lazy { arguments?.getInt(WALLET_TYPE_KEY) ?: WALLET_BALANCE_CODE }
+
     private var totalCount = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return LayoutInflater.from(context).inflate(R.layout.fragment_wallet, container, false)
     }
 
@@ -38,7 +44,7 @@ class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView
     }
 
     private fun initData() {
-        mWalletListAdapter = WalletListAdapter(mWalletList)
+        mWalletListAdapter = WalletListAdapter(walletType, mWalletList)
         rvWalletList.layoutManager = LinearLayoutManager(context)
         rvWalletList.adapter = mWalletListAdapter
         mWalletPresenter.loadRechargeDetail(nRechargeDetailReq)
@@ -57,7 +63,10 @@ class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView
         }, rvWalletList)
     }
 
-    override fun loadRechargeDetailSuccess(nRechargeDetailListItemList: List<RechargeDetailListItem>, totalCount: Int) {
+    override fun loadRechargeDetailSuccess(
+        nRechargeDetailListItemList: List<RechargeDetailListItem>,
+        totalCount: Int
+    ) {
         if (nRechargeDetailReq.page_index == 1) {
             mWalletList.clear()
         }
@@ -71,7 +80,7 @@ class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView
 
     override fun loadRechargeDetailFail(throwable: Throwable) {
         handleError(throwable)
-        swipeWalletList.isRefreshing
+        swipeWalletList.isRefreshing = false
         mWalletListAdapter.loadMoreComplete()
     }
 
@@ -85,8 +94,8 @@ class WalletFragment : BaseFragment(), RechargeDetailContact.IRechargeDetailView
     }
 
     companion object {
-        const val WALLET_BALANCE_CODE = 101
-        const val WALLET_REFLECT_CODE = 102
+        const val WALLET_BALANCE_CODE = 101//充值
+        const val WALLET_REFLECT_CODE = 102//体现
 
         private const val WALLET_TYPE_KEY = "WALLET_TYPE_KEY"
         fun getInstance(walletType: Int = WALLET_BALANCE_CODE) = WalletFragment().apply {

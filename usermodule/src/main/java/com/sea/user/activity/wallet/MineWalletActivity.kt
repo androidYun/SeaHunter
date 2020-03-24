@@ -1,10 +1,12 @@
 package com.sea.user.activity.wallet
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.sea.user.R
+import com.sea.user.activity.wallet.reflect.ReflectActivity
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_mine_wallet.*
 import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
  */
 class MineWalletActivity : BaseActivity() {
 
-    private val walletList = mutableListOf<String>("余额明细", "提现明细")
+    private val walletList = mutableListOf("余额明细", "提现明细")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,7 @@ class MineWalletActivity : BaseActivity() {
 
     private fun initListener() {
         tvReflect.setOnClickListener {
-
+            startActivity(Intent(this, ReflectActivity::class.java))
         }
 
     }

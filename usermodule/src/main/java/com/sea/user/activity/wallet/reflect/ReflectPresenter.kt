@@ -1,4 +1,4 @@
-package com.sea.user.activity.wallet
+package com.sea.user.activity.wallet.reflect
 
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
@@ -6,12 +6,12 @@ import com.xhs.baselibrary.net.util.RxUtils
 import com.sea.user.api.WalletApi
 
 
-class RechargeDetailPresenter : IPresenter<RechargeDetailContact.IRechargeDetailView>(),
-    RechargeDetailContact.IRechargeDetailPresenter {
-    override fun loadRechargeDetail(nRechargeDetailReq: NRechargeDetailReq) {
+class ReflectPresenter : IPresenter<ReflectContact.IReflectView>(),
+    ReflectContact.IReflectPresenter {
+    override fun loadReflect(nReflectModelReq: NReflectModelReq) {
         RetrofitUtils.getRetrofit()
             .create(WalletApi::class.java)
-            .loadRechargeDetail(nRechargeDetailReq)
+            .loadReflect(nReflectModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -23,13 +23,13 @@ class RechargeDetailPresenter : IPresenter<RechargeDetailContact.IRechargeDetail
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
-                        softView.get()?.loadRechargeDetailSuccess(it.data,it.totalCount)
+                    if (it.code == 200) {
+                        softView.get()?.loadReflectSuccess(it.data)
                     } else {
-                        softView.get()?.loadRechargeDetailFail(Throwable(it.msg))
+                        softView.get()?.loadReflectFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadRechargeDetailFail(throwable) }
+                }, { throwable -> softView.get()?.loadReflectFail(throwable) }
             )
     }
 }

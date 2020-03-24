@@ -11,7 +11,7 @@ import com.sea.user.R
 class SpecListAdapter(mList: List<ShopSpecItem>) :
     BaseQuickAdapter<ShopSpecItem, BaseViewHolder>(R.layout.item_spec_list_layout, mList) {
 
-    override fun convert(helper: BaseViewHolder?, item: ShopSpecItem) {
+    override fun convert(helper: BaseViewHolder, item: ShopSpecItem) {
         helper?.setText(R.id.tvSpecTitle, item.title)
         val rvSpecList = helper?.getView<RecyclerView>(R.id.rvSpecList)
         val layoutManager = FlexboxLayoutManager(mContext)
@@ -19,6 +19,9 @@ class SpecListAdapter(mList: List<ShopSpecItem>) :
         layoutManager.justifyContent = JustifyContent.FLEX_START
         rvSpecList?.layoutManager = layoutManager
         val specAdapter = SelectSpcAdapter(item.son)
+        specAdapter.setOnItemClickListener { _, view, _ ->
+            onItemClickListener.onItemClick(this, view, helper.layoutPosition)
+        }
         rvSpecList?.adapter = specAdapter
     }
 

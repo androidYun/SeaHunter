@@ -6,9 +6,8 @@ import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import com.sea.user.activity.address.list.AddressListActivity
 import com.sea.user.activity.address.list.AddressListItem
-import com.sea.user.activity.mall.select.SelectStoreActivity
 import com.sea.user.presenter.address.DefaultAddressContact
-import com.sea.user.presenter.address.DefaultAddresspresenter
+import com.sea.user.presenter.address.DefaultAddressPresenter
 import com.sea.user.presenter.sea.order.NPlaceOrderModelReq
 import com.sea.user.presenter.sea.order.PlaceOrderContact
 import com.sea.user.presenter.sea.order.PlaceOrderPresenter
@@ -23,7 +22,7 @@ class ExchangeShopActivity : BaseActivity(), ExchangeShopContact.IExchangeShopVi
 
     private val nPlaceOrderModelReq = NPlaceOrderModelReq()
 
-    private val defaultAddresspresenter by lazy { DefaultAddresspresenter().apply { attachView(this@ExchangeShopActivity) } }
+    private val defaultAddresspresenter by lazy { DefaultAddressPresenter().apply { attachView(this@ExchangeShopActivity) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +65,7 @@ class ExchangeShopActivity : BaseActivity(), ExchangeShopContact.IExchangeShopVi
     }
 
     override fun loadDefaultAddressSuccess(addressListItem: AddressListItem) {
-        tvNamePhoneNumber.text = addressListItem.accept_name.plus("  ${addressListItem.phone}")
+        tvNamePhoneNumber.text = addressListItem.accept_name.plus("  ${addressListItem.mobile}")
         tvDetailAddress.text =
             addressListItem.province + addressListItem.city + addressListItem.area + addressListItem.address
         nPlaceOrderModelReq.address_id = addressListItem.id
@@ -88,7 +87,7 @@ class ExchangeShopActivity : BaseActivity(), ExchangeShopContact.IExchangeShopVi
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == select_address_request_code && resultCode == AddressListActivity.select_address_result_code) {
             val addressListItem = data?.extras?.getParcelable(AddressListActivity.select_address_result_key)?:AddressListItem()
-            tvNamePhoneNumber.text = addressListItem.accept_name.plus("  ${addressListItem.phone}")
+            tvNamePhoneNumber.text = addressListItem.accept_name.plus("  ${addressListItem.mobile}")
             tvDetailAddress.text =
                 addressListItem.province + addressListItem.city + addressListItem.area + addressListItem.address
             nPlaceOrderModelReq.address_id = addressListItem.id

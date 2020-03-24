@@ -16,20 +16,20 @@ import retrofit2.http.POST
 
 interface IntegralApi {
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadIntegralMall(@Body nIntegralMallModelReq: NIntegralMallModelReq): Observable<NIntegralMallModelResponse>
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadIntegralMall(@Body nIntegralDetailModelReq: NIntegralDetailModelReq): Observable<NIntegralDetailModelResponse>
 
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadExchangeList(@Body nExchangeListModelReq: NExchangeListModelReq): Observable<NExchangeListModelResponse>
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadIntegralShopDetail(@Body nIntegralShopDetailModelReq: NIntegralShopDetailModelReq): Observable<NIntegralShopDetailResponse>
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadExchangeShop(@Body nExchangeShopModelReq: NExchangeShopModelReq): Observable<NExchangeShopResponse>
 
 

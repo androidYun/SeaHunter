@@ -6,6 +6,9 @@
 
     <application>
         <activity
+            android:name=".activity.wallet.reflect.ReflectActivity"
+            android:label="@string/title_Reflect" />
+        <activity
             android:name=".activity.mall.order.detail.MallOrderDetailActivity"
             android:label="@string/title_MallOrderDetail" />
         <activity

@@ -16,7 +16,7 @@ class FoodFineAdapter(mList: List<MallListItem>) :
     override fun convert(helper: BaseViewHolder?, item: MallListItem) {
         helper?.setText(R.id.tvFineFoodName, item.title)
         ImageLoader.loadImageWithUrl(
-            helper?.getView(R.id.viFoodFine),
+            helper?.getView(R.id.ivFoodFine),
             Constants.baseUrl.plus(item.img_url)
         )
         helper?.getView<LinearLayout>(R.id.lvFoodFine)?.setOnClickListener {

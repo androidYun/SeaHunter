@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:padding="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:background="@drawable/btn_amount"
         android:text="-"/>
@@ -20,7 +20,7 @@
         android:id="@+id/etAmount"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="2.5"
         android:background="@null"
         android:inputType="number"
         android:gravity="center"
@@ -30,7 +30,7 @@
         android:layout_width="0dp"
         android:padding="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:background="@drawable/btn_amount"
         android:text="+"/>

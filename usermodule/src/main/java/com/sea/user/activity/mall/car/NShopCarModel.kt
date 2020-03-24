@@ -1,5 +1,8 @@
 package com.sea.user.activity.mall.car
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 class NShopCarModelReq(
     val command: Int = 21,
     var shop_id: Int = -1
@@ -7,8 +10,14 @@ class NShopCarModelReq(
 
 class NDeleteShopCarModelReq(
     val command: Int = 20,
-    var delete_list: List<Int> = listOf()//商品带入
+    var delete_list: List<NDeleteItem> = listOf()//商品带入
+)
 
+data class NDeleteItem(
+    val article_id: Int = 0,
+    val channel_id: Int = 0,
+    val goods_id: Int = 0,
+    val shop_id: Int = 0
 )
 
 class NEditShopCarModelReq(
@@ -26,6 +35,7 @@ class NShopCarModelResponse(
     val data: List<ShopCarItem> = listOf()
 )
 
+@Parcelize
 data class ShopCarItem(
     val article_id: Int = 0,
     val channel_id: Int = 0,
@@ -36,8 +46,9 @@ data class ShopCarItem(
     val quantity: Int = 0,
     val sell_price: Int = 0,
     val spec_text: String = "",
-    val stock_quantity: Int = 0,
+    var stock_quantity: Int = 0,
     val title: String = "",
     val user_price: Int = 0,
+    var buyCount: Int = 1,
     var isCheck: Boolean = false
-)
+) : Parcelable

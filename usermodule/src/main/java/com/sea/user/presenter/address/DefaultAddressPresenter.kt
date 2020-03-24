@@ -12,7 +12,7 @@ import com.xhs.baselibrary.net.util.RxUtils
  * @ date 23/03/2020.
  * description:
  */
-class DefaultAddresspresenter : IPresenter<DefaultAddressContact.IDefaultAddressView>(),
+class DefaultAddressPresenter : IPresenter<DefaultAddressContact.IDefaultAddressView>(),
     DefaultAddressContact.IDefaultAddressPresenter {
 
     override fun loadDefaultAddress(nAddressListModelReq: NAddressListModelReq) {

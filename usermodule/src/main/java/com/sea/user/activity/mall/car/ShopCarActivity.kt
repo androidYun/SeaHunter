@@ -1,13 +1,14 @@
 package com.sea.user.activity.mall.car
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import com.sea.user.activity.base.BaseSeaUserActivity
+import com.sea.user.activity.mall.order.confirm.MallConfirmOrderActivity
 import com.sea.user.presenter.car.ShopCarEditContact
 import com.sea.user.presenter.car.ShopCarEditPresenter
 import com.sea.user.utils.sp.StoreShopSpUtils
@@ -64,6 +65,18 @@ class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView,
         }
         cbCarShop.setOnCheckedChangeListener { _, isChecked ->
             mShopCarAdapter.isAllSelect(isChecked)
+            tvShopAllPrice.text = "￥${mShopCarAdapter.getAllPrice()}"
+        }
+        mShopCarAdapter.setOnItemClickListener { _, _, _ ->
+            tvShopAllPrice.text = "￥${mShopCarAdapter.getAllPrice()}"
+        }
+        tvOnceOrder.setOnClickListener {
+            val allPrice = mShopCarAdapter.getAllPrice()
+            val allPoint = mShopCarAdapter.getAllPoint()
+            val itemList = mShopCarAdapter.getSelectItemList()
+            startActivity(Intent(this, MallConfirmOrderActivity::class.java).apply {
+                putExtras(MallConfirmOrderActivity.getInstance(itemList,allPrice, allPoint))
+            })
         }
     }
 
@@ -71,11 +84,6 @@ class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView,
         swipeShopCar.isRefreshing = false
         mShopCarList.clear()
         mShopCarList.addAll(mList)
-        mShopCarList.add(ShopCarItem())
-        mShopCarList.add(ShopCarItem())
-        mShopCarList.add(ShopCarItem())
-        mShopCarList.add(ShopCarItem())
-        mShopCarList.add(ShopCarItem())
         mShopCarAdapter.notifyDataSetChanged()
 
     }
@@ -86,7 +94,9 @@ class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView,
     }
 
     override fun loadShopCarEditSuccess() {
-
+        mShopCarPresenter.loadShopCar(
+            NShopCarModelReq(shop_id = StoreShopSpUtils.getStoreShopId())
+        )
     }
 
     override fun loadShopCarEditFail(throwable: Throwable) {
@@ -98,7 +108,7 @@ class ShopCarActivity : BaseSeaUserActivity(), ShopCarContact.IShopCarView,
     }
 
     override fun loadDeleteShopCarFail(throwable: Throwable) {
-
+        handleError(throwable)
     }
 
     override fun showLoading() {

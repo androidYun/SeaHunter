@@ -29,7 +29,7 @@ class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), Ad
             }
             .subscribe(
                 {
-                    if (it.code == 0) {
+                    if (it.code == 1) {
                         softView.get()?.loadAddAddressSuccess()
                     } else {
                         softView.get()?.loadAddAddressFail(Throwable(it.msg))
@@ -39,30 +39,6 @@ class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), Ad
             )
     }
 
-    override fun loadAddress(addressId: Int) {
-        RetrofitUtils.getRetrofit()
-            .create(AddressApi::class.java)
-            .loadAddressDetail(addressId)
-            .compose(RxUtils.getSchedulerTransformer())
-            .compose(RxUtils.bindToLifecycle(softView.get()))
-            .doOnSubscribe { disposable ->
-                addDisposable(disposable)
-                softView.get()?.showLoading()
-            }.doFinally {
-                softView.get()?.hideLoading()
-                onStop()
-            }
-            .subscribe(
-                {
-                    if (it.code == 0) {
-                        softView.get()?.loadAddressSuccess()
-                    } else {
-                        softView.get()?.loadAddressFail(Throwable(it.msg))
-                    }
-                    //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadAddAddressFail(throwable) }
-            )
-    }
 
     override fun modifyAddress(nAddressModelReq: NAddressModelReq) {
         RetrofitUtils.getRetrofit()
@@ -79,7 +55,7 @@ class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), Ad
             }
             .subscribe(
                 {
-                    if (it.code == 0) {
+                    if (it.code == 1) {
                         softView.get()?.modifyAddressSuccess()
                     } else {
                         softView.get()?.modifyAddressFail(Throwable(it.msg))

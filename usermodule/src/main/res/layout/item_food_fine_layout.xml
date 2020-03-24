@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/viFoodFine"
+        android:id="@+id/ivFoodFine"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         />

@@ -22,6 +22,6 @@ data class AddressListItem(
     val city: String = "",
     val id: Int = 0,
     val is_default: Int = 0,
-    val phone: String = "",
+    val mobile: String = "",
     val province: String = ""
 ) : Parcelable

@@ -28,6 +28,7 @@ class SelectSpcAdapter(val mList: List<ShopSpecItemSon>) :
         }
         helper.getView<CardView>(R.id.cardView).setOnClickListener {
             selectPosition = helper.layoutPosition
+            onItemClickListener.onItemClick(this, it, helper.layoutPosition)
             notifyDataSetChanged()
         }
     }

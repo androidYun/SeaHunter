@@ -15,10 +15,10 @@ import retrofit2.http.POST
  * description:
  */
 interface FeedBackApi {
-    @POST
+    @POST("getdata.ashx")
     fun loadFeedBack(@Body nComplaintFeedbackModelReq: NComplaintFeedbackModelReq): Observable<NComplaintFeedbackResponse>
 
 
-    @POST
+    @POST("getdata.ashx")
     fun loadFeedBackList(@Body nFeedBackListModelReq: NFeedBackListModelReq): Observable<NFeedBackListModelResponse>
 }

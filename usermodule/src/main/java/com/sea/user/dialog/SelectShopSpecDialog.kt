@@ -10,7 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sea.user.R
+import com.sea.user.activity.mall.detail.Good
 import com.sea.user.activity.mall.detail.NShopDetailModel
+import com.sea.user.activity.mall.detail.ShopSpecItemSon
 import com.sea.user.activity.mall.detail.SpecListAdapter
 import com.sea.user.listener.DialogListener
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
@@ -58,20 +60,25 @@ class SelectShopSpecDialog(
     }
 
     private fun initData() {
-        tvAmount.setGoods_storage(nShopDetailModel.stockQuantity)
         ImageLoader.loadImageWithUrl(ivImage, nShopDetailModel.imageUrl)
         tvPrice.text = nShopDetailModel.sellPrice
         tvShopNumber.text = nShopDetailModel.saleNumber
         rvSpec.layoutManager = LinearLayoutManager(context)
         specAdapter = SpecListAdapter(nShopDetailModel.specs)
         rvSpec.adapter = specAdapter
+        val good = getGood(specAdapter.selectSpec(), nShopDetailModel.goods)
+        tvAmount.setGoods_storage(good.stock_quantity)
     }
 
     private var amount: Int = 1
     private fun initListener() {
+        specAdapter.setOnItemClickListener { _, _, _ ->
+            val good = getGood(specAdapter.selectSpec(), nShopDetailModel.goods)
+            tvAmount.setGoods_storage(good.stock_quantity)
+        }
         tvConfirm.setOnClickListener {
-            val selectSpecList = specAdapter.selectSpec()
-            selectShopSpecListener.selectShopSpecSuccess(amount, selectSpecList)
+            selectShopSpecListener.selectShopSpecSuccess(amount, getGood(specAdapter.selectSpec(), nShopDetailModel.goods))
+            dismiss()
         }
         tvAmount.setOnAmountChangeListener { _, amount ->
             this.amount = amount
@@ -79,5 +86,15 @@ class SelectShopSpecDialog(
         ivClose.setOnClickListener {
             dismiss()
         }
+    }
+
+    private fun getGood(mList: List<ShopSpecItemSon>, goods: List<Good>): Good {
+        var specId = ""
+        mList.forEach { specId += "${it.spec_id}," }
+        goods.forEach {
+            if (it.spec_ids.contains(specId))
+                return it
+        }
+        return Good()
     }
 }
