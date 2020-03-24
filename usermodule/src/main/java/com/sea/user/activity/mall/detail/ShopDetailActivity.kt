@@ -67,6 +67,9 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
                 nEditShopCarModelReq
             )
         }
+        tvOnceBuy.setOnClickListener {
+
+        }
         swipeShopDetail.setOnRefreshListener {
             mShopDetailPresenter.loadShopDetail(NShopDetailModelReq(good_id = goodId))
         }
