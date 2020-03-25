@@ -23,7 +23,7 @@ class RechargeDetailPresenter : IPresenter<RechargeDetailContact.IRechargeDetail
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadRechargeDetailSuccess(it.data,it.totalCount)
                     } else {
                         softView.get()?.loadRechargeDetailFail(Throwable(it.msg))

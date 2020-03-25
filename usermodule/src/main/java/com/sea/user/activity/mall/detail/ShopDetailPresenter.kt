@@ -23,7 +23,7 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
             }
             .subscribe(
                 {
-                    if (it.data != null && it.code == 1) {
+                    if (it.data != null && it.code==1) {
                         softView.get()?.loadShopDetailSuccess(
                             NShopDetailModel(
                                 getImageList(it.data.img_url, it.data.albums),

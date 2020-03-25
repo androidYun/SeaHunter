@@ -22,7 +22,7 @@ class PlaceOrderPresenter : IPresenter<PlaceOrderContact.IPlaceOrderView>(), Pla
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadPlaceOrderSuccess(it.data)
                     } else {
                         softView.get()?.loadPlaceOrderFail(Throwable(it.msg))

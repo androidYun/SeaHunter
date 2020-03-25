@@ -8,6 +8,8 @@ package com.sea.user.activity.address
  */
 data class NAddressModelResponse(val code: Int, val msg: String)
 
+data class NDeleteAddressModelReq(private val command: Int = 29, val id: Int)
+
 class NAddressModelReq(
     val command: Int = 11,
     var id: Int = 0,//默认添加时0

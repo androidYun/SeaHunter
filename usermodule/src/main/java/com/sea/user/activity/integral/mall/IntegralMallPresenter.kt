@@ -23,7 +23,7 @@ class IntegralMallPresenter : IPresenter<IntegralMallContact.IIntegralMallView>(
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadIntegralMallSuccess(it.data.mList)
                     } else {
                         softView.get()?.loadIntegralMallFail(Throwable(it.msg))

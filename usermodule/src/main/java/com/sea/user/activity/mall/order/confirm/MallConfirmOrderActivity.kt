@@ -11,23 +11,24 @@ import com.sea.user.activity.address.list.NAddressListModelReq
 import com.sea.user.activity.mall.car.ShopCarItem
 import com.sea.user.presenter.address.DefaultAddressContact
 import com.sea.user.presenter.address.DefaultAddressPresenter
+import com.sea.user.presenter.sea.order.NPlaceOrderModelReq
+import com.sea.user.presenter.sea.order.NShopItemMode
+import com.sea.user.presenter.sea.order.PlaceOrderContact
+import com.sea.user.presenter.sea.order.PlaceOrderPresenter
 import com.sea.user.utils.sp.StoreShopSpUtils
+import com.sea.user.utils.sp.UserInformSpUtils
 import kotlinx.android.synthetic.main.activity_mall_confirm_order.*
 
-class MallConfirmOrderActivity : BaseActivity(), MallConfirmOrderContact.IMallConfirmOrderView,
-    DefaultAddressContact.IDefaultAddressView {
+class MallConfirmOrderActivity : BaseActivity(),
+    DefaultAddressContact.IDefaultAddressView, PlaceOrderContact.IPlaceOrderView {
 
-    private val mMallConfirmOrderPresenter by lazy {
-        MallConfirmOrderPresenter().apply {
-            attachView(
-                this@MallConfirmOrderActivity
-            )
-        }
-    }
 
     private val defaultAddressPresenter by lazy { DefaultAddressPresenter().apply { attachView(this@MallConfirmOrderActivity) } }
 
-    private val nMallConfirmOrderReq = NMallConfirmOrderModelReq()
+    private val nPlaceOrderPresenter by lazy { PlaceOrderPresenter().apply { attachView(this@MallConfirmOrderActivity) } }
+
+    private val nPlaceOrderModelReq = NPlaceOrderModelReq()
+
 
 
     private lateinit var mMallConfirmOrderAdapter: MallConfirmOrderAdapter
@@ -58,6 +59,20 @@ class MallConfirmOrderActivity : BaseActivity(), MallConfirmOrderContact.IMallCo
         tvOrderTotalPrice.text = allPrice
         tvGiveIntegral.text = allPoint.toString()
         tvOrderStore.text = StoreShopSpUtils.getStoreShopName()
+        tvNeedTotalPrice.text = allPrice
+        /*下单参数*/
+        nPlaceOrderModelReq.shop_id = StoreShopSpUtils.getStoreShopId()
+        nPlaceOrderModelReq.payment_id = PaymentType.AlipayCode
+        nPlaceOrderModelReq.pro_List = mCarItemList.map {
+            NShopItemMode(
+                article_id = it.article_id,
+                channel_id = it.channel_id,
+                goods_id = it.goods_id,
+                quantity = it.quantity,
+                shop_id = StoreShopSpUtils.getStoreShopId(),
+                user_id = UserInformSpUtils.getUserId()
+            )
+        }
         defaultAddressPresenter.loadDefaultAddress(NAddressListModelReq())
     }
 
@@ -68,18 +83,27 @@ class MallConfirmOrderActivity : BaseActivity(), MallConfirmOrderContact.IMallCo
                 select_address_request_code
             )
         }
+        rgpPayment.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rbtAliPay -> {
+                    nPlaceOrderModelReq.payment_id = PaymentType.AlipayCode
+                }
+                R.id.rbtWechat -> {
+                    nPlaceOrderModelReq.payment_id = PaymentType.WechantCode
+                }
+                R.id.rbtBalance -> {
+                    nPlaceOrderModelReq.payment_id = PaymentType.BalanceCode
+                }
+            }
+        }
+        tvOnceExchange.setOnClickListener {
+            nPlaceOrderPresenter.loadPlaceOrder(nPlaceOrderModelReq)
+        }
     }
 
-    override fun loadMallConfirmOrderSuccess(mList: List<MallConfirmOrderItem>) {
-        mMallConfirmOrderAdapter.notifyDataSetChanged()
-
-    }
-
-    override fun loadMallConfirmOrderFail(throwable: Throwable) {
-        handleError(throwable)
-    }
 
     override fun loadDefaultAddressSuccess(addressListItem: AddressListItem) {
+        nPlaceOrderModelReq.address_id = addressListItem.id
         tvNamePhoneNumber.text = addressListItem.accept_name.plus("  ${addressListItem.mobile}")
         tvDetailAddress.text =
             addressListItem.province + addressListItem.city + addressListItem.area + addressListItem.address
@@ -87,6 +111,14 @@ class MallConfirmOrderActivity : BaseActivity(), MallConfirmOrderContact.IMallCo
 
     override fun loadDefaultAddressFail(throwable: Throwable) {
         handleError(throwable)
+    }
+
+    override fun loadPlaceOrderSuccess(order: String) {
+
+    }
+
+    override fun loadPlaceOrderFail(throwable: Throwable) {
+
     }
 
     override fun showLoading() {
@@ -106,6 +138,7 @@ class MallConfirmOrderActivity : BaseActivity(), MallConfirmOrderContact.IMallCo
             tvNamePhoneNumber.text = addressListItem.accept_name.plus("  ${addressListItem.mobile}")
             tvDetailAddress.text =
                 addressListItem.province + addressListItem.city + addressListItem.area + addressListItem.address
+            nPlaceOrderModelReq.address_id = addressListItem.id
         }
     }
 

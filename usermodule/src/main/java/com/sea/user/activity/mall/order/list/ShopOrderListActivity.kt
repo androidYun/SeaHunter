@@ -20,11 +20,11 @@ class ShopOrderListActivity : BaseSeaUserActivity() {
 
 
     private val tabTitle = mutableListOf(
-        ShopOrderModel("全部", "1"),
-        ShopOrderModel("待付款", "1"),
-        ShopOrderModel("待发货", "1"),
-        ShopOrderModel("待收货", "1"),
-        ShopOrderModel("已完成", "1")
+        ShopOrderModel("全部", 0),
+        ShopOrderModel("待付款", 1),
+        ShopOrderModel("待发货", 2),
+        ShopOrderModel("待收货", 3),
+        ShopOrderModel("已完成", 4)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,11 +43,7 @@ class ShopOrderListActivity : BaseSeaUserActivity() {
 
     inner class ShopOrderPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            return if (position == 0) {
-                ShopOrderListFragment.getInstance(1)
-            } else {
-                ShopOrderListFragment.getInstance(1)
-            }
+            return ShopOrderListFragment.getInstance(tabTitle[position].type)
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
@@ -59,5 +55,5 @@ class ShopOrderListActivity : BaseSeaUserActivity() {
         }
     }
 
-    class ShopOrderModel(val titleName: String, val type: String)
+    class ShopOrderModel(val titleName: String, val type: Int)
 }

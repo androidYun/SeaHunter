@@ -23,7 +23,7 @@ class ExchangeListPresenter : IPresenter<ExchangeListContact.IExchangeListView>(
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadExchangeListSuccess(it.data.mList, it.totalCount)
                     } else {
                         softView.get()?.loadExchangeListFail(Throwable(it.msg))

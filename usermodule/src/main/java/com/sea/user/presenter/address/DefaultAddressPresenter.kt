@@ -30,7 +30,7 @@ class DefaultAddressPresenter : IPresenter<DefaultAddressContact.IDefaultAddress
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         val list = it.data.filter { it.is_default == 1 }
                         if (!list.isNullOrEmpty())
                             softView.get()?.loadDefaultAddressSuccess(list[0])

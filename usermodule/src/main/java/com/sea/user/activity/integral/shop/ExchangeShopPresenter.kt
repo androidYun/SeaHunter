@@ -23,7 +23,7 @@ class ExchangeShopPresenter : IPresenter<ExchangeShopContact.IExchangeShopView>(
             }
             .subscribe(
                 {
-                    if (it.code == 0) {
+                    if (it.code==1) {
                         softView.get()?.loadExchangeShopSuccess(it.data)
                     } else {
                         softView.get()?.loadExchangeShopFail(Throwable(it.msg))

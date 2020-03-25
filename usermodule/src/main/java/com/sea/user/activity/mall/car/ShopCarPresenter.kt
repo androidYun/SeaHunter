@@ -22,7 +22,7 @@ class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarConta
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadShopCarSuccess(it.data)
                     } else {
                         softView.get()?.loadShopCarFail(Throwable(it.msg))
@@ -47,7 +47,7 @@ class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarConta
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadDeleteShopCarSuccess()
                     } else {
                         softView.get()?.loadDeleteShopCarFail(Throwable(it.msg))

@@ -30,7 +30,7 @@ class FillInformPresenter : IPresenter<FillInformContract.IFillInformView>(), Fi
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadFillInformSuccess()
                     } else {
                         softView.get()?.loadFillInformFail(Throwable(it.msg))

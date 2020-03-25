@@ -12,6 +12,8 @@ interface AddAddressContract {
 
     interface IAddAddressView : IBaseView {
 
+        fun loadDeleteAddressSuccess()
+
         fun loadAddAddressSuccess()
 
         fun loadAddAddressFail(throwable: Throwable)
@@ -26,5 +28,7 @@ interface AddAddressContract {
 
 
         fun modifyAddress(nAddressModelReq: NAddressModelReq)
+
+        fun deleteAddress(nDeleteAddressModelReq: NDeleteAddressModelReq)
     }
 }

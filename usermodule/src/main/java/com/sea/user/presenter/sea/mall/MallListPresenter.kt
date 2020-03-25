@@ -22,7 +22,7 @@ class MallListPresenter : IPresenter<MallListContact.IMallListView>(), MallListC
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadMallListSuccess(it.data, it.totalCount)
                     } else {
                         softView.get()?.loadMallListFail(Throwable(it.msg))

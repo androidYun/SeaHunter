@@ -23,7 +23,7 @@ class MallOrderDetailPresenter : IPresenter<MallOrderDetailContact.IMallOrderDet
             }
             .subscribe(
                 {
-                    if (it.code == 0) {
+                    if (it.code==1) {
                         softView.get()?.loadMallOrderDetailSuccess(it.data)
                     } else {
                         softView.get()?.loadMallOrderDetailFail(Throwable(it.msg))

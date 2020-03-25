@@ -28,7 +28,7 @@ class RegisterPresenter : IPresenter<RegisterContract.IRegisterView>(), Register
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadRegisterSuccess()
                     } else {
                         softView.get()?.loadRegisterFail(Throwable(it.msg))

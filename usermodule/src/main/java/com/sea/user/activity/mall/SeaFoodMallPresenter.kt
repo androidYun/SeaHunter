@@ -23,7 +23,7 @@ class SeaFoodMallPresenter : IPresenter<SeaFoodMallContact.ISeaFoodMallView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadSeaCategoryListSuccess(it.data)
                     } else {
                         softView.get()?.loadSeaFoodMallFail(Throwable(it.msg))
@@ -48,7 +48,7 @@ class SeaFoodMallPresenter : IPresenter<SeaFoodMallContact.ISeaFoodMallView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadMallListRecommendSuccess(it.data)
                     } else {
                         softView.get()?.loadSeaFoodMallFail(Throwable(it.msg))
@@ -73,7 +73,7 @@ class SeaFoodMallPresenter : IPresenter<SeaFoodMallContact.ISeaFoodMallView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadMallListHotSuccess(it.data)
                     } else {
                         softView.get()?.loadSeaFoodMallFail(Throwable(it.msg))

@@ -17,8 +17,8 @@
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
                 android:id="@+id/cvSelectAddress"
+                android:layout_width="match_parent"
                 android:layout_height="78dp"
                 android:background="@drawable/shape_base_item_background"
                 android:paddingStart="@dimen/default_padding"
@@ -204,14 +204,17 @@
                 android:textSize="16sp" />
 
             <RadioGroup
+                android:id="@+id/rgpPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/default_padding"
                 android:paddingEnd="@dimen/default_padding">
 
                 <RadioButton
+                    android:id="@+id/rbtAliPay"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:checked="true"
                     android:drawableEnd="@mipmap/ic_pay_alipay"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical|end"
@@ -223,6 +226,7 @@
                     tools:ignore="RtlCompat" />
 
                 <RadioButton
+                    android:id="@+id/rbtWechat"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:drawableEnd="@mipmap/ic_pay_wechat"
@@ -236,6 +240,7 @@
                     tools:ignore="RtlCompat" />
 
                 <RadioButton
+                    android:id="@+id/rbtBalance"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:drawableEnd="@mipmap/ic_pay_wallet"
@@ -271,7 +276,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tvNeedTotalIntegral"
+            android:id="@+id/tvNeedTotalPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

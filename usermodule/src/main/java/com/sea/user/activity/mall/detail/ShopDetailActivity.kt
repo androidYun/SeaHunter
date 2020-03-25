@@ -20,15 +20,15 @@ import com.youth.banner.config.IndicatorConfig
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 
 class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
-    ShopCarEditContact.IShopCarEditView, PlaceOrderContact.IPlaceOrderView {
+    ShopCarEditContact.IShopCarEditView{
 
     private val mShopDetailPresenter by lazy { ShopDetailPresenter().apply { attachView(this@ShopDetailActivity) } }
 
     private val mShopCarEditPresenter by lazy { ShopCarEditPresenter().apply { attachView(this@ShopDetailActivity) } }
 
-    private val nPlaceOrderModelReq = NPlaceOrderModelReq()
 
-    private val nPlaceOrderPresenter by lazy { PlaceOrderPresenter().apply { attachView(this@ShopDetailActivity) } }
+
+
 
 
     private var nShopDetailModel: NShopDetailModel = NShopDetailModel()
@@ -126,13 +126,6 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
         swipeShopDetail.isRefreshing = false
     }
 
-    override fun loadPlaceOrderSuccess(order: String) {
-
-    }
-
-    override fun loadPlaceOrderFail(throwable: Throwable) {
-
-    }
 
     override fun loadShopCarEditSuccess() {
         startActivity(Intent(this, ShopCarActivity::class.java))

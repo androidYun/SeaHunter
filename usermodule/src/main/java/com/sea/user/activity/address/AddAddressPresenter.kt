@@ -14,7 +14,32 @@ import com.xhs.baselibrary.net.util.RxUtils
  */
 class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), AddAddressContract.IAddAddressPresenter {
 
-    override fun loadAddAddress( nAddressModelReq: NAddressModelReq) {
+    override fun deleteAddress(nDeleteAddressModelReq: NDeleteAddressModelReq) {
+        RetrofitUtils.getRetrofit()
+            .create(AddressApi::class.java)
+            .loadDeleteAddAddress(nDeleteAddressModelReq)
+            .compose(RxUtils.getSchedulerTransformer())
+            .compose(RxUtils.bindToLifecycle(softView.get()))
+            .doOnSubscribe { disposable ->
+                addDisposable(disposable)
+                softView.get()?.showLoading()
+            }.doFinally {
+                softView.get()?.hideLoading()
+                onStop()
+            }
+            .subscribe(
+                {
+                    if (it.code==1) {
+                        softView.get()?.loadDeleteAddressSuccess()
+                    } else {
+                        softView.get()?.loadAddAddressFail(Throwable(it.msg))
+                    }
+                    //这里面是回调成功的方法
+                }, { throwable -> softView.get()?.loadAddAddressFail(throwable) }
+            )
+    }
+
+    override fun loadAddAddress(nAddressModelReq: NAddressModelReq) {
         RetrofitUtils.getRetrofit()
             .create(AddressApi::class.java)
             .loadAddAddress(nAddressModelReq)
@@ -29,7 +54,7 @@ class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), Ad
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadAddAddressSuccess()
                     } else {
                         softView.get()?.loadAddAddressFail(Throwable(it.msg))
@@ -55,7 +80,7 @@ class AddAddressPresenter : IPresenter<AddAddressContract.IAddAddressView>(), Ad
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.modifyAddressSuccess()
                     } else {
                         softView.get()?.modifyAddressFail(Throwable(it.msg))

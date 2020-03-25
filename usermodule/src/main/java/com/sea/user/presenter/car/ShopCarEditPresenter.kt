@@ -24,7 +24,7 @@ class ShopCarEditPresenter : IPresenter<ShopCarEditContact.IShopCarEditView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadShopCarEditSuccess()
                     } else {
                         softView.get()?.loadShopCarEditFail(Throwable(it.msg))

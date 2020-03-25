@@ -23,8 +23,8 @@ class ShopOrderListPresenter : IPresenter<ShopOrderListContact.IShopOrderListVie
             }
             .subscribe(
                 {
-                    if (it.code == 0) {
-                        softView.get()?.loadShopOrderListSuccess(it.data.mList, it.totalCount)
+                    if (it.code==1) {
+                        softView.get()?.loadShopOrderListSuccess(it.data, it.totalCount)
                     } else {
                         softView.get()?.loadShopOrderListFail(Throwable(it.msg))
                     }

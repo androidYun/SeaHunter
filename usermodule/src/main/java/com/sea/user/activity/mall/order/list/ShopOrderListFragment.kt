@@ -75,7 +75,7 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
 
     override fun loadShopOrderListFail(throwable: Throwable) {
         handleError(throwable)
-        swipeShopOrderList.isRefreshing
+        swipeShopOrderList.isRefreshing=false
         mShopOrderListAdapter.loadMoreComplete()
     }
 

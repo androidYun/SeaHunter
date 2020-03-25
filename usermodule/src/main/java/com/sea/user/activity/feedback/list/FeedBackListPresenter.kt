@@ -23,7 +23,7 @@ class FeedBackListPresenter : IPresenter<FeedBackListContact.IFeedBackListView>(
             }
             .subscribe(
                 {
-                    if (it.code == 0) {
+                    if (it.code==1) {
                         softView.get()?.loadFeedBackListSuccess(it.data.mList, it.data.totalCount)
                     } else {
                         softView.get()?.loadFeedBackListFail(Throwable(it.msg))

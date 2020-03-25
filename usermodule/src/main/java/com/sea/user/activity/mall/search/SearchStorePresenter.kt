@@ -26,7 +26,7 @@ class SearchStorePresenter : IPresenter<SearchStoreContact.ISearchStoreView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                       //  softView.get()?.loadSearchStoreSuccess(it.data.mList, it.data.totalCount)
                     } else {
                         softView.get()?.loadSearchStoreFail(Throwable(it.msg))

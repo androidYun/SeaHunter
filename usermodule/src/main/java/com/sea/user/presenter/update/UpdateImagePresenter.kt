@@ -47,7 +47,7 @@ class UpdateImagePresenter : IPresenter<UpdateImageContact.IUpdateImageView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
+                    if (it.code==1) {
                         softView.get()?.loadUpdateImageSuccess(it.img_url)
                     } else {
                         softView.get()?.loadUpdateImageFail(Throwable(it.msg))

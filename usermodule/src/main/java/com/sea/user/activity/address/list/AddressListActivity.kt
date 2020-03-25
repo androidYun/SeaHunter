@@ -42,15 +42,32 @@ class AddressListActivity : BaseActivity(), AddressListContact.IAddressListView 
             mAddressListPresenter.loadAddressList(nAddressListReq)
         }
         tvAddAddress.setOnClickListener {
-            startActivity(Intent(this, AddAddressActivity::class.java))
+            startActivityForResult(
+                Intent(this, AddAddressActivity::class.java),
+                operator_address_request_code
+            )
         }
-        mAddressListAdapter.setOnItemClickListener { _, _, position ->
-            setResult(select_address_result_code, Intent().apply {
-                putExtras(Bundle().apply {
-                    putParcelable(select_address_result_key, mAddressList[position])
-                })
-            })
-            finish()
+        mAddressListAdapter.setOnItemClickListener { _, view, position ->
+            when (view.id) {
+                R.id.tvEditAddress -> {
+                    startActivityForResult(Intent(this, AddAddressActivity::class.java).apply {
+                        putExtras(
+                            AddAddressActivity.getInstance(
+                                AddAddressActivity.EDIT_ADDRESS_CODE,
+                                mAddressList[position]
+                            )
+                        )
+                    }, operator_address_request_code)
+                }
+                R.id.cvSelectAddress -> {
+                    setResult(select_address_result_code, Intent().apply {
+                        putExtras(Bundle().apply {
+                            putParcelable(select_address_result_key, mAddressList[position])
+                        })
+                    })
+                    finish()
+                }
+            }
         }
     }
 
@@ -75,9 +92,17 @@ class AddressListActivity : BaseActivity(), AddressListContact.IAddressListView 
         hideProgressDialog()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == operator_address_request_code && resultCode == AddAddressActivity.operator_address_result_code) {
+            mAddressListPresenter.loadAddressList(nAddressListReq)
+        }
+    }
+
     companion object {
-         const val select_address_result_code = 101
-         const val select_address_result_key = "select_address_result_key"
+        const val select_address_result_code = 101
+        const val operator_address_request_code = 200
+        const val select_address_result_key = "select_address_result_key"
         fun getInstance() = Bundle().apply { }
     }
 }

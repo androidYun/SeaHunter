@@ -23,7 +23,7 @@ class ComplaintFeedbackPresenter : IPresenter<ComplaintFeedbackContact.IComplain
             }
             .subscribe(
                 {
-                    if (it.code == 0) {
+                    if (it.code==1) {
                         softView.get()?.loadComplaintFeedbackSuccess(it.data)
                     } else {
                         softView.get()?.loadComplaintFeedbackFail(Throwable(it.msg))

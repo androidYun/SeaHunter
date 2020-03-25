@@ -65,6 +65,7 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
             nAddressModelReq.area = addressListItem.area
             nAddressModelReq.address = addressListItem.address
             nAddressModelReq.is_default = addressListItem.is_default
+            nAddressModelReq.id = addressListItem.id
             evName.setText(nAddressModelReq.accept_name)
             evPhoneNumber.setText(nAddressModelReq.mobile)
             evDetailAddress.setText(nAddressModelReq.address)
@@ -111,13 +112,14 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
             }
         })
         tvDeleteAddress.setOnClickListener {
-            addressPresenter.
+            addressPresenter.deleteAddress(NDeleteAddressModelReq(id = nAddressModelReq.id))
         }
 
     }
 
 
     override fun loadAddAddressSuccess() {
+        setResult(operator_address_result_code)
         finish()
     }
 
@@ -126,11 +128,17 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
     }
 
     override fun modifyAddressSuccess() {
+        setResult(operator_address_result_code)
         finish()
     }
 
     override fun modifyAddressFail(throwable: Throwable) {
         handleError(throwable)
+    }
+
+    override fun loadDeleteAddressSuccess() {
+        setResult(operator_address_result_code)
+        finish()
     }
 
     override fun showLoading() {
@@ -142,6 +150,7 @@ class AddAddressActivity : BaseActivity(), AddAddressContract.IAddAddressView {
     }
 
     companion object {
+        const val operator_address_result_code = 201
         const val ADD_ADDRESS_CODE = 101
         const val EDIT_ADDRESS_CODE = 102
         private const val ADDRESS_OPERATOR_TYPE_KEY = "ADDRESS_OPERATOR_TYPE_KEY"

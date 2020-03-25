@@ -8,8 +8,6 @@ import com.sea.user.activity.mall.car.NShopCarModelReq
 import com.sea.user.activity.mall.car.NShopCarModelResponse
 import com.sea.user.activity.mall.detail.NShopDetailModelReq
 import com.sea.user.activity.mall.detail.NShopDetailResponse
-import com.sea.user.activity.mall.order.confirm.NMallConfirmOrderModelReq
-import com.sea.user.activity.mall.order.confirm.NMallConfirmOrderModelResponse
 import com.sea.user.activity.mall.order.detail.NMallOrderDetailModelReq
 import com.sea.user.activity.mall.order.detail.NMallOrderDetailResponse
 import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
@@ -27,7 +25,8 @@ import com.sea.user.presenter.sea.order.NPlaceOrderResponse
 import com.sea.user.presenter.store.NStoreListModelReq
 import com.sea.user.presenter.store.NStoreListResponse
 import io.reactivex.Observable
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface ShopApi {
 
@@ -61,9 +60,6 @@ interface ShopApi {
 
     @POST("getdata.ashx")
     fun loadEditShopCar(@Body nEditShopCarModelReq: NEditShopCarModelReq): Observable<BaseEntry>
-
-    @POST("getdata.ashx")
-    fun loadMallConfirmOrder(@Body nMallConfirmOrderModelReq: NMallConfirmOrderModelReq): Observable<NMallConfirmOrderModelResponse>
 
     @POST("getdata.ashx")
     fun loadShopOrderList(@Body nShopOrderListModelReq: NShopOrderListModelReq): Observable<NShopOrderListModelResponse>
