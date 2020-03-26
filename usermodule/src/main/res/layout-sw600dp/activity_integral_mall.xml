@@ -1,92 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeIntegralMallList"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/default_padding"
-        android:paddingEnd="@dimen/default_padding">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/default_padding"
+            android:paddingEnd="@dimen/default_padding">
 
-            <TextView
-                android:id="@+id/tvIntegral"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@mipmap/ic_head_default"
-                android:drawablePadding="14dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/banner_integral" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                tools:text="533" />
+                android:background="@color/white"
+                android:layout_height="64dp">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tvIntegral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@mipmap/ic_integral_num"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    tools:text="533" />
 
-            <TextView
-                android:id="@+id/tvExchange"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/shape_integral_background"
-                android:gravity="center"
-                android:text="兑换列表"
-                android:textColor="@color/color_bf0008"
-                android:textSize="16dp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/tvIntegralDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_integral_background"
-                android:gravity="center"
-                android:text="积分明细"
-                android:textColor="@color/color_bf0008"
-                android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/tvExchange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/shape_integral_background"
+                    android:gravity="center"
+                    android:text="兑换列表"
+                    android:textColor="@color/color_bf0008"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tvIntegralDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_integral_background"
+                    android:gravity="center"
+                    android:text="积分明细"
+                    android:textColor="@color/color_bf0008"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="兑换好礼"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tvLookMore"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableEnd="@mipmap/ic_back_icon"
+                    android:gravity="end|center_vertical"
+                    android:text="查看更多"
+                    android:textColor="@color/color_bf0008"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIntegralMall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="2dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+    </androidx.core.widget.NestedScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="兑换好礼"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/tvLookMore"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableEnd="@mipmap/ic_back_icon"
-                android:gravity="end|center_vertical"
-                android:text="查看更多"
-                android:textColor="@color/color_bf0008"
-                android:textSize="14dp" />
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvIntegralMall"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

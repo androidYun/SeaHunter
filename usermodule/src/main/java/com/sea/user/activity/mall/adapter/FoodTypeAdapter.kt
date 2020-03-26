@@ -17,9 +17,9 @@ class FoodTypeAdapter(mList: List<NFoodType>) :
             it.context.startActivity(Intent(it.context, MallListActivity::class.java).apply {
                 putExtras(MallListActivity.getInstance(plate = helper.layoutPosition + 1))
             })
-
         }
         helper?.setImageResource(R.id.ivFoodTypeBg, item.resId)
+        helper?.setImageResource(R.id.ivFoodType, item.resTypeId)
 
     }
 }

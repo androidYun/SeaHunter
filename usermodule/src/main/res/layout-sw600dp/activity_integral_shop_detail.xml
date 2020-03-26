@@ -5,17 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vpBanner"
+    <com.youth.banner.Banner
+        android:id="@+id/bannerView"
         android:layout_width="match_parent"
-        android:layout_height="160dp" />
-
+        android:layout_height="200dp" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cvShopDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/vpBanner"
+        android:layout_below="@+id/bannerView"
         android:padding="@dimen/default_padding">
 
         <TextView

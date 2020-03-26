@@ -3,14 +3,14 @@ package com.sea.user.activity.mall.select
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
-import com.sea.user.activity.mall.search.SearchStoreActivity
+import com.sea.user.activity.mall.search.SearchMallActivity
 import com.sea.user.presenter.store.NStoreListItemModel
 import com.sea.user.presenter.store.NStoreListModelReq
 import com.sea.user.presenter.store.StoreListContact
 import com.sea.user.presenter.store.StoreListPresenter
 import com.sea.user.utils.sp.StoreShopSpUtils
+import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_select_store.*
 
 class SelectStoreActivity : BaseActivity(), StoreListContact.IStoreListView {
@@ -49,7 +49,7 @@ class SelectStoreActivity : BaseActivity(), StoreListContact.IStoreListView {
             mSelectStorePresenter.loadStoreList(nSelectStoreReq)
         }
         lvSearchShop.setOnClickListener {
-            startActivity(Intent(this, SearchStoreActivity::class.java))
+            startActivity(Intent(this, SearchMallActivity::class.java))
         }
         mSelectStoreAdapter.setOnItemClickListener { _, _, position ->
             run {

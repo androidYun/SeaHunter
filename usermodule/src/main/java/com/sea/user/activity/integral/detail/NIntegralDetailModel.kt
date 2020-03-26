@@ -9,13 +9,9 @@ class NIntegralDetailModelReq(
 class NIntegralDetailModelResponse(
     val code: Int = -1,
     val msg: String = "",
-    val data: Data = Data()
-) {
-    class Data(
-        val totalCount: Int = 0,
-        val mList: List<IntegralDetailItem> = listOf()
-    )
-}
+    val totalCount: Int = 0,
+    val data: List<IntegralDetailItem> = listOf()
+)
 
 data class IntegralDetailItem(
     val add_time: String = "",

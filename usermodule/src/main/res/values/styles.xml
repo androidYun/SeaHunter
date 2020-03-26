@@ -13,7 +13,9 @@
     <style name="grayNoActionBarTheme" parent="NoActionBarTheme">
         <item name="android:windowBackground">@mipmap/bg_gray</item>
     </style>
-
+    <style name="whiteTheme" parent="UserAppTheme">
+        <item name="android:windowBackground">@mipmap/bg_white</item>
+    </style>
     <style name="grayTheme" parent="UserAppTheme">
         <item name="android:windowBackground">@mipmap/bg_gray</item>
     </style>

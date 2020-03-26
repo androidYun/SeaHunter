@@ -7,14 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.sea.user.R
 import com.sea.user.activity.feedback.FeedBackActivity
+import com.sea.user.activity.integral.detail.IntegralDetailActivity
 import com.sea.user.activity.integral.exchange.ExchangeListActivity
 import com.sea.user.activity.integral.mall.IntegralMallActivity
+import com.sea.user.activity.login.UserInformModel
 import com.sea.user.activity.set.SetActivity
 import com.sea.user.activity.shop.order.MineOrderActivity
 import com.sea.user.activity.wallet.MineWalletActivity
+import com.sea.user.common.Constants
 import com.sea.user.presenter.user.UserInformContact
 import com.sea.user.presenter.user.UserInformPresenter
+import com.sea.user.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseFragment
+import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 import kotlinx.android.synthetic.main.fragment_user_center.*
 
 
@@ -47,17 +52,20 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
     }
 
     private fun initListener() {
+        swipeUserCenter.setOnRefreshListener {
+            mUserCenterPresenter.loadUserInform()
+        }
         //设置
         ivSet.setOnClickListener {
             startActivity(Intent(context, SetActivity::class.java))
         }
         //余额
         tvBalance.setOnClickListener {
-
+            startActivity(Intent(context, MineWalletActivity::class.java))
         }
         //积分
         tvIntegral.setOnClickListener {
-
+            startActivity(Intent(context, IntegralDetailActivity::class.java))
         }
         //全部订单和其他订单
         tvAllOrder.setOnClickListener {
@@ -97,11 +105,19 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
         }
     }
 
-    override fun loadUserInformSuccess(content: Any) {
-
+    override fun loadUserInformSuccess(userInformModel: UserInformModel) {
+        UserInformSpUtils.setUserInformModel(userInformModel)
+        tvBalance.text = userInformModel.amount.toString()
+        tvIntegral.text = userInformModel.point.toString()
+        ImageLoader.loadCircleImageView(
+            ivHead,
+            Constants.baseUrl.plus(userInformModel.avatar)
+        )
+        swipeUserCenter.isRefreshing = false
     }
 
     override fun loadUserInformFail(throwable: Throwable) {
+        swipeUserCenter.isRefreshing = false
         handleError(throwable)
     }
 

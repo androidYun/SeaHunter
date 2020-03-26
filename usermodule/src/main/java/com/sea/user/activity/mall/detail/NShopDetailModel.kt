@@ -111,6 +111,7 @@ data class ShopSpecItemSon(
 class NShopDetailModelReq(val command: Int = 10, var good_id: Int = -1)
 
 data class NShopDetailModel(
+    val id: Int = -1,
     val bannerList: List<String> = listOf(),
     val paramsList: List<String> = listOf(),
     val title: String = "",
@@ -122,5 +123,6 @@ data class NShopDetailModel(
     val imageUrl: String = "",
     val channelId: Int = -1,
     val specs: List<ShopSpecItem> = listOf(),
-    val goods: List<Good> = listOf()
+    val goods: List<Good> = listOf(),
+    val point: String = ""
 )

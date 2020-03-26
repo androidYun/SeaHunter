@@ -6,6 +6,12 @@
 
     <application>
         <activity
+            android:name=".activity.phone.ModifyPhoneActivity"
+            android:label="@string/title_ModifyPhone" />
+        <activity
+            android:name=".activity.phone.ModityPhoneActivity"
+            android:label="@string/title_ModityPhone" />
+        <activity
             android:name=".activity.wallet.reflect.ReflectActivity"
             android:label="@string/title_Reflect" />
         <activity
@@ -30,15 +36,17 @@
             android:name=".activity.mall.list.MallListActivity"
             android:label="@string/title_MallList" />
         <activity
-            android:name=".activity.mall.search.SearchStoreActivity"
-            android:label="@string/title_SearchStore" />
+            android:name=".activity.mall.search.SearchMallActivity"
+            android:label="@string/title_SearchStore"
+            android:theme="@style/whiteTheme" />
         <activity
             android:name=".activity.mall.select.SelectStoreActivity"
             android:label="@string/title_SelectStore"
             android:theme="@style/grayTheme" />
         <activity
             android:name=".activity.mall.SeaFoodMallActivity"
-            android:label="@string/title_SeaFoodMall" />
+            android:label="@string/title_SeaFoodMall"
+            android:theme="@style/whiteTheme" />
         <activity
             android:name=".activity.center.UserCenterActivity"
             android:label="@string/user_center"
@@ -63,6 +71,10 @@
         <activity
             android:name=".activity.integral.mall.IntegralMallActivity"
             android:label="@string/title_IntegralMall"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.integral.mall.list.IntegralMoreMallActivity"
+            android:label="@string/look_more"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.address.list.AddressListActivity"

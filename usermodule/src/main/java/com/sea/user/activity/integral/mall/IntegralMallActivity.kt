@@ -7,12 +7,13 @@ import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import com.sea.user.activity.integral.detail.IntegralDetailActivity
 import com.sea.user.activity.integral.exchange.ExchangeListActivity
+import com.sea.user.activity.integral.mall.list.IntegralMoreMallActivity
 import com.sea.user.presenter.sea.mall.MallListContact
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.sea.user.presenter.sea.mall.MallListPresenter
 import com.sea.user.presenter.sea.mall.NMallListModelReq
+import com.sea.user.utils.sp.UserInformSpUtils
 import kotlinx.android.synthetic.main.activity_integral_mall.*
-import kotlinx.android.synthetic.main.activity_mall_list.*
 
 class IntegralMallActivity : BaseActivity(), MallListContact.IMallListView {
 
@@ -44,6 +45,8 @@ class IntegralMallActivity : BaseActivity(), MallListContact.IMallListView {
     }
 
     private fun initData() {
+        tvIntegral.text = UserInformSpUtils.getUserInformModel().point.toString()
+        nMallListReq.type = 2
         mMallListPresenter.loadMallList(nMallListReq)
     }
 
@@ -59,7 +62,11 @@ class IntegralMallActivity : BaseActivity(), MallListContact.IMallListView {
         }
         //查看更多
         tvLookMore.setOnClickListener {
-
+            startActivity(Intent(this, IntegralMoreMallActivity::class.java))
+        }
+        swipeIntegralMallList.setOnRefreshListener {
+            nMallListReq.page_index = 1
+            mMallListPresenter.loadMallList(nMallListReq)
         }
         mIntegralMallAdapter.setOnLoadMoreListener({
             if (nMallListReq.page_index * nMallListReq.page_size < totalCount) {
@@ -67,7 +74,7 @@ class IntegralMallActivity : BaseActivity(), MallListContact.IMallListView {
             } else {
                 mIntegralMallAdapter.loadMoreEnd()
             }
-        }, rvMallList)
+        }, rvIntegralMall)
     }
 
     override fun loadMallListSuccess(mList: List<MallListItem>, totalCount: Int) {
@@ -78,13 +85,13 @@ class IntegralMallActivity : BaseActivity(), MallListContact.IMallListView {
         mMallListList.addAll(mList)
         mIntegralMallAdapter.notifyDataSetChanged()
         mIntegralMallAdapter.loadMoreComplete()
-        swipeMallList.isRefreshing = false
+        swipeIntegralMallList.isRefreshing = false
         nMallListReq.page_index++
     }
 
     override fun loadMallListFail(throwable: Throwable) {
         handleError(throwable)
-        swipeMallList.isRefreshing
+        swipeIntegralMallList.isRefreshing = false
         mIntegralMallAdapter.loadMoreComplete()
     }
 

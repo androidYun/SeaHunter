@@ -2,21 +2,28 @@ package com.sea.user.activity.integral.mall.detail
 
 import android.content.Intent
 import android.os.Bundle
-import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import com.sea.user.activity.integral.shop.ExchangeShopActivity
+import com.sea.user.activity.mall.detail.*
+import com.sea.user.presenter.sea.mall.MallListItem
+import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_integral_shop_detail.*
 
 class IntegralShopDetailActivity : BaseActivity(),
-    IntegralShopDetailContact.IIntegralShopDetailView {
+    ShopDetailContact.IShopDetailView {
 
-    private val mIntegralShopDetailPresenter by lazy {
-        IntegralShopDetailPresenter().apply {
-            attachView(
-                this@IntegralShopDetailActivity
-            )
-        }
+    private val mShopDetailPresenter by lazy { ShopDetailPresenter().apply { attachView(this@IntegralShopDetailActivity) } }
+
+
+    private val mMallListItem by lazy {
+        intent?.extras?.getParcelable(mall_list_item_key) ?: MallListItem()
     }
+
+
+    private var shopBannerAdapter: ShopBannerAdapter? = null
+
+    private val mBannerList = mutableListOf<String>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,23 +39,37 @@ class IntegralShopDetailActivity : BaseActivity(),
     }
 
     private fun initData() {
-        mIntegralShopDetailPresenter.loadIntegralShopDetail(NIntegralShopDetailModelReq())
+        mShopDetailPresenter.loadShopDetail(NShopDetailModelReq(good_id = mMallListItem.id))
     }
 
     private fun initListener() {
         tvTwoOnceExchange.setOnClickListener {
-            startActivity(Intent(this, ExchangeShopActivity::class.java))
+            startActivity(Intent(this, ExchangeShopActivity::class.java).apply {
+                putExtras(
+                    ExchangeShopActivity.getInstance(mMallListItem)
+                )
+            })
         }
     }
 
-    override fun loadIntegralShopDetailSuccess(content: Any) {
 
+    override fun loadShopDetailSuccess(nShopDetailModel: NShopDetailModel) {
+        mBannerList.clear()
+        mBannerList.addAll(nShopDetailModel.bannerList)
+        shopBannerAdapter = ShopBannerAdapter(mBannerList)
+        bannerView.adapter = shopBannerAdapter
+        tvShopName.text = nShopDetailModel.title
+        tvShopRemark.text = nShopDetailModel.tags
+        tvShopIntegral.text = nShopDetailModel.point
+        tvTwoShopIntegral.text = nShopDetailModel.point
+        tvExchangeNumber.text = ""
 
     }
 
-    override fun loadIntegralShopDetailFail(throwable: Throwable) {
+    override fun loadShopDetailFail(throwable: Throwable) {
         handleError(throwable)
     }
+
 
     override fun showLoading() {
         showProgressDialog()
@@ -59,6 +80,10 @@ class IntegralShopDetailActivity : BaseActivity(),
     }
 
     companion object {
-        fun getInstance() = Bundle().apply { }
+        private const val mall_list_item_key = "mall_list_item_key"
+        fun getInstance(mallListItem: MallListItem) = Bundle().apply {
+            putParcelable(mall_list_item_key, mallListItem)
+        }
     }
 }
+

@@ -20,4 +20,4 @@ class NSeaFoodMallModelReq(val command: Int = 8)
 //海鲜种类
 class NKindFood(@DrawableRes val resId: Int, val kindName: String)
 
-class NFoodType(@DrawableRes val resId: Int, val typeName: String, val typeDesc: String)
+class NFoodType(@DrawableRes val resId: Int, @DrawableRes val resTypeId: Int,val typeName: String, val typeDesc: String)

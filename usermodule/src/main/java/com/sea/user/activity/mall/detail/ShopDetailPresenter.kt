@@ -23,10 +23,11 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
             }
             .subscribe(
                 {
-                    if (it.data != null && it.code==1) {
+                    if (it.data != null && it.code == 1) {
                         softView.get()?.loadShopDetailSuccess(
                             NShopDetailModel(
-                                getImageList(it.data.img_url, it.data.albums),
+                                id = it.data.id,
+                                bannerList = getImageList(it.data.img_url, it.data.albums),
                                 paramsList = getParamsList(it.data.title, it.data.fields),
                                 title = it.data.title,
                                 content = it.data.content,
@@ -35,7 +36,8 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
                                 sellPrice = it.data.fields.sell_price,
                                 channelId = it.data.channel_id,
                                 specs = it.specs,
-                                goods = it.data.goods
+                                goods = it.data.goods,
+                                point = it.data.fields.point
                             )
                         )
                     } else {
@@ -67,5 +69,6 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
         paramsList.add("食用方式:  ${fields.eat_way}")
         return paramsList
     }
+
 
 }

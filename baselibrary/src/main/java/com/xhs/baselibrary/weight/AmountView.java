@@ -72,7 +72,7 @@ public class AmountView extends LinearLayout implements View.OnClickListener, Te
 
     public void setGoodsCount(int count) {
         if (count <= goods_storage) {
-            etAmount.setText(count);
+            etAmount.setText(String.valueOf(count));
         }
     }
 

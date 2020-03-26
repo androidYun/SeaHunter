@@ -1,24 +1,24 @@
 package com.sea.user.activity.mall.search
 
-class NSearchStoreModelReq(
+class NSearchMallModelReq(
     var page_size: Int = 20,
     var page_index: Int = 1
 )
 
 
-class NHotSearchStoreModelReq(
+class NHotSearchMallModelReq(
     var command: Int = 27
 )
 
-class NSearchStoreModelResponse(
+class NAddSearchMallModelReq(
+    val command: Int = 23,
+    var keyword:String=""
+)
+
+class NSearchMallModelResponse(
     val code: Int = -1,
     val msg: String = "",
-    val data: Data = Data()
-) {
-    class Data(
-        val totalCount: Int = 0,
-        val mList: List<SearchStoreItem> = listOf()
-    )
-}
+    val data: List<String> = listOf()
+)
 
-class SearchStoreItem
+class SearchMallItem

@@ -5,14 +5,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
-    app:cardShadowStartColor="@color/color_F8F6F7"
-    app:cardShadowEndColor="@color/color_F8F6F7"
-    android:layout_marginBottom="@dimen/default_margin"
-    app:cardElevation="5dp"
     android:layout_marginEnd="4dp"
+    android:layout_marginBottom="@dimen/default_margin"
     android:outlineAmbientShadowColor="@color/color_F8F6F7"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="5dp"
+    app:cardShadowEndColor="@color/color_F8F6F7"
+    app:cardShadowStartColor="@color/color_F8F6F7">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,10 +25,11 @@
         android:orientation="vertical"
         android:padding="@dimen/default_padding">
 
-        <ImageView
+        <com.xhs.baselibrary.weight.NiceImageView
             android:id="@+id/ivRecommend"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            app:is_circle="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

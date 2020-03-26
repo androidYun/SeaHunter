@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvSearchContent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="30dp">
-
-    <TextView
-        android:id="@+id/tvSearchContent"
-        android:layout_width="26dp"
-        android:layout_height="6dp"
-        android:gravity="center"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="5dp"
-        android:text="雅漾喷雾"
-        android:textColor="@color/color_3"
-        android:textSize="13sp" />
-</androidx.cardview.widget.CardView>
+    android:layout_marginStart="3dp"
+    android:layout_marginEnd="3dp"
+    android:gravity="center"
+    android:background="@drawable/shape_hot_search"
+    android:text="雅漾喷雾"
+    android:textColor="@color/color_3"
+    android:textSize="13sp" />

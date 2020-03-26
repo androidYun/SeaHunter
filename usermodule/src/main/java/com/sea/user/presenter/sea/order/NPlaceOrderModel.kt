@@ -17,10 +17,10 @@ class NPlaceOrderModelReq(
 )
 
 data class NShopItemMode(
-    val article_id: Int = 0,
-    val channel_id: Int = 0,
-    val goods_id: Int = 0,
-    val quantity: Int = 0,
-    val shop_id: Int = 0,
-    val user_id: Int = 0
+    var article_id: Int = 0,
+    var channel_id: Int = 0,
+    var goods_id: Int = 0,
+    var quantity: Int = 0,
+    var shop_id: Int = 0,
+    var user_id: Int = 0
 )

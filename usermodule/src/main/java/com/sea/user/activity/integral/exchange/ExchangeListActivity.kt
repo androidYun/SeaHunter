@@ -4,15 +4,26 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
+import com.sea.user.activity.mall.order.list.ShopOrderListContact
+import com.sea.user.activity.mall.order.list.ShopOrderListItem
+import com.sea.user.activity.mall.order.list.ShopOrderListPresenter
+import com.sea.user.presenter.sea.mall.MallListContact
+import com.sea.user.presenter.sea.mall.MallListItem
+import com.sea.user.presenter.sea.mall.MallListPresenter
+import com.sea.user.presenter.sea.mall.NMallListModelReq
 import kotlinx.android.synthetic.main.activity_exchange_list.*
 
-class ExchangeListActivity : BaseActivity(), ExchangeListContact.IExchangeListView {
+class ExchangeListActivity : BaseActivity(),
+    ShopOrderListContact.IShopOrderListView {
 
-    private val mExchangeListPresenter by lazy { ExchangeListPresenter().apply { attachView(this@ExchangeListActivity) } }
 
-    private val nExchangeListReq = NExchangeListModelReq()
+    private val mShopOrderListPresenter by lazy { ShopOrderListPresenter().apply { attachView(this@ExchangeListActivity) } }
 
-    private val mExchangeListList = mutableListOf<ExchangeListItem>()
+    private val nShopOrderListReq = NShopOrderListModelReq()
+
+
+    private val mShopOrderListList = mutableListOf<ShopOrderListItem>()
 
     private lateinit var mExchangeListAdapter: ExchangeListAdapter
 
@@ -28,46 +39,51 @@ class ExchangeListActivity : BaseActivity(), ExchangeListContact.IExchangeListVi
 
 
     private fun initView() {
-        mExchangeListAdapter = ExchangeListAdapter(mExchangeListList)
+        mExchangeListAdapter = ExchangeListAdapter(mShopOrderListList)
         rvExchangeList.layoutManager = LinearLayoutManager(this)
         rvExchangeList.adapter = mExchangeListAdapter
     }
 
     private fun initData() {
-        mExchangeListPresenter.loadExchangeList(nExchangeListReq)
+        nShopOrderListReq.order_type = 2
+        nShopOrderListReq.order_status = 0
+        mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
     }
 
     private fun initListener() {
         swipeExchangeList.setOnRefreshListener {
-            mExchangeListPresenter.loadExchangeList(nExchangeListReq)
+            nShopOrderListReq.page_index=1
+            mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
         }
         mExchangeListAdapter.setOnLoadMoreListener({
-            if (nExchangeListReq.page_index * nExchangeListReq.page_size < totalCount) {
-                mExchangeListPresenter.loadExchangeList(nExchangeListReq)
+            if (nShopOrderListReq.page_index * nShopOrderListReq.page_size < totalCount) {
+                mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
             } else {
                 mExchangeListAdapter.loadMoreEnd()
             }
         }, rvExchangeList)
     }
 
-    override fun loadExchangeListSuccess(mList: List<ExchangeListItem>, totalCount: Int) {
-        if (nExchangeListReq.page_index == 1) {
-            mExchangeListList.clear()
+
+
+    override fun loadShopOrderListSuccess(mList: List<ShopOrderListItem>, totalCount: Int) {
+        if (nShopOrderListReq.page_index == 1) {
+            mShopOrderListList.clear()
         }
         this.totalCount = totalCount
-        mExchangeListList.addAll(mList)
+        mShopOrderListList.addAll(mList)
         mExchangeListAdapter.notifyDataSetChanged()
         mExchangeListAdapter.loadMoreComplete()
         swipeExchangeList.isRefreshing = false
-        nExchangeListReq.page_index++
-
+        nShopOrderListReq.page_index++
     }
 
-    override fun loadExchangeListFail(throwable: Throwable) {
+    override fun loadShopOrderListFail(throwable: Throwable) {
         handleError(throwable)
         swipeExchangeList.isRefreshing
         mExchangeListAdapter.loadMoreComplete()
     }
+
 
     override fun showLoading() {
         showProgressDialog()

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.sea.user.R
 import com.sea.user.activity.address.list.AddressListActivity
+import com.sea.user.activity.inform.FillInformActivity
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_set.*
 
@@ -35,7 +36,7 @@ class SetActivity : BaseActivity() {
 
     private fun initListener() {
         tvModifyData.setOnClickListener {
-
+            startActivity(Intent(this, FillInformActivity::class.java))
 
         }
         tvModifyPassword.setOnClickListener {

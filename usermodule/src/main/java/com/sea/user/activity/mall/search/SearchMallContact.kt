@@ -3,9 +3,9 @@ package com.sea.user.activity.mall.search
 import com.xhs.baselibrary.base.IBaseView
 import com.sea.user.R
 
-interface SearchStoreContact {
+interface SearchMallContact {
 
-    interface ISearchStoreView : IBaseView {
+    interface ISearchMallView : IBaseView {
 
         fun loadHotSearchSuccess(mList: List<String>)
 
@@ -18,7 +18,7 @@ interface SearchStoreContact {
     }
 
     interface ISearchStorePresenter {
-        fun loadAddSearch(nSearchStoreModelReq: NSearchStoreModelReq)
+        fun loadAddSearch(nAddSearchMallModelReq: NAddSearchMallModelReq )
 
         fun loadHotSearch()
 

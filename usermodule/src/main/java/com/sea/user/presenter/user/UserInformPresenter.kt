@@ -23,7 +23,7 @@ class UserInformPresenter : IPresenter<UserInformContact.IUserInformView>(), Use
             .subscribe(
                 {
                     if (it.code==1) {
-                        softView.get()?.loadUserInformSuccess(it)
+                        softView.get()?.loadUserInformSuccess(it.data)
                     } else {
                         softView.get()?.loadUserInformFail(Throwable(it.msg))
                     }

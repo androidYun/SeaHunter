@@ -16,16 +16,20 @@ class IntegralMallAdapter(mList: List<MallListItem>) :
     BaseQuickAdapter<MallListItem, BaseViewHolder>(R.layout.item_integral_mall_layout, mList) {
     override fun convert(helper: BaseViewHolder, item: MallListItem) {
         helper?.getView<TextView>(R.id.tvNowRedeem)?.setOnClickListener {
-            it.context.startActivity(Intent(it.context, ExchangeShopActivity::class.java))
+            it.context.startActivity(
+                Intent(
+                    it.context,
+                    ExchangeShopActivity::class.java
+                ).apply { putExtras(ExchangeShopActivity.getInstance(item)) })
         }
         helper?.getView<ConstraintLayout>(R.id.cVIntegralShop)?.setOnClickListener {
-            it.context.startActivity(Intent(it.context, IntegralShopDetailActivity::class.java))
+            it.context.startActivity(Intent(it.context, IntegralShopDetailActivity::class.java).apply { putExtras(IntegralShopDetailActivity.getInstance(item)) })
         }
         helper?.setText(R.id.tvShopName, item.title)
         helper?.setText(R.id.tvRedeemCount, "${item.click}人兑换")
-        helper?.setText(R.id.tvShopIntegral, item.point)
+        helper?.setText(R.id.tvShopIntegral, item.point.toString())
         ImageLoader.loadImageWithUrl(
-            helper.getView(R.id.ivSeaShop),
+            helper.getView(R.id.ivShopImage),
             Constants.baseUrl.plus(item.img_url)
         )
     }

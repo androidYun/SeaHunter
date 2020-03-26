@@ -10,12 +10,13 @@ import com.sea.user.common.Constants
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 
+
 class FoodRecommendAdapter(mList: List<MallListItem>) :
     BaseQuickAdapter<MallListItem, BaseViewHolder>(R.layout.item_food_recommend_layout, mList) {
     override fun convert(helper: BaseViewHolder?, item: MallListItem) {
         helper?.setText(R.id.tvRecommendName, item.title)
         helper?.setText(R.id.tvRecommendDesc, item.tags)
-//        helper?.setText(R.id.tvRecommendPrice, item.sell_price)
+        helper?.setText(R.id.tvRecommendPrice, "￥${item.sell_price}")
         helper?.getView<FrameLayout>(R.id.fvFoodType)?.setOnClickListener {
             it.context.startActivity(Intent(it.context, ShopDetailActivity::class.java).apply {
                 putExtras(ShopDetailActivity.getInstance(item.id))

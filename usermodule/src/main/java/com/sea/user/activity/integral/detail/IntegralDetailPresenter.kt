@@ -23,8 +23,8 @@ class IntegralDetailPresenter : IPresenter<IntegralDetailContact.IIntegralDetail
             }
             .subscribe(
                 {
-                    if (it.code==1) {
-                        softView.get()?.loadIntegralDetailSuccess(it.data.mList, it.data.totalCount)
+                    if (it.code == 1) {
+                        softView.get()?.loadIntegralDetailSuccess(it.data, it.totalCount)
                     } else {
                         softView.get()?.loadIntegralDetailFail(Throwable(it.msg))
                     }

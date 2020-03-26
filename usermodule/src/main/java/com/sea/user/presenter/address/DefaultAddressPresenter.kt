@@ -26,7 +26,6 @@ class DefaultAddressPresenter : IPresenter<DefaultAddressContact.IDefaultAddress
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {

@@ -54,12 +54,12 @@
         android:layout_height="wrap_content" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeSearchStore"
+        android:id="@+id/swipeSearchMall"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSearchStore"
+            android:id="@+id/rvSearchMall"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -12,9 +12,10 @@ import com.sea.user.activity.mall.order.detail.NMallOrderDetailModelReq
 import com.sea.user.activity.mall.order.detail.NMallOrderDetailResponse
 import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
 import com.sea.user.activity.mall.order.list.NShopOrderListModelResponse
-import com.sea.user.activity.mall.search.NHotSearchStoreModelReq
-import com.sea.user.activity.mall.search.NSearchStoreModelReq
-import com.sea.user.activity.mall.search.NSearchStoreModelResponse
+import com.sea.user.activity.mall.search.NAddSearchMallModelReq
+import com.sea.user.activity.mall.search.NHotSearchMallModelReq
+import com.sea.user.activity.mall.search.NSearchMallModelReq
+import com.sea.user.activity.mall.search.NSearchMallModelResponse
 import com.sea.user.activity.model.BaseEntry
 import com.sea.user.activity.shop.order.NShopOrderModelReq
 import com.sea.user.activity.shop.order.NShopOrderModelResponse
@@ -35,11 +36,13 @@ interface ShopApi {
 
 
     @POST("getdata.ashx")
-    fun loadSearchStore(@Body nSearchStoreModelReq: NSearchStoreModelReq): Observable<NSearchStoreModelResponse>
+    fun loadSearchMall(@Body nSearchMallModelReq: NSearchMallModelReq): Observable<NSearchMallModelResponse>
 
     @POST("getdata.ashx")
-    fun loadHotSearchStore(@Body nHotSearchStoreModelReq: NHotSearchStoreModelReq ): Observable<NSearchStoreModelResponse>
+    fun loadAddSearch(@Body nAddSearchMallModelReq: NAddSearchMallModelReq): Observable<BaseEntry>
 
+    @POST("getdata.ashx")
+    fun loadHotSearchMall(@Body nHotSearchMallModelReq: NHotSearchMallModelReq): Observable<NSearchMallModelResponse>
 
 
     @POST("getdata.ashx")

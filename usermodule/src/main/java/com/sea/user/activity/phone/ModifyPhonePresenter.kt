@@ -1,17 +1,17 @@
-package com.sea.user.activity.integral.shop
+package com.sea.user.activity.phone
 
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.user.api.IntegralApi
+import com.sea.user.api.UserInformApi
 
 
-class ExchangeShopPresenter : IPresenter<ExchangeShopContact.IExchangeShopView>(),
-    ExchangeShopContact.IExchangeShopPresenter {
-    override fun loadExchangeShop(nExchangeShopModelReq: NExchangeShopModelReq) {
+class ModifyPhonePresenter : IPresenter<ModifyPhoneContact.IModifyPhoneView>(),
+    ModifyPhoneContact.IModifyPhonePresenter {
+    override fun loadModifyPhone(nModifyPhoneModelReq: NModifyPhoneModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(IntegralApi::class.java)
-            .loadExchangeShop(nExchangeShopModelReq)
+            .create(UserInformApi::class.java)
+            .loadModifyPhone(nModifyPhoneModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -23,13 +23,13 @@ class ExchangeShopPresenter : IPresenter<ExchangeShopContact.IExchangeShopView>(
             }
             .subscribe(
                 {
-                    if (it.code==1) {
-                        softView.get()?.loadExchangeShopSuccess(it.data)
+                    if (it.code == 1) {
+                        softView.get()?.loadModifyPhoneSuccess()
                     } else {
-                        softView.get()?.loadExchangeShopFail(Throwable(it.msg))
+                        softView.get()?.loadModifyPhoneFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadExchangeShopFail(throwable) }
+                }, { throwable -> softView.get()?.loadModifyPhoneFail(throwable) }
             )
     }
 }

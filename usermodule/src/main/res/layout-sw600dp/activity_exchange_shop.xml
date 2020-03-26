@@ -100,26 +100,22 @@
             tools:text="智能手表电话蓝牙手环" />
 
         <TextView
-            android:id="@+id/tvShopNumber"
+            android:id="@+id/tvSingleIntegral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_6"
+            android:textColor="@color/user_theme_color"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/ivShopImage"
             app:layout_constraintStart_toStartOf="@+id/tvShopName"
-            tools:text="X 1" />
+            tools:text="3000" />
 
-
-        <TextView
-            android:id="@+id/tvIntegral"
+        <com.xhs.baselibrary.weight.AmountView
+            android:id="@+id/amountNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/color_bf0008"
-            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="300积分" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

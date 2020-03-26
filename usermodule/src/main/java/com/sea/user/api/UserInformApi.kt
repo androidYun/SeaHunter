@@ -3,8 +3,10 @@ package com.sea.user.api
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.login.NLoginResponse
 import com.sea.user.activity.model.BaseEntry
+import com.sea.user.activity.phone.NModifyPhoneModelReq
 import com.sea.user.activity.register.NRegisterModelReq
 import com.sea.user.activity.register.NRegisterModelResponse
+import com.sea.user.presenter.user.NUserInformReq
 import com.sea.user.presenter.user.NUserInformResponse
 import com.xhs.prison.model.NFillInformReq
 import com.xhs.prison.model.NForgetPasswordModelReq
@@ -31,6 +33,10 @@ interface UserInformApi {
     @POST("getdata.ashx")
     fun loadFillInform(@Body nFillInformReq: NFillInformReq): Observable<BaseEntry>
 
+
     @POST("getdata.ashx")
-    fun loadUserInform(@Query("command") command: Int = 5): Observable<NUserInformResponse>
+    fun loadUserInform(@Body nUserInformReq: NUserInformReq = NUserInformReq()): Observable<NUserInformResponse>
+
+    @POST("getdata.ashx")
+    fun loadModifyPhone(@Body nModifyPhoneModelReq: NModifyPhoneModelReq): Observable<BaseEntry>
 }
