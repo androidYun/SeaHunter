@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
  */
 class ShopOrderListActivity : BaseSeaUserActivity() {
 
+    private val status by lazy { intent.extras?.getInt(order_status_key) ?: 0 }
 
     private val tabTitle = mutableListOf(
         ShopOrderModel("全部", 0),
@@ -39,6 +40,8 @@ class ShopOrderListActivity : BaseSeaUserActivity() {
         tabLayout.setupWithViewPager(viewPage)
         tabLayout.tabMode = TabLayout.MODE_FIXED
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
+        if (status <= 4)
+            viewPage.currentItem = status
     }
 
     inner class ShopOrderPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
@@ -56,4 +59,12 @@ class ShopOrderListActivity : BaseSeaUserActivity() {
     }
 
     class ShopOrderModel(val titleName: String, val type: Int)
+
+
+    companion object {
+        private const val order_status_key = "order_status_key"
+        fun getInstance(status: Int = 0) = Bundle().apply {
+            putInt(order_status_key, status)
+        }
+    }
 }

@@ -9,9 +9,6 @@
             android:name=".activity.phone.ModifyPhoneActivity"
             android:label="@string/title_ModifyPhone" />
         <activity
-            android:name=".activity.phone.ModityPhoneActivity"
-            android:label="@string/title_ModityPhone" />
-        <activity
             android:name=".activity.wallet.reflect.ReflectActivity"
             android:label="@string/title_Reflect" />
         <activity
@@ -110,6 +107,9 @@
             android:name=".activity.wallet.MineWalletActivity"
             android:label="@string/mine_wallet"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.main.SeaMainActivity"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>

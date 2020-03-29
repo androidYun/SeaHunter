@@ -37,18 +37,16 @@ class NShopCarModelResponse(
 
 @Parcelize
 data class ShopCarItem(
-    val article_id: Int = 0,
-    val channel_id: Int = 0,
-    val goods_id: Int = 0,
-    val goods_no: String = "",
-    val img_url: String = "",
-    val point: Int = 0,
-    val quantity: Int = 0,
-    val sell_price: Int = 0,
-    val spec_text: String = "",
+    var article_id: Int = 0,
+    var channel_id: Int = 0,
+    var goods_id: Int = 0,
+    var img_url: String = "",
+    var point: Int = 0,
+    var quantity: Int = 0,
+    var sell_price: Int = 0,
+    var spec_text: String = "",
     var stock_quantity: Int = 0,
-    val title: String = "",
-    val user_price: Int = 0,
+    var title: String = "",
     var buyCount: Int = 1,
     var isCheck: Boolean = false
 ) : Parcelable

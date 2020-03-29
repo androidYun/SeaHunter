@@ -16,14 +16,6 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/bg_user_center_top" />
 
-        <ImageView
-            android:id="@+id/ivSet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:src="@mipmap/ic_set" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -56,8 +48,10 @@
                             android:paddingBottom="30dp">
 
                             <TextView
+                                android:id="@+id/tvNickName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="40dp"
                                 android:gravity="center"
                                 android:textColor="@color/color_3"
                                 android:textSize="16sp"
@@ -225,13 +219,6 @@
 
                             </LinearLayout>
                         </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/ivHead"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="-35dp" />
                     </FrameLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -336,6 +323,22 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+
+        <ImageView
+            android:id="@+id/ivHead"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45dp" />
+
+        <ImageView
+            android:id="@+id/ivSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:src="@mipmap/ic_set" />
     </FrameLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

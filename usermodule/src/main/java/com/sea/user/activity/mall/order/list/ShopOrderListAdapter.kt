@@ -16,7 +16,7 @@ class ShopOrderListAdapter(mList: List<ShopOrderListItem>) :
     }
 
 
-    override fun convert(helper: BaseViewHolder, item: ShopOrderListItem) {
+    override fun convert(helper: BaseViewHolder, item: ShopOrderListItem?) {
         when (getItemViewType(helper.layoutPosition)) {
             1 -> {
                 helper.setText(R.id.tvShopOrderState, "待付款")
@@ -38,10 +38,10 @@ class ShopOrderListAdapter(mList: List<ShopOrderListItem>) :
                 helper.setText(R.id.tvShopOrderState, "已完成")
             }
         }
-        helper.setText(R.id.tvShopOrderNo,"订单号：${item.order_no}")
+        helper.setText(R.id.tvShopOrderNo, "订单号：${item?.order_no}")
         helper.setText(R.id.tvShopOrderState, "代付款")
         val rvOrderShop = helper.getView<RecyclerView>(R.id.rvOrderShop)
         rvOrderShop.layoutManager = LinearLayoutManager(mContext)
-        rvOrderShop.adapter = OrderGoodAdapter(item.order_goods)
+        rvOrderShop?.adapter = OrderGoodAdapter(item?.order_goods ?: listOf())
     }
 }

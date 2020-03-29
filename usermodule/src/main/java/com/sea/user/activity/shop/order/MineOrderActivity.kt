@@ -8,7 +8,6 @@ import com.google.android.material.tabs.TabLayout
 import com.sea.user.R
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_mine_order.*
-import kotlinx.android.synthetic.main.activity_mine_wallet.*
 
 class MineOrderActivity : BaseActivity() {
 
@@ -28,8 +27,8 @@ class MineOrderActivity : BaseActivity() {
     private fun initView() {
         viewPage.adapter = ShopOrderPageAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(viewPage)
-        tabLayout.tabMode = TabLayout.MODE_FIXED;
-        tabLayout.tabGravity = TabLayout.GRAVITY_FILL;
+        tabLayout.tabMode = TabLayout.MODE_FIXED
+        tabLayout.tabGravity = TabLayout.GRAVITY_FILL
     }
 
     inner class ShopOrderPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

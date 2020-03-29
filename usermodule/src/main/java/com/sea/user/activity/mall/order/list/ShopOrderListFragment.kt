@@ -1,17 +1,26 @@
 package com.sea.user.activity.mall.order.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.user.R
+import com.sea.user.activity.mall.detail.ShopDetailActivity
+import com.sea.user.activity.mall.order.detail.MallOrderDetailActivity
+import com.sea.user.presenter.sea.order.cancel.CancelOrderContact
+import com.sea.user.presenter.sea.order.cancel.CancelOrderPresenter
+import com.sea.user.presenter.sea.order.cancel.NCancelOrderModelReq
 import kotlinx.android.synthetic.main.fragment_shop_order_list.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderListView {
+class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderListView,
+    CancelOrderContact.ICancelOrderView {
 
     private val mShopOrderListPresenter by lazy { ShopOrderListPresenter().apply { attachView(this@ShopOrderListFragment) } }
+
+    private val mCancelOrderPresenter by lazy { CancelOrderPresenter().apply { attachView(this@ShopOrderListFragment) } }
 
     private val nShopOrderListReq = NShopOrderListModelReq()
 
@@ -24,8 +33,13 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
     private var totalCount = 0
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(context).inflate(R.layout.fragment_shop_order_list, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return LayoutInflater.from(context)
+            .inflate(R.layout.fragment_shop_order_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,6 +63,7 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
 
     private fun initListener() {
         swipeShopOrderList.setOnRefreshListener {
+            nShopOrderListReq.page_index = 1
             mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
         }
         mShopOrderListAdapter.setOnLoadMoreListener({
@@ -58,6 +73,24 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
                 mShopOrderListAdapter.loadMoreEnd()
             }
         }, rvShopOrderList)
+        mShopOrderListAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.tvLookDetail -> {
+                    startActivity(Intent(context, MallOrderDetailActivity::class.java).apply {
+                        putExtras(
+                            MallOrderDetailActivity.getInstance(
+                                mShopOrderListList[position]
+                            )
+                        )
+                    })
+
+                }
+                R.id.tvCancelOrder -> {
+                    mCancelOrderPresenter.loadCancelOrder(NCancelOrderModelReq(id = mShopOrderListList[position].id))
+                }
+            }
+
+        }
     }
 
     override fun loadShopOrderListSuccess(mList: List<ShopOrderListItem>, totalCount: Int) {
@@ -75,8 +108,17 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
 
     override fun loadShopOrderListFail(throwable: Throwable) {
         handleError(throwable)
-        swipeShopOrderList.isRefreshing=false
+        swipeShopOrderList.isRefreshing = false
         mShopOrderListAdapter.loadMoreComplete()
+    }
+
+    override fun loadCancelOrderSuccess() {
+        nShopOrderListReq.page_index = 1
+        mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
+    }
+
+    override fun loadCancelOrderFail(throwable: Throwable) {
+        handleError(throwable)
     }
 
     override fun showLoading() {

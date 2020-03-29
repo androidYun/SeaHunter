@@ -15,7 +15,7 @@ class OrderGoodAdapter(mList: List<OrderGood>) :
         )
         helper?.setText(R.id.tvShopName, item.goods_title)
         helper?.setText(R.id.tvTags, item.spec_text)
-        helper?.setText(R.id.tvCount, item.quantity.toString())
+        helper?.setText(R.id.tvCount, "X ${item.quantity}")
         helper?.setText(R.id.tvShopPrice, "￥${item.goods_price}")
     }
 }

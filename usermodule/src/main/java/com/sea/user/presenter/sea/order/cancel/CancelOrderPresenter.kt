@@ -1,17 +1,17 @@
-package com.sea.user.activity.mall.order.detail
+package com.sea.user.presenter.sea.order.cancel
 
-import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
+import com.sea.user.api.ShopApi
 
 
-class MallOrderDetailPresenter : IPresenter<MallOrderDetailContact.IMallOrderDetailView>(),
-    MallOrderDetailContact.IMallOrderDetailPresenter {
-    override fun loadMallOrderDetail(nMallOrderDetailModelReq: NMallOrderDetailModelReq) {
+class CancelOrderPresenter : IPresenter<CancelOrderContact.ICancelOrderView>(),
+    CancelOrderContact.ICancelOrderPresenter {
+    override fun loadCancelOrder(nCancelOrderModelReq: NCancelOrderModelReq) {
         RetrofitUtils.getRetrofit()
             .create(ShopApi::class.java)
-            .loadMallOrderDetail(nMallOrderDetailModelReq)
+            .loadCancelOrder(nCancelOrderModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -23,13 +23,13 @@ class MallOrderDetailPresenter : IPresenter<MallOrderDetailContact.IMallOrderDet
             }
             .subscribe(
                 {
-                    if (it.code==1) {
-                        softView.get()?.loadMallOrderDetailSuccess(it.data)
+                    if (it.code == 1) {
+                        softView.get()?.loadCancelOrderSuccess()
                     } else {
-                        softView.get()?.loadMallOrderDetailFail(Throwable(it.msg))
+                        softView.get()?.loadCancelOrderFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadMallOrderDetailFail(throwable) }
+                }, { throwable -> softView.get()?.loadCancelOrderFail(throwable) }
             )
     }
 }

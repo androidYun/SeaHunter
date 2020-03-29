@@ -2,6 +2,7 @@ package com.sea.user.activity.inform
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
@@ -9,10 +10,7 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.sea.user.R
 import com.sea.user.activity.login.LoginActivity
-import com.sea.user.activity.mall.SeaFoodMallActivity
 import com.sea.user.activity.password.ForgetPasswordActivity
-import com.sea.user.activity.register.RegisterActivity
-import com.sea.user.common.Constants
 import com.sea.user.presenter.update.UpdateImageContact
 import com.sea.user.presenter.update.UpdateImagePresenter
 import com.sea.user.utils.sp.UserInformSpUtils
@@ -57,7 +55,7 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
 
     private fun initData() {
         evUserName.setText(UserInformSpUtils.getUserInformModel().nick_name)
-        ImageLoader.loadCircleImageView(ivUploadHead, UserInformSpUtils.getUserInformModel().avatar)
+        ImageLoader.loadCircleImageView(ivUploadHead as ImageView, UserInformSpUtils.getUserInformModel().avatar)
     }
 
     private fun initListener() {
@@ -73,7 +71,7 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
                 return@setOnClickListener
             }
             nFillInformReq.nick_name = nickname
-            fillInformPresenter.loadFillInform(NFillInformReq())
+            fillInformPresenter.loadFillInform(nFillInformReq)
         }
         tvAccountLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -98,7 +96,7 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .forResult(object : OnResultCallbackListener {
                     override fun onResult(result: MutableList<LocalMedia>) {
-                        ImageLoader.loadCircleImageView(ivUploadHead, result[0].cutPath)
+                        ImageLoader.loadCircleImageView(ivUploadHead as ImageView, result[0].cutPath)
                         updateImagePresenter.loadUpdateImage("user", result[0].cutPath)
                     }
 

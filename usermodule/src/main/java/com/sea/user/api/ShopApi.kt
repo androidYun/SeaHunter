@@ -8,8 +8,6 @@ import com.sea.user.activity.mall.car.NShopCarModelReq
 import com.sea.user.activity.mall.car.NShopCarModelResponse
 import com.sea.user.activity.mall.detail.NShopDetailModelReq
 import com.sea.user.activity.mall.detail.NShopDetailResponse
-import com.sea.user.activity.mall.order.detail.NMallOrderDetailModelReq
-import com.sea.user.activity.mall.order.detail.NMallOrderDetailResponse
 import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
 import com.sea.user.activity.mall.order.list.NShopOrderListModelResponse
 import com.sea.user.activity.mall.search.NAddSearchMallModelReq
@@ -23,6 +21,7 @@ import com.sea.user.presenter.sea.mall.NMallListModelReq
 import com.sea.user.presenter.sea.mall.NMallListModelResponse
 import com.sea.user.presenter.sea.order.NPlaceOrderModelReq
 import com.sea.user.presenter.sea.order.NPlaceOrderResponse
+import com.sea.user.presenter.sea.order.cancel.NCancelOrderModelReq
 import com.sea.user.presenter.store.NStoreListModelReq
 import com.sea.user.presenter.store.NStoreListResponse
 import io.reactivex.Observable
@@ -36,7 +35,7 @@ interface ShopApi {
 
 
     @POST("getdata.ashx")
-    fun loadSearchMall(@Body nSearchMallModelReq: NSearchMallModelReq): Observable<NSearchMallModelResponse>
+    fun loadCancelOrder(@Body nCancelOrderModelReq: NCancelOrderModelReq): Observable<BaseEntry>
 
     @POST("getdata.ashx")
     fun loadAddSearch(@Body nAddSearchMallModelReq: NAddSearchMallModelReq): Observable<BaseEntry>
@@ -67,8 +66,6 @@ interface ShopApi {
     @POST("getdata.ashx")
     fun loadShopOrderList(@Body nShopOrderListModelReq: NShopOrderListModelReq): Observable<NShopOrderListModelResponse>
 
-    @POST("getdata.ashx")
-    fun loadMallOrderDetail(@Body nMallOrderDetailModelReq: NMallOrderDetailModelReq): Observable<NMallOrderDetailResponse>
 
     @POST("getdata.ashx")
     fun loadStoreList(@Body nStoreListModelReq: NStoreListModelReq): Observable<NStoreListResponse>

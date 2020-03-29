@@ -11,6 +11,7 @@ import com.sea.user.activity.integral.detail.IntegralDetailActivity
 import com.sea.user.activity.integral.exchange.ExchangeListActivity
 import com.sea.user.activity.integral.mall.IntegralMallActivity
 import com.sea.user.activity.login.UserInformModel
+import com.sea.user.activity.mall.order.list.ShopOrderListActivity
 import com.sea.user.activity.set.SetActivity
 import com.sea.user.activity.shop.order.MineOrderActivity
 import com.sea.user.activity.wallet.MineWalletActivity
@@ -48,6 +49,7 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
     }
 
     private fun initData() {
+        tvNickName.text = UserInformSpUtils.getUserInformModel().nick_name
         mUserCenterPresenter.loadUserInform()
     }
 
@@ -67,21 +69,41 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
         tvIntegral.setOnClickListener {
             startActivity(Intent(context, IntegralDetailActivity::class.java))
         }
+        tvLookAllOrder.setOnClickListener {
+            startActivity(Intent(this.context, ShopOrderListActivity::class.java))
+        }
+
         //全部订单和其他订单
         tvAllOrder.setOnClickListener {
-            startActivity(Intent(context, MineOrderActivity::class.java))
+            startActivity(Intent(context, ShopOrderListActivity::class.java))
         }
         tvWaitPayment.setOnClickListener {
-            startActivity(Intent(context, MineOrderActivity::class.java))
+            startActivity(Intent(context, ShopOrderListActivity::class.java).apply {
+                putExtras(
+                    ShopOrderListActivity.getInstance(1)
+                )
+            })
         }
         tvWaitDelivery.setOnClickListener {
-            startActivity(Intent(context, MineOrderActivity::class.java))
+            startActivity(Intent(context, ShopOrderListActivity::class.java).apply {
+                putExtras(
+                    ShopOrderListActivity.getInstance(2)
+                )
+            })
         }
         tvWaitReceived.setOnClickListener {
-            startActivity(Intent(context, MineOrderActivity::class.java))
+            startActivity(Intent(context, ShopOrderListActivity::class.java).apply {
+                putExtras(
+                    ShopOrderListActivity.getInstance(3)
+                )
+            })
         }
         tvFinish.setOnClickListener {
-            startActivity(Intent(context, MineOrderActivity::class.java))
+            startActivity(Intent(context, ShopOrderListActivity::class.java).apply {
+                putExtras(
+                    ShopOrderListActivity.getInstance(4)
+                )
+            })
         }
         //下面商城Item
         tvSeaFoodMall.setOnClickListener {
@@ -111,7 +133,7 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
         tvIntegral.text = userInformModel.point.toString()
         ImageLoader.loadCircleImageView(
             ivHead,
-            Constants.baseUrl.plus(userInformModel.avatar)
+            Constants.baseUrl.plus(userInformModel.avatar.replace("//", "/"))
         )
         swipeUserCenter.isRefreshing = false
     }

@@ -2,65 +2,65 @@ package com.sea.user.activity.mall.order.detail
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.activity.mall.order.list.OrderGoodAdapter
+import com.sea.user.activity.mall.order.list.ShopOrderListItem
+import com.sea.user.constant.OrderEnum
+import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_mall_order_detail.*
 
-class MallOrderDetailActivity : BaseActivity(), MallOrderDetailContact.IMallOrderDetailView {
-
-    private val mMallOrderDetailPresenter by lazy {
-        MallOrderDetailPresenter().apply {
-            attachView(
-                this@MallOrderDetailActivity
-            )
-        }
+class MallOrderDetailActivity : BaseActivity() {
+    private val shopOrderListItem by lazy {
+        intent?.extras?.getParcelable(mall_shop_order_detail_item_key) ?: ShopOrderListItem()
     }
-
-    private lateinit var mMallOrderDetailAdapter: MallOrderDetailAdapter
-
-    private val mMallOrderList = mutableListOf<NMallOrderDetailListItem>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mall_order_detail)
-        initView()
         initData()
         initListener()
     }
 
 
-    private fun initView() {
-        mMallOrderDetailAdapter = MallOrderDetailAdapter(mMallOrderList)
-        rvMallConfirmOrder.layoutManager = LinearLayoutManager(this)
-        rvMallConfirmOrder.adapter = mMallOrderDetailAdapter
-    }
-
     private fun initData() {
-        mMallOrderDetailPresenter.loadMallOrderDetail(NMallOrderDetailModelReq())
+        tvOrderTopStatus.text =
+            OrderEnum.getOrder(shopOrderListItem.status, shopOrderListItem.payment_status)
+                .statusTitle
+        tvNamePhoneNumber.text = shopOrderListItem.accept_name.plus("  ${shopOrderListItem.mobile}")
+        tvDetailAddress.text =
+            shopOrderListItem.area + shopOrderListItem.address
+        rvMallConfirmOrder.layoutManager = LinearLayoutManager(this)
+        rvMallConfirmOrder?.adapter = OrderGoodAdapter(shopOrderListItem.order_goods)
+        tvOrderNo.text = "订单号:${shopOrderListItem.order_no}"
+        tvOrderTime.text = "下单时间:${shopOrderListItem.add_time}"
+        tvOrderStatus.text = "订单状态:${OrderEnum.getOrder(
+            shopOrderListItem.status,
+            shopOrderListItem.payment_status
+        ).statusTitle}"
+        if (shopOrderListItem.status == OrderEnum.WaitPayment.status) {
+            ivOrderStatus.setBackgroundResource(R.mipmap.ic_details_payment)
+        } else if (shopOrderListItem.status == OrderEnum.WaitPayment.status) {
+            if (shopOrderListItem.payment_status == 1) {
+                ivOrderStatus.setBackgroundResource(R.mipmap.ic_details_delivery)
+            } else {
+                ivOrderStatus.setBackgroundResource(R.mipmap.ic_details_goods)
+            }
+        } else if (shopOrderListItem.status == OrderEnum.AlreadyFinish.status) {
+            ivOrderStatus.setBackgroundResource(R.mipmap.ic_details_complete)
+        }
     }
 
     private fun initListener() {
 
     }
 
-    override fun loadMallOrderDetailSuccess(content: Any) {
-
-
-    }
-
-    override fun loadMallOrderDetailFail(throwable: Throwable) {
-        handleError(throwable)
-    }
-
-    override fun showLoading() {
-        showProgressDialog()
-    }
-
-    override fun hideLoading() {
-        hideProgressDialog()
-    }
-
     companion object {
-        fun getInstance() = Bundle().apply { }
+        private const val mall_shop_order_detail_item_key = "mall_shop_order_detail_item_key"
+        fun getInstance(
+            shopOrderListItem: ShopOrderListItem
+        ): Bundle {
+            return Bundle().apply {
+                putParcelable(mall_shop_order_detail_item_key, shopOrderListItem)
+            }
+        }
     }
 }

@@ -1,6 +1,8 @@
 package com.sea.user.activity.mall.order.list
 
+import android.os.Parcelable
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import kotlinx.android.parcel.Parcelize
 
 class NShopOrderListModelReq(
     val command: Int = 15,
@@ -18,19 +20,20 @@ data class NShopOrderListModelResponse(
     val totalCount: Int = 0
 )
 
+@Parcelize
 data class ShopOrderListItem(
     val accept_name: String = "",
     val add_time: String = "",
     val address: String = "",
     val area: String = "",
-    val complete_time: Any = Any(),
-    val confirm_time: Any = Any(),
+    val complete_time: String? = "",
+    val confirm_time: String? = "",
     val email: String = "",
     val express_fee: Double = 0.0,
     val express_id: Int = 0,
     val express_no: String = "",
     val express_status: Int = 0,
-    val express_time: Any = Any(),
+    val express_time: String? = "",
     val id: Int = 0,
     val invoice_taxes: Double = 0.0,
     val invoice_title: String = "",
@@ -44,7 +47,7 @@ data class ShopOrderListItem(
     val payment_fee: Double = 0.0,
     val payment_id: Int = 0,
     val payment_status: Int = 0,
-    val payment_time: Any = Any(),
+    val payment_time: String? = "",
     val point: Int = 0,
     val post_code: String = "",
     val real_amount: Double = 0.0,
@@ -56,12 +59,14 @@ data class ShopOrderListItem(
     val trade_no: String = "",
     val user_id: Int = 0,
     val user_name: String = ""
-): MultiItemEntity {
+) : Parcelable, MultiItemEntity {
     override fun getItemType(): Int {
-        return status+1
+        return status
     }
 }
 
+
+@Parcelize
 data class OrderGood(
     val article_id: Int = 0,
     val channel_id: Int = 0,
@@ -76,4 +81,4 @@ data class OrderGood(
     val quantity: Int = 0,
     val real_price: Double = 0.0,
     val spec_text: String = ""
-)
+) : Parcelable

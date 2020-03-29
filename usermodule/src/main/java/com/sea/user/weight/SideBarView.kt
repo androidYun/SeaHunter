@@ -81,7 +81,7 @@ class SideBarView @JvmOverloads constructor(
         tvSidebarCar.isActivated = false
         tvSidebarOrder.isActivated = false
         tvSidebarMine.isActivated = false
-        view.setTextColor(UIUtils.getInstance().getColor(R.color.base_color_theme))
+        view.setTextColor(UIUtils.getInstance().getColor(R.color.user_theme_color))
         view.isActivated = true
     }
 

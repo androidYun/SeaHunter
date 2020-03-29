@@ -7,6 +7,8 @@ import com.sea.user.R
 import com.sea.user.activity.mall.SeaFoodMallActivity
 import com.sea.user.activity.mall.car.NEditShopCarModelReq
 import com.sea.user.activity.mall.car.ShopCarActivity
+import com.sea.user.activity.mall.car.ShopCarItem
+import com.sea.user.activity.mall.order.confirm.MallConfirmOrderActivity
 import com.sea.user.activity.mall.select.SelectStoreActivity
 import com.sea.user.dialog.SelectShopSpecDialog
 import com.sea.user.listener.DialogListener
@@ -20,18 +22,16 @@ import com.youth.banner.config.IndicatorConfig
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 
 class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
-    ShopCarEditContact.IShopCarEditView{
+    ShopCarEditContact.IShopCarEditView {
 
     private val mShopDetailPresenter by lazy { ShopDetailPresenter().apply { attachView(this@ShopDetailActivity) } }
 
     private val mShopCarEditPresenter by lazy { ShopCarEditPresenter().apply { attachView(this@ShopDetailActivity) } }
 
 
-
-
-
-
     private var nShopDetailModel: NShopDetailModel = NShopDetailModel()
+
+    private val shopCarItem = ShopCarItem()
 
     private val nEditShopCarModelReq =
         NEditShopCarModelReq(shop_id = StoreShopSpUtils.getStoreShopId())
@@ -78,7 +78,9 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
             )
         }
         tvOnceBuy.setOnClickListener {
-
+//            startActivity(Intent(this, MallConfirmOrderActivity::class.java).apply {
+//                putExtras(MallConfirmOrderActivity.getInstance(itemList, allPrice, allPoint))
+//            })
         }
         swipeShopDetail.setOnRefreshListener {
             mShopDetailPresenter.loadShopDetail(NShopDetailModelReq(good_id = goodId))
@@ -103,7 +105,6 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
     }
 
 
-
     override fun loadShopDetailSuccess(
         nShopDetailModel: NShopDetailModel
     ) {
@@ -113,12 +114,23 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
         tvPrice.text = nShopDetailModel.sellPrice
         tvShopPrice.text = nShopDetailModel.sellPrice
         tvSaleNumber.text = nShopDetailModel.saleNumber
+//        /*给要购买的商品赋值*/
+//        shopCarItem.point=nShopDetailModel.point
+//        shopCarItem.sell_price=nShopDetailModel.sellPrice
+//        shopCarItem.article_id=nShopDetailModel.id
+//        shopCarItem.channel_id=nShopDetailModel.channelId
+//        shopCarItem.img_url=nShopDetailModel.imageUrl
+//        shopCarItem.title=nShopDetailModel.title
         mBannerList.clear()
         mBannerList.addAll(nShopDetailModel.bannerList)
         shopBannerAdapter = ShopBannerAdapter(mBannerList)
         bannerView.adapter = shopBannerAdapter
         swipeShopDetail.isRefreshing = false
         nEditShopCarModelReq.channel_id = nShopDetailModel.channelId
+        if (nShopDetailModel.specs.isNullOrEmpty()) {
+            nEditShopCarModelReq.article_id = nShopDetailModel.id
+            nEditShopCarModelReq.goods_id = 0
+        }
     }
 
     override fun loadShopDetailFail(throwable: Throwable) {
@@ -142,6 +154,7 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
     override fun hideLoading() {
         hideProgressDialog()
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -155,6 +168,7 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
             }
         }
     }
+
     companion object {
         private const val good_id_key = "good_id_key"
         const val select_store_name_shop_detail_request_code = 200
