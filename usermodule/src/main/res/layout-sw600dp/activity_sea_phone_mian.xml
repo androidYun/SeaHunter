@@ -28,18 +28,6 @@
             android:textColor="@drawable/main_bottombar_text_selector" />
 
         <RadioButton
-            android:id="@+id/rBtnOrder"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="false"
-            android:drawableTop="@drawable/select_left_sidebar_tab_order"
-            android:gravity="center"
-            android:text="点餐"
-            android:textColor="@drawable/main_bottombar_text_selector" />
-
-        <RadioButton
             android:id="@+id/rBtnCar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -49,6 +37,18 @@
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="购物车"
+            android:textColor="@drawable/main_bottombar_text_selector" />
+
+        <RadioButton
+            android:id="@+id/rBtnOrder"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="false"
+            android:drawableTop="@drawable/select_left_sidebar_tab_order"
+            android:gravity="center"
+            android:text="订单"
             android:textColor="@drawable/main_bottombar_text_selector" />
 
         <RadioButton

@@ -2,6 +2,7 @@ package com.sea.user.activity.mall.detail
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import com.sea.user.activity.mall.SeaFoodMallActivity
@@ -44,6 +45,8 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
 
     private var selectShopSpecDialog: SelectShopSpecDialog? = null
 
+    private var shopParamsAdapter: ShopParamsAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_detail)
@@ -78,7 +81,7 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
             )
         }
         tvOnceBuy.setOnClickListener {
-//            startActivity(Intent(this, MallConfirmOrderActivity::class.java).apply {
+            //            startActivity(Intent(this, MallConfirmOrderActivity::class.java).apply {
 //                putExtras(MallConfirmOrderActivity.getInstance(itemList, allPrice, allPoint))
 //            })
         }
@@ -126,6 +129,10 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
         shopBannerAdapter = ShopBannerAdapter(mBannerList)
         bannerView.adapter = shopBannerAdapter
         swipeShopDetail.isRefreshing = false
+        /*参数设置*/
+        rvDetailParams.layoutManager = LinearLayoutManager(this)
+        shopParamsAdapter = ShopParamsAdapter(nShopDetailModel.paramsList)
+        rvDetailParams.adapter = shopBannerAdapter
         nEditShopCarModelReq.channel_id = nShopDetailModel.channelId
         if (nShopDetailModel.specs.isNullOrEmpty()) {
             nEditShopCarModelReq.article_id = nShopDetailModel.id

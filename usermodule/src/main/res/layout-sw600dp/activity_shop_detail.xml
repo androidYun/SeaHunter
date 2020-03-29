@@ -143,6 +143,14 @@
                     android:layout_height="2dp"
                     android:background="@color/line_view" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="—   详细参数   —"
+                    android:textColor="@color/color_6"
+                    android:textSize="16sp" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvDetailParams"
                     android:layout_width="match_parent"

@@ -4,8 +4,5 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include layout="@layout/include_tab_layout_view_pager" />
 </LinearLayout>

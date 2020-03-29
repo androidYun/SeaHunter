@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.sea.user.R
 import com.sea.user.activity.base.BaseSeaUserActivity
+import com.sea.user.activity.center.UserCenterFragment
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
 
@@ -20,13 +21,6 @@ class ShopOrderListActivity : BaseSeaUserActivity() {
 
     private val status by lazy { intent.extras?.getInt(order_status_key) ?: 0 }
 
-    private val tabTitle = mutableListOf(
-        ShopOrderModel("全部", 0),
-        ShopOrderModel("待付款", 1),
-        ShopOrderModel("待发货", 2),
-        ShopOrderModel("待收货", 3),
-        ShopOrderModel("已完成", 4)
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,29 +30,10 @@ class ShopOrderListActivity : BaseSeaUserActivity() {
 
     private fun initView() {
         selectTab("订单")
-        viewPage.adapter = ShopOrderPageAdapter(supportFragmentManager)
-        tabLayout.setupWithViewPager(viewPage)
-        tabLayout.tabMode = TabLayout.MODE_FIXED
-        tabLayout.tabGravity = TabLayout.GRAVITY_FILL
-        if (status <= 4)
-            viewPage.currentItem = status
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.add(R.id.frameLayout, ShopOrderFragment.getInstance(status))
+        beginTransaction.commit()
     }
-
-    inner class ShopOrderPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        override fun getItem(position: Int): Fragment {
-            return ShopOrderListFragment.getInstance(tabTitle[position].type)
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return tabTitle[position].titleName
-        }
-
-        override fun getCount(): Int {
-            return tabTitle.size
-        }
-    }
-
-    class ShopOrderModel(val titleName: String, val type: Int)
 
 
     companion object {

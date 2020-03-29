@@ -113,7 +113,7 @@ class NShopDetailModelReq(val command: Int = 10, var good_id: Int = -1)
 data class NShopDetailModel(
     val id: Int = -1,
     val bannerList: List<String> = listOf(),
-    val paramsList: List<String> = listOf(),
+    val paramsList: List<NShopParamsItem> = listOf(),
     val title: String = "",
     val content: String = "",
     val tags: String = "",
@@ -126,3 +126,5 @@ data class NShopDetailModel(
     val goods: List<Good> = listOf(),
     val point: String = ""
 )
+
+data class NShopParamsItem(val title: String, val value: String)

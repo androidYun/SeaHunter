@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class BaseFragment extends RxFragment {
 
+
     /**
      * 申请运行时权限
      *

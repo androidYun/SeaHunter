@@ -7,13 +7,15 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.sea.user.R
 import com.sea.user.activity.center.UserCenterFragment
+import com.sea.user.activity.mall.SeaFoodMallFragment
 import com.sea.user.activity.mall.car.ShopCarFragment
+import com.sea.user.activity.mall.order.list.ShopOrderFragment
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_sea_phone_mian.*
 
 class SeaMainActivity : BaseActivity() {
 
-    lateinit var seaMailViewPageAdapter: SeaMailViewPageAdapter
+    private lateinit var seaMailViewPageAdapter: SeaMailViewPageAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sea_phone_mian)
@@ -44,10 +46,10 @@ class SeaMainActivity : BaseActivity() {
                 R.id.rBtnSea -> {
                     viewPager.currentItem = 0
                 }
-                R.id.rBtnOrder -> {
+                R.id.rBtnCar -> {
                     viewPager.currentItem = 1
                 }
-                R.id.rBtnCar -> {
+                R.id.rBtnOrder -> {
                     viewPager.currentItem = 2
                 }
                 R.id.rBtnMine -> {
@@ -68,13 +70,13 @@ class SeaMainActivity : BaseActivity() {
         override fun getItem(position: Int): Fragment {
             when (position) {
                 0 -> {
-                    return ShopCarFragment.getInstance()
+                    return SeaFoodMallFragment.getInstance()
                 }
                 1 -> {
                     return ShopCarFragment.getInstance()
                 }
                 2 -> {
-                    return ShopCarFragment.getInstance()
+                    return ShopOrderFragment.getInstance()
                 }
                 3 -> {
                     return UserCenterFragment.getInstance()

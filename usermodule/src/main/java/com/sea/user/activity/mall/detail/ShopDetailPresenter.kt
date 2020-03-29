@@ -59,14 +59,14 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
         return "已售：${fields.sale_num}    库存：${fields.stock_quantity} "
     }
 
-    private fun getParamsList(title: String, fields: Fields): List<String> {
-        val paramsList = mutableListOf<String>()
-        paramsList.add("商品名称:  $title")
-        paramsList.add("商品重量:  ${fields.weight}")
-        paramsList.add("产地:  ${fields.place}")
-        paramsList.add("人工编号:  ${fields.worker_no}")
-        paramsList.add("生产编码:  ${fields.product_code}")
-        paramsList.add("食用方式:  ${fields.eat_way}")
+    private fun getParamsList(title: String, fields: Fields): List<NShopParamsItem> {
+        val paramsList = mutableListOf<NShopParamsItem>()
+        paramsList.add(NShopParamsItem("商品名称:", title))
+        paramsList.add(NShopParamsItem("商品重量:", fields.weight))
+        paramsList.add(NShopParamsItem("产地:", fields.place))
+        paramsList.add(NShopParamsItem("人工编号:", fields.worker_no))
+        paramsList.add(NShopParamsItem("生产编码:", fields.product_code))
+        paramsList.add(NShopParamsItem("食用方式:", fields.eat_way))
         return paramsList
     }
 
