@@ -14,6 +14,7 @@ import com.sea.user.activity.mall.detail.Good
 import com.sea.user.activity.mall.detail.NShopDetailModel
 import com.sea.user.activity.mall.detail.ShopSpecItemSon
 import com.sea.user.activity.mall.detail.SpecListAdapter
+import com.sea.user.common.Constants
 import com.sea.user.listener.DialogListener
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 import com.xhs.baselibrary.weight.AmountView
@@ -60,14 +61,13 @@ class SelectShopSpecDialog(
     }
 
     private fun initData() {
-        ImageLoader.loadImageWithUrl(ivImage, nShopDetailModel.imageUrl)
-        tvPrice.text = nShopDetailModel.sellPrice
+        ImageLoader.loadImageWithUrl(ivImage,  Constants.baseUrl.plus(nShopDetailModel.imageUrl) )
+        tvPrice.text = nShopDetailModel.sellPrice.toString()
         tvShopNumber.text = nShopDetailModel.saleNumber
         rvSpec.layoutManager = LinearLayoutManager(context)
         specAdapter = SpecListAdapter(nShopDetailModel.specs)
         rvSpec.adapter = specAdapter
-        val good = getGood(specAdapter.selectSpec(), nShopDetailModel.goods)
-        tvAmount.setGoods_storage(good.stock_quantity)
+        tvAmount.setGoods_storage(nShopDetailModel.stockQuantity)
     }
 
     private var amount: Int = 1

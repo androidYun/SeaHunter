@@ -1,5 +1,7 @@
 package com.sea.user.activity.mall.detail
 
+import java.math.BigDecimal
+
 
 data class NShopDetailResponse(
     val code: Int = 0,
@@ -119,7 +121,7 @@ data class NShopDetailModel(
     val tags: String = "",
     val saleNumber: String = "",
     val stockQuantity: Int = 0,//库存
-    val sellPrice: String = "",
+    val sellPrice: BigDecimal = BigDecimal(0),
     val imageUrl: String = "",
     val channelId: Int = -1,
     val specs: List<ShopSpecItem> = listOf(),

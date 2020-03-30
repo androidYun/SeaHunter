@@ -1,5 +1,6 @@
 package com.sea.user.activity.mall.order.list
 
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
@@ -20,13 +21,17 @@ class ShopOrderListAdapter(mList: List<ShopOrderListItem>) :
         when (getItemViewType(helper.layoutPosition)) {
             1 -> {
                 helper.setText(R.id.tvShopOrderState, "待付款")
+                helper.getView<TextView>(R.id.tvLookDetail).setOnClickListener {
+                    onItemClickListener.onItemClick(this, it, helper.layoutPosition)
+                }
                 helper.addOnClickListener(R.id.tvCancelOrder)
-                helper.addOnClickListener(R.id.tvLookDetail)
                 helper.addOnClickListener(R.id.tvOncePay)
             }
             2 -> {
                 helper.setText(R.id.tvShopOrderState, "待发货")
-                helper.addOnClickListener(R.id.tvLookDetail)
+                helper.getView<TextView>(R.id.tvLookDetail).setOnClickListener {
+                    onItemClickListener.onItemClick(this, it, helper.layoutPosition)
+                }
                 helper.addOnClickListener(R.id.tvLookLogistics)
             }
             3 -> {

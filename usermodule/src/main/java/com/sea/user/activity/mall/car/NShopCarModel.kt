@@ -2,6 +2,7 @@ package com.sea.user.activity.mall.car
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.math.BigDecimal
 
 class NShopCarModelReq(
     val command: Int = 21,
@@ -43,10 +44,24 @@ data class ShopCarItem(
     var img_url: String = "",
     var point: Int = 0,
     var quantity: Int = 0,
-    var sell_price: Int = 0,
+    var sell_price: BigDecimal = BigDecimal(0),
     var spec_text: String = "",
     var stock_quantity: Int = 0,
     var title: String = "",
     var buyCount: Int = 1,
     var isCheck: Boolean = false
+) : Parcelable
+
+@Parcelize
+data class ConfirmOrderShopItem(
+    var article_id: Int = 0,
+    var channel_id: Int = 0,
+    var goods_id: Int = 0,
+    var stock_quantity: Int = 0,
+    var point: Int = 0,
+    var img_url: String = "",
+    var quantity: Int = 1,
+    var title: String = "",
+    var spec_text: String = "",
+    var sell_price: BigDecimal = BigDecimal(0)
 ) : Parcelable

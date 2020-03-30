@@ -151,6 +151,13 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
         hideProgressDialog()
     }
 
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if (this.view != null) {
+            this.view?.visibility = if (menuVisible) View.VISIBLE else View.GONE
+        }
+    }
+
     companion object {
         fun getInstance() = UserCenterFragment().apply {
             arguments = Bundle().apply { }

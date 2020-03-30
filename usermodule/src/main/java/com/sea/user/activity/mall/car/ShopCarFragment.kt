@@ -78,8 +78,26 @@ class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
             val allPrice = mShopCarAdapter.getAllPrice()
             val allPoint = mShopCarAdapter.getAllPoint()
             val itemList = mShopCarAdapter.getSelectItemList()
+            val list = itemList.map {
+                ConfirmOrderShopItem(
+                    article_id = it.article_id,
+                    channel_id = it.channel_id,
+                    goods_id = it.goods_id,
+                    img_url = it.img_url,
+                    quantity = it.quantity,
+                    title = it.title,
+                    spec_text = it.spec_text,
+                    sell_price = it.sell_price
+                )
+            }
             startActivity(Intent(context, MallConfirmOrderActivity::class.java).apply {
-                putExtras(MallConfirmOrderActivity.getInstance(itemList, allPrice, allPoint))
+                putExtras(
+                    MallConfirmOrderActivity.getInstance(
+                        list as ArrayList<ConfirmOrderShopItem>,
+                        allPrice,
+                        allPoint
+                    )
+                )
             })
         }
     }
@@ -121,6 +139,12 @@ class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
 
     override fun hideLoading() {
         hideProgressDialog()
+    }
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if (this.view != null) {
+            this.view?.visibility = if (menuVisible) View.VISIBLE else View.GONE
+        }
     }
 
     companion object {

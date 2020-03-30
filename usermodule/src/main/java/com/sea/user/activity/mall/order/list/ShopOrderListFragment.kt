@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.user.R
-import com.sea.user.activity.mall.detail.ShopDetailActivity
 import com.sea.user.activity.mall.order.detail.MallOrderDetailActivity
 import com.sea.user.presenter.sea.order.cancel.CancelOrderContact
 import com.sea.user.presenter.sea.order.cancel.CancelOrderPresenter
 import com.sea.user.presenter.sea.order.cancel.NCancelOrderModelReq
-import kotlinx.android.synthetic.main.fragment_shop_order_list.*
 import com.xhs.baselibrary.base.BaseFragment
+import com.xhs.baselibrary.utils.ToastUtils
+import kotlinx.android.synthetic.main.fragment_shop_order_list.*
 
 class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderListView,
     CancelOrderContact.ICancelOrderView {
@@ -73,68 +73,95 @@ class ShopOrderListFragment : BaseFragment(), ShopOrderListContact.IShopOrderLis
                 mShopOrderListAdapter.loadMoreEnd()
             }
         }, rvShopOrderList)
-        mShopOrderListAdapter.setOnItemChildClickListener { _, view, position ->
+        mShopOrderListAdapter.setOnItemClickListener { _, view, position ->
             when (view.id) {
                 R.id.tvLookDetail -> {
+                    val shopOrderListItem = mShopOrderListList[position]
                     startActivity(Intent(context, MallOrderDetailActivity::class.java).apply {
                         putExtras(
                             MallOrderDetailActivity.getInstance(
-                                mShopOrderListList[position]
+                                shopOrderListItem
                             )
                         )
                     })
-
                 }
-                R.id.tvCancelOrder -> {
-                    mCancelOrderPresenter.loadCancelOrder(NCancelOrderModelReq(id = mShopOrderListList[position].id))
-                }
-            }
 
-        }
-    }
-
-    override fun loadShopOrderListSuccess(mList: List<ShopOrderListItem>, totalCount: Int) {
-        if (nShopOrderListReq.page_index == 1) {
-            mShopOrderListList.clear()
-        }
-        this.totalCount = totalCount
-        mShopOrderListList.addAll(mList)
-        mShopOrderListAdapter.notifyDataSetChanged()
-        mShopOrderListAdapter.loadMoreComplete()
-        swipeShopOrderList.isRefreshing = false
-        nShopOrderListReq.page_index++
-
-    }
-
-    override fun loadShopOrderListFail(throwable: Throwable) {
-        handleError(throwable)
-        swipeShopOrderList.isRefreshing = false
-        mShopOrderListAdapter.loadMoreComplete()
-    }
-
-    override fun loadCancelOrderSuccess() {
-        nShopOrderListReq.page_index = 1
-        mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
-    }
-
-    override fun loadCancelOrderFail(throwable: Throwable) {
-        handleError(throwable)
-    }
-
-    override fun showLoading() {
-        showProgressDialog()
-    }
-
-    override fun hideLoading() {
-        hideProgressDialog()
-    }
-
-    companion object {
-        private const val order_status_key = "order_status_key"
-        fun getInstance(orderStatus: Int) = ShopOrderListFragment().apply {
-            arguments = Bundle().apply {
-                putInt(order_status_key, orderStatus)
             }
         }
+            mShopOrderListAdapter.setOnItemChildClickListener { _, view, position ->
+                when (view.id) {
+                    R.id.tvLookDetail -> {
+                        val shopOrderListItem = mShopOrderListList[position]
+                        startActivity(Intent(context, MallOrderDetailActivity::class.java).apply {
+                            putExtras(
+                                MallOrderDetailActivity.getInstance(
+                                    shopOrderListItem
+                                )
+                            )
+                        })
+
+                    }
+                    R.id.tvCancelOrder -> {
+                        mCancelOrderPresenter.loadCancelOrder(NCancelOrderModelReq(id = mShopOrderListList[position].id))
+                    }
+                    R.id.tvOncePay -> {
+                        ToastUtils.show("理解付款")
+                    }
+
+                    R.id.tvLookLogistics -> {
+                        ToastUtils.show("查看物流")
+                    }
+                    R.id.tvConfirmReceipt -> {
+                        ToastUtils.show("确认收货")
+                    }
+
+                }
+
+            }
+        }
+
+        override fun loadShopOrderListSuccess(mList: List<ShopOrderListItem>, totalCount: Int) {
+            if (nShopOrderListReq.page_index == 1) {
+                mShopOrderListList.clear()
+            }
+            this.totalCount = totalCount
+            mShopOrderListList.addAll(mList)
+            mShopOrderListAdapter.notifyDataSetChanged()
+            mShopOrderListAdapter.loadMoreComplete()
+            swipeShopOrderList.isRefreshing = false
+            nShopOrderListReq.page_index++
+
+        }
+
+        override fun loadShopOrderListFail(throwable: Throwable) {
+            handleError(throwable)
+            swipeShopOrderList.isRefreshing = false
+            mShopOrderListAdapter.loadMoreComplete()
+        }
+
+        override fun loadCancelOrderSuccess() {
+            nShopOrderListReq.page_index = 1
+            mShopOrderListPresenter.loadShopOrderList(nShopOrderListReq)
+        }
+
+        override fun loadCancelOrderFail(throwable: Throwable) {
+            handleError(throwable)
+        }
+
+        override fun showLoading() {
+            showProgressDialog()
+        }
+
+        override fun hideLoading() {
+            hideProgressDialog()
+        }
+
+        companion object {
+            private const val order_status_key = "order_status_key"
+            fun getInstance(orderStatus: Int) = ShopOrderListFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(order_status_key, orderStatus)
+                }
+            }
+        }
     }
-}

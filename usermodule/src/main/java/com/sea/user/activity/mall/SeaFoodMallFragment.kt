@@ -23,7 +23,7 @@ import com.sea.user.utils.sp.StoreShopSpUtils
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_sea_food_mall.*
 
-class SeaFoodMallFragment:BaseFragment(), SeaFoodMallContact.ISeaFoodMallView {
+class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView {
 
     private val mSeaFoodMallPresenter by lazy { SeaFoodMallPresenter().apply { attachView(this@SeaFoodMallFragment) } }
 
@@ -39,10 +39,10 @@ class SeaFoodMallFragment:BaseFragment(), SeaFoodMallContact.ISeaFoodMallView {
 
     private val mKindFoodList = mutableListOf<SeaCategoryItemModel>()
     private val mTypeFoodList = mutableListOf(
-        NFoodType(R.mipmap.bg_mall_project1, R.mipmap.ic_sea_type_1,"必吃榜单", "吃货大本营就在这里"),
-        NFoodType(R.mipmap.bg_mall_project2, R.mipmap.ic_sea_type_2,"最新上市", "新品先抢吃"),
-        NFoodType(R.mipmap.bg_mall_project3, R.mipmap.ic_sea_type_3,"限时热卖", "买到就是赚到"),
-        NFoodType(R.mipmap.bg_mall_project4, R.mipmap.ic_sea_type_4,"精品推荐", "品质生活必备")
+        NFoodType(R.mipmap.bg_mall_project1, R.mipmap.ic_sea_type_1, "必吃榜单", "吃货大本营就在这里"),
+        NFoodType(R.mipmap.bg_mall_project2, R.mipmap.ic_sea_type_2, "最新上市", "新品先抢吃"),
+        NFoodType(R.mipmap.bg_mall_project3, R.mipmap.ic_sea_type_3, "限时热卖", "买到就是赚到"),
+        NFoodType(R.mipmap.bg_mall_project4, R.mipmap.ic_sea_type_4, "精品推荐", "品质生活必备")
 
     )
     private val mRecommendFoodList = mutableListOf<MallListItem>()
@@ -53,7 +53,7 @@ class SeaFoodMallFragment:BaseFragment(), SeaFoodMallContact.ISeaFoodMallView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sea_food_mall,container,false)
+        return inflater.inflate(R.layout.fragment_sea_food_mall, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,27 +65,31 @@ class SeaFoodMallFragment:BaseFragment(), SeaFoodMallContact.ISeaFoodMallView {
 
 
     private fun initView() {
+        tvStoreName.text = StoreShopSpUtils.getStoreShopName()
         //商品种类
         mKindFoodAdapter = KindFoodAdapter(mKindFoodList)
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW
-        layoutManager.justifyContent = JustifyContent.FLEX_START
+        layoutManager.justifyContent = JustifyContent.CENTER
         rvKindFood.layoutManager = layoutManager
         rvKindFood.adapter = mKindFoodAdapter
 
         //商品类型
         mFoodTypeAdapter = FoodTypeAdapter(mTypeFoodList)
-        rvFoodType.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvFoodType.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvFoodType.adapter = mFoodTypeAdapter
 
         //商品推荐
         mFoodRecommendAdapter = FoodRecommendAdapter(mRecommendFoodList)
-        rvRecommend.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvRecommend.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvRecommend.adapter = mFoodRecommendAdapter
 
         //精品商品
         mFoodFineAdapter = FoodFineAdapter(mFineFoodList)
-        rvFineFood.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvFineFood.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvFineFood.adapter = mFoodFineAdapter
     }
 
@@ -185,8 +189,15 @@ class SeaFoodMallFragment:BaseFragment(), SeaFoodMallContact.ISeaFoodMallView {
         }
     }
 
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if (this.view != null) {
+            this.view?.visibility = if (menuVisible) View.VISIBLE else View.GONE
+        }
+    }
+
     companion object {
         const val select_store_name_key = 100
-        fun getInstance() =SeaFoodMallFragment().apply { }
+        fun getInstance() = SeaFoodMallFragment().apply { }
     }
 }

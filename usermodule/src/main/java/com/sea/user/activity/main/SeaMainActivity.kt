@@ -1,21 +1,23 @@
 package com.sea.user.activity.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.sea.user.R
 import com.sea.user.activity.center.UserCenterFragment
 import com.sea.user.activity.mall.SeaFoodMallFragment
 import com.sea.user.activity.mall.car.ShopCarFragment
 import com.sea.user.activity.mall.order.list.ShopOrderFragment
 import com.xhs.baselibrary.base.BaseActivity
+import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_sea_phone_mian.*
+
 
 class SeaMainActivity : BaseActivity() {
 
-    private lateinit var seaMailViewPageAdapter: SeaMailViewPageAdapter
+    private lateinit var seaFoodMallFragment: SeaFoodMallFragment
+    private lateinit var shopCarFragment: ShopCarFragment
+    private lateinit var shopOrderFragment: ShopOrderFragment
+    private lateinit var userCenterFragment: UserCenterFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sea_phone_mian)
@@ -24,72 +26,53 @@ class SeaMainActivity : BaseActivity() {
     }
 
     private fun initListener() {
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-
-            }
-
-            override fun onPageSelected(position: Int) {
-                rgpView.check(position)
-            }
-        })
         rgpView.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rBtnSea -> {
-                    viewPager.currentItem = 0
+                    replaceFragment(seaFoodMallFragment)
                 }
                 R.id.rBtnCar -> {
-                    viewPager.currentItem = 1
+                    replaceFragment(shopCarFragment)
                 }
                 R.id.rBtnOrder -> {
-                    viewPager.currentItem = 2
+                    replaceFragment(shopOrderFragment)
                 }
                 R.id.rBtnMine -> {
-                    viewPager.currentItem = 3
+                    replaceFragment(userCenterFragment)
                 }
             }
 
         }
+    }
+
+    /**
+     * 替换Fragment
+     * @param fragment
+     */
+    private fun replaceFragment(fragment: BaseFragment) {
+        //1.得到FragmentManger
+        val fm = supportFragmentManager
+        //2.开启事务
+        val transaction = fm.beginTransaction()
+        //3.替换
+        transaction.replace(R.id.frameLayout, fragment)
+        //4.提交事务
+        transaction.commit()
     }
 
     private fun initView() {
-        seaMailViewPageAdapter = SeaMailViewPageAdapter(supportFragmentManager)
-        viewPager.adapter = seaMailViewPageAdapter
+        seaFoodMallFragment = SeaFoodMallFragment.getInstance()
+        shopCarFragment = ShopCarFragment.getInstance()
+        shopOrderFragment = ShopOrderFragment.getInstance()
+        userCenterFragment = UserCenterFragment.getInstance()
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.add(R.id.frameLayout, seaFoodMallFragment)
+        beginTransaction.commit()
     }
 
-
-    inner class SeaMailViewPageAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-        override fun getItem(position: Int): Fragment {
-            when (position) {
-                0 -> {
-                    return SeaFoodMallFragment.getInstance()
-                }
-                1 -> {
-                    return ShopCarFragment.getInstance()
-                }
-                2 -> {
-                    return ShopOrderFragment.getInstance()
-                }
-                3 -> {
-                    return UserCenterFragment.getInstance()
-                }
-                else -> {
-                    return ShopCarFragment.getInstance()
-                }
-            }
-
-        }
-
-        override fun getCount(): Int {
-            return 4
-        }
+    override fun onStart() {
+        super.onStart()
+        rgpView.check(R.id.rBtnSea)
     }
+
 }

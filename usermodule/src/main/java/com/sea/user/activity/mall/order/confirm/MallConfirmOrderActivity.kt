@@ -8,6 +8,7 @@ import com.sea.user.R
 import com.sea.user.activity.address.list.AddressListActivity
 import com.sea.user.activity.address.list.AddressListItem
 import com.sea.user.activity.address.list.NAddressListModelReq
+import com.sea.user.activity.mall.car.ConfirmOrderShopItem
 import com.sea.user.activity.mall.car.ShopCarItem
 import com.sea.user.presenter.address.DefaultAddressContact
 import com.sea.user.presenter.address.DefaultAddressPresenter
@@ -34,7 +35,7 @@ class MallConfirmOrderActivity : BaseActivity(),
     private lateinit var mMallConfirmOrderAdapter: MallConfirmOrderAdapter
 
     private val mCarItemList by lazy {
-        intent?.extras?.getParcelableArrayList(car_item_list_key) ?: ArrayList<ShopCarItem>()
+        intent?.extras?.getParcelableArrayList(car_item_list_key) ?: ArrayList<ConfirmOrderShopItem>()
     }
 
     private val allPrice by lazy { intent?.extras?.getString(car_item_all_price_key) ?: "" }
@@ -150,7 +151,7 @@ class MallConfirmOrderActivity : BaseActivity(),
         private const val car_item_all_point_key = "car_item_all_point_key"
 
         private const val car_item_all_price_key = "car_item_all_price_key"
-        fun getInstance(mList: ArrayList<ShopCarItem>, allPrice: String, allPoint: Int) =
+        fun getInstance(mList: ArrayList<ConfirmOrderShopItem>, allPrice: String, allPoint: Int) =
             Bundle().apply {
                 putParcelableArrayList(car_item_list_key, mList)
                 putString(car_item_all_price_key, allPrice)

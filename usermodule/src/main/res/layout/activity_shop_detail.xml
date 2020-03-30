@@ -185,7 +185,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/shape_border_theme_circle"
+                android:background="@drawable/shape_border_theme_circle_radius"
                 android:gravity="center"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/ivShopCar"

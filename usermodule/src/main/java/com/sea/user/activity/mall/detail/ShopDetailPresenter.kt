@@ -4,6 +4,7 @@ import com.sea.user.api.ShopApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
+import java.math.BigDecimal
 
 
 class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
@@ -33,11 +34,12 @@ class ShopDetailPresenter : IPresenter<ShopDetailContact.IShopDetailView>(),
                                 content = it.data.content,
                                 tags = it.data.tags,
                                 saleNumber = getSaleNumber(it.data.fields),
-                                sellPrice = it.data.fields.sell_price,
+                                sellPrice = BigDecimal(it.data.fields.sell_price),
                                 channelId = it.data.channel_id,
                                 specs = it.specs,
                                 goods = it.data.goods,
-                                point = it.data.fields.point
+                                point = it.data.fields.point,
+                                stockQuantity = it.data.fields.stock_quantity.toInt()
                             )
                         )
                     } else {

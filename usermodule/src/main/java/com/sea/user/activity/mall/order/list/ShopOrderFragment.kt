@@ -63,6 +63,12 @@ class ShopOrderFragment : BaseFragment() {
 
     class ShopOrderModel(val titleName: String, val type: Int)
 
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if (this.view != null) {
+            this.view?.visibility = if (menuVisible) View.VISIBLE else View.GONE
+        }
+    }
 
     companion object {
         private const val order_status_key = "order_status_key"

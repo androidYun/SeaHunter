@@ -13,6 +13,7 @@ class MallOrderDetailActivity : BaseActivity() {
     private val shopOrderListItem by lazy {
         intent?.extras?.getParcelable(mall_shop_order_detail_item_key) ?: ShopOrderListItem()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mall_order_detail)
@@ -29,7 +30,7 @@ class MallOrderDetailActivity : BaseActivity() {
         tvDetailAddress.text =
             shopOrderListItem.area + shopOrderListItem.address
         rvMallConfirmOrder.layoutManager = LinearLayoutManager(this)
-        rvMallConfirmOrder?.adapter = OrderGoodAdapter(shopOrderListItem.order_goods)
+        rvMallConfirmOrder?.adapter = OrderGoodAdapter(shopOrderListItem?.order_goods ?: listOf())
         tvOrderNo.text = "订单号:${shopOrderListItem.order_no}"
         tvOrderTime.text = "下单时间:${shopOrderListItem.add_time}"
         tvOrderStatus.text = "订单状态:${OrderEnum.getOrder(

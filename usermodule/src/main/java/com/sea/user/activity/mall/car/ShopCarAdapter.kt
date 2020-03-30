@@ -50,12 +50,12 @@ class ShopCarAdapter(mList: List<ShopCarItem>) :
         }
     }
 
-    fun getSelectItemList(): ArrayList<ShopCarItem> {
+    fun getSelectItemList(): List<ShopCarItem> {
         val toList = mData.filter { it.isCheck }.toList()
         return if (toList.isNullOrEmpty()) {
             ArrayList()
         } else {
-            toList as ArrayList<ShopCarItem>
+            toList
         }
     }
 
@@ -63,7 +63,7 @@ class ShopCarAdapter(mList: List<ShopCarItem>) :
         var allPrice = BigDecimal(0)
         mData.forEach {
             if (it.isCheck) {
-                allPrice = allPrice.add(BigDecimal(it.buyCount * it.sell_price))
+                allPrice = allPrice.add(BigDecimal(it.buyCount).multiply(it.sell_price))
             }
         }
         return allPrice.setScale(2).toString()

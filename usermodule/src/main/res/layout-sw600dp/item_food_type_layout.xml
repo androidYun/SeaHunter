@@ -4,6 +4,7 @@
     android:id="@+id/fvFoodType"
     android:layout_width="@dimen/dp_220"
     android:layout_height="@dimen/dp_270"
+    android:layout_gravity="center"
     android:layout_margin="@dimen/dp_3"
     android:gravity="center"
     android:orientation="vertical">

@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rgpView" />
@@ -22,10 +22,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
+            android:checked="true"
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="点餐"
-            android:textColor="@drawable/main_bottombar_text_selector" />
+            android:textColor="@drawable/main_bottom_bar_text_selector" />
 
         <RadioButton
             android:id="@+id/rBtnCar"
@@ -33,11 +34,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="false"
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="购物车"
-            android:textColor="@drawable/main_bottombar_text_selector" />
+            android:textColor="@drawable/main_bottom_bar_text_selector" />
 
         <RadioButton
             android:id="@+id/rBtnOrder"
@@ -45,11 +45,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="false"
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="订单"
-            android:textColor="@drawable/main_bottombar_text_selector" />
+            android:textColor="@drawable/main_bottom_bar_text_selector" />
 
         <RadioButton
             android:id="@+id/rBtnMine"
@@ -57,10 +56,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="false"
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="我的"
-            android:textColor="@drawable/main_bottombar_text_selector" />
+            android:textColor="@drawable/main_bottom_bar_text_selector" />
     </RadioGroup>
 </RelativeLayout>

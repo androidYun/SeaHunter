@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:orientation="horizontal">
 
     <TextView
@@ -19,5 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
+        android:textSize="@dimen/sp_16"
         tools:text="鲜冻三文鱼块400克.." />
 </LinearLayout>
