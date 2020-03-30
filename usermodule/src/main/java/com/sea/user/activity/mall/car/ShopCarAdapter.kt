@@ -22,6 +22,7 @@ class ShopCarAdapter(mList: List<ShopCarItem>) :
         helper?.getView<AmountView>(R.id.AmountNumber)?.setOnAmountChangeListener { view, amount ->
             onItemClickListener.onItemClick(this, view, helper.layoutPosition)
             mData[helper.layoutPosition].buyCount = amount
+            mData[helper.layoutPosition].quantity = amount
         }
         helper?.setText(R.id.tvShopName, item.title)
         helper?.setText(R.id.tvTags, item.spec_text)

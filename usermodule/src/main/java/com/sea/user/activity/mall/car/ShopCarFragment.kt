@@ -78,6 +78,10 @@ class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
             val allPrice = mShopCarAdapter.getAllPrice()
             val allPoint = mShopCarAdapter.getAllPoint()
             val itemList = mShopCarAdapter.getSelectItemList()
+            if (itemList.isNullOrEmpty()) {
+                ToastUtils.show("请选择物品")
+                return@setOnClickListener
+            }
             val list = itemList.map {
                 ConfirmOrderShopItem(
                     article_id = it.article_id,
@@ -86,6 +90,7 @@ class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
                     img_url = it.img_url,
                     quantity = it.quantity,
                     title = it.title,
+                    stock_quantity = it.stock_quantity,
                     spec_text = it.spec_text,
                     sell_price = it.sell_price
                 )
@@ -140,6 +145,7 @@ class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
     override fun hideLoading() {
         hideProgressDialog()
     }
+
     override fun setMenuVisibility(menuVisible: Boolean) {
         super.setMenuVisibility(menuVisible)
         if (this.view != null) {

@@ -31,11 +31,11 @@ class MallConfirmOrderActivity : BaseActivity(),
     private val nPlaceOrderModelReq = NPlaceOrderModelReq()
 
 
-
     private lateinit var mMallConfirmOrderAdapter: MallConfirmOrderAdapter
 
     private val mCarItemList by lazy {
-        intent?.extras?.getParcelableArrayList(car_item_list_key) ?: ArrayList<ConfirmOrderShopItem>()
+        intent?.extras?.getParcelableArrayList(car_item_list_key)
+            ?: ArrayList<ConfirmOrderShopItem>()
     }
 
     private val allPrice by lazy { intent?.extras?.getString(car_item_all_price_key) ?: "" }
@@ -57,7 +57,7 @@ class MallConfirmOrderActivity : BaseActivity(),
     }
 
     private fun initData() {
-        tvOrderTotalPrice.text = allPrice
+        tvOrderTotalPrice.text = "￥${allPrice}"
         tvGiveIntegral.text = allPoint.toString()
         tvOrderStore.text = StoreShopSpUtils.getStoreShopName()
         tvNeedTotalPrice.text = allPrice

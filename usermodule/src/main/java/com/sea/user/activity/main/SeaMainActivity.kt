@@ -69,10 +69,4 @@ class SeaMainActivity : BaseActivity() {
         beginTransaction.add(R.id.frameLayout, seaFoodMallFragment)
         beginTransaction.commit()
     }
-
-    override fun onStart() {
-        super.onStart()
-        rgpView.check(R.id.rBtnSea)
-    }
-
 }
