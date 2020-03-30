@@ -30,7 +30,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/sp_18"
         app:layout_constraintStart_toEndOf="@+id/cvShopImage"
         app:layout_constraintTop_toTopOf="@+id/cvShopImage"
         tools:text="鲜有汇聚冰鲜三文鱼中段日料刺身拼盘新鲜生鱼片即食海鲜三文鱼肉" />
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textColor="@color/color_6"
-        android:textSize="14sp"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintStart_toStartOf="@+id/tvShopName"
         app:layout_constraintTop_toBottomOf="@+id/tvShopName"
         tools:text="500g，现杀" />
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:textColor="@color/user_theme_color"
-        android:textSize="18sp"
+        android:textSize="@dimen/sp_18"
         app:layout_constraintBottom_toBottomOf="@+id/cvShopImage"
         app:layout_constraintStart_toStartOf="@+id/tvShopName"
         tools:text="X 1" />
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:textColor="@color/user_theme_color"
-        android:textSize="18sp"
+        android:textSize="@dimen/sp_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvShopNumber"
         tools:text="￥58" />

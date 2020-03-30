@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="安全无味创意拼接，儿童XPE拼接爬行垫" />
@@ -35,7 +35,7 @@
             android:layout_marginTop="8dp"
             android:text="自由拼接，柔软防震"
             android:textColor="@color/color_9"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvShopName" />
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="@color/color_bf0008"
-            android:textSize="20sp"
+            android:textSize="@dimen/sp_20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvShopRemark"
             tools:text="675" />
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_bf0008"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintBottom_toBottomOf="@+id/tvShopIntegral"
             app:layout_constraintStart_toEndOf="@+id/tvShopIntegral"
             tools:text="积分" />
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_9"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="已兑：1456" />
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_bf0008"
-            android:textSize="20sp"
+            android:textSize="@dimen/sp_20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvShopRemark"
             tools:text="675" />
@@ -102,7 +102,7 @@
             android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:textColor="@color/color_bf0008"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintBottom_toBottomOf="@+id/tvShopIntegral"
             app:layout_constraintStart_toEndOf="@+id/tvShopIntegral"
             tools:text="积分" />
@@ -117,7 +117,7 @@
             android:paddingEnd="50dp"
             android:text="@string/once_exchange"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp_18" />
 
     </LinearLayout>
 </RelativeLayout>

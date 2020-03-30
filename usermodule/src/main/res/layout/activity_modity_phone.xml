@@ -81,7 +81,7 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/get_version_code"
                 android:textColor="@color/user_theme_color"
-                android:textSize="16sp" />
+                android:textSize="@dimen/sp_16" />
         </LinearLayout>
 
         <TextView

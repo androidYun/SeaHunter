@@ -58,7 +58,7 @@
                         android:layout_marginStart="10dp"
                         android:text="搜索"
                         android:textColor="@color/color_747474"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/sp_14" />
 
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -90,7 +90,7 @@
                     android:gravity="center"
                     android:text="为您推荐"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/sp_18" />
 
                 <TextView
                     android:id="@+id/tvRecommend"
@@ -129,7 +129,7 @@
                     android:gravity="center"
                     android:text="精品商品"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/sp_18" />
 
                 <TextView
                     android:id="@+id/tvFineFood"

@@ -1,7 +1,7 @@
 <resources>
 
     <style name="UserAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:windowBackground">@mipmap/bg_white</item>
         <item name="android:actionBarSize">44dp</item>
         <item name="actionBarSize">44dp</item>
@@ -25,7 +25,7 @@
         <item name="android:windowNoTitle">true</item>
         <!-- 设置全屏 -->
         <item name="android:windowFullscreen">true</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:windowBackground">@mipmap/bg_white</item>
     </style>
 
@@ -39,7 +39,7 @@
         <item name="android:paddingStart">@dimen/default_padding</item>
         <item name="android:paddingEnd">@dimen/default_padding</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">@dimen/sp_14</item>
     </style>
 
     <style name="baseBtnStyle">
@@ -49,13 +49,13 @@
         <item name="android:background">@drawable/shape_base_btn</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">@dimen/sp_14</item>
     </style>
 
     <!--Item布局的样式-->
     <style name="itemLayoutStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">@dimen/item_height</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@drawable/shape_base_item_background</item>
         <item name="android:paddingStart">@dimen/default_padding</item>
@@ -63,10 +63,10 @@
     </style>
 
     <style name="itemTitleStyle">
-        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_width">@dimen/item_title_height</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">@dimen/sp_14</item>
 
     </style>
 
@@ -75,7 +75,7 @@
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">@dimen/sp_14</item>
     </style>
 
 

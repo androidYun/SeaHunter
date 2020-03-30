@@ -9,4 +9,4 @@
     android:background="@drawable/shape_hot_search"
     android:text="雅漾喷雾"
     android:textColor="@color/color_3"
-    android:textSize="13sp" />
+    android:textSize="@dimen/sp_12" />

@@ -40,7 +40,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/sp_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="鲜有汇聚冰鲜三文鱼中段日料刺身拼盘新鲜生鱼片即食海鲜三文鱼肉" />
@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/color_9"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/sp_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvShopName"
                         tools:text="当天现杀 送芥末酱油 4.9评分 不切片请备注  当天现杀 送芥末酱油 4.9评分 不切片请备注" />
@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/user_theme_color"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/sp_20"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvRemark"
                         tools:text="￥48-218" />
@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:text="已售：1456    库存：32"
                         android:textColor="@color/color_9"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/sp_14"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tvPrice" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -96,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:text="商品规格"
                         android:textColor="@color/color_6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/sp_18" />
 
                     <TextView
                         android:id="@+id/tvSelectShopSpec"
@@ -126,7 +126,7 @@
                         android:layout_height="wrap_content"
                         android:text="所选门店"
                         android:textColor="@color/color_6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/sp_18" />
 
                     <TextView
                         android:id="@+id/tvStoreName"
@@ -149,7 +149,7 @@
                     android:gravity="center"
                     android:text="—   详细参数   —"
                     android:textColor="@color/color_6"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/sp_16" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvDetailParams"
@@ -198,7 +198,7 @@
                 android:layout_marginStart="10dp"
                 android:text="￥477.50"
                 android:textColor="@color/user_theme_color"
-                android:textSize="18sp"
+                android:textSize="@dimen/sp_18"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvShopCarNumber"
                 app:layout_constraintTop_toTopOf="parent"
@@ -214,7 +214,7 @@
                 android:paddingEnd="20dp"
                 android:text="加入购物车"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/sp_18"
                 app:layout_constraintEnd_toStartOf="@+id/tvOnceBuy" />
 
             <TextView
@@ -227,7 +227,7 @@
                 android:paddingEnd="20dp"
                 android:text="立即购买"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/sp_18"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

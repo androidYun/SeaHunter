@@ -30,7 +30,7 @@
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginTop="14dp"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18"
             tools:text="三文鱼排" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginTop="10dp"
             android:textColor="@color/color_9"
-            android:textSize="14sp"
+            android:textSize="@dimen/sp_14"
             tools:text="新鲜肥美，精品优选" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_marginTop="10dp"
             android:text="￥48"
             android:textColor="#ffbf0008"
-            android:textSize="20sp" />
+            android:textSize="@dimen/sp_20" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

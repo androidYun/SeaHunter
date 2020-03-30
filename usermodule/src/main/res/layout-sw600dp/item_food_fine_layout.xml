@@ -23,6 +23,6 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="@dimen/sp_14"
         tools:text="三文鱼排" />
 </LinearLayout>

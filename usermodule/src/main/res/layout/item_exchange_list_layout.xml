@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textColor="@color/color_bf0008"
-            android:textSize="18dp"
+            android:textSize="@dimen/sp_18"
             tools:text="待发货" />
 
         <TextView

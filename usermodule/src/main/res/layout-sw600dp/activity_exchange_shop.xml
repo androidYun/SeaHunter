@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
             app:layout_constraintStart_toEndOf="@+id/ivAddress"
             app:layout_constraintTop_toTopOf="parent"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:text="@string/shop_inform"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@+id/ivShopImage"
             app:layout_constraintTop_toTopOf="@+id/ivShopImage"
             tools:text="智能手表电话蓝牙手环" />
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/user_theme_color"
-            android:textSize="20sp"
+            android:textSize="@dimen/sp_20"
             app:layout_constraintBottom_toBottomOf="@+id/ivShopImage"
             app:layout_constraintStart_toStartOf="@+id/tvShopName"
             tools:text="3000" />
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:text="@string/need_integral"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp_18" />
 
         <TextView
             android:id="@+id/tvNeedIntegral"
@@ -140,7 +140,7 @@
             android:layout_weight="1"
             android:gravity="end"
             android:textColor="@color/color_bf0008"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18"
             tools:text="300积分" />
     </LinearLayout>
 
@@ -163,7 +163,7 @@
                 android:paddingEnd="@dimen/default_padding"
                 android:text="@string/need_integral"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="@dimen/sp_18" />
 
             <TextView
                 android:id="@+id/tvNeedTotalIntegral"
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/color_bf0008"
-                android:textSize="18sp"
+                android:textSize="@dimen/sp_18"
                 tools:text="300积分" />
 
             <TextView
@@ -184,7 +184,7 @@
                 android:paddingEnd="50dp"
                 android:text="@string/once_exchange"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/sp_18" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

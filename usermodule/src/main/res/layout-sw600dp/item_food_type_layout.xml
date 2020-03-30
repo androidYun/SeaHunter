@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="@dimen/sp_22"
             tools:text="必吃榜单" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textColor="@color/color_6"
-            android:textSize="14sp"
+            android:textSize="@dimen/sp_14"
             tools:text="吃货大本营就在这里" />
 
         <ImageView

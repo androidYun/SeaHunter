@@ -34,7 +34,7 @@
                 android:layout_marginStart="20dp"
                 android:text="待付款"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/sp_18"
                 app:layout_constraintBottom_toTopOf="@+id/tvOrderDesc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivOrderStatus"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="您的订单待付款，快去付款吧"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="@dimen/sp_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvOrderTopStatus"
                 app:layout_constraintTop_toBottomOf="@+id/tvOrderTopStatus" />
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/sp_16"
                 app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
                 app:layout_constraintStart_toEndOf="@+id/ivAddress"
                 app:layout_constraintTop_toTopOf="parent"
@@ -116,7 +116,7 @@
             android:paddingStart="@dimen/default_padding"
             android:text="@string/shop_inform"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -133,7 +133,7 @@
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             tools:text="订单号：A2353465465" />
 
         <TextView
@@ -144,7 +144,7 @@
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             tools:text="下单时间：2020-02-02" />
 
         <TextView
@@ -155,7 +155,7 @@
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             tools:text="订单状态：待付款" />
     </LinearLayout>
 

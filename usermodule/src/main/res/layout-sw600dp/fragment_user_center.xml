@@ -54,7 +54,7 @@
                                 android:layout_marginTop="40dp"
                                 android:gravity="center"
                                 android:textColor="@color/color_3"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/sp_16"
                                 tools:text="深海" />
 
                             <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,7 +68,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="60dp"
                                     android:textColor="@color/color_3"
-                                    android:textSize="20sp"
+                                    android:textSize="@dimen/sp_20"
                                     app:layout_constraintBottom_toTopOf="@+id/tvBalanceTitle"
                                     app:layout_constraintEnd_toStartOf="@+id/view"
                                     app:layout_constraintTop_toTopOf="parent"
@@ -81,7 +81,7 @@
                                     android:layout_marginEnd="60dp"
                                     android:text="@string/balance"
                                     android:textColor="@color/color_8"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/sp_16"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/view"
                                     app:layout_constraintTop_toBottomOf="@+id/tvBalance" />
@@ -102,7 +102,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="60dp"
                                     android:textColor="@color/color_3"
-                                    android:textSize="20sp"
+                                    android:textSize="@dimen/sp_20"
                                     app:layout_constraintBottom_toTopOf="@+id/tvIntegralTitle"
                                     app:layout_constraintStart_toEndOf="@+id/view"
                                     app:layout_constraintTop_toTopOf="parent"
@@ -115,7 +115,7 @@
                                     android:layout_marginStart="60dp"
                                     android:text="@string/integral"
                                     android:textColor="@color/color_8"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/sp_16"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/view"
                                     app:layout_constraintTop_toBottomOf="@+id/tvIntegral" />
@@ -134,7 +134,7 @@
                                     android:layout_weight="1"
                                     android:text="我的订单"
                                     android:textColor="@color/black"
-                                    android:textSize="16sp" />
+                                    android:textSize="@dimen/sp_16" />
 
                                 <TextView
                                     android:id="@+id/tvLookAllOrder"
@@ -147,7 +147,7 @@
                                     android:gravity="end"
                                     android:text="查看全部"
                                     android:textColor="@color/color_9"
-                                    android:textSize="14sp" />
+                                    android:textSize="@dimen/sp_14" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -167,7 +167,7 @@
                                     android:gravity="center"
                                     android:text="全部"
                                     android:textColor="@color/black"
-                                    android:textSize="14sp" />
+                                    android:textSize="@dimen/sp_14" />
 
                                 <TextView
                                     android:id="@+id/tvWaitPayment"
@@ -179,7 +179,7 @@
                                     android:gravity="center"
                                     android:text="待付款"
                                     android:textColor="@color/black"
-                                    android:textSize="14sp" />
+                                    android:textSize="@dimen/sp_14" />
 
                                 <TextView
                                     android:id="@+id/tvWaitDelivery"
@@ -191,7 +191,7 @@
                                     android:gravity="center"
                                     android:text="待发货"
                                     android:textColor="@color/black"
-                                    android:textSize="14sp" />
+                                    android:textSize="@dimen/sp_14" />
 
                                 <TextView
                                     android:id="@+id/tvWaitReceived"
@@ -203,7 +203,7 @@
                                     android:gravity="center"
                                     android:text="待收货"
                                     android:textColor="@color/black"
-                                    android:textSize="14sp" />
+                                    android:textSize="@dimen/sp_14" />
 
                                 <TextView
                                     android:id="@+id/tvFinish"
@@ -215,7 +215,7 @@
                                     android:gravity="center"
                                     android:text="已完成"
                                     android:textColor="@color/black"
-                                    android:textSize="14sp" />
+                                    android:textSize="@dimen/sp_14" />
 
                             </LinearLayout>
                         </LinearLayout>
@@ -243,7 +243,7 @@
                         android:paddingEnd="@dimen/default_padding"
                         android:text="海鲜市场"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/sp_16" />
 
                     <TextView
                         android:id="@+id/tvIntegralMall"
@@ -258,7 +258,7 @@
                         android:paddingEnd="@dimen/default_padding"
                         android:text="积分商城"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/sp_16" />
 
                     <TextView
                         android:id="@+id/tvMineWallet"
@@ -274,7 +274,7 @@
                         android:paddingEnd="@dimen/default_padding"
                         android:text="我的钱包"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/sp_16" />
 
                     <TextView
                         android:id="@+id/tvRecharge"
@@ -289,7 +289,7 @@
                         android:paddingEnd="@dimen/default_padding"
                         android:text="充值"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/sp_16" />
 
                     <TextView
                         android:id="@+id/tvFeedback"
@@ -304,7 +304,7 @@
                         android:paddingEnd="@dimen/default_padding"
                         android:text="投诉反馈"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/sp_16" />
 
                     <TextView
                         android:id="@+id/tvContactUs"
@@ -319,7 +319,7 @@
                         android:paddingEnd="@dimen/default_padding"
                         android:text="联系我们"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/sp_16" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
