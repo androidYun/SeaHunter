@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/dp_48"
         android:orientation="horizontal">
 
         <TextView
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="@color/color_bf0008"
+            android:textColor="@color/user_theme_color"
             android:textSize="@dimen/sp_18"
             tools:text="待发货" />
 
@@ -29,13 +29,13 @@
             android:layout_weight="1"
             android:gravity="center_vertical|end"
             android:textColor="@color/color_6"
-            android:textSize="16dp"
+            android:textSize="@dimen/sp_16"
             tools:text="2020-02-02  22:21:21" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_1"
         android:background="#f3f3f3" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,8 +46,8 @@
 
         <ImageView
             android:id="@+id/ivShopImage"
-            android:layout_width="66dp"
-            android:layout_height="66dp"
+            android:layout_width="@dimen/dp_66"
+            android:layout_height="@dimen/dp_66"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,9 +56,9 @@
             android:id="@+id/tvShopName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="16dp"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@+id/ivShopImage"
             app:layout_constraintTop_toTopOf="@+id/ivShopImage"
             tools:text="智能手表电话蓝牙手环" />
@@ -68,9 +68,9 @@
             android:id="@+id/tvShopIntegral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/color_bf0008"
-            android:textSize="20dp"
+            android:layout_marginStart="@dimen/default_padding"
+            android:textColor="@color/user_theme_color"
+            android:textSize="@dimen/sp_20"
             app:layout_constraintBottom_toBottomOf="@+id/ivShopImage"
             app:layout_constraintStart_toEndOf="@+id/ivShopImage"
             tools:text="675" />
@@ -78,8 +78,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_bf0008"
-            android:textSize="16dp"
+            android:textColor="@color/user_theme_color"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintBottom_toBottomOf="@+id/tvShopIntegral"
             app:layout_constraintStart_toEndOf="@+id/tvShopIntegral"
             tools:text="积分" />

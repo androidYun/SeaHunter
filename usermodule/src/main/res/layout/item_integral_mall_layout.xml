@@ -2,17 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/cVIntegralShop"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_base_item_background"
     android:paddingTop="@dimen/default_padding"
     android:paddingBottom="@dimen/default_padding">
 
-    <ImageView
+    <com.xhs.baselibrary.weight.NiceImageView
         android:id="@+id/ivShopImage"
         android:layout_width="130dp"
         android:layout_height="130dp"
+        app:corner_radius="@dimen/dp_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,8 +22,8 @@
         android:id="@+id/tvShopName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="16dp"
+        android:layout_marginStart="@dimen/dp_10"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintStart_toEndOf="@+id/ivShopImage"
         app:layout_constraintTop_toTopOf="@+id/ivShopImage"
         tools:text="智能手表电话蓝牙手环" />
@@ -31,11 +32,11 @@
         android:id="@+id/tvRedeemCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/dp_10"
         android:textColor="@color/color_c"
-        android:textSize="14dp"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintBottom_toTopOf="@+id/tvShopIntegral"
-        app:layout_constraintStart_toEndOf="@+id/ivShopImage"
+        app:layout_constraintStart_toStartOf="@+id/tvShopName"
         tools:text="234人已兑换" />
 
     <TextView
@@ -43,16 +44,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_bf0008"
-        android:textSize="20dp"
+        android:textSize="@dimen/sp_20"
         app:layout_constraintBottom_toBottomOf="@+id/ivShopImage"
-        app:layout_constraintStart_toEndOf="@+id/ivShopImage"
+        app:layout_constraintStart_toStartOf="@+id/tvShopName"
         tools:text="675" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_bf0008"
-        android:textSize="16dp"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toBottomOf="@+id/tvShopIntegral"
         app:layout_constraintStart_toEndOf="@+id/tvShopIntegral"
         tools:text="积分" />

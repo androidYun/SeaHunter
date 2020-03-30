@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="@dimen/dp_4"
     android:background="@color/white"
     android:orientation="vertical"
     android:paddingStart="@dimen/default_padding"
@@ -37,7 +37,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_1"
         android:background="@color/line_view" />
 
     <TextView
@@ -81,7 +81,7 @@
             android:id="@+id/tvReplayContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:textColor="@color/color_6"
             android:textSize="@dimen/sp_18"
             app:layout_constraintTop_toBottomOf="@+id/tvReplyTime"

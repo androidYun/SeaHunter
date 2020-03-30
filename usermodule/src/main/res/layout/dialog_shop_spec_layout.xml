@@ -15,8 +15,8 @@
         <ImageView
             android:id="@+id/ivImage"
             android:layout_width="160dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginTop="@dimen/dp_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/dp_10"
             android:textColor="@color/user_theme_color"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@+id/ivImage"
@@ -43,7 +43,7 @@
             android:id="@+id/tvShopNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:textColor="@color/color_9"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="@+id/tvPrice"
@@ -53,7 +53,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="请选择规格"
             android:textColor="#ff010101"
             android:textSize="@dimen/sp_14"
@@ -102,6 +102,6 @@
         android:id="@+id/tvConfirm"
         style="@style/baseBtnStyle"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/dp_10"
         android:text="确定" />
 </LinearLayout>

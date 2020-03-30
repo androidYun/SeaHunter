@@ -26,7 +26,7 @@
         <LinearLayout
             android:id="@+id/lvSearchShop"
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/dp_32"
             android:background="@drawable/shape_food_search"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"

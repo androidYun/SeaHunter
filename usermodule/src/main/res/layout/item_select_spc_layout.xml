@@ -5,18 +5,18 @@
     android:id="@+id/cardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp"
+    android:layout_marginStart="@dimen/dp_5"
+    android:layout_marginEnd="@dimen/dp_5"
     android:background="@color/user_theme_color"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="@dimen/dp_5">
 
     <TextView
         android:id="@+id/tvSpec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
-        android:paddingTop="7dp"
+        android:paddingTop="@dimen/dp_7"
         android:paddingEnd="20dp"
-        android:paddingBottom="7dp"
+        android:paddingBottom="@dimen/dp_7"
         tools:text="500g" />
 </androidx.cardview.widget.CardView>

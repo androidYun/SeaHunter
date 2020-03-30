@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:cardCornerRadius="16dp">
+        app:cardCornerRadius="@dimen/default_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:id="@+id/tvBalanceTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="@dimen/dp_36"
                 android:text="当前余额(元)"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_18"
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="36dp"
+                android:layout_marginBottom="@dimen/dp_36"
                 android:textColor="@color/white"
                 android:textSize="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"

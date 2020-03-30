@@ -22,13 +22,17 @@ class LoginPresenter : IPresenter<LoginContact.ILoginView>(), LoginContact.ILogi
             }
             .subscribe(
                 {
-                    if (it.code==1) {
-                        softView.get()?.loadLoginSuccess(it.data,nLoginModelReq.phone,nLoginModelReq.password)
-                    } else {
-                        softView.get()?.loadLoginFail(Throwable(it.msg))
-                    }
+                    println("测试" + it)
+//                    if (it.code==1) {
+//                        softView.get()?.loadLoginSuccess(it.data,nLoginModelReq.phone,nLoginModelReq.password)
+//                    } else {
+//                        softView.get()?.loadLoginFail(Throwable(it.msg))
+//                    }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadLoginFail(throwable) }
+                }, { throwable ->
+                    softView.get()?.loadLoginFail(throwable)
+
+                }
             )
     }
 }

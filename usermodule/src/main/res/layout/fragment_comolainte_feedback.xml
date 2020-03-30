@@ -17,7 +17,7 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/dp_200"
         android:background="@color/color_FAF7F8"
         android:gravity="top"
         android:hint="请输入反馈内容"

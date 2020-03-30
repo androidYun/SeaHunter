@@ -8,7 +8,7 @@
     <com.youth.banner.Banner
         android:id="@+id/bannerView"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="@dimen/dp_200" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cvShopDesc"
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             android:id="@+id/tvShopRemark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/dp_8"
             android:text="自由拼接，柔软防震"
             android:textColor="@color/color_9"
             android:textSize="@dimen/sp_16"
@@ -41,7 +41,7 @@
             android:id="@+id/tvShopIntegral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:textColor="@color/color_bf0008"
             android:textSize="@dimen/sp_20"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/dp_4"
             android:layout_weight="1"
             android:textColor="@color/color_bf0008"
             android:textSize="@dimen/sp_16"

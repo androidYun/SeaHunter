@@ -20,14 +20,14 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+                <com.youth.banner.Banner
                     android:id="@+id/bannerView"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="@dimen/dp_200" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="@dimen/dp_2"
                     android:background="@color/line_view" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,7 +49,7 @@
                         android:id="@+id/tvRemark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/dp_4"
                         android:textColor="@color/color_9"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
                         android:id="@+id/tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/dp_4"
                         android:textColor="@color/user_theme_color"
                         android:textSize="@dimen/sp_20"
                         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="@dimen/dp_2"
                     android:background="@color/line_view" />
 
                 <LinearLayout
@@ -94,9 +94,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="商品规格"
                         android:textColor="@color/color_6"
-                        android:textSize="@dimen/sp_18"
-                        android:text="商品规格" />
+                        android:textSize="@dimen/sp_18" />
 
                     <TextView
                         android:id="@+id/tvSelectShopSpec"
@@ -110,7 +110,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="@dimen/dp_2"
                     android:background="@color/line_view" />
 
                 <LinearLayout
@@ -124,9 +124,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="所选门店"
                         android:textColor="@color/color_6"
-                        android:textSize="@dimen/sp_18"
-                        android:text="所选门店" />
+                        android:textSize="@dimen/sp_18" />
 
                     <TextView
                         android:id="@+id/tvStoreName"
@@ -140,8 +140,16 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="@dimen/dp_2"
                     android:background="@color/line_view" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="—   详细参数   —"
+                    android:textColor="@color/color_6"
+                    android:textSize="@dimen/sp_16" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvDetailParams"
@@ -177,7 +185,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
-               android:background="@drawable/shape_border_theme_circle"
+                android:background="@drawable/shape_border_theme_circle"
                 android:gravity="center"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/ivShopCar"
@@ -187,7 +195,7 @@
                 android:id="@+id/tvShopPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/dp_10"
                 android:text="￥477.50"
                 android:textColor="@color/user_theme_color"
                 android:textSize="@dimen/sp_18"
@@ -213,7 +221,7 @@
                 android:id="@+id/tvOnceBuy"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@color/user_theme_color"
+                android:background="@color/color_287CE0"
                 android:gravity="center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"

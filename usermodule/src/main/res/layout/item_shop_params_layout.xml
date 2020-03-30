@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:gravity="center_vertical"
+    android:gravity="center"
     android:orientation="horizontal">
 
     <TextView
+        android:id="@+id/tvShopParamsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_6"
@@ -14,6 +15,7 @@
         tools:text="商品名称：" />
 
     <TextView
+        android:id="@+id/tvShopParamsValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"

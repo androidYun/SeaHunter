@@ -12,14 +12,14 @@
 
     <ImageView
         android:id="@+id/ivHead"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="@dimen/dp_44"
+        android:layout_height="@dimen/dp_44"
         android:layout_marginTop="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_14"
         tools:text="深海。" />
@@ -29,10 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/select_left_sidebar_ordering"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp_4"
         android:gravity="center"
-        android:paddingTop="25dp"
-        android:paddingBottom="25dp"
+        android:paddingTop="@dimen/dp_25"
+        android:paddingBottom="@dimen/dp_25"
         android:text="点餐"
         android:textColor="@color/color_737373"
         android:textSize="@dimen/sp_14" />
@@ -41,15 +41,15 @@
         android:id="@+id/rvSidebarCar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="25dp"
-        android:paddingBottom="25dp">
+        android:paddingTop="@dimen/dp_25"
+        android:paddingBottom="@dimen/dp_25">
 
         <TextView
             android:id="@+id/tvSidebarCar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/select_left_sidebar_car"
-            android:drawablePadding="5dp"
+            android:drawablePadding="@dimen/dp_5"
             android:gravity="center"
             android:text="购物车"
             android:textColor="@color/color_737373"
@@ -81,10 +81,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/select_left_sidebar_order"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp_5"
         android:gravity="center"
-        android:paddingTop="25dp"
-        android:paddingBottom="25dp"
+        android:paddingTop="@dimen/dp_25"
+        android:paddingBottom="@dimen/dp_25"
         android:text="订单"
         android:textColor="@color/color_737373"
         android:textSize="@dimen/sp_14" />
@@ -94,10 +94,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/select_left_sidebar_my"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp_4"
         android:gravity="center"
-        android:paddingTop="25dp"
-        android:paddingBottom="25dp"
+        android:paddingTop="@dimen/dp_25"
+        android:paddingBottom="@dimen/dp_25"
         android:text="我的"
         android:textColor="@color/color_737373"
         android:textSize="@dimen/sp_14" />

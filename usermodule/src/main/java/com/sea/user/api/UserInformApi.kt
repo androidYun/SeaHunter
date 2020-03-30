@@ -1,5 +1,6 @@
 package com.sea.user.api
 
+import com.google.gson.JsonObject
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.login.NLoginResponse
 import com.sea.user.activity.model.BaseEntry
@@ -18,7 +19,7 @@ import retrofit2.http.Query
 
 interface UserInformApi {
     @POST("getdata.ashx")
-    fun loadLogin(@Body nLoginModelReq: NLoginModelReq): Observable<NLoginResponse>
+    fun loadLogin(@Body nLoginModelReq: NLoginModelReq): Observable<String>
 
     @POST("getdata.ashx")
     fun loadRegister(@Body nRegisterReq: NRegisterModelReq): Observable<NRegisterModelResponse>

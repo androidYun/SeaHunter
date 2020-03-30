@@ -19,7 +19,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cvSelectAddress"
                 android:layout_width="match_parent"
-                android:layout_height="78dp"
+                android:layout_height="@dimen/dp_78"
                 android:background="@drawable/shape_base_item_background"
                 android:paddingStart="@dimen/default_padding"
                 android:paddingEnd="@dimen/default_padding">
@@ -37,7 +37,7 @@
                     android:id="@+id/tvNamePhoneNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="@dimen/dp_10"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
@@ -66,7 +66,7 @@
                 <View
                     android:id="@+id/ivLineView"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/dp_1"
                     android:background="@color/line_view"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/dp_2"
                 android:background="@color/line_view" />
 
             <LinearLayout
@@ -128,7 +128,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/dp_1"
                 android:background="@color/line_view" />
 
             <LinearLayout
@@ -159,7 +159,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/dp_1"
                 android:background="@color/line_view" />
 
             <LinearLayout
@@ -190,7 +190,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/dp_2"
                 android:background="@color/line_view" />
 
             <TextView
@@ -216,7 +216,7 @@
                     android:layout_height="40dp"
                     android:checked="true"
                     android:drawableEnd="@mipmap/ic_pay_alipay"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical|end"
                     android:layoutDirection="rtl"
                     android:text="支付宝支付"
@@ -230,7 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:drawableEnd="@mipmap/ic_pay_wechat"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical|end"
                     android:layoutDirection="rtl"
                     android:text="微信支付"
@@ -244,7 +244,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:drawableEnd="@mipmap/ic_pay_wallet"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical|end"
                     android:layoutDirection="rtl"
                     android:textColor="@color/black"
@@ -261,7 +261,7 @@
     <LinearLayout
         android:id="@+id/lvOnceOrder"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="@dimen/dp_54"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:orientation="horizontal">

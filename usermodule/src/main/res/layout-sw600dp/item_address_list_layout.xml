@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvSelectAddress"
     android:layout_width="match_parent"
-    android:layout_height="78dp"
+    android:layout_height="@dimen/dp_78"
     android:background="@drawable/shape_base_item_background"
     android:paddingStart="@dimen/default_padding"
     android:paddingEnd="@dimen/default_padding">
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
         app:layout_constraintStart_toEndOf="@+id/ivAddress"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,8 +42,8 @@
     <View
         android:layout_width="1px"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="@color/color_9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvEditAddress"

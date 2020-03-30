@@ -27,17 +27,17 @@
                 android:layout_width="match_parent"
                 android:gravity="center_vertical"
                 android:background="@color/white"
-                android:layout_height="64dp">
+                android:layout_height="@dimen/dp_64">
 
                 <TextView
                     android:id="@+id/tvIntegral"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@mipmap/ic_integral_num"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/sp_16"
                     tools:text="533" />
 
                 <View
@@ -54,7 +54,7 @@
                     android:gravity="center"
                     android:text="兑换列表"
                     android:textColor="@color/color_bf0008"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/sp_16" />
 
                 <TextView
                     android:id="@+id/tvIntegralDetail"
@@ -64,13 +64,13 @@
                     android:gravity="center"
                     android:text="积分明细"
                     android:textColor="@color/color_bf0008"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/sp_16" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="@dimen/dp_2"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="兑换好礼"
                     android:textColor="@color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/sp_16" />
 
                 <TextView
                     android:id="@+id/tvLookMore"
@@ -90,7 +90,7 @@
                     android:gravity="end|center_vertical"
                     android:text="查看更多"
                     android:textColor="@color/color_bf0008"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/sp_14" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

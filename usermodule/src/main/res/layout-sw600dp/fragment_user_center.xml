@@ -33,7 +33,7 @@
                     android:layout_marginTop="80dp"
                     android:layout_marginEnd="60dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="5dp">
+                    app:cardCornerRadius="@dimen/dp_4">
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="60dp"
-                                android:layout_marginTop="10dp">
+                                android:layout_marginTop="@dimen/dp_10">
 
                                 <TextView
                                     android:id="@+id/tvBalance"
@@ -143,7 +143,7 @@
                                     android:layout_marginEnd="20dp"
                                     android:layout_weight="1"
                                     android:drawableEnd="@mipmap/ic_arrow_right"
-                                    android:drawablePadding="12dp"
+                                    android:drawablePadding="@dimen/dp_12"
                                     android:gravity="end"
                                     android:text="查看全部"
                                     android:textColor="@color/color_9"
@@ -233,11 +233,11 @@
                         android:id="@+id/tvSeaFoodMall"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_seafood"
                         android:drawableEnd="@mipmap/ic_arrow_right"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="@dimen/dp_10"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
@@ -252,7 +252,7 @@
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_integral"
                         android:drawableEnd="@mipmap/ic_arrow_right"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="@dimen/dp_10"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
@@ -264,11 +264,11 @@
                         android:id="@+id/tvMineWallet"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/dp_10"
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_wallet"
                         android:drawableEnd="@mipmap/ic_arrow_right"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="@dimen/dp_10"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
@@ -283,7 +283,7 @@
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_topup"
                         android:drawableEnd="@mipmap/ic_arrow_right"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="@dimen/dp_10"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
@@ -298,7 +298,7 @@
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_complaints"
                         android:drawableEnd="@mipmap/ic_arrow_right"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="@dimen/dp_10"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
@@ -313,7 +313,7 @@
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_contact"
                         android:drawableEnd="@mipmap/ic_arrow_right"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="@dimen/dp_10"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
@@ -329,7 +329,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="45dp" />
+            android:layout_marginTop="@dimen/dp_45" />
 
         <ImageView
             android:id="@+id/ivSet"

@@ -4,12 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/default_padding">
+    android:paddingTop="@dimen/default_padding"
+    android:paddingEnd="@dimen/default_padding"
+    android:paddingBottom="@dimen/default_padding">
 
     <CheckBox
         android:id="@+id/cbSelect"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/default_margin"
+        android:button="@drawable/select_single_check"
+        android:paddingStart="@dimen/default_padding"
+        android:paddingEnd="@dimen/default_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,23 +25,23 @@
         android:id="@+id/cvShopImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cbSelect"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/ivCarHead"
             android:layout_width="120dp"
-            android:layout_height="88dp" />
+            android:layout_height="@dimen/dp_88" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvShopName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_4"
         android:maxLines="2"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_16"
@@ -46,7 +53,7 @@
         android:id="@+id/tvTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/dp_4"
         android:textColor="@color/color_6"
         android:textSize="@dimen/sp_14"
         app:layout_constraintStart_toStartOf="@+id/tvShopName"
@@ -57,7 +64,7 @@
         android:id="@+id/tvShopPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="@dimen/dp_4"
         android:textColor="@color/user_theme_color"
         android:textSize="@dimen/sp_18"
         app:layout_constraintBottom_toBottomOf="@+id/cvShopImage"

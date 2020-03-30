@@ -83,7 +83,7 @@
         android:layout_height="50dp"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:paddingStart="16dp"
+        android:paddingStart="@dimen/default_padding"
         android:text="删除收货地址"
         android:textColor="@color/color_bf0008"
         android:textSize="@dimen/sp_18"
@@ -92,6 +92,6 @@
     <TextView
         android:id="@+id/tvSaveAddress"
         style="@style/baseBtnStyle"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/dp_30"
         android:text="保存地址" />
 </LinearLayout>

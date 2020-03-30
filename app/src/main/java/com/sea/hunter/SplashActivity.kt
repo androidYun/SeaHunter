@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
         val phoneNumber = UserInformSpUtils.getPhoneNumber("")
         val password = UserInformSpUtils.getPassword("")
         if (phoneNumber.isNullOrBlank() || password.isNullOrBlank()) {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, SeaMainActivity::class.java))
         } else {
             startActivity(Intent(this, SeaMainActivity::class.java))
         }
