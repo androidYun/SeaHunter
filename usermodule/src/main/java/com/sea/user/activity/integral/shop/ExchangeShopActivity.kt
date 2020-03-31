@@ -24,6 +24,7 @@ import com.sea.user.utils.sp.StoreShopSpUtils
 import com.sea.user.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 import kotlinx.android.synthetic.main.activity_exchange_shop.*
+import kotlin.math.abs
 
 class ExchangeShopActivity : BaseActivity(),
     PlaceOrderContact.IPlaceOrderView,
@@ -57,14 +58,14 @@ class ExchangeShopActivity : BaseActivity(),
 
     private var quantity = 1
     private fun initView() {
-        ImageLoader.loadCircleImageView(
+        ImageLoader.loadImageWithUrl(
             ivShopImage,
             Constants.baseUrl.plus(mMallListItem.img_url)
         )
         tvShopName.text = mMallListItem.title
-        tvSingleIntegral.text = "${mMallListItem.point}积分"
-        tvNeedIntegral.text = "${mMallListItem.point}积分"
-        tvNeedTotalIntegral.text = "${mMallListItem.point}积分"
+        tvSingleIntegral.text = "${abs(mMallListItem.point)}积分"
+        tvNeedIntegral.text = "${abs(mMallListItem.point)}积分"
+        tvNeedTotalIntegral.text = "${abs(mMallListItem.point)}积分"
         amountNumber.setGoodsCount(1)
         amountNumber.setGoods_storage(mMallListItem.stock_quantity)
 
@@ -86,9 +87,8 @@ class ExchangeShopActivity : BaseActivity(),
         amountNumber.setOnAmountChangeListener { _, amount ->
             quantity = amount
             nShopItemMode.quantity = amount
-
-            tvNeedIntegral.text = "${mMallListItem.point * amount}积分"
-            tvNeedTotalIntegral.text = "${mMallListItem.point * amount}积分"
+            tvNeedIntegral.text = "${abs(mMallListItem.point) * amount}积分"
+            tvNeedTotalIntegral.text = "${abs(mMallListItem.point) * amount}积分"
         }
         tvOnceExchange.setOnClickListener {
             nPlaceOrderModelReq.pro_List = listOf(nShopItemMode)

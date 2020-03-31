@@ -34,25 +34,6 @@ class ShopCarActivity : BaseSeaUserActivity() {
     }
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_edit -> {
-                if (item.title == "编辑") {
-                    item.title = "取消"
-                } else {
-                    item.title = "编辑"
-                }
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_edit, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
     companion object {
         fun getInstance() = Bundle().apply { }
     }

@@ -63,7 +63,7 @@ class SelectShopSpecDialog(
     private fun initData() {
         ImageLoader.loadImageWithUrl(ivImage,  Constants.baseUrl.plus(nShopDetailModel.imageUrl) )
         tvPrice.text = nShopDetailModel.sellPrice.toString()
-        tvShopNumber.text = nShopDetailModel.saleNumber
+        tvShopNumber.text = nShopDetailModel.saleNumberStockQuantity
         rvSpec.layoutManager = LinearLayoutManager(context)
         specAdapter = SpecListAdapter(nShopDetailModel.specs)
         rvSpec.adapter = specAdapter

@@ -6,7 +6,8 @@ import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
 
 
-class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarContact.IShopCarPresenter {
+class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(),
+    ShopCarContact.IShopCarPresenter {
     override fun loadShopCar(nShopCarModelReq: NShopCarModelReq) {
         RetrofitUtils.getRetrofit()
             .create(ShopApi::class.java)
@@ -18,11 +19,10 @@ class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarConta
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {
-                    if (it.code==1) {
+                    if (it.code == 1) {
                         softView.get()?.loadShopCarSuccess(it.data)
                     } else {
                         softView.get()?.loadShopCarFail(Throwable(it.msg))
@@ -43,11 +43,10 @@ class ShopCarPresenter : IPresenter<ShopCarContact.IShopCarView>(), ShopCarConta
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {
-                    if (it.code==1) {
+                    if (it.code == 1) {
                         softView.get()?.loadDeleteShopCarSuccess()
                     } else {
                         softView.get()?.loadDeleteShopCarFail(Throwable(it.msg))

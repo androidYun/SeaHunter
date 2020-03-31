@@ -25,10 +25,10 @@
             android:label="@string/order_successful" />
         <activity
             android:name=".activity.mall.order.list.ShopOrderListActivity"
-            android:label="@string/mine_order" />
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".activity.mall.car.ShopCarActivity"
-            android:label="@string/title_ShopCar" />
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".activity.mall.detail.ShopDetailActivity"
             android:label="@string/title_ShopDetail" />

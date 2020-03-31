@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.sea.user.R
+import com.sea.user.utils.DeviceUtils
 import com.xhs.baselibrary.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_main_shop_order_list.*
 import kotlinx.android.synthetic.main.include_tab_layout_view_pager.*
 
 class ShopOrderFragment : BaseFragment() {
@@ -35,6 +40,25 @@ class ShopOrderFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        if (!DeviceUtils.isTabletDevice()) {
+            initToolbar(toolbar, "我的订单", false)
+        }
+    }
+
+    /**
+     * Fragment中初始化Toolbar
+     * @param toolbar
+     * @param title 标题
+     * @param isDisplayHomeAsUp 是否显示返回箭头
+     */
+    private fun initToolbar(toolbar: Toolbar?, title: String?, isDisplayHomeAsUp: Boolean) {
+        val appCompatActivity = activity as AppCompatActivity?
+        appCompatActivity!!.setSupportActionBar(toolbar)
+        val actionBar: ActionBar? = appCompatActivity.supportActionBar
+        if (actionBar != null) {
+            actionBar.title = title
+            actionBar.setDisplayHomeAsUpEnabled(isDisplayHomeAsUp)
+        }
     }
 
 

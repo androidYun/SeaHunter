@@ -103,7 +103,7 @@
             android:id="@+id/tvSingleIntegral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/user_theme_color"
+            android:textColor="@color/color_bf0008"
             android:textSize="@dimen/sp_18"
             app:layout_constraintBottom_toBottomOf="@+id/ivShopImage"
             app:layout_constraintStart_toStartOf="@+id/tvShopName"

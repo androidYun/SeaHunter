@@ -33,7 +33,11 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
     private val mUserCenterPresenter by lazy { UserInformPresenter().apply { attachView(this@UserCenterFragment) } }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_user_center, container, false)
     }
 
@@ -43,23 +47,7 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
         initData()
         initListener()
         if (!DeviceUtils.isTabletDevice()) {
-            initToolbar(toolbar, "我的", false)
-        }
-    }
-
-    /**
-     * Fragment中初始化Toolbar
-     * @param toolbar
-     * @param title 标题
-     * @param isDisplayHomeAsUp 是否显示返回箭头
-     */
-    private fun initToolbar(toolbar: Toolbar?, title: String?, isDisplayHomeAsUp: Boolean) {
-        val appCompatActivity = activity as AppCompatActivity?
-        appCompatActivity!!.setSupportActionBar(toolbar)
-        val actionBar: ActionBar? = appCompatActivity.supportActionBar
-        if (actionBar != null) {
-            actionBar.title = title
-            actionBar.setDisplayHomeAsUpEnabled(isDisplayHomeAsUp)
+            tvMineTitle.text = "我的"
         }
     }
 

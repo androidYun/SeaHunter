@@ -11,6 +11,7 @@ import com.sea.user.activity.integral.shop.ExchangeShopActivity
 import com.sea.user.common.Constants
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
+import kotlin.math.abs
 
 class IntegralMallAdapter(mList: List<MallListItem>) :
     BaseQuickAdapter<MallListItem, BaseViewHolder>(R.layout.item_integral_mall_layout, mList) {
@@ -23,11 +24,15 @@ class IntegralMallAdapter(mList: List<MallListItem>) :
                 ).apply { putExtras(ExchangeShopActivity.getInstance(item)) })
         }
         helper?.getView<ConstraintLayout>(R.id.cVIntegralShop)?.setOnClickListener {
-            it.context.startActivity(Intent(it.context, IntegralShopDetailActivity::class.java).apply { putExtras(IntegralShopDetailActivity.getInstance(item)) })
+            it.context.startActivity(
+                Intent(
+                    it.context,
+                    IntegralShopDetailActivity::class.java
+                ).apply { putExtras(IntegralShopDetailActivity.getInstance(item)) })
         }
         helper?.setText(R.id.tvShopName, item.title)
         helper?.setText(R.id.tvRedeemCount, "${item.click}人兑换")
-        helper?.setText(R.id.tvShopIntegral, item.point.toString())
+        helper?.setText(R.id.tvShopIntegral, abs(item.point).toString())
         ImageLoader.loadImageWithUrl(
             helper.getView(R.id.ivShopImage),
             Constants.baseUrl.plus(item.img_url)

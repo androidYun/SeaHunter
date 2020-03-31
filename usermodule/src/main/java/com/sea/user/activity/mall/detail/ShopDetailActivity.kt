@@ -24,7 +24,9 @@ import com.sea.user.presenter.car.ShopCarEditPresenter
 import com.sea.user.presenter.sea.order.NPlaceOrderModelReq
 import com.sea.user.presenter.sea.order.PlaceOrderContact
 import com.sea.user.presenter.sea.order.PlaceOrderPresenter
+import com.sea.user.utils.DeviceUtils
 import com.sea.user.utils.sp.StoreShopSpUtils
+import com.xhs.baselibrary.utils.ToastUtils
 import com.youth.banner.config.IndicatorConfig
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 import java.math.BigDecimal
@@ -73,12 +75,18 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
 
     private fun initData() {
         tvStoreName.text = StoreShopSpUtils.getStoreShopName()
-        nEditShopCarModelReq.goods_id = goodId
+        nEditShopCarModelReq.goods_id = 0
         mShopDetailPresenter.loadShopDetail(NShopDetailModelReq(good_id = goodId))
     }
 
     private fun initListener() {
         tvJoinShopCar.setOnClickListener {
+            if (!nShopDetailModel.goods.isNullOrEmpty()) {//如果是多规格的
+                if (nEditShopCarModelReq.goods_id <= 0) {
+                    ToastUtils.show("请选择规格")
+                    return@setOnClickListener
+                }
+            }
             mShopCarEditPresenter.loadShopCarEdit(
                 nEditShopCarModelReq
             )
@@ -161,7 +169,7 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
         tvRemark.text = nShopDetailModel.tags
         tvPrice.text = nShopDetailModel.sellPrice.setScale(2).toString()
         tvShopPrice.text = nShopDetailModel.sellPrice.setScale(2).toString()
-        tvSaleNumber.text = nShopDetailModel.saleNumber
+        tvSaleNumber.text = nShopDetailModel.saleNumberStockQuantity
 //        /*给要购买的商品赋值*/
         confirmOrderShopItem = ConfirmOrderShopItem(
             article_id = nShopDetailModel.id,
@@ -181,14 +189,20 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
         bannerView.adapter = shopBannerAdapter
         swipeShopDetail.isRefreshing = false
         /*参数设置*/
-        val layoutManager = FlexboxLayoutManager(this)
-        layoutManager.flexDirection = FlexDirection.ROW
-        layoutManager.justifyContent = JustifyContent.CENTER
-        rvDetailParams.layoutManager = layoutManager
+        if (DeviceUtils.isTabletDevice()) {
+            val layoutManager = GridLayoutManager(this, 3)
+            rvDetailParams.layoutManager = layoutManager
+        } else {
+            val layoutManager = LinearLayoutManager(this)
+            rvDetailParams.layoutManager = layoutManager
+        }
         shopParamsAdapter = ShopParamsAdapter(nShopDetailModel.paramsList)
         rvDetailParams.adapter = shopParamsAdapter
         nEditShopCarModelReq.channel_id = nShopDetailModel.channelId
-        if (nShopDetailModel.specs.isNullOrEmpty()) {
+        /**
+         * 如果规格为空的话 good_id=0  article_id 等于商品Id
+         */
+        if (nShopDetailModel.goods.isNullOrEmpty()) {
             nEditShopCarModelReq.article_id = nShopDetailModel.id
             nEditShopCarModelReq.goods_id = 0
         }

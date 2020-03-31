@@ -2,18 +2,21 @@ package com.sea.user.activity.mall.car
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.user.R
 import com.sea.user.activity.mall.order.confirm.MallConfirmOrderActivity
 import com.sea.user.presenter.car.ShopCarEditContact
 import com.sea.user.presenter.car.ShopCarEditPresenter
+import com.sea.user.utils.DeviceUtils
 import com.sea.user.utils.sp.StoreShopSpUtils
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_shop_car.*
+
 
 class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
     ShopCarEditContact.IShopCarEditView {
@@ -25,6 +28,12 @@ class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
     private val mShopCarList = mutableListOf<ShopCarItem>()
 
     private lateinit var mShopCarAdapter: ShopCarAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,8 +47,47 @@ class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
         initView()
         initData()
         initListener()
+        if (!DeviceUtils.isTabletDevice()) {
+            initToolbar(toolbar, "购物车", false)
+        }
     }
 
+    /**
+     * Fragment中初始化Toolbar
+     * @param toolbar
+     * @param title 标题
+     * @param isDisplayHomeAsUp 是否显示返回箭头
+     */
+    private fun initToolbar(toolbar: Toolbar?, title: String?, isDisplayHomeAsUp: Boolean) {
+        val appCompatActivity = activity as AppCompatActivity?
+        appCompatActivity!!.setSupportActionBar(toolbar)
+        val actionBar: ActionBar? = appCompatActivity.supportActionBar
+        if (actionBar != null) {
+            actionBar.title = title
+            actionBar.setDisplayHomeAsUpEnabled(isDisplayHomeAsUp)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_edit, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_edit -> {
+                if (item.title == "编辑") {
+                    tvDelete.visibility = View.VISIBLE
+                    item.title = "取消"
+                } else {
+                    tvDelete.visibility = View.GONE
+                    item.title = "编辑"
+                }
+                false
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     private fun initView() {
         mShopCarAdapter = ShopCarAdapter(mShopCarList)
@@ -131,7 +179,12 @@ class ShopCarFragment : BaseFragment(), ShopCarContact.IShopCarView,
     }
 
     override fun loadDeleteShopCarSuccess() {
-
+        mShopCarPresenter.loadShopCar(
+            NShopCarModelReq(shop_id = StoreShopSpUtils.getStoreShopId())
+        )
+        cbCarShop.isChecked = false
+        tvDelete.visibility = View.GONE
+        tvShopAllPrice.text = "￥0"
     }
 
     override fun loadDeleteShopCarFail(throwable: Throwable) {

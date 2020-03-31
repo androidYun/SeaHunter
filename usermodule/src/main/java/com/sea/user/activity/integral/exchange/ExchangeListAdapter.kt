@@ -25,7 +25,7 @@ class ExchangeListAdapter(mList: List<ShopOrderListItem>) :
                 R.id.tvIntegralStatus,
                 "待发货"
             )
-            helper?.setTextColor( R.id.tvIntegralStatus,UIUtils.getInstance().getColor(R.color.user_theme_color))
+            helper?.setTextColor( R.id.tvIntegralStatus,UIUtils.getInstance().getColor(R.color.color_bf0008))
         } else if (item.express_status == 2) {
             helper?.setText(
                 R.id.tvIntegralStatus,

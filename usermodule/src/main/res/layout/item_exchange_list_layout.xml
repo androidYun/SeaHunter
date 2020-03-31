@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="@color/user_theme_color"
+            android:textColor="@color/color_bf0008"
             android:textSize="@dimen/sp_16"
             tools:text="待发货" />
 
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_padding"
-            android:textColor="@color/user_theme_color"
+            android:textColor="@color/color_bf0008"
             android:textSize="@dimen/sp_18"
             app:layout_constraintBottom_toBottomOf="@+id/ivShopImage"
             app:layout_constraintStart_toEndOf="@+id/ivShopImage"
@@ -78,7 +78,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/user_theme_color"
+            android:textColor="@color/color_bf0008"
             android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toBottomOf="@+id/tvShopIntegral"
             app:layout_constraintStart_toEndOf="@+id/tvShopIntegral"

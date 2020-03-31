@@ -8,6 +8,7 @@ import com.sea.user.activity.mall.detail.*
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_integral_shop_detail.*
+import kotlin.math.abs
 
 class IntegralShopDetailActivity : BaseActivity(),
     ShopDetailContact.IShopDetailView {
@@ -60,9 +61,9 @@ class IntegralShopDetailActivity : BaseActivity(),
         bannerView.adapter = shopBannerAdapter
         tvShopName.text = nShopDetailModel.title
         tvShopRemark.text = nShopDetailModel.tags
-        tvShopIntegral.text = nShopDetailModel.point
-        tvTwoShopIntegral.text = nShopDetailModel.point
-        tvExchangeNumber.text = ""
+        tvShopIntegral.text = "${abs(nShopDetailModel.point.toInt())}"
+        tvTwoShopIntegral.text = "${abs(nShopDetailModel.point.toInt())}"
+        tvExchangeNumber.text = "已兑：${nShopDetailModel.saleNumber}"
 
     }
 

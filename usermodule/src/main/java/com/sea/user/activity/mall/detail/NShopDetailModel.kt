@@ -119,6 +119,7 @@ data class NShopDetailModel(
     val title: String = "",
     val content: String = "",
     val tags: String = "",
+    val saleNumberStockQuantity: String = "",
     val saleNumber: String = "",
     val stockQuantity: Int = 0,//库存
     val sellPrice: BigDecimal = BigDecimal(0),

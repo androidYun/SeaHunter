@@ -1,79 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeShopCar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/cvOperator">
+        android:layout_height="wrap_content" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvShopCar"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeShopCar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cvOperator"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white">
-
-
-        <CheckBox
-            android:id="@+id/cbCarShop"
-            android:layout_width="wrap_content"
-            android:padding="@dimen/dp_10"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_padding"
-            android:button="@drawable/select_single_check"
-            android:paddingStart="@dimen/dp_10"
-            android:text="全选"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvShopAllPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_10"
-            android:textColor="@color/user_theme_color"
-            android:textSize="@dimen/sp_16"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cbCarShop"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="￥477.50" />
-
-        <TextView
-            android:id="@+id/tvDelete"
-            android:layout_width="@dimen/dp_120"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/dp_1"
-            android:background="@color/color_EA2125"
-            android:gravity="center"
-            android:text="删除"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_16"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/tvOnceOrder" />
+            android:layout_above="@+id/cvOperator">
 
-        <TextView
-            android:id="@+id/tvOnceOrder"
-            android:layout_width="@dimen/dp_120"
-            android:layout_height="match_parent"
-            android:background="@color/user_theme_color"
-            android:gravity="center"
-            android:text="立即下单"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_16"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvShopCar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</RelativeLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cvOperator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white">
+
+
+            <CheckBox
+                android:id="@+id/cbCarShop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding"
+                android:button="@drawable/select_single_check"
+                android:padding="@dimen/dp_10"
+                android:paddingStart="@dimen/dp_10"
+                android:text="全选"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvShopAllPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:textColor="@color/user_theme_color"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cbCarShop"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="￥477.50" />
+
+            <TextView
+                android:id="@+id/tvDelete"
+                android:layout_width="@dimen/dp_120"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/dp_1"
+                android:background="@color/color_EA2125"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/tvOnceOrder" />
+
+            <TextView
+                android:id="@+id/tvOnceOrder"
+                android:layout_width="@dimen/dp_120"
+                android:layout_height="match_parent"
+                android:background="@color/user_theme_color"
+                android:gravity="center"
+                android:text="立即下单"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</LinearLayout>
