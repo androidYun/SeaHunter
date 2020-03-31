@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="120dp"
+            android:layout_width="@dimen/dp_120"
             android:layout_height="@dimen/dp_88" />
     </androidx.cardview.widget.CardView>
 
@@ -30,7 +30,7 @@
         android:layout_marginStart="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_4"
         android:textColor="@color/black"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintStart_toEndOf="@+id/cvShopImage"
         app:layout_constraintTop_toTopOf="@+id/cvShopImage"
         tools:text="鲜有汇聚冰鲜三文鱼中段日料刺身拼盘新鲜生鱼片即食海鲜三文鱼肉" />
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp_4"
         android:textColor="@color/user_theme_color"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toBottomOf="@+id/cvShopImage"
         app:layout_constraintStart_toStartOf="@+id/tvShopName"
         tools:text="X 1" />
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp_4"
         android:textColor="@color/user_theme_color"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvShopNumber"
         tools:text="￥58" />
@@ -70,7 +70,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@color/line_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

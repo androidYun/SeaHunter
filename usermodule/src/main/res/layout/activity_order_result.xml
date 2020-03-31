@@ -8,7 +8,7 @@
         android:id="@+id/ivOrderResultStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/dp_60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/default_padding"
         android:text="订单支付失败！"
         android:textColor="@color/color_c1220d"
-        android:textSize="@dimen/sp_24"
+        android:textSize="@dimen/sp_22"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivOrderResultStatus" />
@@ -29,7 +29,7 @@
         android:id="@+id/cvBackMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/dp_60"
         android:layout_marginEnd="@dimen/dp_26"
         app:cardBackgroundColor="@color/color_c1220d"
         app:cardCornerRadius="@dimen/dp_10"
@@ -48,7 +48,7 @@
             android:paddingBottom="@dimen/dp_12"
             android:text="返回首页"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_16" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -72,7 +72,7 @@
             android:paddingBottom="@dimen/dp_12"
             android:text="重新支付"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_16" />
     </androidx.cardview.widget.CardView>
 
 

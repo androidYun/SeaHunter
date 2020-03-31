@@ -56,7 +56,7 @@
 
 
                 <ImageView
-                    android:layout_width="80dp"
+                    android:layout_width="@dimen/dp_80"
                     android:layout_height="wrap_content"
                     android:contentDescription="下一步"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -81,7 +81,7 @@
             <TextView
                 android:id="@+id/tvShopInform"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/default_padding"
                 android:text="@string/shop_inform"
@@ -102,7 +102,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/default_padding"
@@ -133,7 +133,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/default_padding"
@@ -164,7 +164,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/default_padding"
@@ -195,7 +195,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/dp_40"
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/default_padding"
                 android:paddingEnd="@dimen/default_padding"
@@ -213,7 +213,7 @@
                 <RadioButton
                     android:id="@+id/rbtAliPay"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/dp_40"
                     android:checked="true"
                     android:drawableEnd="@mipmap/ic_pay_alipay"
                     android:drawablePadding="@dimen/dp_10"
@@ -228,7 +228,7 @@
                 <RadioButton
                     android:id="@+id/rbtWechat"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/dp_40"
                     android:drawableEnd="@mipmap/ic_pay_wechat"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical|end"
@@ -242,7 +242,7 @@
                 <RadioButton
                     android:id="@+id/rbtBalance"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/dp_40"
                     android:drawableEnd="@mipmap/ic_pay_wallet"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical|end"
@@ -290,8 +290,8 @@
             android:layout_height="match_parent"
             android:background="@color/user_theme_color"
             android:gravity="center"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
+            android:paddingStart="@dimen/dp_50"
+            android:paddingEnd="@dimen/dp_50"
             android:text="@string/once_order"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_16" />

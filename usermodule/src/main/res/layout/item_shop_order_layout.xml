@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:orientation="horizontal">
 
         <TextView
@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             tools:text="订单号：A2638563545" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical|end"
             android:textColor="@color/color_bf0008"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             tools:text="待付款" />
     </LinearLayout>
 
@@ -45,7 +45,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:orientation="horizontal">
 
         <TextView
@@ -56,7 +56,7 @@
             android:gravity="center_vertical|end"
             android:text="总金额："
             android:textColor="#ff000000"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tvShopOrderAmount"
@@ -64,7 +64,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical|end"
             android:textColor="@color/color_bf0008"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             tools:text="￥116" />
     </LinearLayout>
 

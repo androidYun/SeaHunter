@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/ivSeaShop"
-            android:layout_width="160dp"
+            android:layout_width="@dimen/dp_160"
             android:layout_height="@dimen/dp_100" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginTop="@dimen/dp_14"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             tools:text="三文鱼排" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_marginTop="@dimen/dp_10"
             android:text="￥48"
             android:textColor="#ffbf0008"
-            android:textSize="@dimen/sp_20" />
+            android:textSize="@dimen/sp_18" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

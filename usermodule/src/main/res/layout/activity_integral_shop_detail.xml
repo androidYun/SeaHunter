@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="安全无味创意拼接，儿童XPE拼接爬行垫" />
@@ -33,7 +33,7 @@
             android:layout_marginTop="@dimen/dp_8"
             android:text="自由拼接，柔软防震"
             android:textColor="@color/color_9"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvShopName" />
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:textColor="@color/color_bf0008"
-            android:textSize="@dimen/sp_20"
+            android:textSize="@dimen/sp_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvShopRemark"
             tools:text="675" />
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_bf0008"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toBottomOf="@+id/tvShopIntegral"
             app:layout_constraintStart_toEndOf="@+id/tvShopIntegral"
             tools:text="积分" />
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_9"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="已兑：1456" />
@@ -77,7 +77,7 @@
     <LinearLayout
         android:id="@+id/lvOperator"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:gravity="center_vertical"
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_bf0008"
-            android:textSize="@dimen/sp_20"
+            android:textSize="@dimen/sp_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvShopRemark"
             tools:text="675" />
@@ -100,7 +100,7 @@
             android:layout_marginTop="@dimen/dp_4"
             android:layout_weight="1"
             android:textColor="@color/color_bf0008"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toBottomOf="@+id/tvShopIntegral"
             app:layout_constraintStart_toEndOf="@+id/tvShopIntegral"
             tools:text="积分" />
@@ -111,11 +111,11 @@
             android:layout_height="match_parent"
             android:background="@color/color_bf0008"
             android:gravity="center"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
+            android:paddingStart="@dimen/dp_50"
+            android:paddingEnd="@dimen/dp_50"
             android:text="@string/once_exchange"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_16" />
 
     </LinearLayout>
 </RelativeLayout>

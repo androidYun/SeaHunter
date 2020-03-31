@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/ivImage"
-            android:layout_width="160dp"
+            android:layout_width="@dimen/dp_160"
             android:layout_height="@dimen/dp_100"
             android:layout_marginTop="@dimen/dp_10"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_10"
             android:textColor="@color/user_theme_color"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toEndOf="@+id/ivImage"
             app:layout_constraintTop_toTopOf="@+id/ivImage"
             tools:text="￥48-218" />
@@ -74,7 +74,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -84,7 +84,7 @@
             android:layout_weight="1"
             android:text="购买数量"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
         <com.xhs.baselibrary.weight.AmountView
             android:id="@+id/tvAmount"
@@ -101,7 +101,7 @@
     <TextView
         android:id="@+id/tvConfirm"
         style="@style/baseBtnStyle"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/dp_20"
         android:layout_marginBottom="@dimen/dp_10"
         android:text="确定" />
 </LinearLayout>

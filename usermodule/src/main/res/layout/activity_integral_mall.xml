@@ -37,7 +37,7 @@
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     tools:text="533" />
 
                 <View
@@ -49,12 +49,12 @@
                     android:id="@+id/tvExchange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="@dimen/dp_20"
                     android:background="@drawable/shape_integral_background"
                     android:gravity="center"
                     android:text="兑换列表"
                     android:textColor="@color/color_bf0008"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tvIntegralDetail"
@@ -64,12 +64,12 @@
                     android:gravity="center"
                     android:text="积分明细"
                     android:textColor="@color/color_bf0008"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:layout_marginTop="@dimen/dp_2"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="兑换好礼"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tvLookMore"

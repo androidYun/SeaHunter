@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/ivStore"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
         android:src="@mipmap/ic_stores"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:layout_marginStart="@dimen/dp_10"
         android:text="郑州 • 绿地新都会店"
         android:textColor="@color/black"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintStart_toEndOf="@+id/ivStore"
         app:layout_constraintTop_toTopOf="@+id/ivStore" />
 

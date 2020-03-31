@@ -9,7 +9,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        android:layout_width="400dp"
+        android:layout_width="@dimen/dp_400"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layoutMode="opticalBounds"

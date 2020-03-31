@@ -14,9 +14,9 @@
         android:id="@+id/tvSpec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="20dp"
+        android:paddingStart="@dimen/dp_20"
         android:paddingTop="@dimen/dp_7"
-        android:paddingEnd="20dp"
+        android:paddingEnd="@dimen/dp_20"
         android:paddingBottom="@dimen/dp_7"
         tools:text="500g" />
 </androidx.cardview.widget.CardView>

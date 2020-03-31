@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fvFoodType"
-    android:layout_width="@dimen/dp_220"
-    android:layout_height="@dimen/dp_270"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="@dimen/dp_3"
     android:gravity="center"
@@ -24,9 +24,9 @@
             android:id="@+id/tvTypeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_32"
+            android:layout_marginTop="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_22"
+            android:textSize="@dimen/sp_20"
             tools:text="必吃榜单" />
 
         <TextView
@@ -42,6 +42,7 @@
             android:id="@+id/ivFoodType"
             android:layout_width="@dimen/dp_120"
             android:layout_height="@dimen/dp_110"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="@dimen/default_padding"
+            android:layout_marginBottom="@dimen/default_padding" />
     </LinearLayout>
 </FrameLayout>

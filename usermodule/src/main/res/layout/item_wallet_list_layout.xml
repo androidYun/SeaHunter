@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/ivWalletHead"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
         android:background="@color/user_theme_color"
         android:paddingTop="@dimen/dp_3"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_14"
         android:textColor="@color/color_3"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintStart_toEndOf="@+id/ivWalletHead"
         app:layout_constraintTop_toTopOf="@+id/ivWalletHead"
         tools:text="购买商品获得积分" />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
         android:textColor="@color/color_9"
-        android:textSize="@dimen/sp_16"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/tvWalletTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvWalletTitle"
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_bf0008"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="+120" />
@@ -52,7 +52,7 @@
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_1"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@color/color_e2e2e2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvWalletTitle"

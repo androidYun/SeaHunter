@@ -11,8 +11,8 @@
 
     <com.xhs.baselibrary.weight.NiceImageView
         android:id="@+id/ivShopImage"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="@dimen/dp_130"
+        android:layout_height="@dimen/dp_130"
         app:corner_radius="@dimen/dp_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_10"
-        android:textSize="@dimen/sp_16"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintStart_toEndOf="@+id/ivShopImage"
         app:layout_constraintTop_toTopOf="@+id/ivShopImage"
         tools:text="智能手表电话蓝牙手环" />
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_bf0008"
-        android:textSize="@dimen/sp_20"
+        android:textSize="@dimen/sp_18"
         app:layout_constraintBottom_toBottomOf="@+id/ivShopImage"
         app:layout_constraintStart_toStartOf="@+id/tvShopName"
         tools:text="675" />
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_bf0008"
-        android:textSize="@dimen/sp_16"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintBottom_toBottomOf="@+id/tvShopIntegral"
         app:layout_constraintStart_toEndOf="@+id/tvShopIntegral"
         tools:text="积分" />
@@ -66,7 +66,7 @@
         android:gravity="center"
         android:text="立即兑换"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

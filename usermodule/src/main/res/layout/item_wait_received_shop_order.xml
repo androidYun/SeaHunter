@@ -16,16 +16,18 @@
 
         <TextView
             android:id="@+id/tvLookLogistics"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_80"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="@dimen/dp_20"
             android:background="@drawable/shape_border_theme_circle_radius"
             android:text="查看物流"
             android:textColor="@color/user_theme_color" />
 
         <TextView
             android:id="@+id/tvConfirmReceipt"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_80"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_theme_circle"
             android:text="确认收货"

@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/dp_20"
         app:cardCornerRadius="@dimen/default_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
                 android:layout_marginTop="@dimen/dp_36"
                 android:text="当前余额(元)"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,10 +36,10 @@
                 android:id="@+id/tvBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginBottom="@dimen/dp_36"
                 android:textColor="@color/white"
-                android:textSize="40dp"
+                android:textSize="@dimen/dp_40"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +50,11 @@
                 android:id="@+id/tvReflect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="@dimen/dp_30"
                 android:background="@drawable/shape_reflect_background"
                 android:text="提现"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

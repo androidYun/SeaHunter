@@ -6,8 +6,6 @@
         android:width="@dimen/dp_1"
         android:color="@color/user_theme_color" />
     <padding
-        android:bottom="@dimen/dp_8"
-        android:left="@dimen/dp_32"
-        android:right="@dimen/dp_32"
-        android:top="@dimen/dp_8" />
+        android:bottom="@dimen/dp_6"
+        android:top="@dimen/dp_6" />
 </shape>

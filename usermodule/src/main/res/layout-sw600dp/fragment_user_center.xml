@@ -29,9 +29,9 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginEnd="60dp"
+                    android:layout_marginStart="@dimen/dp_60"
+                    android:layout_marginTop="@dimen/dp_80"
+                    android:layout_marginEnd="@dimen/dp_60"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="@dimen/dp_4">
 
@@ -45,13 +45,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:paddingBottom="30dp">
+                            android:paddingBottom="@dimen/dp_30">
 
                             <TextView
                                 android:id="@+id/tvUserName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="40dp"
+                                android:layout_marginTop="@dimen/dp_40"
                                 android:gravity="center"
                                 android:textColor="@color/color_3"
                                 android:textSize="@dimen/sp_16"
@@ -59,14 +59,14 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="60dp"
+                                android:layout_height="@dimen/dp_60"
                                 android:layout_marginTop="@dimen/dp_10">
 
                                 <TextView
                                     android:id="@+id/tvBalance"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginEnd="60dp"
+                                    android:layout_marginEnd="@dimen/dp_60"
                                     android:textColor="@color/color_3"
                                     android:textSize="@dimen/sp_20"
                                     app:layout_constraintBottom_toTopOf="@+id/tvBalanceTitle"
@@ -78,7 +78,7 @@
                                     android:id="@+id/tvBalanceTitle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginEnd="60dp"
+                                    android:layout_marginEnd="@dimen/dp_60"
                                     android:text="@string/balance"
                                     android:textColor="@color/color_8"
                                     android:textSize="@dimen/sp_16"
@@ -89,7 +89,7 @@
                                 <View
                                     android:id="@+id/view"
                                     android:layout_width="1px"
-                                    android:layout_height="40dp"
+                                    android:layout_height="@dimen/dp_40"
                                     android:background="@color/color_6"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
                                     android:id="@+id/tvIntegral"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="60dp"
+                                    android:layout_marginStart="@dimen/dp_60"
                                     android:textColor="@color/color_3"
                                     android:textSize="@dimen/sp_20"
                                     app:layout_constraintBottom_toTopOf="@+id/tvIntegralTitle"
@@ -112,7 +112,7 @@
                                     android:id="@+id/tvIntegralTitle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="60dp"
+                                    android:layout_marginStart="@dimen/dp_60"
                                     android:text="@string/integral"
                                     android:textColor="@color/color_8"
                                     android:textSize="@dimen/sp_16"
@@ -124,13 +124,13 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="@dimen/dp_20"
                                 android:gravity="center_vertical">
 
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="20dp"
+                                    android:layout_marginStart="@dimen/dp_20"
                                     android:layout_weight="1"
                                     android:text="我的订单"
                                     android:textColor="@color/black"
@@ -140,7 +140,7 @@
                                     android:id="@+id/tvLookAllOrder"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginEnd="20dp"
+                                    android:layout_marginEnd="@dimen/dp_20"
                                     android:layout_weight="1"
                                     android:drawableEnd="@mipmap/ic_arrow_right"
                                     android:drawablePadding="@dimen/dp_12"
@@ -154,7 +154,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="40dp"
+                                android:layout_marginTop="@dimen/dp_40"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -225,14 +225,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
+                    android:layout_marginStart="@dimen/dp_60"
                     android:orientation="vertical"
-                    android:paddingEnd="60dp">
+                    android:paddingEnd="@dimen/dp_60">
 
                     <TextView
                         android:id="@+id/tvSeaFoodMall"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="@dimen/dp_46"
                         android:layout_marginTop="@dimen/dp_8"
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_seafood"
@@ -248,7 +248,7 @@
                     <TextView
                         android:id="@+id/tvIntegralMall"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="@dimen/dp_46"
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_integral"
                         android:drawableEnd="@mipmap/ic_arrow_right"
@@ -263,7 +263,7 @@
                     <TextView
                         android:id="@+id/tvMineWallet"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="@dimen/dp_46"
                         android:layout_marginTop="@dimen/dp_10"
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_wallet"
@@ -279,7 +279,7 @@
                     <TextView
                         android:id="@+id/tvRecharge"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="@dimen/dp_46"
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_topup"
                         android:drawableEnd="@mipmap/ic_arrow_right"
@@ -294,7 +294,7 @@
                     <TextView
                         android:id="@+id/tvFeedback"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="@dimen/dp_46"
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_complaints"
                         android:drawableEnd="@mipmap/ic_arrow_right"
@@ -309,7 +309,7 @@
                     <TextView
                         android:id="@+id/tvContactUs"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="@dimen/dp_46"
                         android:background="@color/white"
                         android:drawableStart="@mipmap/ic_my_contact"
                         android:drawableEnd="@mipmap/ic_arrow_right"
@@ -326,8 +326,8 @@
 
         <ImageView
             android:id="@+id/ivHead"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_45" />
 
@@ -336,7 +336,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/dp_40"
             android:layout_marginEnd="@dimen/default_margin"
             android:src="@mipmap/ic_set" />
     </FrameLayout>

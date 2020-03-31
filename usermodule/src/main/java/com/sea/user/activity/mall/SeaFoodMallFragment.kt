@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -23,12 +27,11 @@ import com.sea.user.presenter.banner.BannerItem
 import com.sea.user.presenter.banner.BannerPresenter
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.sea.user.presenter.sea.mall.NMallListModelReq
+import com.sea.user.utils.DeviceUtils
 import com.sea.user.utils.sp.StoreShopSpUtils
 import com.xhs.baselibrary.base.BaseFragment
-import kotlinx.android.synthetic.main.activity_shop_detail.*
 import kotlinx.android.synthetic.main.fragment_sea_food_mall.*
-import kotlinx.android.synthetic.main.fragment_sea_food_mall.bannerView
-import kotlinx.android.synthetic.main.fragment_sea_food_mall.tvStoreName
+
 
 class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView, BannerContact.IBannerView {
 
@@ -74,24 +77,53 @@ class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView,
         initView()
         initData()
         initListener()
+        if (!DeviceUtils.isTabletDevice()) {
+            initToolbar(toolbar, "海鲜商城", false)
+        }
     }
 
+    /**
+     * Fragment中初始化Toolbar
+     * @param toolbar
+     * @param title 标题
+     * @param isDisplayHomeAsUp 是否显示返回箭头
+     */
+    private fun initToolbar(toolbar: Toolbar?, title: String?, isDisplayHomeAsUp: Boolean) {
+        val appCompatActivity = activity as AppCompatActivity?
+        appCompatActivity!!.setSupportActionBar(toolbar)
+        val actionBar: ActionBar? = appCompatActivity.supportActionBar
+        if (actionBar != null) {
+            actionBar.title = title
+            actionBar.setDisplayHomeAsUpEnabled(isDisplayHomeAsUp)
+        }
+    }
 
     private fun initView() {
         tvStoreName.text =
             if (StoreShopSpUtils.getStoreShopName().isNullOrBlank()) "请选择店面" else StoreShopSpUtils.getStoreShopName()
         //商品种类
+        if (DeviceUtils.isTabletDevice()) {
+            /*种类*/
+            val layoutManager = FlexboxLayoutManager(context)
+            layoutManager.flexDirection = FlexDirection.ROW
+            layoutManager.justifyContent = JustifyContent.CENTER
+            rvKindFood.layoutManager = layoutManager
+            /*类型*/
+            rvFoodType.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        } else {
+            /*种类*/
+            val layoutManager = GridLayoutManager(context, 4)
+            /*类型*/
+            rvKindFood.layoutManager = layoutManager
+            rvFoodType.layoutManager =
+                GridLayoutManager(context, 2)
+        }
         mKindFoodAdapter = KindFoodAdapter(mKindFoodList)
-        val layoutManager = FlexboxLayoutManager(context)
-        layoutManager.flexDirection = FlexDirection.ROW
-        layoutManager.justifyContent = JustifyContent.CENTER
-        rvKindFood.layoutManager = layoutManager
         rvKindFood.adapter = mKindFoodAdapter
 
         //商品类型
         mFoodTypeAdapter = FoodTypeAdapter(mTypeFoodList)
-        rvFoodType.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvFoodType.adapter = mFoodTypeAdapter
 
         //商品推荐

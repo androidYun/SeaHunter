@@ -8,7 +8,7 @@
         android:id="@+id/ivOrderResultStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/dp_60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +29,7 @@
         android:id="@+id/cvBackMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/dp_60"
         android:layout_marginEnd="@dimen/dp_26"
         app:cardBackgroundColor="@color/color_c1220d"
         app:cardCornerRadius="@dimen/dp_10"

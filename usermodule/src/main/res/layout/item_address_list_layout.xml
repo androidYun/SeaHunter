@@ -22,9 +22,9 @@
         android:id="@+id/tvNamePhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/dp_20"
         android:textColor="@color/black"
-        android:textSize="@dimen/sp_16"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
         app:layout_constraintStart_toEndOf="@+id/ivAddress"
         app:layout_constraintTop_toTopOf="parent"
@@ -51,7 +51,7 @@
 
     <TextView
         android:id="@+id/tvEditAddress"
-        android:layout_width="80dp"
+        android:layout_width="@dimen/dp_80"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="编辑"

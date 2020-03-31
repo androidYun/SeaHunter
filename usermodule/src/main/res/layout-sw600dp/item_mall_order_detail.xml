@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="120dp"
+            android:layout_width="@dimen/dp_120"
             android:layout_height="@dimen/dp_88" />
     </androidx.cardview.widget.CardView>
 
@@ -70,7 +70,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@color/line_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

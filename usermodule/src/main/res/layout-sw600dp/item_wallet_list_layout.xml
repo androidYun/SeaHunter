@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/ivWalletHead"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
         android:background="@color/user_theme_color"
         android:paddingTop="@dimen/dp_3"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_1"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@color/color_e2e2e2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvWalletTitle"

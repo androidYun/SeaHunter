@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.sea.user.R
 import com.sea.user.activity.feedback.FeedBackActivity
 import com.sea.user.activity.integral.detail.IntegralDetailActivity
@@ -17,9 +20,11 @@ import com.sea.user.activity.wallet.MineWalletActivity
 import com.sea.user.common.Constants
 import com.sea.user.presenter.user.UserInformContact
 import com.sea.user.presenter.user.UserInformPresenter
+import com.sea.user.utils.DeviceUtils
 import com.sea.user.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
+import kotlinx.android.synthetic.main.fragment_sea_food_mall.*
 import kotlinx.android.synthetic.main.fragment_user_center.*
 
 
@@ -37,6 +42,25 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
         initView()
         initData()
         initListener()
+        if (!DeviceUtils.isTabletDevice()) {
+            initToolbar(toolbar, "我的", false)
+        }
+    }
+
+    /**
+     * Fragment中初始化Toolbar
+     * @param toolbar
+     * @param title 标题
+     * @param isDisplayHomeAsUp 是否显示返回箭头
+     */
+    private fun initToolbar(toolbar: Toolbar?, title: String?, isDisplayHomeAsUp: Boolean) {
+        val appCompatActivity = activity as AppCompatActivity?
+        appCompatActivity!!.setSupportActionBar(toolbar)
+        val actionBar: ActionBar? = appCompatActivity.supportActionBar
+        if (actionBar != null) {
+            actionBar.title = title
+            actionBar.setDisplayHomeAsUpEnabled(isDisplayHomeAsUp)
+        }
     }
 
     private fun initView() {

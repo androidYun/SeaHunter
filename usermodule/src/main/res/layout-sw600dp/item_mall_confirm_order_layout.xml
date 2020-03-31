@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/ivOrderHead"
-            android:layout_width="120dp"
+            android:layout_width="@dimen/dp_120"
             android:layout_height="@dimen/dp_88" />
     </androidx.cardview.widget.CardView>
 
@@ -62,6 +62,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvShopPrice"
-        app:tvWidth="60dp" />
+        app:tvWidth="@dimen/dp_60" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

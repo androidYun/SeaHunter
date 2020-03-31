@@ -44,7 +44,7 @@
 
 
         <ImageView
-            android:layout_width="80dp"
+            android:layout_width="@dimen/dp_80"
             android:layout_height="wrap_content"
             android:contentDescription="下一步"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -180,8 +180,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/color_bf0008"
                 android:gravity="center"
-                android:paddingStart="50dp"
-                android:paddingEnd="50dp"
+                android:paddingStart="@dimen/dp_50"
+                android:paddingEnd="@dimen/dp_50"
                 android:text="@string/once_exchange"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_18" />

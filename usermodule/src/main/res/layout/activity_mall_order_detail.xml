@@ -13,7 +13,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="@dimen/dp_80"
             android:background="@color/user_theme_color">
 
             <ImageView
@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_details_payment"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvOrderTopStatus"
+                app:layout_constraintEnd_toStartOf="@+id/tvOrderDesc"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -31,13 +31,12 @@
                 android:id="@+id/tvOrderTopStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/dp_20"
                 android:text="待付款"
+                app:layout_constraintStart_toStartOf="@+id/tvOrderDesc"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_16"
                 app:layout_constraintBottom_toTopOf="@+id/tvOrderDesc"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ivOrderStatus"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -46,9 +45,11 @@
                 android:layout_height="wrap_content"
                 android:text="您的订单待付款，快去付款吧"
                 android:textColor="@color/white"
+                android:layout_marginStart="@dimen/dp_20"
                 android:textSize="@dimen/sp_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivOrderStatus"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tvOrderTopStatus"
                 app:layout_constraintTop_toBottomOf="@+id/tvOrderTopStatus" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -74,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_16"
+                android:textSize="@dimen/sp_14"
                 app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
                 app:layout_constraintStart_toEndOf="@+id/ivAddress"
                 app:layout_constraintTop_toTopOf="parent"
@@ -91,7 +92,7 @@
 
 
             <ImageView
-                android:layout_width="80dp"
+                android:layout_width="@dimen/dp_80"
                 android:layout_height="wrap_content"
                 android:contentDescription="下一步"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -111,12 +112,12 @@
         <TextView
             android:id="@+id/tvShopInform"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/dp_46"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/default_padding"
             android:text="@string/shop_inform"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -128,34 +129,34 @@
         <TextView
             android:id="@+id/tvOrderNo"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             tools:text="订单号：A2353465465" />
 
         <TextView
             android:id="@+id/tvOrderTime"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             tools:text="下单时间：2020-02-02" />
 
         <TextView
             android:id="@+id/tvOrderStatus"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             tools:text="订单状态：待付款" />
     </LinearLayout>
 

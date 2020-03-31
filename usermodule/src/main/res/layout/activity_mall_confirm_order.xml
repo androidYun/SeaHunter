@@ -56,7 +56,7 @@
 
 
                 <ImageView
-                    android:layout_width="80dp"
+                    android:layout_width="@dimen/dp_80"
                     android:layout_height="wrap_content"
                     android:contentDescription="下一步"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -81,12 +81,12 @@
             <TextView
                 android:id="@+id/tvShopInform"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/default_padding"
                 android:text="@string/shop_inform"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_16"
+                android:textSize="@dimen/sp_14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,7 +102,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/default_padding"
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:text="商品价格"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tvOrderTotalPrice"
@@ -122,7 +122,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/user_theme_color"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     tools:text="￥477.50" />
             </LinearLayout>
 
@@ -133,7 +133,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/default_padding"
@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:text="赠送积分"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tvGiveIntegral"
@@ -153,7 +153,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/user_theme_color"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     tools:text="￥477.50" />
             </LinearLayout>
 
@@ -164,7 +164,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/default_padding"
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:text="下单门店"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tvOrderStore"
@@ -184,7 +184,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/user_theme_color"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     tools:text="郑州.绿豆点不" />
             </LinearLayout>
 
@@ -195,13 +195,13 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/dp_40"
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/default_padding"
                 android:paddingEnd="@dimen/default_padding"
                 android:text="请选择支付方式"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_14" />
 
             <RadioGroup
                 android:id="@+id/rgpPayment"
@@ -213,7 +213,7 @@
                 <RadioButton
                     android:id="@+id/rbtAliPay"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/dp_40"
                     android:checked="true"
                     android:drawableEnd="@mipmap/ic_pay_alipay"
                     android:drawablePadding="@dimen/dp_10"
@@ -222,13 +222,13 @@
                     android:text="支付宝支付"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     tools:ignore="RtlCompat" />
 
                 <RadioButton
                     android:id="@+id/rbtWechat"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/dp_40"
                     android:drawableEnd="@mipmap/ic_pay_wechat"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical|end"
@@ -236,20 +236,20 @@
                     android:text="微信支付"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     tools:ignore="RtlCompat" />
 
                 <RadioButton
                     android:id="@+id/rbtBalance"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/dp_40"
                     android:drawableEnd="@mipmap/ic_pay_wallet"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical|end"
                     android:layoutDirection="rtl"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     tools:ignore="RtlCompat"
                     tools:text="余额支付(余额56元)" />
             </RadioGroup>
@@ -273,7 +273,7 @@
             android:paddingEnd="@dimen/default_padding"
             android:text="@string/total"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
         <TextView
             android:id="@+id/tvNeedTotalPrice"
@@ -281,7 +281,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/user_theme_color"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             tools:text="300" />
 
         <TextView
@@ -290,10 +290,10 @@
             android:layout_height="match_parent"
             android:background="@color/user_theme_color"
             android:gravity="center"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
+            android:paddingStart="@dimen/dp_50"
+            android:paddingEnd="@dimen/dp_50"
             android:text="@string/once_order"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
     </LinearLayout>
 </RelativeLayout>

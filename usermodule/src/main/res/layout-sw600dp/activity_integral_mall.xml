@@ -49,7 +49,7 @@
                     android:id="@+id/tvExchange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="@dimen/dp_20"
                     android:background="@drawable/shape_integral_background"
                     android:gravity="center"
                     android:text="兑换列表"
@@ -69,7 +69,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_46"
                 android:layout_marginTop="@dimen/dp_2"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">

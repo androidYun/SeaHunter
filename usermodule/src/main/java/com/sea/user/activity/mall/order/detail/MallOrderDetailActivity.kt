@@ -37,6 +37,10 @@ class MallOrderDetailActivity : BaseActivity() {
             shopOrderListItem.status,
             shopOrderListItem.payment_status
         ).statusTitle}"
+        tvOrderDesc.text = "订单状态:${OrderEnum.getOrder(
+            shopOrderListItem.status,
+            shopOrderListItem.payment_status
+        ).content}"
         if (shopOrderListItem.status == OrderEnum.WaitPayment.status) {
             ivOrderStatus.setBackgroundResource(R.mipmap.ic_details_payment)
         } else if (shopOrderListItem.status == OrderEnum.WaitPayment.status) {

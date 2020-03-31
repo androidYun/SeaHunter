@@ -17,18 +17,20 @@
 
         <TextView
             android:id="@+id/tvLookDetail"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_80"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="@dimen/dp_20"
             android:background="@drawable/shape_border_theme_circle_radius"
+            android:gravity="center"
             android:text="查看详情"
             android:textColor="@color/user_theme_color" />
 
         <TextView
             android:id="@+id/tvOncePay"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_80"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_theme_circle"
+            android:gravity="center"
             android:text="立即付款"
             android:textColor="@color/white" />
 

@@ -39,6 +39,6 @@
     <TextView
         android:id="@+id/tvBackAccount"
         style="@style/baseBtnStyle"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/dp_30"
         android:text="退出账号" />
 </LinearLayout>

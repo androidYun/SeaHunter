@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:orientation="horizontal">
 
         <TextView
@@ -22,7 +22,7 @@
             android:gravity="center_vertical"
             android:text="反馈问题"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tvFeedbackTime"
@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:gravity="end|center_vertical"
             android:textColor="@color/color_9"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             tools:text="2020-02-02" />
     </LinearLayout>
 
@@ -48,7 +48,7 @@
         android:text="武汉疫情防控持续保持严格措施，疫情形势出现一些积极变化，但近日武汉每天仍有新增确诊病例数百人。这些新增确诊病
 例主要从哪里来？“新华视点”记者进行了追踪。"
         android:textColor="@color/black"
-        android:textSize="@dimen/sp_18" />
+        android:textSize="@dimen/sp_16" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="平台回复"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_9"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2020-02-02" />
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:textColor="@color/color_6"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintTop_toBottomOf="@+id/tvReplyTime"
             tools:text="80%-90%来自疑似病例，有些隔离点密接人群确诊比例高于5%" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,8 @@
     <LinearLayout
         android:id="@+id/lvUserName"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="@dimen/dp_46"
+        android:layout_marginTop="@dimen/dp_40"
         android:background="@drawable/shape_user_name_background"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/default_padding"
@@ -41,8 +41,8 @@
     <LinearLayout
         android:id="@+id/lvVersionCode"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="@dimen/dp_46"
+        android:layout_marginTop="@dimen/dp_40"
         android:background="@drawable/shape_user_name_background"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/default_padding"
@@ -69,7 +69,7 @@
 
         <View
             android:layout_width="@dimen/dp_2"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/dp_20"
             android:background="@color/user_theme_color" />
 
         <TextView
@@ -79,13 +79,13 @@
             android:layout_marginStart="@dimen/dp_10"
             android:text="@string/get_version_code"
             android:textColor="@color/user_theme_color"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/lvPassword"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:layout_marginTop="@dimen/dp_32"
         android:background="@drawable/shape_user_name_background"
         android:gravity="center_vertical"
@@ -119,7 +119,7 @@
     <TextView
         android:id="@+id/tvNextStep"
         style="@style/baseBtnStyle"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/dp_20"
         android:text="@string/next_step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +128,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:layout_marginTop="@dimen/dp_32"
         android:paddingStart="@dimen/default_padding"
         android:paddingEnd="@dimen/default_padding"
@@ -145,7 +145,7 @@
             android:gravity="center"
             android:text="@string/account_login"
             android:textColor="@color/user_theme_color"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
         <TextView
             android:id="@+id/tvForgetPassword"
@@ -155,7 +155,7 @@
             android:gravity="end|center_vertical"
             android:text="@string/forget_password"
             android:textColor="@color/user_theme_color"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -85,7 +85,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/dp_46"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/default_padding"
@@ -102,7 +102,7 @@
                         android:id="@+id/tvSelectShopSpec"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="@dimen/dp_20"
                         android:drawableEnd="@mipmap/ic_arrow_right"
                         android:gravity="center_vertical"
                         tools:text="请选择商品规格" />
@@ -115,7 +115,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/dp_46"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/default_padding"
@@ -132,7 +132,7 @@
                         android:id="@+id/tvStoreName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="@dimen/dp_20"
                         android:drawableEnd="@mipmap/ic_arrow_right"
                         android:gravity="center_vertical"
                         tools:text="郑州 • 绿都新都会店" />
@@ -145,7 +145,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/dp_46"
                     android:gravity="center"
                     android:text="—   详细参数   —"
                     android:textColor="@color/color_6"
@@ -169,7 +169,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cvOperator"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/dp_60"
             android:layout_alignParentBottom="true">
 
             <ImageView
@@ -184,9 +184,9 @@
 
             <TextView
                 android:id="@+id/tvShopCarNumber"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginStart="@dimen/dp_20"
                 android:background="@drawable/shape_border_theme_circle"
                 android:gravity="center"
                 android:padding="0dp"
@@ -206,7 +206,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvShopCarNumber"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_goneMarginStart="30dp" />
+                app:layout_goneMarginStart="@dimen/dp_30" />
 
             <TextView
                 android:id="@+id/tvJoinShopCar"
@@ -214,8 +214,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/color_39A0F3"
                 android:gravity="center"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_20"
                 android:text="加入购物车"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_18"
@@ -227,8 +227,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/color_287CE0"
                 android:gravity="center"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_20"
                 android:text="立即购买"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_18"

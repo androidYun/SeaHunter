@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/dp_20"
         app:cardCornerRadius="@dimen/default_padding">
 
         <LinearLayout
@@ -33,17 +33,17 @@
                 android:id="@+id/tvIntegral"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginBottom="@dimen/dp_36"
                 android:textColor="@color/white"
-                android:textSize="40dp"
+                android:textSize="@dimen/dp_40"
                 tools:text="300.00" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:gravity="center_vertical"
         android:text="积分明细"
         android:textColor="@color/black"

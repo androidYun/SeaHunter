@@ -12,7 +12,7 @@
     <RadioGroup
         android:id="@+id/rgpView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 

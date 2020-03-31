@@ -14,7 +14,7 @@
         android:id="@+id/ivHead"
         android:layout_width="@dimen/dp_44"
         android:layout_height="@dimen/dp_44"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="@dimen/dp_30" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,11 +61,11 @@
 
         <TextView
             android:id="@+id/tvSidebarCarNumber"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_20"
             android:gravity="center"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="@dimen/dp_40"
             android:background="@drawable/shape_theme_color_circle"
             android:text="1"
             android:textColor="@color/white"

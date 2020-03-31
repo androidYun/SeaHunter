@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/ivSeaShop"
-            android:layout_width="160dp"
+            android:layout_width="@dimen/dp_160"
             android:layout_height="@dimen/dp_100" />
 
         <TextView

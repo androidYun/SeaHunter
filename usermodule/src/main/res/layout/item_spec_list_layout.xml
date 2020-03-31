@@ -9,10 +9,10 @@
     <TextView
         android:id="@+id/tvSpecTitle"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_46"
         android:gravity="center_vertical"
         android:textColor="@color/black"
-        android:textSize="@dimen/sp_16"
+        android:textSize="@dimen/sp_14"
         tools:text="规格" />
 
     <androidx.recyclerview.widget.RecyclerView

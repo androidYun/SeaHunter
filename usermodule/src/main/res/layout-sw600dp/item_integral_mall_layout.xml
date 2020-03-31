@@ -11,8 +11,8 @@
 
     <com.xhs.baselibrary.weight.NiceImageView
         android:id="@+id/ivShopImage"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="@dimen/dp_130"
+        android:layout_height="@dimen/dp_130"
         app:corner_radius="@dimen/dp_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
