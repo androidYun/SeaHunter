@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
 import com.sea.user.activity.mall.SeaFoodMallActivity
@@ -178,7 +181,10 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
         bannerView.adapter = shopBannerAdapter
         swipeShopDetail.isRefreshing = false
         /*参数设置*/
-        rvDetailParams.layoutManager = GridLayoutManager(this, 3)
+        val layoutManager = FlexboxLayoutManager(this)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.CENTER
+        rvDetailParams.layoutManager = layoutManager
         shopParamsAdapter = ShopParamsAdapter(nShopDetailModel.paramsList)
         rvDetailParams.adapter = shopParamsAdapter
         nEditShopCarModelReq.channel_id = nShopDetailModel.channelId
@@ -186,6 +192,7 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
             nEditShopCarModelReq.article_id = nShopDetailModel.id
             nEditShopCarModelReq.goods_id = 0
         }
+        webView.loadUrl("https://www.baidu.com/")
     }
 
     override fun loadShopDetailFail(throwable: Throwable) {

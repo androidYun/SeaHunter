@@ -11,15 +11,14 @@ object UserInformSpUtils {
     private const val sea_hunter_user_password_key = "sea_hunter_user_password_key"
 
 
-
     init {
         baseSharePreUtils = BaseSharePreUtils(sea_hunter_user_sp_key)
     }
 
     private var userInformModel: UserInformModel = UserInformModel()
-     fun getUserInformModel(): UserInformModel {
+    fun getUserInformModel(): UserInformModel {
         if (userInformModel == null || userInformModel.id < 0) {
-            userInformModel = baseSharePreUtils.get(sea_hunter_user_sp_key, UserInformModel())
+            userInformModel = baseSharePreUtils.get(sea_hunter_user_sp_key, UserInformModel()) ?: UserInformModel()
         }
         return userInformModel
     }

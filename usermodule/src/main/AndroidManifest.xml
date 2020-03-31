@@ -6,6 +6,9 @@
 
     <application>
         <activity
+            android:name=".activity.password.modify.ModifyPasswordActivity"
+            android:label="@string/title_ModifyPassword" />
+        <activity
             android:name=".activity.phone.ModifyPhoneActivity"
             android:label="@string/title_ModifyPhone" />
         <activity

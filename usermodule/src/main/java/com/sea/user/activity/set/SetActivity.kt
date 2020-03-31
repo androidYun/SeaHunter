@@ -5,6 +5,9 @@ import android.os.Bundle
 import com.sea.user.R
 import com.sea.user.activity.address.list.AddressListActivity
 import com.sea.user.activity.inform.FillInformActivity
+import com.sea.user.activity.login.LoginActivity
+import com.sea.user.activity.password.modify.ModifyPasswordActivity
+import com.sea.user.activity.phone.ModifyPhoneActivity
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_set.*
 
@@ -40,11 +43,11 @@ class SetActivity : BaseActivity() {
 
         }
         tvModifyPassword.setOnClickListener {
-
+            startActivity(Intent(this, ModifyPasswordActivity::class.java))
 
         }
         tvModifyPhone.setOnClickListener {
-
+            startActivity(Intent(this, ModifyPhoneActivity::class.java))
 
         }
         tvAddress.setOnClickListener {
@@ -57,7 +60,7 @@ class SetActivity : BaseActivity() {
         }
         tvBackAccount.setOnClickListener {
 
-
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 

@@ -5,6 +5,9 @@
     <string name="forget_password">忘记密码</string>
     <string name="login">登录</string>
     <string name="please_input_password">请输入密码</string>
+    <string name="please_input_old_password">请输入旧密码</string>
+    <string name="please_input_new_password">请输入新密码</string>
+    <string name="please_input_confirm_password">请输入确认密码</string>
     <string name="please_input_version_code">请输入验证码</string>
     <string name="please_input_account">请输入账号</string>
     <string name="please_input_phone">请输入手机号</string>
@@ -49,4 +52,5 @@
     <string name="look_more">查看更多</string>
     <string name="title_ModityPhone">修改密码</string>
     <string name="title_ModifyPhone">修改手机号</string>
+    <string name="title_ModifyPassword">修改密码</string>
 </resources>

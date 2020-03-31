@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rgpView" />
@@ -22,6 +22,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
+            android:checked="true"
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="点餐"
@@ -33,7 +34,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="false"
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="购物车"
@@ -45,7 +45,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="false"
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="订单"
@@ -57,7 +56,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="false"
             android:drawableTop="@drawable/select_left_sidebar_tab_order"
             android:gravity="center"
             android:text="我的"

@@ -13,7 +13,6 @@ import com.sea.user.activity.integral.mall.IntegralMallActivity
 import com.sea.user.activity.login.UserInformModel
 import com.sea.user.activity.mall.order.list.ShopOrderListActivity
 import com.sea.user.activity.set.SetActivity
-import com.sea.user.activity.shop.order.MineOrderActivity
 import com.sea.user.activity.wallet.MineWalletActivity
 import com.sea.user.common.Constants
 import com.sea.user.presenter.user.UserInformContact
@@ -29,11 +28,7 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
     private val mUserCenterPresenter by lazy { UserInformPresenter().apply { attachView(this@UserCenterFragment) } }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_user_center, container, false)
     }
 
@@ -49,7 +44,7 @@ class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
     }
 
     private fun initData() {
-        tvNickName.text = UserInformSpUtils.getUserInformModel().nick_name
+        tvUserName.text = UserInformSpUtils.getUserInformModel().nick_name
         mUserCenterPresenter.loadUserInform()
     }
 

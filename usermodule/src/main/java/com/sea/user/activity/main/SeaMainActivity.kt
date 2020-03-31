@@ -1,6 +1,7 @@
 package com.sea.user.activity.main
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.sea.user.R
 import com.sea.user.activity.center.UserCenterFragment
 import com.sea.user.activity.mall.SeaFoodMallFragment
@@ -13,10 +14,10 @@ import kotlinx.android.synthetic.main.activity_sea_phone_mian.*
 
 class SeaMainActivity : BaseActivity() {
 
-    private lateinit var seaFoodMallFragment: SeaFoodMallFragment
-    private lateinit var shopCarFragment: ShopCarFragment
-    private lateinit var shopOrderFragment: ShopOrderFragment
-    private lateinit var userCenterFragment: UserCenterFragment
+    private lateinit var seaFoodMallFragment: Fragment
+    private lateinit var shopCarFragment: Fragment
+    private lateinit var shopOrderFragment: Fragment
+    private lateinit var userCenterFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class SeaMainActivity : BaseActivity() {
      * 替换Fragment
      * @param fragment
      */
-    private fun replaceFragment(fragment: BaseFragment) {
+    private fun replaceFragment(fragment: Fragment) {
         //1.得到FragmentManger
         val fm = supportFragmentManager
         //2.开启事务

@@ -24,7 +24,7 @@ class ModifyPhonePresenter : IPresenter<ModifyPhoneContact.IModifyPhoneView>(),
             .subscribe(
                 {
                     if (it.code == 1) {
-                        softView.get()?.loadModifyPhoneSuccess()
+                        softView.get()?.loadModifyPhoneSuccess(nModifyPhoneModelReq.mobile)
                     } else {
                         softView.get()?.loadModifyPhoneFail(Throwable(it.msg))
                     }

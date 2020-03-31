@@ -7,7 +7,7 @@ interface ModifyPhoneContact {
 
     interface IModifyPhoneView : IBaseView {
 
-        fun loadModifyPhoneSuccess()
+        fun loadModifyPhoneSuccess(phoneNumber:String)
 
         fun loadModifyPhoneFail(throwable: Throwable)
 

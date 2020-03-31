@@ -6,9 +6,11 @@ import android.text.InputType
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import com.sea.user.R
+import com.sea.user.activity.main.SeaMainActivity
 import com.sea.user.activity.mall.SeaFoodMallActivity
 import com.sea.user.activity.password.ForgetPasswordActivity
 import com.sea.user.activity.register.RegisterActivity
+import com.sea.user.utils.DeviceUtils
 import com.sea.user.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
@@ -68,11 +70,16 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
         }
     }
 
-    override fun loadLoginSuccess(content: UserInformModel, phoneNumber: String, password: String) {
-        UserInformSpUtils.setUserInformModel(userInformModel = content)
+    override fun loadLoginSuccess(userInformModel: UserInformModel, phoneNumber: String, password: String) {
+        UserInformSpUtils.setUserInformModel(userInformModel = userInformModel)
         UserInformSpUtils.setPhoneNumber(phoneNumber)
         UserInformSpUtils.setPassword(password)
-        startActivity(Intent(this, SeaFoodMallActivity::class.java))
+        if (DeviceUtils.isTabletDevice()) {
+            startActivity(Intent(this, SeaFoodMallActivity::class.java))
+        } else {
+            startActivity(Intent(this, SeaMainActivity::class.java))
+        }
+
     }
 
     override fun loadLoginFail(throwable: Throwable) {

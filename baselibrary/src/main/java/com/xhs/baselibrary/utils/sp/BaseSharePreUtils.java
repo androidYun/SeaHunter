@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.xhs.baselibrary.BaseApplication;
+import com.xhs.baselibrary.utils.StringUtils;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -94,7 +96,13 @@ public class BaseSharePreUtils {
      * @return
      */
     public <E> E get(Context context, @NonNull String key, @NonNull E defaultValue) {
-        String value = init(context).getString(key, String.valueOf(defaultValue));
+        String value;
+        if (!isPrimitive(defaultValue)) {
+            value = init(context).getString(key, "");
+        } else {
+            value = init(context).getString(key, String.valueOf(defaultValue));
+        }
+
         if (defaultValue instanceof String) {
             return (E) value;
         }
@@ -112,6 +120,9 @@ public class BaseSharePreUtils {
         }
         if (defaultValue instanceof Double) {
             return (E) Double.valueOf(value);
+        }
+        if (StringUtils.isEmpty(value)) {
+            return defaultValue;
         }
         //json为null的时候返回对象为null,gson已处理
         return (E) new Gson().fromJson(value, defaultValue.getClass());
@@ -139,6 +150,27 @@ public class BaseSharePreUtils {
         SharedPreferences.Editor editor = init(context).edit();
         editor.clear();
         SPCompat.getInstance().apply(editor);
+    }
+
+    /**
+     * 是否是8种基本数据类型
+     *
+     * @param value
+     * @return
+     */
+    public static boolean isPrimitive(Object value) {
+        try {
+            Field field = value.getClass().getField("TYPE");
+            Class claz = (Class) field.get(null);
+            if (claz.isPrimitive()) {
+                return true;
+            }
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**

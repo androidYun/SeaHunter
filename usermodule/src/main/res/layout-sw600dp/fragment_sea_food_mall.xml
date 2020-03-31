@@ -63,8 +63,8 @@
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/ivBanner"
+            <com.youth.banner.Banner
+                android:id="@+id/bannerView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_200" />
 

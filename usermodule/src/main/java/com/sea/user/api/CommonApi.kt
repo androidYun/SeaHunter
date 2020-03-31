@@ -1,5 +1,7 @@
 package com.sea.user.api
 
+import com.sea.user.presenter.banner.NBannerModelReq
+import com.sea.user.presenter.banner.NBannerResponse
 import com.sea.user.presenter.update.NUpdateImageResponse
 import com.sea.user.presenter.version.NVersionCodeModelReq
 import com.sea.user.presenter.version.NVersionCodeResponse
@@ -16,9 +18,12 @@ import retrofit2.http.*
 interface CommonApi {
     @Multipart
     @POST("upload.ashx")
-    fun loadUpdateImage(@Query("type") type: String,  @Part file: MultipartBody.Part): Observable<NUpdateImageResponse>
+    fun loadUpdateImage(@Query("type") type: String, @Part file: MultipartBody.Part): Observable<NUpdateImageResponse>
 
 
     @POST("getdata.ashx")
     fun loadVersionCode(@Body nVersionCodeModelReq: NVersionCodeModelReq): Observable<NVersionCodeResponse>
+
+    @POST("getdata.ashx")
+    fun loadBanner(@Body nBannerModelReq: NBannerModelReq): Observable<NBannerResponse>
 }

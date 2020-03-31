@@ -1,16 +1,17 @@
-package com.sea.user.activity.login
+package com.sea.user.activity.password.modify
 
-import com.sea.user.api.UserInformApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
+import com.sea.user.api.UserInformApi
 
 
-class LoginPresenter : IPresenter<LoginContact.ILoginView>(), LoginContact.ILoginPresenter {
-    override fun loadLogin(nLoginModelReq: NLoginModelReq) {
+class ModifyPasswordPresenter : IPresenter<ModifyPasswordContact.IModifyPasswordView>(),
+    ModifyPasswordContact.IModifyPasswordPresenter {
+    override fun loadModifyPassword(nModifyPasswordModelReq: NModifyPasswordModelReq) {
         RetrofitUtils.getRetrofit()
             .create(UserInformApi::class.java)
-            .loadLogin(nLoginModelReq)
+            .loadModifyPassword(nModifyPasswordModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -22,16 +23,13 @@ class LoginPresenter : IPresenter<LoginContact.ILoginView>(), LoginContact.ILogi
             }
             .subscribe(
                 {
-                    if (it.code==1) {
-                        softView.get()?.loadLoginSuccess(it.data,nLoginModelReq.phone,nLoginModelReq.password)
+                    if (it.code == 1) {
+                        softView.get()?.loadModifyPasswordSuccess(nModifyPasswordModelReq.new_pwd)
                     } else {
-                        softView.get()?.loadLoginFail(Throwable(it.msg))
+                        softView.get()?.loadModifyPasswordFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable ->
-                    softView.get()?.loadLoginFail(throwable)
-
-                }
+                }, { throwable -> softView.get()?.loadModifyPasswordFail(throwable) }
             )
     }
 }

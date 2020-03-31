@@ -1,16 +1,16 @@
-package com.sea.user.activity.login
+package com.sea.user.presenter.banner
 
-import com.sea.user.api.UserInformApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
+import com.sea.user.api.CommonApi
 
 
-class LoginPresenter : IPresenter<LoginContact.ILoginView>(), LoginContact.ILoginPresenter {
-    override fun loadLogin(nLoginModelReq: NLoginModelReq) {
+class BannerPresenter : IPresenter<BannerContact.IBannerView>(), BannerContact.IBannerPresenter {
+    override fun loadBanner() {
         RetrofitUtils.getRetrofit()
-            .create(UserInformApi::class.java)
-            .loadLogin(nLoginModelReq)
+            .create(CommonApi::class.java)
+            .loadBanner(NBannerModelReq())
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -18,20 +18,16 @@ class LoginPresenter : IPresenter<LoginContact.ILoginView>(), LoginContact.ILogi
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {
-                    if (it.code==1) {
-                        softView.get()?.loadLoginSuccess(it.data,nLoginModelReq.phone,nLoginModelReq.password)
+                    if (it.code == 1) {
+                        softView.get()?.loadBannerSuccess(it.data)
                     } else {
-                        softView.get()?.loadLoginFail(Throwable(it.msg))
+                        softView.get()?.loadBannerFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable ->
-                    softView.get()?.loadLoginFail(throwable)
-
-                }
+                }, { throwable -> softView.get()?.loadBannerFail(throwable) }
             )
     }
 }

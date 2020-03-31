@@ -3,6 +3,7 @@ package com.sea.user.activity.phone
 import android.os.Bundle
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
+import com.sea.user.utils.sp.UserInformSpUtils
 import kotlinx.android.synthetic.main.activity_modity_phone.*
 
 class ModifyPhoneActivity : BaseActivity(), ModifyPhoneContact.IModifyPhoneView {
@@ -33,7 +34,8 @@ class ModifyPhoneActivity : BaseActivity(), ModifyPhoneContact.IModifyPhoneView 
         }
     }
 
-    override fun loadModifyPhoneSuccess() {
+    override fun loadModifyPhoneSuccess(phoneNumber: String) {
+        UserInformSpUtils.setPhoneNumber(phoneNumber)
         finish()
 
     }

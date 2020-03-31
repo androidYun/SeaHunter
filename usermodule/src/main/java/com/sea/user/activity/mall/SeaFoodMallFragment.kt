@@ -14,18 +14,27 @@ import com.sea.user.activity.mall.adapter.FoodFineAdapter
 import com.sea.user.activity.mall.adapter.FoodRecommendAdapter
 import com.sea.user.activity.mall.adapter.FoodTypeAdapter
 import com.sea.user.activity.mall.adapter.KindFoodAdapter
+import com.sea.user.activity.mall.detail.ShopBannerAdapter
 import com.sea.user.activity.mall.list.MallListActivity
 import com.sea.user.activity.mall.search.SearchMallActivity
 import com.sea.user.activity.mall.select.SelectStoreActivity
+import com.sea.user.presenter.banner.BannerContact
+import com.sea.user.presenter.banner.BannerItem
+import com.sea.user.presenter.banner.BannerPresenter
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.sea.user.presenter.sea.mall.NMallListModelReq
 import com.sea.user.utils.sp.StoreShopSpUtils
 import com.xhs.baselibrary.base.BaseFragment
+import kotlinx.android.synthetic.main.activity_shop_detail.*
 import kotlinx.android.synthetic.main.fragment_sea_food_mall.*
+import kotlinx.android.synthetic.main.fragment_sea_food_mall.bannerView
+import kotlinx.android.synthetic.main.fragment_sea_food_mall.tvStoreName
 
-class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView {
+class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView, BannerContact.IBannerView {
 
     private val mSeaFoodMallPresenter by lazy { SeaFoodMallPresenter().apply { attachView(this@SeaFoodMallFragment) } }
+
+    private val bannerPresenter by lazy { BannerPresenter().apply { attachView(this@SeaFoodMallFragment) } }
 
 
     private lateinit var mKindFoodAdapter: KindFoodAdapter
@@ -35,6 +44,10 @@ class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView 
     private lateinit var mFoodRecommendAdapter: FoodRecommendAdapter
 
     private lateinit var mFoodFineAdapter: FoodFineAdapter
+    /*首页banner*/
+    private lateinit var shopBannerAdapter: ShopBannerAdapter
+
+    private val mBannerList = mutableListOf<String>()
 
 
     private val mKindFoodList = mutableListOf<SeaCategoryItemModel>()
@@ -65,7 +78,8 @@ class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView 
 
 
     private fun initView() {
-        tvStoreName.text = StoreShopSpUtils.getStoreShopName()
+        tvStoreName.text =
+            if (StoreShopSpUtils.getStoreShopName().isNullOrBlank()) "请选择店面" else StoreShopSpUtils.getStoreShopName()
         //商品种类
         mKindFoodAdapter = KindFoodAdapter(mKindFoodList)
         val layoutManager = FlexboxLayoutManager(context)
@@ -109,6 +123,7 @@ class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView 
                 type = 1
             )
         )
+        bannerPresenter.loadBanner()
     }
 
     private fun initListener() {
@@ -164,6 +179,18 @@ class SeaFoodMallFragment : BaseFragment(), SeaFoodMallContact.ISeaFoodMallView 
         mFineFoodList.addAll(seaCategoryItemModelList)
         mFoodFineAdapter.notifyDataSetChanged()
         swipeSeaFoodMall.isRefreshing = false
+    }
+
+    override fun loadBannerSuccess(data: List<BannerItem>) {
+        mBannerList.clear()
+        mBannerList.addAll(data.map { it.img_url })
+        /*banner*/
+        shopBannerAdapter = ShopBannerAdapter(mBannerList)
+        bannerView.adapter = shopBannerAdapter
+    }
+
+    override fun loadBannerFail(throwable: Throwable) {
+        handleError(throwable)
     }
 
     override fun showLoading() {

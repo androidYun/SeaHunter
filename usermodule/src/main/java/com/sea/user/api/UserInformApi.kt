@@ -1,9 +1,9 @@
 package com.sea.user.api
 
-import com.google.gson.JsonObject
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.login.NLoginResponse
 import com.sea.user.activity.model.BaseEntry
+import com.sea.user.activity.password.modify.NModifyPasswordModelReq
 import com.sea.user.activity.phone.NModifyPhoneModelReq
 import com.sea.user.activity.register.NRegisterModelReq
 import com.sea.user.activity.register.NRegisterModelResponse
@@ -19,7 +19,7 @@ import retrofit2.http.Query
 
 interface UserInformApi {
     @POST("getdata.ashx")
-    fun loadLogin(@Body nLoginModelReq: NLoginModelReq): Observable<String>
+    fun loadLogin(@Body nLoginModelReq: NLoginModelReq): Observable<NLoginResponse>
 
     @POST("getdata.ashx")
     fun loadRegister(@Body nRegisterReq: NRegisterModelReq): Observable<NRegisterModelResponse>
@@ -40,4 +40,8 @@ interface UserInformApi {
 
     @POST("getdata.ashx")
     fun loadModifyPhone(@Body nModifyPhoneModelReq: NModifyPhoneModelReq): Observable<BaseEntry>
+
+
+    @POST("getdata.ashx")
+    fun loadModifyPassword(@Body nModifyPasswordModelReq: NModifyPasswordModelReq): Observable<BaseEntry>
 }
