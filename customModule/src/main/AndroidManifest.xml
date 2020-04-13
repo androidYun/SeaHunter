@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sea.custom">
+
+    <application>
+        <activity
+            android:name=".ui.delicacy.DelicacyActivity"
+            android:label="@string/title_Delicacy" />
+        <activity android:name=".CustomMainActivity" />
+    </application>
+
+</manifest>

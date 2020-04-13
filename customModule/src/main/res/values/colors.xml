@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3690FA</color>
+    <color name="colorPrimaryDark">#39A0F3</color>
+    <color name="colorAccent">#37A2F5</color>
+    <color name="custom_theme_color">#3690FA</color>
+    <color name="color_bbc1d3">#BBC1D3</color>
+</resources>

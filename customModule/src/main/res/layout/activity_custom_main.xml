@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rgpView" />
+
+    <RadioGroup
+        android:id="@+id/rgpView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rBtnClub"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/select_main_tab_club"
+            android:gravity="center"
+            android:text="俱乐部"
+            android:textColor="@drawable/custom_main_text_selector" />
+
+        <RadioButton
+            android:id="@+id/rBtnXiSha"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/select_main_tab_xisha_delicacy"
+            android:gravity="center"
+            android:text="西沙美食"
+            android:textColor="@drawable/custom_main_text_selector" />
+
+        <RadioButton
+            android:id="@+id/rBtnDelicacyMode"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/select_main_tab_delicacy_mode"
+            android:gravity="center"
+            android:text="美食制作"
+            android:textColor="@drawable/custom_main_text_selector" />
+
+        <RadioButton
+            android:id="@+id/rBtnEntertainment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/select_main_tab_entertainment"
+            android:gravity="center"
+            android:text="娱乐"
+            android:textColor="@drawable/custom_main_text_selector" />
+
+        <RadioButton
+            android:id="@+id/rBtnMine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/select_main_tab_mine"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@drawable/custom_main_text_selector" />
+    </RadioGroup>
+</RelativeLayout>
