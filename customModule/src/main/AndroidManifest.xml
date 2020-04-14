@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".ui.club.match.ClubMatchActivity"
+            android:label="@string/title_ClubMatch" />
+        <activity
             android:name=".ui.delicacy.DelicacyActivity"
             android:label="@string/title_Delicacy" />
         <activity android:name=".CustomMainActivity" />

@@ -4,13 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.fragment_club_layout.*
 import com.xhs.baselibrary.base.BaseFragment
 
 class ClubFragment : BaseFragment(), ClubContact.IClubView {
 
     private val mClubPresenter by lazy { ClubPresenter().apply { attachView(this@ClubFragment) } }
+
+    private lateinit var mRecommendActivityAdapter: RecommendActivityAdapter
+
+    private val mRecommendList = mutableListOf<String>()
 
 
     override fun onCreateView(
@@ -29,7 +36,13 @@ class ClubFragment : BaseFragment(), ClubContact.IClubView {
     }
 
     private fun initView() {
-
+        mRecommendActivityAdapter = RecommendActivityAdapter(mRecommendList)
+        if (DeviceUtils.isTabletDevice()) {
+            rvRecommendAction.layoutManager = GridLayoutManager(context, 2)
+        } else {
+            rvRecommendAction.layoutManager = LinearLayoutManager(context)
+        }
+        rvRecommendAction.adapter = mRecommendActivityAdapter
     }
 
     private fun initData() {
