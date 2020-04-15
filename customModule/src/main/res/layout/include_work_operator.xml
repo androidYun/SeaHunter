@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingStart="@dimen/default_padding"
+    android:paddingEnd="@dimen/default_padding"
+    android:layout_height="wrap_content">
+
+    <RadioButton
+        android:id="@+id/rgbPraise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:drawableStart="@drawable/select_main_tab_mine"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        android:drawablePadding="10dp"
+        android:text="32"
+        android:textColor="@drawable/custom_mine_work_operator_text_selector"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rgbComment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="32" />
+
+    <RadioButton
+        android:id="@+id/rgbComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:drawableStart="@drawable/select_main_tab_mine"
+        android:drawablePadding="10dp"
+        android:text="32"
+        android:textColor="@drawable/custom_mine_work_operator_text_selector"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rgbCollection"
+        app:layout_constraintStart_toEndOf="@+id/rgbPraise"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="32" />
+
+    <RadioButton
+        android:id="@+id/rgbCollection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:drawableStart="@drawable/select_main_tab_mine"
+        android:drawablePadding="10dp"
+        android:text="32"
+        android:textColor="@drawable/custom_mine_work_operator_text_selector"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rgbForward"
+        app:layout_constraintStart_toEndOf="@+id/rgbComment"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="32" />
+
+    <RadioButton
+        android:id="@+id/rgbForward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:drawableStart="@drawable/select_main_tab_mine"
+        android:drawablePadding="10dp"
+        android:text="32"
+        android:textColor="@drawable/custom_mine_work_operator_text_selector"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rgbCollection"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="32" />
+</androidx.constraintlayout.widget.ConstraintLayout>
