@@ -4,12 +4,27 @@
 
     <application>
         <activity
+            android:name=".ui.store.StoreListActivity"
+            android:label="@string/title_StoreList" />
+        <activity
+            android:name=".ui.membership.MembershipModeActivity"
+            android:label="@string/title_MembershipMode" />
+        <activity
+            android:name=".ui.custom.MineCustomActivity"
+            android:label="@string/title_MineCustom" />
+        <activity
             android:name=".ui.club.match.ClubMatchActivity"
             android:label="@string/title_ClubMatch" />
         <activity
-            android:name=".ui.delicacy.DelicacyActivity"
-            android:label="@string/title_Delicacy" />
-        <activity android:name=".CustomMainActivity" />
+            android:name=".ui.collection.CollectionActivity"
+            android:label="@string/mine_collection" />
+        <activity
+            android:name=".ui.set.SetActivity"
+            android:label="@string/set" />
+        <activity
+            android:name=".CustomMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>

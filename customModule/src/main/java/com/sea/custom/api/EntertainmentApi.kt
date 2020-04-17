@@ -8,6 +8,6 @@ import retrofit2.http.POST
 
 interface EntertainmentApi {
 
-    @POST
+    @POST("getdata.ashx")
     fun loadEntertainment(@Body nEntertainmentModelReq: NEntertainmentModelReq): Observable<NEntertainmentResponse>
 }

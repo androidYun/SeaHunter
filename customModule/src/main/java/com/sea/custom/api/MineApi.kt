@@ -7,6 +7,6 @@ import retrofit2.http.POST
 interface MineApi {
 
 
-    @POST("/")
+    @POST("getdata.ashx")
     fun loadMine(): Observable<NMineResponse>
 }

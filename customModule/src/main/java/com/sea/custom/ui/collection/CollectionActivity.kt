@@ -8,6 +8,7 @@ import com.google.android.material.tabs.TabLayout
 import com.sea.custom.R
 import com.sea.custom.ui.adapter.web.WebViewPageAdapter
 import com.sea.custom.ui.collection.introduce.DelicacyIntroduceFragment
+import com.sea.custom.ui.collection.make.DelicacyMakeFragment
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
@@ -22,6 +23,8 @@ class CollectionActivity : BaseActivity() {
     }
 
     private fun initView() {
+        mMineCollectionList.add("美食介绍")
+        mMineCollectionList.add("美食制作")
         viewPager.adapter = MineCollectionPageAdapter(mMineCollectionList, supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.tabMode = TabLayout.MODE_FIXED
@@ -33,7 +36,11 @@ class CollectionActivity : BaseActivity() {
 class MineCollectionPageAdapter(private val mList: List<String>, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
-        return DelicacyIntroduceFragment.getInstance()
+        return if (position == 0) {
+            DelicacyIntroduceFragment.getInstance()
+        } else {
+            DelicacyMakeFragment.getInstance()
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

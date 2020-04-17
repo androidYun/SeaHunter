@@ -57,6 +57,7 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
 
     private fun initListener() {
         swipeDelicacyIntroduce.setOnRefreshListener {
+            nDelicacyIntroduceReq.pageIndex = 1
             mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
         }
         mDelicacyIntroduceAdapter.setOnLoadMoreListener({
@@ -83,7 +84,7 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
 
     override fun loadDelicacyIntroduceFail(throwable: Throwable) {
         handleError(throwable)
-        swipeDelicacyIntroduce.isRefreshing
+        swipeDelicacyIntroduce.isRefreshing = false
         mDelicacyIntroduceAdapter.loadMoreComplete()
     }
 

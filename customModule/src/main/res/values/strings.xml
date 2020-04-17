@@ -2,4 +2,9 @@
     <string name="app_name">SeaHunter</string>
     <string name="title_Delicacy">西沙美食</string>
     <string name="title_ClubMatch">比赛专区</string>
+    <string name="mine_collection">我的收藏</string>
+    <string name="title_MineCustom">我的定制</string>
+    <string name="title_MembershipMode">入会方式</string>
+    <string name="title_StoreList">门店列表</string>
+    <string name="set">设置</string>
 </resources>

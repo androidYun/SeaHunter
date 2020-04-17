@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingStart="@dimen/default_padding"
-    android:paddingEnd="@dimen/default_padding"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/default_padding">
 
     <RadioButton
         android:id="@+id/rgbPraise"
@@ -13,13 +12,13 @@
         android:layout_height="wrap_content"
         android:button="@null"
         android:drawableStart="@drawable/select_main_tab_mine"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         android:drawablePadding="10dp"
         android:text="32"
         android:textColor="@drawable/custom_mine_work_operator_text_selector"
         android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rgbComment"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="32" />

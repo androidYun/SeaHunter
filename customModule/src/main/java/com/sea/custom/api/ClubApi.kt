@@ -10,9 +10,9 @@ import retrofit2.http.POST
 
 interface ClubApi {
 
-    @POST("")
+    @POST("getdata.ashx")
     fun loadClub(@Body mNClubModelReq: NClubModelReq): Observable<NClubResponse>
 
-    @POST("")
+    @POST("getdata.ashx")
     fun loadClubMatch(@Body nClubMatchModelReq: NClubMatchModelReq): Observable<NClubMatchModelResponse>
 }

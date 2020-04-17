@@ -8,6 +8,6 @@ import retrofit2.http.POST
 
 interface DelicacyMakeApi {
 
-    @POST("")
+    @POST("getdata.ashx")
     fun loadDelicacyMake(@Body nDelicacyMakeModelReq: NDelicacyMakeModelReq): Observable<NDelicacyMakeResponse>
 }

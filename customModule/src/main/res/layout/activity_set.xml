@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/itemLayoutStyle">
+
+        <TextView
+            style="@style/itemTitleStyle"
+            android:drawableStart="@mipmap/ic_set_level"
+            android:drawablePadding="8dp"
+            android:text="会员等级" />
+
+        <TextView
+            android:id="@+id/tvMemberLevel"
+            style="@style/itemContentTextViewStyle"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="普通会员"
+            android:textColor="@color/custom_theme_color"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvModifyInform"
+        style="@style/itemLayoutStyle"
+        android:drawableStart="@mipmap/ic_set_data"
+        android:drawableEnd="@mipmap/icon_arrow"
+        android:drawablePadding="8dp"
+        android:text="修改资料"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/tvModifyPassword"
+        style="@style/itemLayoutStyle"
+        android:drawableStart="@mipmap/ic_set_password"
+        android:drawableEnd="@mipmap/icon_arrow"
+        android:drawablePadding="8dp"
+        android:text="修改密码"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvModifyPhone"
+        style="@style/itemLayoutStyle"
+        android:drawableStart="@mipmap/ic_set_tel"
+        android:drawableEnd="@mipmap/icon_arrow"
+        android:drawablePadding="8dp"
+        android:text="修改手机号"
+        android:textColor="@color/black" />
+
+    <LinearLayout style="@style/itemLayoutStyle">
+
+        <TextView
+            style="@style/itemTitleStyle"
+            android:drawableStart="@mipmap/ic_set_version"
+            android:drawablePadding="8dp"
+            android:text="笨笨更新" />
+
+        <TextView
+            android:id="@+id/tvVersion"
+            style="@style/itemContentTextViewStyle"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="已是最新版本"
+            android:textColor="@color/custom_theme_color"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+</LinearLayout>
