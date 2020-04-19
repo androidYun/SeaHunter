@@ -4,6 +4,12 @@
 
     <application>
         <activity
+            android:name=".ui.delicacy.introduce.DelicacyIntroduceActivity"
+            android:label="@string/title_DelicacyIntroduce" />
+        <activity
+            android:name=".ui.delicacy.report.CheckReportActivity"
+            android:label="@string/title_CheckReport" />
+        <activity
             android:name=".ui.store.StoreListActivity"
             android:label="@string/title_StoreList" />
         <activity

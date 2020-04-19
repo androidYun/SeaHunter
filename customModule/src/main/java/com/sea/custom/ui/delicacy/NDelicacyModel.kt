@@ -9,3 +9,15 @@ class NDelicacyResponse(
 }
 
 class NDelicacyModelReq
+
+
+class NDelicacyKindItem(
+    val delicacyKindTitle: String = "",
+    val resId: Int
+)
+
+class NDelicacyTypeItem(
+    val delicacyTypeTitle: String = "",
+    val delicacyTypeContent: String = "",
+    val resId: Int
+)

@@ -13,5 +13,6 @@ class SeaHunterApplication : BaseApplication() {
 
     private fun initBaseProvide() {
         BaseParamsClient.getInstance().init(UserBaseParamsProvide())
+
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/default_margin"
+    android:layout_marginEnd="@dimen/default_margin"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.shuyu.gsyvideoplayer.video.GSYSampleADVideoPlayer
+            android:id="@+id/videoPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:id="@+id/tvVideoName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            tools:text="健康营养的海鲜面，减脂又美味" />
+    </FrameLayout>
+
+
+    <include
+        layout="@layout/include_work_operator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin" />
+</LinearLayout>

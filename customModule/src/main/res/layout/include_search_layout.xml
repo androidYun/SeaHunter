@@ -3,7 +3,7 @@
     <LinearLayout
         android:id="@+id/lvSearchShop"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_32"
+        android:layout_height="@dimen/dp_46"
         android:background="@drawable/shape_search_bg"
         android:gravity="center"
       >

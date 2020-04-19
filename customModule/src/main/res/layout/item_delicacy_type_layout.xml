@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/default_margin"
+    android:layout_weight="1"
+    app:cardCornerRadius="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cLStoreDelicacy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_f7f7f7"
+        android:paddingStart="@dimen/default_padding"
+        android:paddingTop="@dimen/dp_20"
+        android:paddingEnd="@dimen/default_padding"
+        android:paddingBottom="@dimen/dp_20">
+
+        <TextView
+            android:id="@+id/tvDelicacyType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="店内美食"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDelicacyContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="全部美食"
+            android:textColor="@color/color_9"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDelicacyType" />
+
+        <ImageView
+            android:id="@+id/ivDelicacyType"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_38"
+            android:layout_marginStart="@dimen/dp_6"
+            android:src="@mipmap/nav_food"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvDelicacyType"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

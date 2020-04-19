@@ -7,4 +7,6 @@
     <string name="title_MembershipMode">入会方式</string>
     <string name="title_StoreList">门店列表</string>
     <string name="set">设置</string>
+    <string name="title_CheckReport">渔获权威检测报告</string>
+    <string name="title_DelicacyIntroduce">鱼获介绍</string>
 </resources>
