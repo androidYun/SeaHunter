@@ -19,6 +19,9 @@ class ClubActivityActivity : BaseActivity() {
     }
 
     private fun initView() {
+        mClubList.add(WebViewItem("西沙游", ""))
+        mClubList.add(WebViewItem("海岛游", ""))
+        mClubList.add(WebViewItem("境外游", ""))
         viewPager.adapter = WebViewPageAdapter(mClubList,supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.tabMode = TabLayout.MODE_FIXED

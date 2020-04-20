@@ -1,16 +1,17 @@
-package com.sea.custom.ui.club
+package com.sea.custom.ui.delicacy.vr.list
 
+import com.sea.custom.api.StoreVrApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.custom.api.ClubApi
 
 
-class ClubPresenter : IPresenter<ClubContact.IClubView>(), ClubContact.IClubPresenter {
-    override fun loadClub(nClubModelReq: NClubModelReq) {
+class StoreVrListPresenter : IPresenter<StoreVrListContact.IStoreVrListView>(),
+    StoreVrListContact.IStoreVrListPresenter {
+    override fun loadStoreVrList(nStoreVrListModelReq: NStoreVrModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(ClubApi::class.java)
-            .loadClub(nClubModelReq)
+            .create(StoreVrApi::class.java)
+            .loadStoreVrList(nStoreVrListModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -23,13 +24,13 @@ class ClubPresenter : IPresenter<ClubContact.IClubView>(), ClubContact.IClubPres
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadClubSuccess(it.data)
+                        softView.get()?.loadStoreVrListSuccess(it.data, it.totalCount)
                     } else {
-                        softView.get()?.loadClubFail(Throwable(it.msg))
+                        softView.get()?.loadStoreVrListFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadClubFail(throwable) }
+                }, { throwable -> softView.get()?.loadStoreVrListFail(throwable) }
             )
-        softView.get()?.loadClubSuccess(listOf(NClubActivityItem(), NClubActivityItem()))
+        softView.get()?.loadStoreVrListSuccess(listOf(StoreVrItem(), StoreVrItem()), 30)
     }
 }

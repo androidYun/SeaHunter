@@ -9,4 +9,7 @@
     <string name="set">设置</string>
     <string name="title_CheckReport">渔获权威检测报告</string>
     <string name="title_DelicacyIntroduce">鱼获介绍</string>
+    <string name="title_StoreVr">门店VR</string>
+    <string name="about_club">关于俱乐部</string>
+    <string name="club_activity">俱乐部活动</string>
 </resources>

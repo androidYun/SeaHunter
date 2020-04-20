@@ -1,6 +1,9 @@
 package com.sea.custom.ui.club.about
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.sea.custom.R
 import com.sea.custom.ui.adapter.web.WebViewItem
@@ -10,7 +13,7 @@ import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
 class AboutClubActivity : BaseActivity() {
 
-    private val mClubList= mutableListOf<WebViewItem>()
+    private val mClubList = mutableListOf<WebViewItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +22,10 @@ class AboutClubActivity : BaseActivity() {
     }
 
     private fun initView() {
-        viewPager.adapter = WebViewPageAdapter(mClubList,supportFragmentManager)
+        mClubList.add(WebViewItem("专业刺钓船", ""))
+        mClubList.add(WebViewItem("专职钓手", ""))
+        mClubList.add(WebViewItem("专业刺钓具", ""))
+        viewPager.adapter = WebViewPageAdapter(mClubList, supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.tabMode = TabLayout.MODE_FIXED
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL

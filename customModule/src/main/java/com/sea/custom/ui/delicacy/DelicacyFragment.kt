@@ -1,5 +1,6 @@
 package com.sea.custom.ui.delicacy
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
 import com.sea.custom.ui.delicacy.adapter.DelicacyKindAdapter
 import com.sea.custom.ui.delicacy.adapter.DelicacyTypeAdapter
+import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceActivity
+import com.sea.custom.ui.delicacy.report.CheckReportActivity
+import com.sea.custom.ui.delicacy.vr.StoreVrActivity
 import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
 import com.xhs.baselibrary.base.BaseFragment
@@ -58,7 +62,7 @@ class DelicacyFragment : BaseFragment(), DelicacyContact.IDelicacyView {
         rvDelicacyKind.adapter = mDelicacyKindAdapter
 
         /*类型*/
-        delicacyTypeList.add(NDelicacyTypeItem("店内美食", "全部没事", R.mipmap.nav_food))
+        delicacyTypeList.add(NDelicacyTypeItem("全部美食", "店内美食", R.mipmap.nav_food))
         delicacyTypeList.add(NDelicacyTypeItem("门店VR", "立体展示", R.mipmap.nav_vr))
         delicacyTypeList.add(NDelicacyTypeItem("检测报告", "权威检测", R.mipmap.nav_report))
         delicacyTypeList.add(NDelicacyTypeItem("渔获介绍", "介绍详细", R.mipmap.nav_introduce))
@@ -80,7 +84,23 @@ class DelicacyFragment : BaseFragment(), DelicacyContact.IDelicacyView {
     }
 
     private fun initListener() {
+        mDelicacyTypeAdapter.setOnItemClickListener { _, _, position ->
+            when (position) {
+                0 -> {
+                    startActivity(Intent(context, StoreVrActivity::class.java))
+                }
+                1 -> {
+                    startActivity(Intent(context, StoreVrActivity::class.java))
+                }
+                2 -> {
+                    startActivity(Intent(context, CheckReportActivity::class.java))
+                }
+                3 -> {
+                    startActivity(Intent(context, DelicacyIntroduceActivity::class.java))
+                }
+            }
 
+        }
     }
 
     override fun loadDelicacySuccess(content: Any) {

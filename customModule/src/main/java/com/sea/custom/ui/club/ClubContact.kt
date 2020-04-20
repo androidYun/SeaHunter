@@ -7,7 +7,7 @@ interface ClubContact {
 
     interface IClubView : IBaseView {
 
-        fun loadClubSuccess(content: Any)
+        fun loadClubSuccess(mList: List<NClubActivityItem>)
 
         fun loadClubFail(throwable: Throwable)
 

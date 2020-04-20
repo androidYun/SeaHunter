@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".ui.delicacy.vr.StoreVrActivity"
+            android:label="@string/title_StoreVr" />
+        <activity
             android:name=".ui.delicacy.introduce.DelicacyIntroduceActivity"
             android:label="@string/title_DelicacyIntroduce" />
         <activity
@@ -27,6 +30,12 @@
         <activity
             android:name=".ui.set.SetActivity"
             android:label="@string/set" />
+        <activity
+            android:name=".ui.club.about.AboutClubActivity"
+            android:label="@string/about_club" />
+        <activity
+            android:name=".ui.club.activity.ClubActivityActivity"
+            android:label="@string/club_activity" />
         <activity
             android:name=".CustomMainActivity"
             android:screenOrientation="portrait"
