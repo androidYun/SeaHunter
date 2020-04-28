@@ -48,7 +48,7 @@ class MineCustomActivity : BaseActivity(), MineCustomContact.IMineCustomView {
             mMineCustomPresenter.loadMineCustom(nMineCustomReq)
         }
         mMineCustomAdapter.setOnLoadMoreListener({
-            if (nMineCustomReq.pageIndex * nMineCustomReq.pageSize < totalCount) {
+            if (nMineCustomReq.page_index * nMineCustomReq.page_size < totalCount) {
                 mMineCustomPresenter.loadMineCustom(nMineCustomReq)
             } else {
                 mMineCustomAdapter.loadMoreEnd()
@@ -57,7 +57,7 @@ class MineCustomActivity : BaseActivity(), MineCustomContact.IMineCustomView {
     }
 
     override fun loadMineCustomSuccess(mList: List<MineCustomItem>, totalCount: Int) {
-        if (nMineCustomReq.pageIndex == 1) {
+        if (nMineCustomReq.page_index == 1) {
             mMineCustomList.clear()
         }
         this.totalCount = totalCount
@@ -65,7 +65,7 @@ class MineCustomActivity : BaseActivity(), MineCustomContact.IMineCustomView {
         mMineCustomAdapter.notifyDataSetChanged()
         mMineCustomAdapter.loadMoreComplete()
         swipeMineCustom.isRefreshing = false
-        nMineCustomReq.pageIndex++
+        nMineCustomReq.page_index++
 
     }
 

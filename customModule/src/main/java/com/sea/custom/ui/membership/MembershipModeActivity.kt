@@ -16,7 +16,6 @@ class MembershipModeActivity : BaseActivity(), MembershipModeContact.IMembership
 
     private lateinit var mMembershipModeAdapter: MembershipModeAdapter
 
-    private var totalCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,26 +40,20 @@ class MembershipModeActivity : BaseActivity(), MembershipModeContact.IMembership
         swipeMembershipMode.setOnRefreshListener {
             mMembershipModePresenter.loadMembershipMode(nMembershipModeReq)
         }
-        mMembershipModeAdapter.setOnLoadMoreListener({
-            if (nMembershipModeReq.pageIndex * nMembershipModeReq.pageSize < totalCount) {
-                mMembershipModePresenter.loadMembershipMode(nMembershipModeReq)
-            } else {
-                mMembershipModeAdapter.loadMoreEnd()
+        mMembershipModeAdapter.setOnItemClickListener { adapter, view, position ->
+            when (view.id) {
+                R.id.tvMemberShipMode -> {
+
+                }
             }
-        }, rvMembershipMode)
+        }
     }
 
-    override fun loadMembershipModeSuccess(mList: List<MembershipModeItem>, totalCount: Int) {
-        if (nMembershipModeReq.pageIndex == 1) {
-            mMembershipModeList.clear()
-        }
-        this.totalCount = totalCount
+    override fun loadMembershipModeSuccess(mList: List<MembershipModeItem>) {
         mMembershipModeList.addAll(mList)
         mMembershipModeAdapter.notifyDataSetChanged()
         mMembershipModeAdapter.loadMoreComplete()
         swipeMembershipMode.isRefreshing = false
-        nMembershipModeReq.pageIndex++
-
     }
 
     override fun loadMembershipModeFail(throwable: Throwable) {

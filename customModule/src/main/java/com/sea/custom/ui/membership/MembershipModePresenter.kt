@@ -24,7 +24,7 @@ class MembershipModePresenter : IPresenter<MembershipModeContact.IMembershipMode
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadMembershipModeSuccess(it.data.mList, it.totalCount)
+                        softView.get()?.loadMembershipModeSuccess(it.data)
                     } else {
                         softView.get()?.loadMembershipModeFail(Throwable(it.msg))
                     }

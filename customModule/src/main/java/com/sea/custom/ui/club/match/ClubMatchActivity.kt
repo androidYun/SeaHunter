@@ -48,7 +48,7 @@ class ClubMatchActivity : BaseActivity(), ClubMatchContact.IClubMatchView {
             mClubMatchPresenter.loadClubMatch(nClubMatchReq)
         }
         mClubMatchAdapter.setOnLoadMoreListener({
-            if (nClubMatchReq.pageIndex * nClubMatchReq.pageSize < totalCount) {
+            if (nClubMatchReq.page_index * nClubMatchReq.page_size < totalCount) {
                 mClubMatchPresenter.loadClubMatch(nClubMatchReq)
             } else {
                 mClubMatchAdapter.loadMoreEnd()
@@ -60,7 +60,7 @@ class ClubMatchActivity : BaseActivity(), ClubMatchContact.IClubMatchView {
     }
 
     override fun loadClubMatchSuccess(mList: List<ClubMatchItem>, totalCount: Int) {
-        if (nClubMatchReq.pageIndex == 1) {
+        if (nClubMatchReq.page_index == 1) {
             mClubMatchList.clear()
         }
         this.totalCount = totalCount
@@ -68,7 +68,7 @@ class ClubMatchActivity : BaseActivity(), ClubMatchContact.IClubMatchView {
         mClubMatchAdapter.notifyDataSetChanged()
         mClubMatchAdapter.loadMoreComplete()
         swipeClubMatch.isRefreshing = false
-        nClubMatchReq.pageIndex++
+        nClubMatchReq.page_index++
 
     }
 

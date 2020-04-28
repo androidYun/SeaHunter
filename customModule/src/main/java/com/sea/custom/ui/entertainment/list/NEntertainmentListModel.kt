@@ -1,8 +1,8 @@
 package com.sea.custom.ui.entertainment.list
 
 class NEntertainmentListModelReq(
-    var pageSize: Int = 20,
-    var pageIndex: Int = 1
+    var page_size: Int = 20,
+    var page_index: Int = 1
 )
 
 class NEntertainmentListModelResponse(

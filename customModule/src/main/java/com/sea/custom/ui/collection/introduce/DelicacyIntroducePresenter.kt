@@ -25,7 +25,7 @@ class DelicacyIntroducePresenter : IPresenter<DelicacyIntroduceContact.IDelicacy
                 {
                     if (it.code == 200) {
                         softView.get()
-                            ?.loadDelicacyIntroduceSuccess(it.data.mList, it.data.totalCount)
+                            ?.loadDelicacyIntroduceSuccess(it.data, it.totalCount)
                     } else {
                         softView.get()?.loadDelicacyIntroduceFail(Throwable(it.msg))
                     }

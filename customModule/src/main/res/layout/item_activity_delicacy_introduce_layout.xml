@@ -6,13 +6,10 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/ivHead"
+    <com.shuyu.gsyvideoplayer.video.ListGSYVideoPlayer
+        android:id="@+id/videoPlayer"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin" />
-
+        android:layout_height="160dp" />
     <TextView
         android:id="@+id/tvDelicacyName"
         android:layout_width="wrap_content"

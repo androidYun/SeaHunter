@@ -1,8 +1,8 @@
 package com.sea.custom.ui.delicacy.report
 
 class NCheckReportModelReq(
-    var pageSize: Int = 20,
-    var pageIndex: Int = 1
+    var page_size: Int = 20,
+    var page_index: Int = 1
 )
 
 class NCheckReportModelResponse(

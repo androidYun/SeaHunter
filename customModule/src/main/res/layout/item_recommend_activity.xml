@@ -10,15 +10,18 @@
     app:cardCornerRadius="@dimen/dp_8">
 
     <LinearLayout
+        android:id="@+id/lvRecommendActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/ivActivityImage"
             android:layout_width="match_parent"
             android:layout_height="120dp" />
 
         <TextView
+            android:id="@+id/tvActivityTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -28,6 +31,7 @@
             tools:text="马尔代夫7日5晚自由行" />
 
         <TextView
+            android:id="@+id/tvActivityContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

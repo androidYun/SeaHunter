@@ -1,10 +1,15 @@
 package com.sea.custom.ui.store
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
+import com.lljjcoder.citywheel.CityConfig
+import com.lljjcoder.style.citylist.CityListSelectActivity
+import com.lljjcoder.style.citythreelist.AreaActivity
 import com.sea.custom.R
+import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_store_list.*
+
 
 class StoreListActivity : BaseActivity(), StoreListContact.IStoreListView {
 
@@ -28,6 +33,7 @@ class StoreListActivity : BaseActivity(), StoreListContact.IStoreListView {
 
 
     private fun initView() {
+        val cityConfig = CityConfig.Builder().build()
         mStoreListAdapter = StoreListAdapter(mStoreListList)
         rvStoreList.layoutManager = LinearLayoutManager(this)
         rvStoreList.adapter = mStoreListAdapter
@@ -41,31 +47,30 @@ class StoreListActivity : BaseActivity(), StoreListContact.IStoreListView {
         swipeStoreList.setOnRefreshListener {
             mStoreListPresenter.loadStoreList(nStoreListReq)
         }
-        mStoreListAdapter.setOnLoadMoreListener({
-            if (nStoreListReq.pageIndex * nStoreListReq.pageSize < totalCount) {
-                mStoreListPresenter.loadStoreList(nStoreListReq)
-            } else {
-                mStoreListAdapter.loadMoreEnd()
-            }
-        }, rvStoreList)
+        tvProvince.setOnClickListener {
+//            ActivityUtils.getInstance()
+//                .showActivity(this@MainActivity, ProvinceActivity::class.java)
+        }
+        tvCity.setOnClickListener {
+            startActivity(Intent(this, CityListSelectActivity::class.java))
+        }
+        tvArea.setOnClickListener {
+            startActivity(Intent(this, AreaActivity::class.java))
+        }
     }
 
     override fun loadStoreListSuccess(mList: List<StoreListItem>, totalCount: Int) {
-        if (nStoreListReq.pageIndex == 1) {
-            mStoreListList.clear()
-        }
         this.totalCount = totalCount
         mStoreListList.addAll(mList)
         mStoreListAdapter.notifyDataSetChanged()
         mStoreListAdapter.loadMoreComplete()
         swipeStoreList.isRefreshing = false
-        nStoreListReq.pageIndex++
 
     }
 
     override fun loadStoreListFail(throwable: Throwable) {
         handleError(throwable)
-        swipeStoreList.isRefreshing=false
+        swipeStoreList.isRefreshing = false
         mStoreListAdapter.loadMoreComplete()
     }
 

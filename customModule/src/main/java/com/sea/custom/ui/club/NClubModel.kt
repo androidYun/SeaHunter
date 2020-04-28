@@ -8,6 +8,16 @@ class NClubResponse(
     class Data
 }
 
-class NClubModelReq
+class NClubModelReq(
+    command: Int = 61,
+    key: String = "",
+    page_index: Int = 1,
+    page_size: Int = 20
+)
 
-class NClubActivityItem
+data class NClubActivityItem(
+    val content: String = "",
+    val id: String = "",
+    val image_url: String = "",
+    val title: String = ""
+)

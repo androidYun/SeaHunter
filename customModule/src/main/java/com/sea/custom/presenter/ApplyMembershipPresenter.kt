@@ -1,17 +1,17 @@
-package com.sea.custom.ui.collection.make
+package com.sea.custom.presenter
 
-import com.sea.custom.api.DelicacyApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
+import com.sea.custom.api.MembershipApi
 
 
-class DelicacyMakePresenter : IPresenter<DelicacyMakeContact.IDelicacyMakeView>(),
-    DelicacyMakeContact.IDelicacyMakePresenter {
-    override fun loadDelicacyMake(nDelicacyMakeModelReq: NDelicacyMakeModelReq) {
+class ApplyMembershipPresenter : IPresenter<ApplyMembershipContact.IApplyMembershipView>(),
+    ApplyMembershipContact.IApplyMembershipPresenter {
+    override fun loadApplyMembership(nApplyMembershipReq: NApplyMembershipReq) {
         RetrofitUtils.getRetrofit()
-            .create(DelicacyApi::class.java)
-            .loadDelicacyMake(nDelicacyMakeModelReq)
+            .create(MembershipApi::class.java)
+            .loadApplyMembership(nApplyMembershipReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -24,12 +24,12 @@ class DelicacyMakePresenter : IPresenter<DelicacyMakeContact.IDelicacyMakeView>(
             .subscribe(
                 {
                     if (it.code == 200) {
-                        softView.get()?.loadDelicacyMakeSuccess(it.data, it.totalCount)
+                        softView.get()?.loadApplyMembershipSuccess()
                     } else {
-                        softView.get()?.loadDelicacyMakeFail(Throwable(it.msg))
+                        softView.get()?.loadApplyMembershipFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadDelicacyMakeFail(throwable) }
+                }, { throwable -> softView.get()?.loadApplyMembershipFail(throwable) }
             )
     }
 }

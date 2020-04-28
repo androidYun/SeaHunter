@@ -57,11 +57,11 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
 
     private fun initListener() {
         swipeDelicacyIntroduce.setOnRefreshListener {
-            nDelicacyIntroduceReq.pageIndex = 1
+            nDelicacyIntroduceReq.page_index = 1
             mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
         }
         mDelicacyIntroduceAdapter.setOnLoadMoreListener({
-            if (nDelicacyIntroduceReq.pageIndex * nDelicacyIntroduceReq.pageSize < totalCount) {
+            if (nDelicacyIntroduceReq.page_index * nDelicacyIntroduceReq.page_size < totalCount) {
                 mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
             } else {
                 mDelicacyIntroduceAdapter.loadMoreEnd()
@@ -70,7 +70,7 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
     }
 
     override fun loadDelicacyIntroduceSuccess(mList: List<DelicacyIntroduceItem>, totalCount: Int) {
-        if (nDelicacyIntroduceReq.pageIndex == 1) {
+        if (nDelicacyIntroduceReq.page_index == 1) {
             mDelicacyIntroduceList.clear()
         }
         this.totalCount = totalCount
@@ -78,7 +78,7 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
         mDelicacyIntroduceAdapter.notifyDataSetChanged()
         mDelicacyIntroduceAdapter.loadMoreComplete()
         swipeDelicacyIntroduce.isRefreshing = false
-        nDelicacyIntroduceReq.pageIndex++
+        nDelicacyIntroduceReq.page_index++
 
     }
 

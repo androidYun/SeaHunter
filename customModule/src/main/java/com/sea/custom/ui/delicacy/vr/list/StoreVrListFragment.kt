@@ -60,7 +60,7 @@ class StoreVrListFragment : BaseFragment(), StoreVrListContact.IStoreVrListView 
             mStoreVrListPresenter.loadStoreVrList(nStoreVrListReq)
         }
         mStoreVrListAdapter.setOnLoadMoreListener({
-            if (nStoreVrListReq.pageIndex * nStoreVrListReq.pageSize < totalCount) {
+            if (nStoreVrListReq.page_index * nStoreVrListReq.page_size < totalCount) {
                 mStoreVrListPresenter.loadStoreVrList(nStoreVrListReq)
             } else {
                 mStoreVrListAdapter.loadMoreEnd()
@@ -69,7 +69,7 @@ class StoreVrListFragment : BaseFragment(), StoreVrListContact.IStoreVrListView 
     }
 
     override fun loadStoreVrListSuccess(mList: List<StoreVrItem>, totalCount: Int) {
-        if (nStoreVrListReq.pageIndex == 1) {
+        if (nStoreVrListReq.page_index == 1) {
             mStoreVrListList.clear()
         }
         this.totalCount = totalCount
@@ -77,7 +77,7 @@ class StoreVrListFragment : BaseFragment(), StoreVrListContact.IStoreVrListView 
         mStoreVrListAdapter.notifyDataSetChanged()
         mStoreVrListAdapter.loadMoreComplete()
         swipeStoreVrList.isRefreshing = false
-        nStoreVrListReq.pageIndex++
+        nStoreVrListReq.page_index++
 
     }
 

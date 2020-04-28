@@ -43,7 +43,7 @@ class CheckReportActivity : BaseActivity(), CheckReportContact.ICheckReportView 
             mCheckReportPresenter.loadCheckReport(nCheckReportReq)
         }
         mCheckReportAdapter.setOnLoadMoreListener({
-            if (nCheckReportReq.pageIndex * nCheckReportReq.pageSize < totalCount) {
+            if (nCheckReportReq.page_index * nCheckReportReq.page_size < totalCount) {
                 mCheckReportPresenter.loadCheckReport(nCheckReportReq)
             } else {
                 mCheckReportAdapter.loadMoreEnd()
@@ -69,7 +69,7 @@ class CheckReportActivity : BaseActivity(), CheckReportContact.ICheckReportView 
     }
 
     override fun loadCheckReportSuccess(mList: List<CheckReportItem>, totalCount: Int) {
-        if (nCheckReportReq.pageIndex == 1) {
+        if (nCheckReportReq.page_index == 1) {
             mCheckReportList.clear()
         }
         this.totalCount = totalCount
@@ -77,7 +77,7 @@ class CheckReportActivity : BaseActivity(), CheckReportContact.ICheckReportView 
         mCheckReportAdapter.notifyDataSetChanged()
         mCheckReportAdapter.loadMoreComplete()
         swipeCheckReport.isRefreshing = false
-        nCheckReportReq.pageIndex++
+        nCheckReportReq.page_index++
 
     }
 

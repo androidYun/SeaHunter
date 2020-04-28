@@ -60,7 +60,7 @@ class EntertainmentListFragment : BaseFragment(), EntertainmentListContact.IEnte
             mEntertainmentListPresenter.loadEntertainmentList(nEntertainmentListReq)
         }
         mEntertainmentListAdapter.setOnLoadMoreListener({
-            if (nEntertainmentListReq.pageIndex * nEntertainmentListReq.pageSize < totalCount) {
+            if (nEntertainmentListReq.page_index * nEntertainmentListReq.page_size < totalCount) {
                 mEntertainmentListPresenter.loadEntertainmentList(nEntertainmentListReq)
             } else {
                 mEntertainmentListAdapter.loadMoreEnd()
@@ -69,7 +69,7 @@ class EntertainmentListFragment : BaseFragment(), EntertainmentListContact.IEnte
     }
 
     override fun loadEntertainmentListSuccess(mList: List<EntertainmentListItem>, totalCount: Int) {
-        if (nEntertainmentListReq.pageIndex == 1) {
+        if (nEntertainmentListReq.page_index == 1) {
             mEntertainmentListList.clear()
         }
         this.totalCount = totalCount
@@ -77,7 +77,7 @@ class EntertainmentListFragment : BaseFragment(), EntertainmentListContact.IEnte
         mEntertainmentListAdapter.notifyDataSetChanged()
         mEntertainmentListAdapter.loadMoreComplete()
         swipeEntertainmentList.isRefreshing = false
-        nEntertainmentListReq.pageIndex++
+        nEntertainmentListReq.page_index++
 
     }
 

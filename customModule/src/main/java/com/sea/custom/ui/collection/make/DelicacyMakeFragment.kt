@@ -54,7 +54,7 @@ class DelicacyMakeFragment : BaseFragment(), DelicacyMakeContact.IDelicacyMakeVi
             mDelicacyMakePresenter.loadDelicacyMake(nDelicacyMakeReq)
         }
         mDelicacyMakeAdapter.setOnLoadMoreListener({
-            if (nDelicacyMakeReq.pageIndex * nDelicacyMakeReq.pageSize < totalCount) {
+            if (nDelicacyMakeReq.page_index * nDelicacyMakeReq.page_size < totalCount) {
                 mDelicacyMakePresenter.loadDelicacyMake(nDelicacyMakeReq)
             } else {
                 mDelicacyMakeAdapter.loadMoreEnd()
@@ -63,7 +63,7 @@ class DelicacyMakeFragment : BaseFragment(), DelicacyMakeContact.IDelicacyMakeVi
     }
 
     override fun loadDelicacyMakeSuccess(mList: List<DelicacyMakeItem>, totalCount: Int) {
-        if (nDelicacyMakeReq.pageIndex == 1) {
+        if (nDelicacyMakeReq.page_index == 1) {
             mDelicacyMakeList.clear()
         }
         this.totalCount = totalCount
@@ -71,13 +71,13 @@ class DelicacyMakeFragment : BaseFragment(), DelicacyMakeContact.IDelicacyMakeVi
         mDelicacyMakeAdapter.notifyDataSetChanged()
         mDelicacyMakeAdapter.loadMoreComplete()
         swipeDelicacyMake.isRefreshing = false
-        nDelicacyMakeReq.pageIndex++
+        nDelicacyMakeReq.page_index++
 
     }
 
     override fun loadDelicacyMakeFail(throwable: Throwable) {
         handleError(throwable)
-        swipeDelicacyMake.isRefreshing
+        swipeDelicacyMake.isRefreshing=false
         mDelicacyMakeAdapter.loadMoreComplete()
     }
 

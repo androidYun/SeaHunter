@@ -7,7 +7,7 @@ interface MembershipModeContact {
 
     interface IMembershipModeView : IBaseView {
 
-        fun loadMembershipModeSuccess(mList: List<MembershipModeItem>, totalCount: Int)
+        fun loadMembershipModeSuccess(mList: List<MembershipModeItem>)
 
         fun loadMembershipModeFail(throwable: Throwable)
 

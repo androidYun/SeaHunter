@@ -9,7 +9,12 @@ class MembershipModeAdapter(mList: List<MembershipModeItem>) :
         R.layout.item_member_ship_mode_layout,
         mList
     ) {
-    override fun convert(helper: BaseViewHolder?, item: MembershipModeItem?) {
-
+    override fun convert(helper: BaseViewHolder?, item: MembershipModeItem) {
+        helper?.setText(R.id.tvStoreName, item.title)
+        helper?.setText(R.id.tvName, item.connect_person)
+        helper?.setText(R.id.tvPhone, item.phone)
+        helper?.setText(R.id.tvWxChat, item.weixin)
+        helper?.setText(R.id.tvStoreAddress, item.address)
+        helper?.addOnClickListener(R.id.tvMemberShipMode)
     }
 }
