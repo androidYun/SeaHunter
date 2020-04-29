@@ -1,4 +1,4 @@
-package com.sea.custom.presenter
+package com.sea.custom.presenter.apply
 
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
@@ -23,7 +23,7 @@ class ApplyMembershipPresenter : IPresenter<ApplyMembershipContact.IApplyMembers
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadApplyMembershipSuccess()
                     } else {
                         softView.get()?.loadApplyMembershipFail(Throwable(it.msg))

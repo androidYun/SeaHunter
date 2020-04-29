@@ -23,7 +23,7 @@ class DelicacyMakeListPresenter : IPresenter<DelicacyMakeListContact.IDelicacyMa
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()
                             ?.loadDelicacyMakeListSuccess(it.data, it.totalCount)
                     } else {

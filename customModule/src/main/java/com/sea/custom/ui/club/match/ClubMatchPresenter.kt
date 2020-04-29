@@ -23,7 +23,7 @@ class ClubMatchPresenter : IPresenter<ClubMatchContact.IClubMatchView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadClubMatchSuccess(it.data.mList, it.totalCount)
                     } else {
                         softView.get()?.loadClubMatchFail(Throwable(it.msg))

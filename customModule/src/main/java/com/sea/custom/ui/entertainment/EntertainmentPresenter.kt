@@ -23,7 +23,7 @@ class EntertainmentPresenter : IPresenter<EntertainmentContact.IEntertainmentVie
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadEntertainmentSuccess(it.data)
                     } else {
                         softView.get()?.loadEntertainmentFail(Throwable(it.msg))

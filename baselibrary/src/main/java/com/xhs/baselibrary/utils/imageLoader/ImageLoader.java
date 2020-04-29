@@ -49,7 +49,7 @@ public class ImageLoader {
                 .asBitmap()
                 .load(url)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .placeholder(R.color.base_black)
+                .placeholder(R.color.base_color6)
                 .centerCrop()
                 .into(view);
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/default_margin"
@@ -9,15 +10,15 @@
 
     <ImageView
         android:id="@+id/ivDelicacyKind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="@dimen/dp_42"
+        android:layout_height="@dimen/dp_42" />
 
     <TextView
         android:id="@+id/tvKindTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="鱼类"
         android:textColor="@color/color_3"
-        android:textSize="@dimen/sp_14" />
+        android:textSize="@dimen/sp_14"
+        tools:text="鱼类" />
 </LinearLayout>

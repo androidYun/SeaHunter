@@ -1,4 +1,4 @@
-package com.sea.custom.presenter
+package com.sea.custom.presenter.apply
 
 class NApplyMembershipResponse(
     val code: Int = -1,

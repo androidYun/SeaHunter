@@ -22,7 +22,7 @@ class MinePresenter : IPresenter<MineContact.IMineView>(), MineContact.IMinePres
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadMineSuccess(it.data)
                     } else {
                         softView.get()?.loadMineFail(Throwable(it.msg))

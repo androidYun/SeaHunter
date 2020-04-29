@@ -1,78 +1,52 @@
 package com.sea.custom.ui.delicacy.introduce
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.sea.custom.R
-import kotlinx.android.synthetic.main.activity_delicacy_introduce.*
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.category.CategoryContact
+import com.sea.custom.presenter.category.CategoryPresenter
+import com.sea.custom.presenter.category.NCategoryItem
+import com.sea.custom.presenter.category.NCategoryModelReq
+import com.xhs.baselibrary.base.BaseActivity
+import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
-class DelicacyIntroduceActivity : BaseActivity(), DelicacyIntroduceContact.IDelicacyIntroduceView {
+class DelicacyIntroduceActivity : BaseActivity(), CategoryContact.ICategoryView {
 
-    private val mDelicacyIntroducePresenter by lazy {
-        DelicacyIntroducePresenter().apply {
-            attachView(
-                this@DelicacyIntroduceActivity
-            )
-        }
-    }
-
-    private val nDelicacyIntroduceReq = NDelicacyIntroduceModelReq()
-
-    private val mDelicacyIntroduceList = mutableListOf<DelicacyIntroduceItem>()
-
-    private lateinit var mDelicacyIntroduceAdapter: DelicacyIntroduceAdapter
-
-    private var totalCount = 0
+    private val mDelicacyIntroduceList = mutableListOf<NCategoryItem>()
+    private val mCategoryPresenter by lazy { CategoryPresenter().apply { attachView(this@DelicacyIntroduceActivity) } }
+    private lateinit var mEntertainmentPagerAdapter: FragmentPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_delicacy_introduce)
         initView()
         initData()
-        initListener()
-    }
-
-
-    private fun initView() {
-        mDelicacyIntroduceAdapter = DelicacyIntroduceAdapter(mDelicacyIntroduceList)
-        rvDelicacyIntroduce.layoutManager = LinearLayoutManager(this)
-        rvDelicacyIntroduce.adapter = mDelicacyIntroduceAdapter
     }
 
     private fun initData() {
-        mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
+        mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.activity.name))
     }
 
-    private fun initListener() {
-        swipeDelicacyIntroduce.setOnRefreshListener {
-            mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
-        }
-        mDelicacyIntroduceAdapter.setOnLoadMoreListener({
-            if (nDelicacyIntroduceReq.page_index * nDelicacyIntroduceReq.page_size < totalCount) {
-                mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
-            } else {
-                mDelicacyIntroduceAdapter.loadMoreEnd()
-            }
-        }, rvDelicacyIntroduce)
+    private fun initView() {
+        mEntertainmentPagerAdapter = DelicacyIntroducePageAdapter( supportFragmentManager)
+        viewPager.adapter = mEntertainmentPagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
+        tabLayout.tabMode = TabLayout.MODE_FIXED
+        tabLayout.tabGravity = TabLayout.GRAVITY_FILL
     }
 
-    override fun loadDelicacyIntroduceSuccess(mList: List<DelicacyIntroduceItem>, totalCount: Int) {
-        if (nDelicacyIntroduceReq.page_index == 1) {
-            mDelicacyIntroduceList.clear()
-        }
-        this.totalCount = totalCount
-        mDelicacyIntroduceList.addAll(mList)
-        mDelicacyIntroduceAdapter.notifyDataSetChanged()
-        mDelicacyIntroduceAdapter.loadMoreComplete()
-        swipeDelicacyIntroduce.isRefreshing = false
-        nDelicacyIntroduceReq.page_index++
-
+    override fun loadCategorySuccess(mCategoryList: List<NCategoryItem>) {
+        mDelicacyIntroduceList.clear()
+        mDelicacyIntroduceList.addAll(mCategoryList)
+        mEntertainmentPagerAdapter.notifyDataSetChanged()
     }
 
-    override fun loadDelicacyIntroduceFail(throwable: Throwable) {
+    override fun loadCategoryFail(throwable: Throwable) {
         handleError(throwable)
-        swipeDelicacyIntroduce.isRefreshing
-        mDelicacyIntroduceAdapter.loadMoreComplete()
     }
 
     override fun showLoading() {
@@ -82,8 +56,17 @@ class DelicacyIntroduceActivity : BaseActivity(), DelicacyIntroduceContact.IDeli
     override fun hideLoading() {
         hideProgressDialog()
     }
+    inner class DelicacyIntroducePageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+        override fun getItem(position: Int): Fragment {
+            return DelicacyIntroduceFragment.getInstance()
+        }
 
-    companion object {
-        fun getInstance() = Bundle().apply { }
+        override fun getCount(): Int {
+            return mDelicacyIntroduceList.size
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return mDelicacyIntroduceList[position].title
+        }
     }
 }

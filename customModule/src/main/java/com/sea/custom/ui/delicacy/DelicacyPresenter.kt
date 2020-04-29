@@ -23,7 +23,7 @@ class DelicacyPresenter : IPresenter<DelicacyContact.IDelicacyView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadDelicacySuccess(it.data)
                     } else {
                         softView.get()?.loadDelicacyFail(Throwable(it.msg))

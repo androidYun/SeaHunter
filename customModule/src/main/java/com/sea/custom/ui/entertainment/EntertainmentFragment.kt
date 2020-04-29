@@ -11,16 +11,25 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.category.CategoryContact
+import com.sea.custom.presenter.category.CategoryPresenter
+import com.sea.custom.presenter.category.NCategoryItem
+import com.sea.custom.presenter.category.NCategoryModelReq
 import com.sea.custom.ui.entertainment.list.EntertainmentListFragment
 import kotlinx.android.synthetic.main.fragment_entertainment_layout.*
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
-class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmentView {
+class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmentView,CategoryContact.ICategoryView {
 
     private val mEntertainmentPresenter by lazy { EntertainmentPresenter().apply { attachView(this@EntertainmentFragment) } }
 
-    private val mEntertainmentList = mutableListOf<String>()
+    private val mCategoryPresenter by lazy { CategoryPresenter().apply { attachView(this@EntertainmentFragment) } }
+
+    private val mEntertainmentList = mutableListOf<NCategoryItem>()
+
+    private lateinit var mEntertainmentPagerAdapter: FragmentPagerAdapter
 
 
     override fun onCreateView(
@@ -41,17 +50,8 @@ class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmen
     }
 
     private fun initView() {
-        mEntertainmentList.add("推荐")
-        mEntertainmentList.add("娱乐")
-        mEntertainmentList.add("娱乐")
-        mEntertainmentList.add("娱乐")
-        mEntertainmentList.add("娱乐")
-        mEntertainmentList.add("娱乐")
-        mEntertainmentList.add("娱乐")
-        mEntertainmentList.add("娱乐")
-        mEntertainmentList.add("娱乐")
-        mEntertainmentList.add("娱乐")
-        viewPager.adapter = EntertainmentPageAdapter(childFragmentManager)
+        mEntertainmentPagerAdapter=EntertainmentPageAdapter(childFragmentManager)
+        viewPager.adapter = mEntertainmentPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
     }
     /**
@@ -71,18 +71,35 @@ class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmen
     }
     private fun initData() {
         mEntertainmentPresenter.loadEntertainment(NEntertainmentModelReq())
+        mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.arder.name))
     }
 
     private fun initListener() {
+        swipeLayout.setOnRefreshListener {
+            mEntertainmentPresenter.loadEntertainment(NEntertainmentModelReq())
+            mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.arder.name))
+        }
+    }
 
+    override fun loadCategorySuccess(mCategoryList: List<NCategoryItem>) {
+        mEntertainmentList.clear()
+        mEntertainmentList.addAll(mCategoryList)
+        mEntertainmentPagerAdapter.notifyDataSetChanged()
+        swipeLayout.isRefreshing=false
+    }
+
+    override fun loadCategoryFail(throwable: Throwable) {
+      handleError(throwable)
+        swipeLayout.isRefreshing=false
     }
 
     override fun loadEntertainmentSuccess(content: Any) {
-
+        swipeLayout.isRefreshing=false
 
     }
 
     override fun loadEntertainmentFail(throwable: Throwable) {
+        swipeLayout.isRefreshing=false
         handleError(throwable)
     }
 
@@ -110,7 +127,7 @@ class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmen
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
-            return mEntertainmentList[position]
+            return mEntertainmentList[position].title
         }
     }
 }

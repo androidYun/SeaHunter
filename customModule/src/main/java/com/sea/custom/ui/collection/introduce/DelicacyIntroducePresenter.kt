@@ -23,7 +23,7 @@ class DelicacyIntroducePresenter : IPresenter<DelicacyIntroduceContact.IDelicacy
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()
                             ?.loadDelicacyIntroduceSuccess(it.data, it.totalCount)
                     } else {

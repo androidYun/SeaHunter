@@ -23,7 +23,7 @@ class StoreVrListPresenter : IPresenter<StoreVrListContact.IStoreVrListView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadStoreVrListSuccess(it.data, it.totalCount)
                     } else {
                         softView.get()?.loadStoreVrListFail(Throwable(it.msg))

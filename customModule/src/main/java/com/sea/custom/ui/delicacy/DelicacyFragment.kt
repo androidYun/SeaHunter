@@ -7,26 +7,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.category.CategoryContact
+import com.sea.custom.presenter.category.CategoryPresenter
+import com.sea.custom.presenter.category.NCategoryItem
+import com.sea.custom.presenter.category.NCategoryModelReq
 import com.sea.custom.ui.delicacy.adapter.DelicacyKindAdapter
 import com.sea.custom.ui.delicacy.adapter.DelicacyTypeAdapter
 import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceActivity
+import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceFragment
 import com.sea.custom.ui.delicacy.report.CheckReportActivity
 import com.sea.custom.ui.delicacy.vr.StoreVrActivity
 import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class DelicacyFragment : BaseFragment(), DelicacyContact.IDelicacyView {
+class DelicacyFragment : BaseFragment(), DelicacyContact.IDelicacyView,
+    CategoryContact.ICategoryView {
 
     private val mDelicacyPresenter by lazy { DelicacyPresenter().apply { attachView(this@DelicacyFragment) } }
+
+    private val mCategoryPresenter by lazy { CategoryPresenter().apply { attachView(this@DelicacyFragment) } }
 
     private lateinit var mDelicacyKindAdapter: DelicacyKindAdapter
 
 
     private lateinit var mDelicacyTypeAdapter: DelicacyTypeAdapter
 
-    private val delicacyKindList = mutableListOf<NDelicacyKindItem>()
+    private val delicacyKindList = mutableListOf<NCategoryItem>()
     private val delicacyTypeList = mutableListOf<NDelicacyTypeItem>()
 
 
@@ -47,21 +59,16 @@ class DelicacyFragment : BaseFragment(), DelicacyContact.IDelicacyView {
     }
 
     private fun initView() {
-        delicacyKindList.add(NDelicacyKindItem("鱼类", R.mipmap.food_nav1))
-        delicacyKindList.add(NDelicacyKindItem("虾类", R.mipmap.food_nav2))
-        delicacyKindList.add(NDelicacyKindItem("螃蟹", R.mipmap.food_nav3))
-        delicacyKindList.add(NDelicacyKindItem("章鱼", R.mipmap.food_nav4))
-        delicacyKindList.add(NDelicacyKindItem("海参", R.mipmap.food_nav5))
-        delicacyKindList.add(NDelicacyKindItem("花甲", R.mipmap.food_nav6))
-        delicacyKindList.add(NDelicacyKindItem("生蚝", R.mipmap.food_nav7))
-        delicacyKindList.add(NDelicacyKindItem("全部", R.mipmap.food_nav8))
         /*种类*/
-        rvDelicacyKind.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager = FlexboxLayoutManager(context)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.CENTER
+        rvDelicacyKind.layoutManager = layoutManager
         mDelicacyKindAdapter = DelicacyKindAdapter(delicacyKindList)
         rvDelicacyKind.adapter = mDelicacyKindAdapter
 
         /*类型*/
+        delicacyTypeList.clear()
         delicacyTypeList.add(NDelicacyTypeItem("全部美食", "店内美食", R.mipmap.nav_food))
         delicacyTypeList.add(NDelicacyTypeItem("门店VR", "立体展示", R.mipmap.nav_vr))
         delicacyTypeList.add(NDelicacyTypeItem("检测报告", "权威检测", R.mipmap.nav_report))
@@ -80,6 +87,7 @@ class DelicacyFragment : BaseFragment(), DelicacyContact.IDelicacyView {
     }
 
     private fun initData() {
+        mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
         mDelicacyPresenter.loadDelicacy(NDelicacyModelReq())
     }
 
@@ -101,15 +109,32 @@ class DelicacyFragment : BaseFragment(), DelicacyContact.IDelicacyView {
             }
 
         }
+        swipeLayout.setOnRefreshListener {
+            mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
+            mDelicacyPresenter.loadDelicacy(NDelicacyModelReq())
+        }
+    }
+
+    override fun loadCategorySuccess(mCategoryList: List<NCategoryItem>) {
+        delicacyKindList.clear()
+        delicacyKindList.addAll(mCategoryList)
+        mDelicacyKindAdapter.notifyDataSetChanged()
+        swipeLayout.isRefreshing=false
+    }
+
+    override fun loadCategoryFail(throwable: Throwable) {
+        handleError(throwable)
+        swipeLayout.isRefreshing=false
     }
 
     override fun loadDelicacySuccess(content: Any) {
 
-
+        swipeLayout.isRefreshing=false
     }
 
     override fun loadDelicacyFail(throwable: Throwable) {
         handleError(throwable)
+        swipeLayout.isRefreshing=false
     }
 
     override fun showLoading() {

@@ -23,7 +23,7 @@ class CheckReportPresenter : IPresenter<CheckReportContact.ICheckReportView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadCheckReportSuccess(it.data, it.totalCount)
                     } else {
                         softView.get()?.loadCheckReportFail(Throwable(it.msg))

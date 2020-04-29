@@ -13,7 +13,7 @@ class DelicacyTypeAdapter(mList: List<NDelicacyTypeItem>) :
     ) {
     override fun convert(helper: BaseViewHolder?, item: NDelicacyTypeItem) {
         helper?.getView<ImageView>(R.id.ivDelicacyType)?.setImageResource(item.resId)
-        helper?.setText(R.id.tvDelicacyContent, item.delicacyTypeTitle)
-        helper?.setText(R.id.tvDelicacyType, item.delicacyTypeContent)
+        helper?.setText(R.id.tvDelicacyContent, item.delicacyTypeContent)
+        helper?.setText(R.id.tvDelicacyType, item.delicacyTypeTitle)
     }
 }

@@ -1,7 +1,6 @@
-package com.sea.custom.presenter
+package com.sea.custom.presenter.apply
 
 import com.xhs.baselibrary.base.IBaseView
-import com.sea.custom.R
 
 interface ApplyMembershipContact {
 

@@ -23,7 +23,7 @@ class MineCustomPresenter : IPresenter<MineCustomContact.IMineCustomView>(),
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 1) {
                         softView.get()?.loadMineCustomSuccess(it.data, it.totalCount)
                     } else {
                         softView.get()?.loadMineCustomFail(Throwable(it.msg))
