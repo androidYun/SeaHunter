@@ -21,9 +21,8 @@ import kotlinx.android.synthetic.main.fragment_entertainment_layout.*
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
-class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmentView,CategoryContact.ICategoryView {
+class EntertainmentFragment : BaseFragment(), CategoryContact.ICategoryView {
 
-    private val mEntertainmentPresenter by lazy { EntertainmentPresenter().apply { attachView(this@EntertainmentFragment) } }
 
     private val mCategoryPresenter by lazy { CategoryPresenter().apply { attachView(this@EntertainmentFragment) } }
 
@@ -50,10 +49,11 @@ class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmen
     }
 
     private fun initView() {
-        mEntertainmentPagerAdapter=EntertainmentPageAdapter(childFragmentManager)
+        mEntertainmentPagerAdapter = EntertainmentPageAdapter(childFragmentManager)
         viewPager.adapter = mEntertainmentPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
     }
+
     /**
      * Fragment中初始化Toolbar
      * @param toolbar
@@ -69,14 +69,13 @@ class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmen
             actionBar.setDisplayHomeAsUpEnabled(isDisplayHomeAsUp)
         }
     }
+
     private fun initData() {
-        mEntertainmentPresenter.loadEntertainment(NEntertainmentModelReq())
         mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.arder.name))
     }
 
     private fun initListener() {
         swipeLayout.setOnRefreshListener {
-            mEntertainmentPresenter.loadEntertainment(NEntertainmentModelReq())
             mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.arder.name))
         }
     }
@@ -85,22 +84,14 @@ class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmen
         mEntertainmentList.clear()
         mEntertainmentList.addAll(mCategoryList)
         mEntertainmentPagerAdapter.notifyDataSetChanged()
-        swipeLayout.isRefreshing=false
+        swipeLayout.isRefreshing = false
+        swipeLayout.isEnabled = false
     }
 
     override fun loadCategoryFail(throwable: Throwable) {
-      handleError(throwable)
-        swipeLayout.isRefreshing=false
-    }
-
-    override fun loadEntertainmentSuccess(content: Any) {
-        swipeLayout.isRefreshing=false
-
-    }
-
-    override fun loadEntertainmentFail(throwable: Throwable) {
-        swipeLayout.isRefreshing=false
         handleError(throwable)
+        swipeLayout.isRefreshing = false
+        swipeLayout.isEnabled=true
     }
 
     override fun showLoading() {
@@ -119,7 +110,7 @@ class EntertainmentFragment : BaseFragment(), EntertainmentContact.IEntertainmen
 
     inner class EntertainmentPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            return EntertainmentListFragment.getInstance()
+            return EntertainmentListFragment.getInstance(mEntertainmentList[position].id)
         }
 
         override fun getCount(): Int {

@@ -1,9 +1,10 @@
-package com.sea.custom.ui.entertainment.list
+package com.sea.custom.ui.club.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
 import com.sea.custom.em.ChannelEnum
@@ -11,26 +12,20 @@ import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
-import kotlinx.android.synthetic.main.fragment_entertainment_list.*
+import com.sea.custom.utils.DeviceUtils
+import kotlinx.android.synthetic.main.fragment_activity_club.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
+class ClubActivityFragment : BaseFragment(), ChannelContact.IChannelView {
 
-    private val nChannelPresenter by lazy {
-        ChannelPresenter().apply {
-            attachView(
-                this@EntertainmentListFragment
-            )
-        }
-    }
+    private val mClubActivityPresenter by lazy { ChannelPresenter().apply { attachView(this@ClubActivityFragment) } }
 
     private val nChannelModelReq = NChannelModelReq()
 
+    private val mClubActivityList = mutableListOf<NChannelItem>()
     private val categoryId by lazy { arguments?.getInt(channel_key_id) ?: 0 }
 
-    private val mChannelList = mutableListOf<NChannelItem>()
-
-    private lateinit var mEntertainmentListAdapter: EntertainmentListAdapter
+    private lateinit var mClubActivityAdapter: ClubActivityAdapter
 
     private var totalCount = 0
 
@@ -41,7 +36,7 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
         savedInstanceState: Bundle?
     ): View? {
         return LayoutInflater.from(context)
-            .inflate(R.layout.fragment_entertainment_list, container, false)
+            .inflate(R.layout.fragment_activity_club, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,48 +48,53 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
 
 
     private fun initView() {
-        mEntertainmentListAdapter = EntertainmentListAdapter(mChannelList)
-        rvEntertainmentList.layoutManager = LinearLayoutManager(context)
-        rvEntertainmentList.adapter = mEntertainmentListAdapter
+        mClubActivityAdapter = ClubActivityAdapter(mClubActivityList)
+        if (DeviceUtils.isTabletDevice()) {
+            rvClubActivity.layoutManager = GridLayoutManager(context, 2)
+        } else {
+            rvClubActivity.layoutManager = LinearLayoutManager(context)
+        }
+        rvClubActivity.adapter = mClubActivityAdapter
     }
 
     private fun initData() {
         nChannelModelReq.category_id = categoryId
-        nChannelModelReq.channel_name=ChannelEnum.arder.name
-        nChannelPresenter.loadChannel(nChannelModelReq)
+        nChannelModelReq.channel_name = ChannelEnum.activity.name
+        mClubActivityPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
-        swipeEntertainmentList.setOnRefreshListener {
-            nChannelPresenter.loadChannel(nChannelModelReq)
+        swipeClubActivity.setOnRefreshListener {
+            mClubActivityPresenter.loadChannel(nChannelModelReq)
         }
-        mEntertainmentListAdapter.setOnLoadMoreListener({
+        mClubActivityAdapter.setOnLoadMoreListener({
             if (nChannelModelReq.page_index * nChannelModelReq.page_size < totalCount) {
-                nChannelPresenter.loadChannel(nChannelModelReq)
+                mClubActivityPresenter.loadChannel(nChannelModelReq)
             } else {
-                mEntertainmentListAdapter.loadMoreEnd()
+                mClubActivityAdapter.loadMoreEnd()
             }
-        }, rvEntertainmentList)
+        }, rvClubActivity)
     }
+
 
     override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
         if (nChannelModelReq.page_index == 1) {
-            mChannelList.clear()
+            mClubActivityList.clear()
         }
         this.totalCount = totalCount
-        mChannelList.addAll(mList)
-        mEntertainmentListAdapter.notifyDataSetChanged()
-        mEntertainmentListAdapter.loadMoreComplete()
-        swipeEntertainmentList.isRefreshing = false
+        mClubActivityList.addAll(mList)
+        mClubActivityAdapter.notifyDataSetChanged()
+        mClubActivityAdapter.loadMoreComplete()
+        swipeClubActivity.isRefreshing = false
         nChannelModelReq.page_index++
+
     }
 
     override fun loadChannelFail(throwable: Throwable) {
         handleError(throwable)
-        swipeEntertainmentList.isRefreshing = false
-        mEntertainmentListAdapter.loadMoreComplete()
+        swipeClubActivity.isRefreshing = false
+        mClubActivityAdapter.loadMoreComplete()
     }
-
 
     override fun showLoading() {
         showProgressDialog()
@@ -105,10 +105,9 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
     }
 
     companion object {
-
         private const val channel_key_id = "channel_key_id"
 
-        fun getInstance(categoryId: Int = 0) = EntertainmentListFragment().apply {
+        fun getInstance(categoryId: Int = 0) = ClubActivityFragment().apply {
             arguments = Bundle().apply {
                 putInt(channel_key_id, categoryId)
             }

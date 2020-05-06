@@ -19,12 +19,11 @@ import com.sea.custom.presenter.category.NCategoryModelReq
 import com.sea.custom.ui.delicacy.adapter.DelicacyKindAdapter
 import com.sea.custom.ui.delicacy.adapter.DelicacyTypeAdapter
 import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceActivity
-import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceFragment
 import com.sea.custom.ui.delicacy.report.CheckReportActivity
 import com.sea.custom.ui.delicacy.vr.StoreVrActivity
 import com.sea.custom.utils.DeviceUtils
-import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
 import com.xhs.baselibrary.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
 
 class DelicacyFragment : BaseFragment(), DelicacyContact.IDelicacyView,
     CategoryContact.ICategoryView {

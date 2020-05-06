@@ -11,6 +11,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.channel.ChannelContact
+import com.sea.custom.presenter.channel.ChannelPresenter
+import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.ui.club.about.AboutClubActivity
 import com.sea.custom.ui.club.activity.ClubActivityActivity
 import com.sea.custom.ui.club.match.ClubMatchActivity
@@ -18,13 +23,19 @@ import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.fragment_club_layout.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class ClubFragment : BaseFragment(), ClubContact.IClubView {
+class ClubFragment : BaseFragment(), ChannelContact.IChannelView {
 
-    private val mClubPresenter by lazy { ClubPresenter().apply { attachView(this@ClubFragment) } }
+    private val nChannelPresenter by lazy {
+        ChannelPresenter().apply {
+            attachView(
+                this@ClubFragment
+            )
+        }
+    }
 
     private lateinit var mRecommendActivityAdapter: RecommendActivityAdapter
 
-    private val mRecommendList = mutableListOf<NClubActivityItem>()
+    private val mRecommendList = mutableListOf<NChannelItem>()
 
 
     override fun onCreateView(
@@ -42,6 +53,8 @@ class ClubFragment : BaseFragment(), ClubContact.IClubView {
         initListener()
         initToolbar(toolbar, "海钓俱乐部", false)
     }
+
+
 
     private fun initView() {
         mRecommendActivityAdapter = RecommendActivityAdapter(mRecommendList)
@@ -69,7 +82,7 @@ class ClubFragment : BaseFragment(), ClubContact.IClubView {
     }
 
     private fun initData() {
-        mClubPresenter.loadClub(NClubModelReq())
+        nChannelPresenter.loadChannel(NChannelModelReq(channel_name = ChannelEnum.club.name))
     }
 
     private fun initListener() {
@@ -87,14 +100,13 @@ class ClubFragment : BaseFragment(), ClubContact.IClubView {
         }
     }
 
-    override fun loadClubSuccess(mList: List<NClubActivityItem>) {
+    override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
         mRecommendList.clear()
         mRecommendList.addAll(mList)
         mRecommendActivityAdapter.notifyDataSetChanged()
-
     }
 
-    override fun loadClubFail(throwable: Throwable) {
+    override fun loadChannelFail(throwable: Throwable) {
         handleError(throwable)
     }
 

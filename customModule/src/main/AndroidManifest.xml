@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".ui.member.MemberCustomActivity"
+            android:label="@string/title_MemberCustom" />
+        <activity
             android:name=".ui.delicacy.vr.StoreVrActivity"
             android:label="@string/title_StoreVr" />
         <activity

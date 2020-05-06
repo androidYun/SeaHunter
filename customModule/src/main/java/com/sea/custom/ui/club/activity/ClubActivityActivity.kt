@@ -1,6 +1,9 @@
 package com.sea.custom.ui.club.activity
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.sea.custom.R
 import com.sea.custom.em.ChannelEnum
@@ -15,10 +18,10 @@ import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
 class ClubActivityActivity : BaseActivity(), CategoryContact.ICategoryView {
 
-    private val mClubList = mutableListOf<WebViewItem>()
+    private val mClubList = mutableListOf<NCategoryItem>()
     private val mCategoryPresenter by lazy { CategoryPresenter().apply { attachView(this@ClubActivityActivity) } }
 
-    private lateinit var webViewPageAdapter: WebViewPageAdapter
+    private lateinit var mClubActivityPageAdapter: ClubActivityPageAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_club_activity)
@@ -31,18 +34,17 @@ class ClubActivityActivity : BaseActivity(), CategoryContact.ICategoryView {
     }
 
     private fun initView() {
-        webViewPageAdapter = WebViewPageAdapter(mClubList, supportFragmentManager)
-        viewPager.adapter = webViewPageAdapter
+        mClubActivityPageAdapter = ClubActivityPageAdapter( supportFragmentManager)
+        viewPager.adapter = mClubActivityPageAdapter
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.tabMode = TabLayout.MODE_FIXED
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
     }
 
     override fun loadCategorySuccess(mCategoryList: List<NCategoryItem>) {
-        val list = mCategoryList.map { WebViewItem(it.title, "") }
         mClubList.clear()
-        mClubList.addAll(list)
-        webViewPageAdapter.notifyDataSetChanged()
+        mClubList.addAll(mCategoryList)
+        mClubActivityPageAdapter.notifyDataSetChanged()
     }
 
     override fun loadCategoryFail(throwable: Throwable) {
@@ -55,5 +57,19 @@ class ClubActivityActivity : BaseActivity(), CategoryContact.ICategoryView {
 
     override fun hideLoading() {
         hideProgressDialog()
+    }
+
+    inner class ClubActivityPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+        override fun getItem(position: Int): Fragment {
+            return ClubActivityFragment.getInstance(mClubList[position].id)
+        }
+
+        override fun getCount(): Int {
+            return mClubList.size
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return mClubList[position].title
+        }
     }
 }
