@@ -5,16 +5,26 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.channel.ChannelContact
+import com.sea.custom.presenter.channel.ChannelPresenter
+import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.activity_club_match.*
 
-class ClubMatchActivity : BaseActivity(), ClubMatchContact.IClubMatchView {
+class ClubMatchActivity : BaseActivity(), ChannelContact.IChannelView {
 
-    private val mClubMatchPresenter by lazy { ClubMatchPresenter().apply { attachView(this@ClubMatchActivity) } }
+    private val nChannelPresenter by lazy {
+        ChannelPresenter().apply {
+            attachView(
+                this@ClubMatchActivity
+            )
+        }
+    }
+    private val nChannelModelReq = NChannelModelReq()
 
-    private val nClubMatchReq = NClubMatchModelReq()
-
-    private val mClubMatchList = mutableListOf<ClubMatchItem>()
+    private val mClubMatchList = mutableListOf<NChannelItem>()
 
     private lateinit var mClubMatchAdapter: ClubMatchAdapter
 
@@ -40,27 +50,44 @@ class ClubMatchActivity : BaseActivity(), ClubMatchContact.IClubMatchView {
     }
 
     private fun initData() {
-        mClubMatchPresenter.loadClubMatch(nClubMatchReq)
+        nChannelModelReq.channel_name=ChannelEnum.game.name
+        nChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeClubMatch.setOnRefreshListener {
-            mClubMatchPresenter.loadClubMatch(nClubMatchReq)
+            nChannelPresenter.loadChannel(nChannelModelReq)
         }
         mClubMatchAdapter.setOnLoadMoreListener({
-            if (nClubMatchReq.page_index * nClubMatchReq.page_size < totalCount) {
-                mClubMatchPresenter.loadClubMatch(nClubMatchReq)
+            if (nChannelModelReq.page_index * nChannelModelReq.page_size < totalCount) {
+                nChannelPresenter.loadChannel(nChannelModelReq)
             } else {
                 mClubMatchAdapter.loadMoreEnd()
             }
         }, rvClubMatch)
-        rgpView.setOnCheckedChangeListener { group, checkedId ->
-
+        rgpView.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.btnDefault -> {
+                    nChannelModelReq.page_index=1
+                    nChannelModelReq.sort = 0
+                    nChannelPresenter.loadChannel(nChannelModelReq)
+                }
+                R.id.btnNew -> {
+                    nChannelModelReq.page_index=1
+                    nChannelModelReq.sort = 1
+                    nChannelPresenter.loadChannel(nChannelModelReq)
+                }
+                R.id.btnMore -> {
+                    nChannelModelReq.page_index=1
+                    nChannelModelReq.sort = 2
+                    nChannelPresenter.loadChannel(nChannelModelReq)
+                }
+            }
         }
     }
 
-    override fun loadClubMatchSuccess(mList: List<ClubMatchItem>, totalCount: Int) {
-        if (nClubMatchReq.page_index == 1) {
+    override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
+        if (nChannelModelReq.page_index == 1) {
             mClubMatchList.clear()
         }
         this.totalCount = totalCount
@@ -68,15 +95,15 @@ class ClubMatchActivity : BaseActivity(), ClubMatchContact.IClubMatchView {
         mClubMatchAdapter.notifyDataSetChanged()
         mClubMatchAdapter.loadMoreComplete()
         swipeClubMatch.isRefreshing = false
-        nClubMatchReq.page_index++
-
+        nChannelModelReq.page_index++
     }
 
-    override fun loadClubMatchFail(throwable: Throwable) {
+    override fun loadChannelFail(throwable: Throwable) {
         handleError(throwable)
         swipeClubMatch.isRefreshing = false
         mClubMatchAdapter.loadMoreComplete()
     }
+
 
     override fun showLoading() {
         showProgressDialog()
