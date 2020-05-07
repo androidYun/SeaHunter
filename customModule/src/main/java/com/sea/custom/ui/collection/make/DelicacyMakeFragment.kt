@@ -6,16 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.ui.collection.CollectionContact
+import com.sea.custom.ui.collection.CollectionItem
+import com.sea.custom.ui.collection.CollectionPresenter
+import com.sea.custom.ui.collection.NCollectionModelReq
 import kotlinx.android.synthetic.main.fragment_activity_delicacy_make.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class DelicacyMakeFragment : BaseFragment(), DelicacyMakeContact.IDelicacyMakeView {
+class DelicacyMakeFragment : BaseFragment(), CollectionContact.ICollectionView {
 
-    private val mDelicacyMakePresenter by lazy { DelicacyMakePresenter().apply { attachView(this@DelicacyMakeFragment) } }
+    private val mCollectionPresenter by lazy { CollectionPresenter().apply { attachView(this@DelicacyMakeFragment) } }
 
-    private val nDelicacyMakeReq = NDelicacyMakeModelReq()
+    private val nDelicacyMakeReq = NCollectionModelReq()
 
-    private val mDelicacyMakeList = mutableListOf<DelicacyMakeItem>()
+    private val mDelicacyMakeList = mutableListOf<CollectionItem>()
 
     private lateinit var mDelicacyMakeAdapter: DelicacyMakeAdapter
 
@@ -46,23 +51,25 @@ class DelicacyMakeFragment : BaseFragment(), DelicacyMakeContact.IDelicacyMakeVi
     }
 
     private fun initData() {
-        mDelicacyMakePresenter.loadDelicacyMake(nDelicacyMakeReq)
+        nDelicacyMakeReq.channel_name = ChannelEnum.food.name
+        mCollectionPresenter.loadCollection(nDelicacyMakeReq)
     }
 
     private fun initListener() {
         swipeDelicacyMake.setOnRefreshListener {
-            mDelicacyMakePresenter.loadDelicacyMake(nDelicacyMakeReq)
+            nDelicacyMakeReq.page_index=1
+            mCollectionPresenter.loadCollection(nDelicacyMakeReq)
         }
         mDelicacyMakeAdapter.setOnLoadMoreListener({
             if (nDelicacyMakeReq.page_index * nDelicacyMakeReq.page_size < totalCount) {
-                mDelicacyMakePresenter.loadDelicacyMake(nDelicacyMakeReq)
+                mCollectionPresenter.loadCollection(nDelicacyMakeReq)
             } else {
                 mDelicacyMakeAdapter.loadMoreEnd()
             }
         }, rvDelicacyMake)
     }
 
-    override fun loadDelicacyMakeSuccess(mList: List<DelicacyMakeItem>, totalCount: Int) {
+    override fun loadCollectionSuccess(mList: List<CollectionItem>, totalCount: Int) {
         if (nDelicacyMakeReq.page_index == 1) {
             mDelicacyMakeList.clear()
         }
@@ -72,14 +79,14 @@ class DelicacyMakeFragment : BaseFragment(), DelicacyMakeContact.IDelicacyMakeVi
         mDelicacyMakeAdapter.loadMoreComplete()
         swipeDelicacyMake.isRefreshing = false
         nDelicacyMakeReq.page_index++
-
     }
 
-    override fun loadDelicacyMakeFail(throwable: Throwable) {
+    override fun loadCollectionFail(throwable: Throwable) {
         handleError(throwable)
-        swipeDelicacyMake.isRefreshing=false
+        swipeDelicacyMake.isRefreshing = false
         mDelicacyMakeAdapter.loadMoreComplete()
     }
+
 
     override fun showLoading() {
         showProgressDialog()

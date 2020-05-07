@@ -4,6 +4,15 @@ apply plugin: 'kotlin-android-extensions'
 
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'sea'
+            keyPassword '123456'
+            storeFile file('../SeaHunter.jks')
+            storePassword '123456'
+        }
+    }
+
     compileSdkVersion VERSION_COMPILE_SDK
     buildToolsVersion BUILD_TOOLS_VERSION
     defaultConfig {
@@ -23,6 +32,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled false   //开始是true
+            shrinkResources false
+            signingConfig signingConfigs.config
         }
     }
 

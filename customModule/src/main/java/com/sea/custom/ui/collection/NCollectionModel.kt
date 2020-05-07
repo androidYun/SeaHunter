@@ -1,18 +1,20 @@
-package com.sea.custom.ui.collection.make
+package com.sea.custom.ui.collection
 
-class NDelicacyMakeModelReq(
+class NCollectionModelReq(
+    val command: Int = 39,
+    var channel_name: String = "",
     var page_size: Int = 20,
     var page_index: Int = 1
 )
 
-class NDelicacyMakeModelResponse(
+class NCollectionModelResponse(
     val code: Int = -1,
     val msg: String = "",
     val totalCount: Int = 0,
-    val data: List<DelicacyMakeItem> = listOf()
+    val data: List<CollectionItem> = listOf()
 )
 
-class DelicacyMakeItem(
+class CollectionItem(
     val collect_count: String = "",
     val comment_count: String = "",
     val good_count: String = "",

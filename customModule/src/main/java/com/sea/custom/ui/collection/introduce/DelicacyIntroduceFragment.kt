@@ -6,22 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.ui.collection.CollectionContact
+import com.sea.custom.ui.collection.CollectionItem
+import com.sea.custom.ui.collection.CollectionPresenter
+import com.sea.custom.ui.collection.NCollectionModelReq
 import kotlinx.android.synthetic.main.fragment_activity_delicacy_introduce.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDelicacyIntroduceView {
+class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionView {
 
-    private val mDelicacyIntroducePresenter by lazy {
-        DelicacyIntroducePresenter().apply {
-            attachView(
-                this@DelicacyIntroduceFragment
-            )
-        }
-    }
+    private val mCollectionPresenter by lazy { CollectionPresenter().apply { attachView(this@DelicacyIntroduceFragment) } }
 
-    private val nDelicacyIntroduceReq = NDelicacyIntroduceModelReq()
+    private val nDelicacyMakeReq = NCollectionModelReq()
 
-    private val mDelicacyIntroduceList = mutableListOf<DelicacyIntroduceItem>()
+    private val mDelicacyIntroduceList = mutableListOf<CollectionItem>()
 
     private lateinit var mDelicacyIntroduceAdapter: DelicacyIntroduceAdapter
 
@@ -52,25 +51,26 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
     }
 
     private fun initData() {
-        mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
+        nDelicacyMakeReq.channel_name = ChannelEnum.arder.name
+        mCollectionPresenter.loadCollection(nDelicacyMakeReq)
     }
 
     private fun initListener() {
         swipeDelicacyIntroduce.setOnRefreshListener {
-            nDelicacyIntroduceReq.page_index = 1
-            mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
+            nDelicacyMakeReq.page_index = 1
+            mCollectionPresenter.loadCollection(nDelicacyMakeReq)
         }
         mDelicacyIntroduceAdapter.setOnLoadMoreListener({
-            if (nDelicacyIntroduceReq.page_index * nDelicacyIntroduceReq.page_size < totalCount) {
-                mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
+            if (nDelicacyMakeReq.page_index * nDelicacyMakeReq.page_size < totalCount) {
+                mCollectionPresenter.loadCollection(nDelicacyMakeReq)
             } else {
                 mDelicacyIntroduceAdapter.loadMoreEnd()
             }
         }, rvDelicacyIntroduce)
     }
 
-    override fun loadDelicacyIntroduceSuccess(mList: List<DelicacyIntroduceItem>, totalCount: Int) {
-        if (nDelicacyIntroduceReq.page_index == 1) {
+    override fun loadCollectionSuccess(mList: List<CollectionItem>, totalCount: Int) {
+        if (nDelicacyMakeReq.page_index == 1) {
             mDelicacyIntroduceList.clear()
         }
         this.totalCount = totalCount
@@ -78,11 +78,11 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
         mDelicacyIntroduceAdapter.notifyDataSetChanged()
         mDelicacyIntroduceAdapter.loadMoreComplete()
         swipeDelicacyIntroduce.isRefreshing = false
-        nDelicacyIntroduceReq.page_index++
+        nDelicacyMakeReq.page_index++
 
     }
 
-    override fun loadDelicacyIntroduceFail(throwable: Throwable) {
+    override fun loadCollectionFail(throwable: Throwable) {
         handleError(throwable)
         swipeDelicacyIntroduce.isRefreshing = false
         mDelicacyIntroduceAdapter.loadMoreComplete()

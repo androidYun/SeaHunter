@@ -4,13 +4,14 @@ import android.widget.RadioButton
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sea.custom.R
+import com.sea.custom.ui.collection.CollectionItem
 
-class DelicacyMakeAdapter(mList: List<DelicacyMakeItem>) :
-    BaseQuickAdapter<DelicacyMakeItem, BaseViewHolder>(
+class DelicacyMakeAdapter(mList: List<CollectionItem>) :
+    BaseQuickAdapter<CollectionItem, BaseViewHolder>(
         R.layout.item_activity_delicacy_make_layout,
         mList
     ) {
-    override fun convert(helper: BaseViewHolder?, item: DelicacyMakeItem) {
+    override fun convert(helper: BaseViewHolder?, item: CollectionItem) {
         helper?.setText(R.id.tvDelicacyName, item.title)
         helper?.getView<RadioButton>(R.id.rgbPraise)?.text = item.good_count
         helper?.getView<RadioButton>(R.id.rgbComment)?.text = item.comment_count
