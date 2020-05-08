@@ -7,21 +7,28 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.channel.ChannelContact
+import com.sea.custom.presenter.channel.ChannelPresenter
+import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.fragment_activity_store_vr_list.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class StoreVrListFragment : BaseFragment(), StoreVrListContact.IStoreVrListView {
+class StoreVrListFragment : BaseFragment(), ChannelContact.IChannelView {
 
-    private val mStoreVrListPresenter by lazy { StoreVrListPresenter().apply { attachView(this@StoreVrListFragment) } }
+    private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@StoreVrListFragment) } }
 
-    private val nStoreVrListReq = NStoreVrModelReq()
+    private val nChannelModelReq = NChannelModelReq()
 
-    private val mStoreVrListList = mutableListOf<StoreVrItem>()
+    private val mStoreVrListList = mutableListOf<NChannelItem>()
 
     private lateinit var mStoreVrListAdapter: StoreVrListAdapter
 
     private var totalCount = 0
+
+    private val sort by lazy { arguments?.getInt(sort_vr_key) ?: 0 }
 
 
     override fun onCreateView(
@@ -43,33 +50,36 @@ class StoreVrListFragment : BaseFragment(), StoreVrListContact.IStoreVrListView 
 
     private fun initView() {
         mStoreVrListAdapter = StoreVrListAdapter(mStoreVrListList)
-       if(DeviceUtils.isTabletDevice()){
-           rvStoreVrList.layoutManager =GridLayoutManager(context,2)
-       }else{
-           rvStoreVrList.layoutManager =  LinearLayoutManager(context)
-       }
+        if (DeviceUtils.isTabletDevice()) {
+            rvStoreVrList.layoutManager = GridLayoutManager(context, 2)
+        } else {
+            rvStoreVrList.layoutManager = LinearLayoutManager(context)
+        }
         rvStoreVrList.adapter = mStoreVrListAdapter
     }
 
     private fun initData() {
-        mStoreVrListPresenter.loadStoreVrList(nStoreVrListReq)
+        nChannelModelReq.channel_name = ChannelEnum.shop.name
+        nChannelModelReq.sort = sort
+        mChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeStoreVrList.setOnRefreshListener {
-            mStoreVrListPresenter.loadStoreVrList(nStoreVrListReq)
+            nChannelModelReq.page_index = 1
+            mChannelPresenter.loadChannel(nChannelModelReq)
         }
         mStoreVrListAdapter.setOnLoadMoreListener({
-            if (nStoreVrListReq.page_index * nStoreVrListReq.page_size < totalCount) {
-                mStoreVrListPresenter.loadStoreVrList(nStoreVrListReq)
+            if (nChannelModelReq.page_index * nChannelModelReq.page_size < totalCount) {
+                mChannelPresenter.loadChannel(nChannelModelReq)
             } else {
                 mStoreVrListAdapter.loadMoreEnd()
             }
         }, rvStoreVrList)
     }
 
-    override fun loadStoreVrListSuccess(mList: List<StoreVrItem>, totalCount: Int) {
-        if (nStoreVrListReq.page_index == 1) {
+    override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
+        if (nChannelModelReq.page_index == 1) {
             mStoreVrListList.clear()
         }
         this.totalCount = totalCount
@@ -77,13 +87,13 @@ class StoreVrListFragment : BaseFragment(), StoreVrListContact.IStoreVrListView 
         mStoreVrListAdapter.notifyDataSetChanged()
         mStoreVrListAdapter.loadMoreComplete()
         swipeStoreVrList.isRefreshing = false
-        nStoreVrListReq.page_index++
-
+        nChannelModelReq.page_index++
     }
 
-    override fun loadStoreVrListFail(throwable: Throwable) {
+
+    override fun loadChannelFail(throwable: Throwable) {
         handleError(throwable)
-        swipeStoreVrList.isRefreshing=false
+        swipeStoreVrList.isRefreshing = false
         mStoreVrListAdapter.loadMoreComplete()
     }
 
@@ -96,9 +106,10 @@ class StoreVrListFragment : BaseFragment(), StoreVrListContact.IStoreVrListView 
     }
 
     companion object {
-        fun getInstance() = StoreVrListFragment().apply {
+        private const val sort_vr_key = "sort_vr_key"
+        fun getInstance(sort: Int = 0) = StoreVrListFragment().apply {
             arguments = Bundle().apply {
-
+                putInt(sort_vr_key, sort)
             }
         }
     }

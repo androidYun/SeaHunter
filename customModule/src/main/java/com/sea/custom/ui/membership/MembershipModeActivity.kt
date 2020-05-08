@@ -4,15 +4,20 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.channel.ChannelContact
+import com.sea.custom.presenter.channel.ChannelPresenter
+import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.presenter.channel.NChannelModelReq
 import kotlinx.android.synthetic.main.activity_member_ship_mode.*
 
-class MembershipModeActivity : BaseActivity(), MembershipModeContact.IMembershipModeView {
+class MembershipModeActivity : BaseActivity(), ChannelContact.IChannelView {
 
-    private val mMembershipModePresenter by lazy { MembershipModePresenter().apply { attachView(this@MembershipModeActivity) } }
+    private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@MembershipModeActivity) } }
 
-    private val nMembershipModeReq = NMembershipModeModelReq()
+    private val nChannelModelReq = NChannelModelReq()
 
-    private val mMembershipModeList = mutableListOf<MembershipModeItem>()
+    private val mMembershipModeList = mutableListOf<NChannelItem>()
 
     private lateinit var mMembershipModeAdapter: MembershipModeAdapter
 
@@ -33,12 +38,13 @@ class MembershipModeActivity : BaseActivity(), MembershipModeContact.IMembership
     }
 
     private fun initData() {
-        mMembershipModePresenter.loadMembershipMode(nMembershipModeReq)
+        nChannelModelReq.channel_name=ChannelEnum.food.name
+        mChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeMembershipMode.setOnRefreshListener {
-            mMembershipModePresenter.loadMembershipMode(nMembershipModeReq)
+            mChannelPresenter.loadChannel(nChannelModelReq)
         }
         mMembershipModeAdapter.setOnItemClickListener { adapter, view, position ->
             when (view.id) {
@@ -49,14 +55,15 @@ class MembershipModeActivity : BaseActivity(), MembershipModeContact.IMembership
         }
     }
 
-    override fun loadMembershipModeSuccess(mList: List<MembershipModeItem>) {
+
+    override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
         mMembershipModeList.addAll(mList)
         mMembershipModeAdapter.notifyDataSetChanged()
         mMembershipModeAdapter.loadMoreComplete()
         swipeMembershipMode.isRefreshing = false
     }
 
-    override fun loadMembershipModeFail(throwable: Throwable) {
+    override fun loadChannelFail(throwable: Throwable) {
         handleError(throwable)
         swipeMembershipMode.isRefreshing
         mMembershipModeAdapter.loadMoreComplete()

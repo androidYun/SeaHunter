@@ -19,7 +19,6 @@ class ChannelPresenter : IPresenter<ChannelContact.IChannelView>(),
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {

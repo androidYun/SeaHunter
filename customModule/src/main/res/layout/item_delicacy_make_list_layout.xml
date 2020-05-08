@@ -8,8 +8,8 @@
     android:orientation="vertical">
 
 
-    <com.shuyu.gsyvideoplayer.video.GSYSampleADVideoPlayer
-        android:id="@+id/videoPlayer"
+    <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+        android:id="@+id/gsyVideoPlayer"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 

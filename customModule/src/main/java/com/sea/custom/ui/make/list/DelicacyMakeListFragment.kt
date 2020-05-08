@@ -6,22 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.channel.ChannelContact
+import com.sea.custom.presenter.channel.ChannelPresenter
+import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.presenter.channel.NChannelModelReq
 import kotlinx.android.synthetic.main.fragment_delicacy_make_list.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class DelicacyMakeListFragment : BaseFragment(), DelicacyMakeListContact.IDelicacyMakeListView {
+class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView {
 
-    private val mDelicacyMakeListPresenter by lazy {
-        DelicacyMakeListPresenter().apply {
+    private val mChannelPresenter by lazy {
+        ChannelPresenter().apply {
             attachView(
                 this@DelicacyMakeListFragment
             )
         }
     }
 
-    private val nDelicacyMakeListReq = NDelicacyMakeListModelReq()
+    private val nChannelModelReq = NChannelModelReq()
 
-    private val mDelicacyMakeListList = mutableListOf<DelicacyMakeListItem>()
+    private val categoryId by lazy { arguments?.getInt(channel_key_id) ?: 0 }
+
+    private val mDelicacyMakeListList = mutableListOf<NChannelItem>()
 
     private lateinit var mDelicacyMakeListAdapter: DelicacyMakeListAdapter
 
@@ -52,24 +59,26 @@ class DelicacyMakeListFragment : BaseFragment(), DelicacyMakeListContact.IDelica
     }
 
     private fun initData() {
-        mDelicacyMakeListPresenter.loadDelicacyMakeList(nDelicacyMakeListReq)
+        nChannelModelReq.channel_name=ChannelEnum.food.name
+        nChannelModelReq.category_id = categoryId
+        mChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeDelicacyMakeList.setOnRefreshListener {
-            mDelicacyMakeListPresenter.loadDelicacyMakeList(nDelicacyMakeListReq)
+            mChannelPresenter.loadChannel(nChannelModelReq)
         }
         mDelicacyMakeListAdapter.setOnLoadMoreListener({
-            if (nDelicacyMakeListReq.page_index * nDelicacyMakeListReq.page_size < totalCount) {
-                mDelicacyMakeListPresenter.loadDelicacyMakeList(nDelicacyMakeListReq)
+            if (nChannelModelReq.page_index * nChannelModelReq.page_size < totalCount) {
+                mChannelPresenter.loadChannel(nChannelModelReq)
             } else {
                 mDelicacyMakeListAdapter.loadMoreEnd()
             }
         }, rvDelicacyMakeList)
     }
 
-    override fun loadDelicacyMakeListSuccess(mList: List<DelicacyMakeListItem>, totalCount: Int) {
-        if (nDelicacyMakeListReq.page_index == 1) {
+    override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
+        if (nChannelModelReq.page_index == 1) {
             mDelicacyMakeListList.clear()
         }
         this.totalCount = totalCount
@@ -77,11 +86,11 @@ class DelicacyMakeListFragment : BaseFragment(), DelicacyMakeListContact.IDelica
         mDelicacyMakeListAdapter.notifyDataSetChanged()
         mDelicacyMakeListAdapter.loadMoreComplete()
         swipeDelicacyMakeList.isRefreshing = false
-        nDelicacyMakeListReq.page_index++
+        nChannelModelReq.page_index++
 
     }
 
-    override fun loadDelicacyMakeListFail(throwable: Throwable) {
+    override fun loadChannelFail(throwable: Throwable) {
         handleError(throwable)
         swipeDelicacyMakeList.isRefreshing
         mDelicacyMakeListAdapter.loadMoreComplete()
@@ -96,10 +105,12 @@ class DelicacyMakeListFragment : BaseFragment(), DelicacyMakeListContact.IDelica
     }
 
     companion object {
-        fun getInstance() = DelicacyMakeListFragment().apply {
-            arguments = Bundle().apply {
+            private const val channel_key_id = "channel_key_id"
 
+            fun getInstance(categoryId: Int = 0) = DelicacyMakeListFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(channel_key_id, categoryId)
+                }
             }
         }
-    }
 }

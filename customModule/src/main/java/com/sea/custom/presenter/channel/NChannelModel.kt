@@ -42,6 +42,6 @@ class NChannelModelReq(
     var category_id: Int = 0,
     val page_size: Int = 20,
     var page_index: Int = 1,
-    var sort: Int = 0,//排序 (0:默认 1：销量 2:最新 3：最热)
-    var is_red: Int = -1//is_red
+    var sort: Int = 0,//排序 (0:默认 1：销量 2:最新 3：最热（查看最多），4,离我最近)
+    var is_red: Int = -1//is_red  推荐：1，其他不要求
 )

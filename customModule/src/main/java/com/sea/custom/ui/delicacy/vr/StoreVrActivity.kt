@@ -45,7 +45,17 @@ class StoreVrActivity : BaseActivity() {
 
     inner class EntertainmentPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            return StoreVrListFragment.getInstance()
+            return when (position) {
+                0 -> {
+                    StoreVrListFragment.getInstance(0)
+                }
+                1 -> {
+                    StoreVrListFragment.getInstance(4)
+                }
+                else -> {
+                    StoreVrListFragment.getInstance(3)
+                }
+            }
         }
 
         override fun getCount(): Int {

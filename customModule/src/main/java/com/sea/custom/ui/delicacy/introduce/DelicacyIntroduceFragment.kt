@@ -6,24 +6,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.channel.ChannelContact
+import com.sea.custom.presenter.channel.ChannelPresenter
+import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.presenter.channel.NChannelModelReq
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_delicacy_introduce.*
 
-class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDelicacyIntroduceView {
+class DelicacyIntroduceFragment : BaseFragment(), ChannelContact.IChannelView {
 
-    private val mDelicacyIntroducePresenter by lazy {
-        DelicacyIntroducePresenter().apply {
+    private val mChannelPresenter by lazy {
+        ChannelPresenter().apply {
             attachView(
                 this@DelicacyIntroduceFragment
             )
         }
     }
 
-    private val nDelicacyIntroduceReq = NDelicacyIntroduceModelReq()
+    private val nChannelModelReq = NChannelModelReq()
 
-    private val mDelicacyIntroduceList = mutableListOf<DelicacyIntroduceItem>()
+    private val mDelicacyIntroduceList = mutableListOf<NChannelItem>()
 
     private lateinit var mDelicacyIntroduceAdapter: DelicacyIntroduceAdapter
+
+    private val categoryId by lazy { arguments?.getInt(channel_key_id) ?: 0 }
 
     private var totalCount = 0
 
@@ -32,7 +39,7 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_delicacy_introduce,container,false)
+        return inflater.inflate(R.layout.fragment_delicacy_introduce, container, false)
     }
 
 
@@ -51,24 +58,27 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
     }
 
     private fun initData() {
-        mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
+        nChannelModelReq.channel_name = ChannelEnum.fish.name
+        nChannelModelReq.category_id = categoryId
+        mChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeDelicacyIntroduce.setOnRefreshListener {
-            mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
+            nChannelModelReq.page_index = 1
+            mChannelPresenter.loadChannel(nChannelModelReq)
         }
         mDelicacyIntroduceAdapter.setOnLoadMoreListener({
-            if (nDelicacyIntroduceReq.page_index * nDelicacyIntroduceReq.page_size < totalCount) {
-                mDelicacyIntroducePresenter.loadDelicacyIntroduce(nDelicacyIntroduceReq)
+            if (nChannelModelReq.page_index * nChannelModelReq.page_size < totalCount) {
+                mChannelPresenter.loadChannel(nChannelModelReq)
             } else {
                 mDelicacyIntroduceAdapter.loadMoreEnd()
             }
         }, rvDelicacyIntroduce)
     }
 
-    override fun loadDelicacyIntroduceSuccess(mList: List<DelicacyIntroduceItem>, totalCount: Int) {
-        if (nDelicacyIntroduceReq.page_index == 1) {
+    override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
+        if (nChannelModelReq.page_index == 1) {
             mDelicacyIntroduceList.clear()
         }
         this.totalCount = totalCount
@@ -76,11 +86,11 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
         mDelicacyIntroduceAdapter.notifyDataSetChanged()
         mDelicacyIntroduceAdapter.loadMoreComplete()
         swipeDelicacyIntroduce.isRefreshing = false
-        nDelicacyIntroduceReq.page_index++
-
+        nChannelModelReq.page_index++
     }
 
-    override fun loadDelicacyIntroduceFail(throwable: Throwable) {
+
+    override fun loadChannelFail(throwable: Throwable) {
         handleError(throwable)
         swipeDelicacyIntroduce.isRefreshing
         mDelicacyIntroduceAdapter.loadMoreComplete()
@@ -95,8 +105,12 @@ class DelicacyIntroduceFragment : BaseFragment(), DelicacyIntroduceContact.IDeli
     }
 
     companion object {
-        fun getInstance() = DelicacyIntroduceFragment().apply {
-            arguments = Bundle().apply { }
+        private const val channel_key_id = "channel_key_id"
+
+        fun getInstance(categoryId: Int = 0) = DelicacyIntroduceFragment().apply {
+            arguments = Bundle().apply {
+                putInt(channel_key_id, categoryId)
+            }
         }
     }
 }

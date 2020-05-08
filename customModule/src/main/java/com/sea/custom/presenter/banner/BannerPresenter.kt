@@ -1,17 +1,16 @@
-package com.sea.custom.ui.delicacy
+package com.sea.custom.presenter.banner
 
+import com.sea.custom.api.CommonApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.custom.api.DelicacyApi
 
 
-class DelicacyPresenter : IPresenter<DelicacyContact.IDelicacyView>(),
-    DelicacyContact.IDelicacyPresenter {
-    override fun loadDelicacy(nDelicacyModelReq: NDelicacyModelReq) {
+class BannerPresenter : IPresenter<BannerContact.IBannerView>(), BannerContact.IBannerPresenter {
+    override fun loadBanner() {
         RetrofitUtils.getRetrofit()
-            .create(DelicacyApi::class.java)
-            .loadDelicacy(nDelicacyModelReq)
+            .create(CommonApi::class.java)
+            .loadBanner(NBannerModelReq())
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -19,17 +18,16 @@ class DelicacyPresenter : IPresenter<DelicacyContact.IDelicacyView>(),
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {
                     if (it.code == 1) {
-                        softView.get()?.loadDelicacySuccess(it.data)
+                        softView.get()?.loadBannerSuccess(it.data)
                     } else {
-                        softView.get()?.loadDelicacyFail(Throwable(it.msg))
+                        softView.get()?.loadBannerFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadDelicacyFail(throwable) }
+                }, { throwable -> softView.get()?.loadBannerFail(throwable) }
             )
     }
 }

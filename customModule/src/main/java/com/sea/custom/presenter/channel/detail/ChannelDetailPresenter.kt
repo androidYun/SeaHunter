@@ -1,17 +1,17 @@
-package com.sea.custom.ui.delicacy.vr.list
+package com.sea.custom.presenter.channel.detail
 
-import com.sea.custom.api.StoreVrApi
+import com.sea.custom.api.ChannelApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
 
 
-class StoreVrListPresenter : IPresenter<StoreVrListContact.IStoreVrListView>(),
-    StoreVrListContact.IStoreVrListPresenter {
-    override fun loadStoreVrList(nStoreVrListModelReq: NStoreVrModelReq) {
+class ChannelDetailPresenter : IPresenter<ChannelDetailContact.IChannelDetailView>(),
+    ChannelDetailContact.IChannelDetailPresenter {
+    override fun loadChannelDetail(nChannelDetailModelReq: NChannelDetailModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(StoreVrApi::class.java)
-            .loadStoreVrList(nStoreVrListModelReq)
+            .create(ChannelApi::class.java)
+            .loadChannelDetail(nChannelDetailModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -24,13 +24,12 @@ class StoreVrListPresenter : IPresenter<StoreVrListContact.IStoreVrListView>(),
             .subscribe(
                 {
                     if (it.code == 1) {
-                        softView.get()?.loadStoreVrListSuccess(it.data, it.totalCount)
+                        softView.get()?.loadChannelDetailSuccess(it.data)
                     } else {
-                        softView.get()?.loadStoreVrListFail(Throwable(it.msg))
+                        softView.get()?.loadChannelDetailFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadStoreVrListFail(throwable) }
+                }, { throwable -> softView.get()?.loadChannelDetailFail(throwable) }
             )
-        softView.get()?.loadStoreVrListSuccess(listOf(StoreVrItem(), StoreVrItem()), 30)
     }
 }

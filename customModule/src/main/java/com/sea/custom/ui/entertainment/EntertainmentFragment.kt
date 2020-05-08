@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.sea.custom.R
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.category.CategoryContact
@@ -49,6 +50,7 @@ class EntertainmentFragment : BaseFragment(), CategoryContact.ICategoryView {
     }
 
     private fun initView() {
+        tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         mEntertainmentPagerAdapter = EntertainmentPageAdapter(childFragmentManager)
         viewPager.adapter = mEntertainmentPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
@@ -91,7 +93,7 @@ class EntertainmentFragment : BaseFragment(), CategoryContact.ICategoryView {
     override fun loadCategoryFail(throwable: Throwable) {
         handleError(throwable)
         swipeLayout.isRefreshing = false
-        swipeLayout.isEnabled=true
+        swipeLayout.isEnabled = true
     }
 
     override fun showLoading() {

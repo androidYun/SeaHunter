@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/ivHead"
+        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+            android:id="@+id/gsyVideoPlayer"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="160dp" />
 
         <TextView
             android:id="@+id/tvDelicacyName"

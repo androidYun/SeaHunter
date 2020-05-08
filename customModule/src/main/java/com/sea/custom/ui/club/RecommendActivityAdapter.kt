@@ -13,8 +13,7 @@ class RecommendActivityAdapter(mList: List<NChannelItem>) :
 
     override fun convert(helper: BaseViewHolder?, item: NChannelItem) {
         helper?.setText(R.id.tvActivityTitle, item.title)
-        helper?.setText(R.id.tvActivityContent, item.content)
-        helper?.setText(R.id.tvActivityTitle, item.title)
+        helper?.setText(R.id.tvActivityContent, item.zhaiyao)
         ImageLoader.loadImageWithUrl(
             helper?.getView(R.id.ivActivityImage),
           Constants.baseUrl.plus(item.img_url)

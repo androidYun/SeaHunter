@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import com.xhs.baselibrary.BaseApplication
+import com.xhs.baselibrary.R
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_web.*
 
@@ -27,7 +28,7 @@ open class WebFragment : BaseFragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(com.xhs.baselibrary.R.layout.fragment_web, container, false)
+        return inflater.inflate(R.layout.fragment_web, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -28,7 +28,7 @@ class DelicacyIntroduceActivity : BaseActivity(), CategoryContact.ICategoryView 
     }
 
     private fun initData() {
-        mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.activity.name))
+        mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.fish.name))
     }
 
     private fun initView() {

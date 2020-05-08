@@ -2,18 +2,25 @@ package com.sea.custom.ui.delicacy.report
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.channel.ChannelContact
+import com.sea.custom.presenter.channel.ChannelPresenter
+import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.presenter.channel.NChannelModelReq
+import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.activity_check_report.*
 
-class CheckReportActivity : BaseActivity(), CheckReportContact.ICheckReportView {
+class CheckReportActivity : BaseActivity(), ChannelContact.IChannelView {
 
-    private val mCheckReportPresenter by lazy { CheckReportPresenter().apply { attachView(this@CheckReportActivity) } }
+    private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@CheckReportActivity) } }
 
-    private val nCheckReportReq = NCheckReportModelReq()
+    private val nChannelModelReq = NChannelModelReq()
 
-    private val mCheckReportList = mutableListOf<CheckReportItem>()
+    private val mCheckReportList = mutableListOf<NChannelItem>()
 
     private lateinit var mCheckReportAdapter: CheckReportAdapter
 
@@ -30,21 +37,28 @@ class CheckReportActivity : BaseActivity(), CheckReportContact.ICheckReportView 
 
     private fun initView() {
         mCheckReportAdapter = CheckReportAdapter(mCheckReportList)
-        rvCheckReport.layoutManager = LinearLayoutManager(this)
+        if (DeviceUtils.isTabletDevice()) {
+            rvCheckReport.layoutManager =
+                GridLayoutManager(this, 4)
+        } else {
+            rvCheckReport.layoutManager =
+                GridLayoutManager(this, 2)
+        }
         rvCheckReport.adapter = mCheckReportAdapter
     }
 
     private fun initData() {
-        mCheckReportPresenter.loadCheckReport(nCheckReportReq)
+        nChannelModelReq.channel_name = ChannelEnum.report.name
+        mChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeCheckReport.setOnRefreshListener {
-            mCheckReportPresenter.loadCheckReport(nCheckReportReq)
+            mChannelPresenter.loadChannel(nChannelModelReq)
         }
         mCheckReportAdapter.setOnLoadMoreListener({
-            if (nCheckReportReq.page_index * nCheckReportReq.page_size < totalCount) {
-                mCheckReportPresenter.loadCheckReport(nCheckReportReq)
+            if (nChannelModelReq.page_index * nChannelModelReq.page_size < totalCount) {
+                mChannelPresenter.loadChannel(nChannelModelReq)
             } else {
                 mCheckReportAdapter.loadMoreEnd()
             }
@@ -68,8 +82,8 @@ class CheckReportActivity : BaseActivity(), CheckReportContact.ICheckReportView 
         }
     }
 
-    override fun loadCheckReportSuccess(mList: List<CheckReportItem>, totalCount: Int) {
-        if (nCheckReportReq.page_index == 1) {
+    override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
+        if (nChannelModelReq.page_index == 1) {
             mCheckReportList.clear()
         }
         this.totalCount = totalCount
@@ -77,11 +91,11 @@ class CheckReportActivity : BaseActivity(), CheckReportContact.ICheckReportView 
         mCheckReportAdapter.notifyDataSetChanged()
         mCheckReportAdapter.loadMoreComplete()
         swipeCheckReport.isRefreshing = false
-        nCheckReportReq.page_index++
+        nChannelModelReq.page_index++
 
     }
 
-    override fun loadCheckReportFail(throwable: Throwable) {
+    override fun loadChannelFail(throwable: Throwable) {
         handleError(throwable)
         swipeCheckReport.isRefreshing
         mCheckReportAdapter.loadMoreComplete()
