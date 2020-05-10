@@ -18,7 +18,7 @@ class DelicacyMakeFragment : BaseFragment(), CollectionContact.ICollectionView {
 
     private val mCollectionPresenter by lazy { CollectionPresenter().apply { attachView(this@DelicacyMakeFragment) } }
 
-    private val nDelicacyMakeReq = NCollectionModelReq()
+    private val nCollectionModelReq = NCollectionModelReq()
 
     private val mDelicacyMakeList = mutableListOf<CollectionItem>()
 
@@ -51,18 +51,18 @@ class DelicacyMakeFragment : BaseFragment(), CollectionContact.ICollectionView {
     }
 
     private fun initData() {
-        nDelicacyMakeReq.channel_name = ChannelEnum.food.name
-        mCollectionPresenter.loadCollection(nDelicacyMakeReq)
+        nCollectionModelReq.channel_name = ChannelEnum.food.name
+        mCollectionPresenter.loadCollection(nCollectionModelReq)
     }
 
     private fun initListener() {
         swipeDelicacyMake.setOnRefreshListener {
-            nDelicacyMakeReq.page_index=1
-            mCollectionPresenter.loadCollection(nDelicacyMakeReq)
+            nCollectionModelReq.page_index=1
+            mCollectionPresenter.loadCollection(nCollectionModelReq)
         }
         mDelicacyMakeAdapter.setOnLoadMoreListener({
-            if (nDelicacyMakeReq.page_index * nDelicacyMakeReq.page_size < totalCount) {
-                mCollectionPresenter.loadCollection(nDelicacyMakeReq)
+            if (nCollectionModelReq.page_index * nCollectionModelReq.page_size < totalCount) {
+                mCollectionPresenter.loadCollection(nCollectionModelReq)
             } else {
                 mDelicacyMakeAdapter.loadMoreEnd()
             }
@@ -70,7 +70,7 @@ class DelicacyMakeFragment : BaseFragment(), CollectionContact.ICollectionView {
     }
 
     override fun loadCollectionSuccess(mList: List<CollectionItem>, totalCount: Int) {
-        if (nDelicacyMakeReq.page_index == 1) {
+        if (nCollectionModelReq.page_index == 1) {
             mDelicacyMakeList.clear()
         }
         this.totalCount = totalCount
@@ -78,7 +78,7 @@ class DelicacyMakeFragment : BaseFragment(), CollectionContact.ICollectionView {
         mDelicacyMakeAdapter.notifyDataSetChanged()
         mDelicacyMakeAdapter.loadMoreComplete()
         swipeDelicacyMake.isRefreshing = false
-        nDelicacyMakeReq.page_index++
+        nCollectionModelReq.page_index++
     }
 
     override fun loadCollectionFail(throwable: Throwable) {

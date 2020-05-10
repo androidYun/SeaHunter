@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/default_margin"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/default_padding"
+    android:paddingEnd="@dimen/default_padding">
+
+    <ImageView
+        android:id="@+id/ivHead"
+        android:layout_width="@dimen/dp_34"
+        android:layout_height="@dimen/dp_34" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_padding"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_3"
+            android:textSize="@dimen/sp_13"
+            tools:text="深海" />
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            tools:text="看着很好吃的样子" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6">
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_9"
+                android:textSize="@dimen/sp_11"
+                tools:text="2019-08-01  12:24:56" />
+
+            <TextView
+                android:id="@+id/tvApply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp_30"
+                android:paddingEnd="@dimen/dp_30"
+                android:text="回复"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_11" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvApplyComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6"
+            android:background="@color/color_f4f4f4" />
+
+    </LinearLayout>
+</LinearLayout>

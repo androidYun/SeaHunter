@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xhs.publicmodule">
+
+    <supports-screens android:requiresSmallestWidthDp="600" />
+    <application>
+        <activity android:name=".activity.DataPickerActivity" />
+        <activity android:name=".activity.web.WebActivity" />
+    </application>
+</manifest>

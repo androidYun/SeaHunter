@@ -20,11 +20,11 @@ class AuthorInterceptor : Interceptor {
             val jsonObject = JSONObject(responseBody)
             val code = jsonObject.get("code")
             if (code == 401) {
-                RouterManager.prisonRouter?.loginOut()
+                RouterManager.searchRouter?.loginOut()
             }
         }
         if (response.code() == 401) {
-            RouterManager.prisonRouter?.loginOut()
+            RouterManager.searchRouter?.loginOut()
         }
         return response
     }

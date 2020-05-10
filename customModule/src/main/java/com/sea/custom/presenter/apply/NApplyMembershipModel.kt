@@ -6,10 +6,21 @@ class NApplyMembershipResponse(
 )
 
 class NApplyMembershipReq(
-    private val command:Int=43,
-    var id:Int,
-    var name:String,
-    var phone:String,
-    var weixin:String,
-    var birthday:String
+    private val command: Int = 37,
+    var channel_name: String = "",
+    var article_id: Int = -1,
+    var shop_id: Int = -1,
+    var name: String = "",
+    var phone: String = "",
+    var address: String = "",
+    var webchat: String = "",
+    var birthday: String = ""
+)
+
+data class NApplyMemberModel(
+    var name: String = "",
+    var phone: String = "",
+    var address: String = "",
+    var webchat: String = "",
+    var birthday: String = ""
 )

@@ -1,7 +1,7 @@
 package com.sea.custom.ui.store
 
 class NStoreListModelReq(
-    private val command: Int = 44,
+    private val command: Int = 13,
     var province: String = "",
     var city: String = "",
     var area: String = ""

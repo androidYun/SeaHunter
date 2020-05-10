@@ -7,6 +7,6 @@ package com.xhs.baselibrary.router
  * description:
  */
 object RouterManager {
-     var prisonRouter: PrisonRouter? = null
+     var searchRouter: ISeaRouter? = null
 
 }

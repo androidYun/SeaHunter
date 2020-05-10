@@ -44,6 +44,6 @@ dependencies {
     implementation 'io.github.meetsl:SCardView:1.2'
     implementation 'liji.library.dev:citypickerview:5.2.1'
     implementation 'com.youth.banner:banner:2.0.0-alpha02'  //预览版
-
+    implementation project(':publicmodule')
 
 }

@@ -1,89 +1,57 @@
 package com.sea.custom.ui.custom
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.custom.R
+import com.sea.custom.em.ChannelEnum
+import com.sea.custom.ui.collection.introduce.DelicacyIntroduceFragment
+import com.sea.custom.ui.collection.make.DelicacyMakeFragment
 import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.activity_mine_custom.*
+import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
-class MineCustomActivity : BaseActivity(), MineCustomContact.IMineCustomView {
+class MineCustomActivity : BaseActivity(){
 
-    private val mMineCustomPresenter by lazy { MineCustomPresenter().apply { attachView(this@MineCustomActivity) } }
-
-    private val nMineCustomReq = NMineCustomModelReq()
-
-    private val mMineCustomList = mutableListOf<MineCustomItem>()
-
-    private lateinit var mMineCustomAdapter: MineCustomAdapter
-
-    private var totalCount = 0
+    private val mMineCollectionList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mine_custom)
+        setContentView(R.layout.activity_mine_collection)
         initView()
-        initData()
-        initListener()
     }
-
 
     private fun initView() {
-        mMineCustomAdapter = MineCustomAdapter(mMineCustomList)
-        if (DeviceUtils.isTabletDevice()) {
-            rvMineCustom.layoutManager = GridLayoutManager(this, 2)
+        mMineCollectionList.add("美食制作")
+        mMineCollectionList.add("会员定制")
+        viewPager.adapter = MineCollectionPageAdapter(mMineCollectionList, supportFragmentManager)
+        tabLayout.setupWithViewPager(viewPager)
+        tabLayout.tabMode = TabLayout.MODE_FIXED
+        tabLayout.tabGravity = TabLayout.GRAVITY_FILL
+    }
+}
+
+
+class MineCollectionPageAdapter(private val mList: List<String>, fm: FragmentManager) :
+    FragmentPagerAdapter(fm) {
+    override fun getItem(position: Int): Fragment {
+        return if (position == 0) {
+            MineCustomFragment.getInstance(ChannelEnum.food.name)
         } else {
-            rvMineCustom.layoutManager = LinearLayoutManager(this)
+            MineCustomFragment.getInstance(ChannelEnum.service.name)
         }
-        rvMineCustom.adapter = mMineCustomAdapter
     }
 
-    private fun initData() {
-        mMineCustomPresenter.loadMineCustom(nMineCustomReq)
+    override fun getPageTitle(position: Int): CharSequence? {
+        return mList[position]
     }
 
-    private fun initListener() {
-        swipeMineCustom.setOnRefreshListener {
-            mMineCustomPresenter.loadMineCustom(nMineCustomReq)
-        }
-        mMineCustomAdapter.setOnLoadMoreListener({
-            if (nMineCustomReq.page_index * nMineCustomReq.page_size < totalCount) {
-                mMineCustomPresenter.loadMineCustom(nMineCustomReq)
-            } else {
-                mMineCustomAdapter.loadMoreEnd()
-            }
-        }, rvMineCustom)
-    }
-
-    override fun loadMineCustomSuccess(mList: List<MineCustomItem>, totalCount: Int) {
-        if (nMineCustomReq.page_index == 1) {
-            mMineCustomList.clear()
-        }
-        this.totalCount = totalCount
-        mMineCustomList.addAll(mList)
-        mMineCustomAdapter.notifyDataSetChanged()
-        mMineCustomAdapter.loadMoreComplete()
-        swipeMineCustom.isRefreshing = false
-        nMineCustomReq.page_index++
-
-    }
-
-    override fun loadMineCustomFail(throwable: Throwable) {
-        handleError(throwable)
-        swipeMineCustom.isRefreshing
-        mMineCustomAdapter.loadMoreComplete()
-    }
-
-    override fun showLoading() {
-        showProgressDialog()
-    }
-
-    override fun hideLoading() {
-        hideProgressDialog()
-    }
-
-    companion object {
-        fun getInstance() = Bundle().apply { }
+    override fun getCount(): Int {
+        return mList.size
     }
 }

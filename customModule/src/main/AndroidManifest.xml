@@ -43,6 +43,9 @@
             android:name=".ui.club.activity.ClubActivityActivity"
             android:label="@string/club_activity" />
         <activity
+            android:name=".ui.delicacy.comment.DelicacyCommentActivity"
+            android:label="@string/club_activity" />
+        <activity
             android:name=".CustomMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />

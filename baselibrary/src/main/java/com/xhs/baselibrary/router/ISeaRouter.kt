@@ -6,7 +6,9 @@ package com.xhs.baselibrary.router
  * @ date 19/09/2019.
  * description:
  */
-interface PrisonRouter {
+interface ISeaRouter {
+
+    fun searchContent()
 
     fun loginOut()
 

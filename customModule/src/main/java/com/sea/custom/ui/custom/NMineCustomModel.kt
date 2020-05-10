@@ -1,7 +1,8 @@
 package com.sea.custom.ui.custom
 
 class NMineCustomModelReq(
-    private val command: Int = 41,
+    private val command: Int = 38,
+    var channel_name: String = "",
     var page_size: Int = 20,
     var page_index: Int = 1
 )
@@ -14,10 +15,16 @@ class NMineCustomModelResponse(
 )
 
 
+
 data class MineCustomItem(
-    val id: String = "",
-    val image_url: String = "",
-    val state: Int = 1,//1、等待分配中；2、门店已完成分配
-    val title: String = "",
-    val video_url: String = ""
+    val add_time: String = "",
+    val address: String = "",
+    val article_id: Int = 0,
+    val birthday: String = "",
+    val channel_id: Int = 0,
+    val name: String = "",
+    val phone: String = "",
+    val shop_id: Int = 0,
+    val user_id: String = "",
+    val webchat: String = ""
 )
