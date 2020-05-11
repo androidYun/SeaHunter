@@ -11,6 +11,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
         val phoneNumber = UserInformSpUtils.getPhoneNumber("")
         val password = UserInformSpUtils.getPassword("")
         if (phoneNumber.isNullOrBlank() || password.isNullOrBlank()) {
@@ -18,5 +19,6 @@ class SplashActivity : AppCompatActivity() {
         } else {
             startActivity(Intent(this, CustomMainActivity::class.java))
         }
+        finish()
     }
 }
