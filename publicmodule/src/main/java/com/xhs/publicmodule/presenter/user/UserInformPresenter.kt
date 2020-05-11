@@ -1,16 +1,16 @@
-package com.sea.custom.ui.mine
+package com.xhs.publicmodule.presenter.user
 
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.custom.api.MineApi
+import com.xhs.publicmodule.api.UserInformApi
 
 
-class MinePresenter : IPresenter<MineContact.IMineView>(), MineContact.IMinePresenter {
-    override fun loadMine(nMineModelReq: NMineModelReq) {
+class UserInformPresenter : IPresenter<UserInformContact.IUserInformView>(), UserInformContact.IUserInformPresenter {
+    override fun loadUserInform() {
         RetrofitUtils.getRetrofit()
-            .create(MineApi::class.java)
-            .loadMine()
+            .create(UserInformApi::class.java)
+            .loadUserInform()
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -22,13 +22,13 @@ class MinePresenter : IPresenter<MineContact.IMineView>(), MineContact.IMinePres
             }
             .subscribe(
                 {
-                    if (it.code == 1) {
-                        softView.get()?.loadMineSuccess(it.data)
+                    if (it.code==1) {
+                        softView.get()?.loadUserInformSuccess(it.data)
                     } else {
-                        softView.get()?.loadMineFail(Throwable(it.msg))
+                        softView.get()?.loadUserInformFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadMineFail(throwable) }
+                }, { throwable -> softView.get()?.loadUserInformFail(throwable) }
             )
     }
 }

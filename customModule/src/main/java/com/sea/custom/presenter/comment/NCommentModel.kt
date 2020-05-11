@@ -27,13 +27,11 @@ data class NCommentModelReq(
 
 
 data class NSubmitCommentModelReq(
-    private val command: Int = 32,
-    private val channel_name: String = "",
-    private val content: String = "",
-    private val article_id: Int = -1,
-    private val page_size: Int = 10000,
-    private val page_index: Int = 0,
-    private val parent_id: Int = -1
+     val command: Int = 32,
+     var channel_name: String = "",
+     var content: String = "",
+     var article_id: Int = -1,
+     var parent_id: Int = -1
 
 )
 

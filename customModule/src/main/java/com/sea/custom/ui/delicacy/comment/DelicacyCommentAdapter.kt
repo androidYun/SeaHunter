@@ -16,7 +16,7 @@ class DelicacyCommentAdapter(mList: List<CommentItem>) :
         mList
     ) {
     override fun convert(helper: BaseViewHolder?, item: CommentItem) {
-        ImageLoader.loadImageWithUrl(
+        ImageLoader.loadCircleImageView(
             helper?.getView(R.id.ivHead),
             Constants.baseUrl.plus(item.avatar)
         )
@@ -26,5 +26,6 @@ class DelicacyCommentAdapter(mList: List<CommentItem>) :
         val recyclerView = helper?.getView<RecyclerView>(R.id.rvApplyComment)
         recyclerView?.layoutManager = LinearLayoutManager(helper?.itemView?.context)
         recyclerView?.adapter = ApplyCommentAdapter(item.son_list)
+        helper?.addOnClickListener(R.id.tvApply)
     }
 }

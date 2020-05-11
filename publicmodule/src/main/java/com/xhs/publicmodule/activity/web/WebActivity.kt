@@ -3,7 +3,6 @@ package com.xhs.publicmodule.activity.web
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.xhs.baselibrary.base.BaseActivity
-import com.xhs.baselibrary.ui.web.WebFragment
 import com.xhs.publicmodule.R
 
 class WebActivity : BaseActivity() {

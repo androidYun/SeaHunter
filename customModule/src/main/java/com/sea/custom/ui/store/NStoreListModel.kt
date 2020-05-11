@@ -2,9 +2,7 @@ package com.sea.custom.ui.store
 
 class NStoreListModelReq(
     private val command: Int = 13,
-    var province: String = "",
-    var city: String = "",
-    var area: String = ""
+    var key: String = ""
 )
 
 class NStoreListModelResponse(
@@ -16,10 +14,9 @@ class NStoreListModelResponse(
 
 
 data class StoreListItem(
-    val VR_url: String = "",
     val address: String = "",
-    val id: String = "",
-    val image_url: String = "",
-    val phone: String = "",
-    val title: String = ""
-)
+    val id: Int = 0,
+    val is_join: Boolean = false,
+    val mobile: String = "",
+    val title: String = "",
+    val webchat: String = "")

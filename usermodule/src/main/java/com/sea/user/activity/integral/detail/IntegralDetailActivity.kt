@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.user.R
-import com.sea.user.utils.sp.UserInformSpUtils
+import com.xhs.publicmodule.utils.sp.UserInformSpUtils
 import kotlinx.android.synthetic.main.activity_integral_detail.*
 
 class IntegralDetailActivity : BaseActivity(), IntegralDetailContact.IIntegralDetailView {

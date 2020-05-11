@@ -1,4 +1,4 @@
-package com.xhs.baselibrary.router
+package com.xhs.publicmodule.router
 
 /**
  * @ author guiyun.li
@@ -11,5 +11,13 @@ interface ISeaRouter {
     fun searchContent()
 
     fun loginOut()
+
+    fun modifyPassword()
+
+    fun modifyPhone()
+
+    fun mineAddress()
+
+    fun modifyUserInform()
 
 }

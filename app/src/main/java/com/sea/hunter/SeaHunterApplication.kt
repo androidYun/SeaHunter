@@ -4,7 +4,7 @@ import com.sea.hunter.router.SeaRouterImpl
 import com.sea.user.base.UserBaseParamsProvide
 import com.xhs.baselibrary.BaseApplication
 import com.xhs.baselibrary.init.BaseParamsClient
-import com.xhs.baselibrary.router.RouterManager
+import com.xhs.publicmodule.router.RouterManager
 
 class SeaHunterApplication : BaseApplication() {
 
@@ -15,7 +15,7 @@ class SeaHunterApplication : BaseApplication() {
     }
 
     private fun initRouter() {
-        RouterManager.searchRouter = SeaRouterImpl()
+        RouterManager.seaRouter = SeaRouterImpl()
     }
 
     private fun initBaseProvide() {

@@ -5,8 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sea.custom.CustomMainActivity
 import com.sea.user.activity.login.LoginActivity
-import com.sea.user.activity.main.SeaMainActivity
-import com.sea.user.utils.sp.UserInformSpUtils
+import com.xhs.publicmodule.utils.sp.UserInformSpUtils
 
 class SplashActivity : AppCompatActivity() {
 

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/default_padding">
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/rgbPraise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,14 +22,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="32" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/rgbComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:button="@null"
         android:drawableStart="@drawable/select_comment_status"
         android:drawablePadding="10dp"
-        android:textColor="@drawable/custom_mine_work_operator_text_selector"
+        android:textColor="@color/color_bbc1d3"
         android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rgbCollection"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="32" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/rgbCollection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,14 +52,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="32" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/rgbForward"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:button="@null"
         android:drawableStart="@drawable/select_share_status"
         android:drawablePadding="10dp"
-        android:textColor="@drawable/custom_mine_work_operator_text_selector"
+        android:textColor="@color/color_bbc1d3"
         android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

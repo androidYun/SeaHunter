@@ -1,214 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding">
-
-            <ImageView
-                android:id="@+id/ivHead"
-                android:layout_width="@dimen/dp_72"
-                android:layout_height="@dimen/dp_72"
-                android:src="@mipmap/ic_head_default"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvUserName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginTop="6dp"
-                android:text="深海。"
-                android:textColor="#ff000000"
-                android:textSize="@dimen/sp_18"
-                app:layout_constraintStart_toEndOf="@+id/ivHead"
-                app:layout_constraintTop_toTopOf="@+id/ivHead"
-                tools:text="深海" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="好用记得分享哦~"
-                android:textColor="@color/color_9"
-                android:textSize="@dimen/sp_14"
-                app:layout_constraintBottom_toBottomOf="@+id/ivHead"
-                app:layout_constraintStart_toStartOf="@+id/tvUserName" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_padding"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:background="@drawable/shape_mine_vip_level"
-            android:padding="@dimen/default_padding">
-
-            <TextView
-                android:id="@+id/tvVipLevel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@mipmap/icon_vip_logo"
-                android:drawablePadding="@dimen/dp_8"
-                android:text="高级会员"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_20"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
-                android:text="专享定制服务~"
-                android:textColor="#ffffffff"
-                android:textSize="@dimen/sp_14"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvVipLevel" />
-
-            <TextView
-                android:id="@+id/tvGoLook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_circle_radius_white_bg"
-                android:paddingStart="@dimen/default_margin"
-                android:paddingTop="4dp"
-                android:paddingEnd="@dimen/default_margin"
-                android:paddingBottom="4dp"
-                android:text="去看看"
-                android:textColor="@color/custom_theme_color"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/tvCollection"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@mipmap/my_collection"
-            android:drawableEnd="@mipmap/icon_arrow"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding"
-            android:text="我的收藏"
-            android:textColor="@color/color_191919"
-            android:textSize="@dimen/sp_16" />
-
-        <TextView
-            android:id="@+id/tvCustomized"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@mipmap/my_custom"
-            android:drawableEnd="@mipmap/icon_arrow"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding"
-            android:text="我的定制"
-            android:textColor="@color/color_191919"
-            android:textSize="@dimen/sp_16" />
-
-        <TextView
-            android:id="@+id/tvAdmissionMode"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@mipmap/my_initiation"
-            android:drawableEnd="@mipmap/icon_arrow"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding"
-            android:text="入会方式"
-            android:textColor="@color/color_191919"
-            android:textSize="@dimen/sp_16" />
-
-        <TextView
-            android:id="@+id/tvAllStore"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@mipmap/my_stores"
-            android:drawableEnd="@mipmap/icon_arrow"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding"
-            android:text="所有门店"
-            android:textColor="@color/color_191919"
-            android:textSize="@dimen/sp_16" />
-
-        <TextView
-            android:id="@+id/tvSet"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@mipmap/my_set"
-            android:drawableEnd="@mipmap/icon_arrow"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding"
-            android:text="设置"
-            android:textColor="@color/color_191919"
-            android:textSize="@dimen/sp_16" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/lvContactOus"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding">
+
+                <ImageView
+                    android:id="@+id/ivHead"
+                    android:layout_width="@dimen/dp_72"
+                    android:layout_height="@dimen/dp_72"
+                    android:src="@mipmap/ic_head_default"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="6dp"
+                    android:text="深海。"
+                    android:textColor="#ff000000"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constraintStart_toEndOf="@+id/ivHead"
+                    app:layout_constraintTop_toTopOf="@+id/ivHead"
+                    tools:text="深海" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="好用记得分享哦~"
+                    android:textColor="@color/color_9"
+                    android:textSize="@dimen/sp_14"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivHead"
+                    app:layout_constraintStart_toStartOf="@+id/tvUserName" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:background="@drawable/shape_mine_vip_level"
+                android:padding="@dimen/default_padding">
+
+                <TextView
+                    android:id="@+id/tvVipLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@mipmap/icon_vip_logo"
+                    android:drawablePadding="@dimen/dp_8"
+                    android:text="高级会员"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:text="专享定制服务~"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/sp_14"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvVipLevel" />
+
+                <TextView
+                    android:id="@+id/tvGoLook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_circle_radius_white_bg"
+                    android:paddingStart="@dimen/default_margin"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="@dimen/default_margin"
+                    android:paddingBottom="4dp"
+                    android:text="去看看"
+                    android:textColor="@color/custom_theme_color"
+                    android:textSize="@dimen/sp_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tvContactOus"
-                android:layout_width="0dp"
+                android:id="@+id/tvCollection"
+                android:layout_width="match_parent"
                 android:layout_height="46dp"
-                android:layout_weight="1"
-                android:drawableStart="@mipmap/my_tel"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@mipmap/my_collection"
+                android:drawableEnd="@mipmap/icon_arrow"
                 android:drawablePadding="10dp"
                 android:gravity="center_vertical"
-                android:text="联系我们"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
+                android:text="我的收藏"
                 android:textColor="@color/color_191919"
                 android:textSize="@dimen/sp_16" />
 
             <TextView
-                android:id="@+id/lvPhoneNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/tvCustomized"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@mipmap/my_custom"
                 android:drawableEnd="@mipmap/icon_arrow"
-                android:drawablePadding="15dp"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
+                android:text="我的定制"
                 android:textColor="@color/color_191919"
-                android:textSize="@dimen/sp_16"
-                tools:text="0370-094353" />
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tvAdmissionMode"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@mipmap/my_initiation"
+                android:drawableEnd="@mipmap/icon_arrow"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
+                android:text="入会方式"
+                android:textColor="@color/color_191919"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tvAllStore"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@mipmap/my_stores"
+                android:drawableEnd="@mipmap/icon_arrow"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
+                android:text="所有门店"
+                android:textColor="@color/color_191919"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tvSet"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@mipmap/my_set"
+                android:drawableEnd="@mipmap/icon_arrow"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
+                android:text="设置"
+                android:textColor="@color/color_191919"
+                android:textSize="@dimen/sp_16" />
+
+            <LinearLayout
+                android:id="@+id/lvContactOus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding">
+
+                <TextView
+                    android:id="@+id/tvContactOus"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@mipmap/my_tel"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="联系我们"
+                    android:textColor="@color/color_191919"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:id="@+id/lvPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@mipmap/icon_arrow"
+                    android:drawablePadding="15dp"
+                    android:textColor="@color/color_191919"
+                    android:textSize="@dimen/sp_16"
+                    tools:text="0370-094353" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
 
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

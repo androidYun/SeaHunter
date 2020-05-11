@@ -1,7 +1,7 @@
-package com.sea.user.utils.sp
+package com.xhs.publicmodule.utils.sp
 
-import com.sea.user.activity.login.UserInformModel
 import com.xhs.baselibrary.utils.sp.BaseSharePreUtils
+import com.xhs.publicmodule.presenter.user.UserInformModel
 
 object UserInformSpUtils {
     private var baseSharePreUtils: BaseSharePreUtils

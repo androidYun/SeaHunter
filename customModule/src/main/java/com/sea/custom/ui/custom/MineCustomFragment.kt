@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
-import com.sea.custom.em.ChannelEnum
-import com.sea.custom.ui.collection.CollectionContact
-import com.sea.custom.ui.collection.CollectionItem
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_custom.*
 

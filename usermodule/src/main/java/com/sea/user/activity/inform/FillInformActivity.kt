@@ -13,7 +13,7 @@ import com.sea.user.activity.login.LoginActivity
 import com.sea.user.activity.password.ForgetPasswordActivity
 import com.sea.user.presenter.update.UpdateImageContact
 import com.sea.user.presenter.update.UpdateImagePresenter
-import com.sea.user.utils.sp.UserInformSpUtils
+import com.xhs.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.baselibrary.utils.imageLoader.GlideEngine

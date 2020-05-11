@@ -1,7 +1,7 @@
 package com.sea.custom.ui.collection.make
 
 import android.view.View
-import android.widget.RadioButton
+import android.widget.CheckBox
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sea.custom.R
@@ -19,15 +19,15 @@ class DelicacyMakeAdapter(mList: List<CollectionItem>) :
         recyclerItemViewHolder.recyclerBaseAdapter = this
         recyclerItemViewHolder.onBind(0, VideoModel(item.video_src, item.title,item.img_url))
         helper?.setText(R.id.tvDelicacyName, item.title)
-        helper?.getView<RadioButton>(R.id.rgbPraise)?.text = "${item.zan}"
-        helper?.getView<RadioButton>(R.id.rgbComment)?.text = "${item.comment_num}"
-        helper?.getView<RadioButton>(R.id.rgbCollection)?.text = "${item.collect_num}"
-        helper?.getView<RadioButton>(R.id.rgbCollection)?.isChecked = true
-        helper?.getView<RadioButton>(R.id.rgbForward)?.text = "${item.share}"
-        helper?.getView<RadioButton>(R.id.rgbPraise)?.isEnabled = false
-        helper?.getView<RadioButton>(R.id.rgbComment)?.isEnabled = false
-        helper?.getView<RadioButton>(R.id.rgbCollection)?.isEnabled = false
-        helper?.getView<RadioButton>(R.id.rgbForward)?.isEnabled = false
+        helper?.getView<CheckBox>(R.id.rgbPraise)?.text = "${item.zan}"
+        helper?.getView<CheckBox>(R.id.rgbComment)?.text = "${item.comment_num}"
+        helper?.getView<CheckBox>(R.id.rgbCollection)?.text = "${item.collect_num}"
+        helper?.getView<CheckBox>(R.id.rgbCollection)?.isChecked = true
+        helper?.getView<CheckBox>(R.id.rgbForward)?.text = "${item.share}"
+        helper?.getView<CheckBox>(R.id.rgbPraise)?.isEnabled = false
+        helper?.getView<CheckBox>(R.id.rgbComment)?.isEnabled = false
+        helper?.getView<CheckBox>(R.id.rgbCollection)?.isEnabled = false
+        helper?.getView<CheckBox>(R.id.rgbForward)?.isEnabled = false
     }
 
     override fun createBaseViewHolder(view: View?): BaseViewHolder {

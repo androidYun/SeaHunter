@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.sea.custom.R
+import com.sea.custom.common.Constants
 import com.sea.custom.ui.collection.CollectionActivity
 import com.sea.custom.ui.custom.MineCustomActivity
 import com.sea.custom.ui.membership.MembershipModeActivity
@@ -16,10 +17,15 @@ import com.sea.custom.ui.set.SetActivity
 import com.sea.custom.ui.store.StoreListActivity
 import kotlinx.android.synthetic.main.fragment_mine_layout.*
 import com.xhs.baselibrary.base.BaseFragment
+import com.xhs.baselibrary.utils.imageLoader.ImageLoader
+import com.xhs.publicmodule.presenter.user.UserInformContact
+import com.xhs.publicmodule.presenter.user.UserInformModel
+import com.xhs.publicmodule.presenter.user.UserInformPresenter
+import com.xhs.publicmodule.utils.sp.UserInformSpUtils
 
-class MineFragment : BaseFragment(), MineContact.IMineView {
+class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
 
-    private val mMinePresenter by lazy { MinePresenter().apply { attachView(this@MineFragment) } }
+    private val mUserCenterPresenter by lazy { UserInformPresenter().apply { attachView(this@MineFragment) } }
 
 
     override fun onCreateView(
@@ -59,10 +65,11 @@ class MineFragment : BaseFragment(), MineContact.IMineView {
     }
 
     private fun initData() {
-        mMinePresenter.loadMine(NMineModelReq())
+        mUserCenterPresenter.loadUserInform()
     }
 
     private fun initListener() {
+        swipeLayout.setOnRefreshListener { mUserCenterPresenter.loadUserInform() }
         tvCollection.setOnClickListener {
             startActivity(
                 Intent(
@@ -90,12 +97,19 @@ class MineFragment : BaseFragment(), MineContact.IMineView {
         }
     }
 
-    override fun loadMineSuccess(content: Any) {
-
-
+    override fun loadUserInformSuccess(userInformModel: UserInformModel) {
+        UserInformSpUtils.setUserInformModel(userInformModel)
+        tvUserName.text = userInformModel.nick_name
+        tvVipLevel.text = userInformModel.group_name
+        ImageLoader.loadCircleImageView(
+            ivHead,
+            Constants.baseUrl.plus(userInformModel.avatar.replace("//", "/"))
+        )
+        swipeLayout.isRefreshing = false
     }
 
-    override fun loadMineFail(throwable: Throwable) {
+    override fun loadUserInformFail(throwable: Throwable) {
+        swipeLayout.isRefreshing = false
         handleError(throwable)
     }
 

@@ -1,6 +1,5 @@
 package com.xhs.baselibrary.net.interceptor
 
-import com.xhs.baselibrary.router.RouterManager
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody
@@ -20,11 +19,11 @@ class AuthorInterceptor : Interceptor {
             val jsonObject = JSONObject(responseBody)
             val code = jsonObject.get("code")
             if (code == 401) {
-                RouterManager.searchRouter?.loginOut()
+                //RouterManager.searchRouter?.loginOut()
             }
         }
         if (response.code() == 401) {
-            RouterManager.searchRouter?.loginOut()
+           // RouterManager.searchRouter?.loginOut()
         }
         return response
     }

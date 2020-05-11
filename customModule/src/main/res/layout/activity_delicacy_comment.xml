@@ -1,59 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/lvComment"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
-            android:id="@+id/gsyVideoPlayer"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_250" />
+            android:layout_height="match_parent"
+            android:layout_above="@+id/lvComment"
+            android:orientation="vertical">
 
-        <TextView
+            <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+                android:id="@+id/gsyVideoPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_250" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:gravity="center_vertical"
+                android:text="最新评论"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_13" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDelicacyComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lvComment"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="@dimen/default_margin"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_6"
             android:gravity="center_vertical"
-            android:text="最新评论"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_13" />
+            android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDelicacyComment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/evSendContent"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_46"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_weight="1"
+                android:background="@drawable/shape_apply_comment"
+                android:gravity="center"
+                android:hint="我来说两句"
+                android:textSize="@dimen/sp_11" />
 
-    <LinearLayout
-        android:id="@+id/lvComment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+            <include
+                android:id="@+id/includeStatus"
+                layout="@layout/include_work_operator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:paddingTop="@dimen/dp_6"
-            android:paddingBottom="@dimen/dp_6"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:layout_weight="1"
-            android:background="@drawable/shape_apply_comment"
-            android:gravity="center"
-            android:hint="我来说两句"
-            android:textSize="@dimen/sp_11" />
-
-        <include
-            layout="@layout/include_work_operator"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
-</RelativeLayout>
+            <TextView
+                android:id="@+id/tvSend"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
+                android:text="发送"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

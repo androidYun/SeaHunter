@@ -1,8 +1,8 @@
 package com.sea.custom.ui.membership
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
 import com.sea.custom.R
 import com.sea.custom.dialog.ApplyShipDialog
 import com.sea.custom.em.ChannelEnum
@@ -11,16 +11,21 @@ import com.sea.custom.presenter.apply.ApplyMembershipContact
 import com.sea.custom.presenter.apply.ApplyMembershipPresenter
 import com.sea.custom.presenter.apply.NApplyMemberModel
 import com.sea.custom.presenter.apply.NApplyMembershipReq
-import com.sea.custom.presenter.channel.ChannelContact
-import com.sea.custom.presenter.channel.ChannelPresenter
-import com.sea.custom.presenter.channel.NChannelItem
-import com.sea.custom.presenter.channel.NChannelModelReq
+import com.sea.custom.ui.store.NStoreListModelReq
+import com.sea.custom.ui.store.StoreListContact
+import com.sea.custom.ui.store.StoreListItem
+import com.sea.custom.ui.store.StoreListPresenter
+import com.xhs.baselibrary.base.BaseActivity
+import com.xhs.publicmodule.activity.DataPickerActivity
 import kotlinx.android.synthetic.main.activity_member_ship_mode.*
 
-class MembershipModeActivity : BaseActivity(), ChannelContact.IChannelView,
+
+class MembershipModeActivity : BaseActivity(), StoreListContact.IStoreListView,
     ApplyMembershipContact.IApplyMembershipView {
 
-    private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@MembershipModeActivity) } }
+    private val mSelectStorePresenter by lazy { StoreListPresenter().apply { attachView(this@MembershipModeActivity) } }
+
+    private val nStoreListModelReq = NStoreListModelReq()
 
     private val mApplyMembershipPresenter by lazy {
         ApplyMembershipPresenter().apply {
@@ -30,15 +35,14 @@ class MembershipModeActivity : BaseActivity(), ChannelContact.IChannelView,
         }
     }
 
-    private val nChannelModelReq = NChannelModelReq()
 
     private val nApplyMembershipReq = NApplyMembershipReq()
 
-    private val mMembershipModeList = mutableListOf<NChannelItem>()
+    private val mMembershipModeList = mutableListOf<StoreListItem>()
 
     private lateinit var mMembershipModeAdapter: MembershipModeAdapter
 
-    private val mApplyShipDialog: ApplyShipDialog? = null
+    private var mApplyShipDialog: ApplyShipDialog? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +53,6 @@ class MembershipModeActivity : BaseActivity(), ChannelContact.IChannelView,
         initListener()
     }
 
-
     private fun initView() {
         mMembershipModeAdapter = MembershipModeAdapter(mMembershipModeList)
         rvMembershipMode.layoutManager = LinearLayoutManager(this)
@@ -57,51 +60,61 @@ class MembershipModeActivity : BaseActivity(), ChannelContact.IChannelView,
     }
 
     private fun initData() {
-        nChannelModelReq.channel_name = ChannelEnum.food.name
         nApplyMembershipReq.channel_name = ChannelEnum.food.name
-        mChannelPresenter.loadChannel(nChannelModelReq)
+        mSelectStorePresenter.loadStoreList(nStoreListModelReq)
     }
 
     private fun initListener() {
         swipeMembershipMode.setOnRefreshListener {
-            mChannelPresenter.loadChannel(nChannelModelReq)
+            mSelectStorePresenter.loadStoreList(nStoreListModelReq)
         }
         mMembershipModeAdapter.setOnItemChildClickListener { adapter, view, position ->
             when (view.id) {
                 R.id.tvMemberShipMode -> {
                     nApplyMembershipReq.article_id = mMembershipModeList[position].id ?: 0
-                    nApplyMembershipReq.shop_id = mMembershipModeList[position].id ?: 0
-                    ApplyShipDialog(this, object : ApplyMemberShipListener {
+                    nApplyMembershipReq.shop_id = 0
+                    mApplyShipDialog = ApplyShipDialog(this, object : ApplyMemberShipListener {
                         override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
                             mApplyMembershipPresenter.loadApplyMembership(nApplyMembershipReq)
                         }
-                    }).show()
+                    })
+                    mApplyShipDialog?.show()
                 }
             }
         }
     }
 
-
-    override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
+    override fun loadStoreListSuccess(mList: List<StoreListItem>, totalCount: Int) {
+        mMembershipModeList.clear()
         mMembershipModeList.addAll(mList)
         mMembershipModeAdapter.notifyDataSetChanged()
         mMembershipModeAdapter.loadMoreComplete()
         swipeMembershipMode.isRefreshing = false
     }
 
-    override fun loadChannelFail(throwable: Throwable) {
+
+    override fun loadStoreListFail(throwable: Throwable) {
         handleError(throwable)
-        swipeMembershipMode.isRefreshing
+        swipeMembershipMode.isRefreshing = false
         mMembershipModeAdapter.loadMoreComplete()
     }
 
+
     override fun loadApplyMembershipSuccess() {
-        mChannelPresenter.loadChannel(nChannelModelReq)
+        mSelectStorePresenter.loadStoreList(nStoreListModelReq)
         mApplyShipDialog?.dismiss()
     }
 
     override fun loadApplyMembershipFail(throwable: Throwable) {
         handleError(throwable)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 0 && resultCode == DataPickerActivity.date_result_code) {
+            val birthday = data?.getStringExtra(DataPickerActivity.date_data_key) ?: ""
+            mApplyShipDialog?.setBirthDay(birthday)
+        }
     }
 
     override fun showLoading() {

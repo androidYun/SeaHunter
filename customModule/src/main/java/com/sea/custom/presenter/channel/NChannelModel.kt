@@ -1,12 +1,15 @@
 package com.sea.custom.presenter.channel
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 class NChannelResponse(
     val code: Int = -1,
     val msg: String = "",
     val data: List<NChannelItem> = listOf(),
     val totalCount: Int
 )
-
+@Parcelize
 data class NChannelItem(
     val address: String? = "",
     val albums: String? = "",
@@ -33,7 +36,7 @@ data class NChannelItem(
     val worker_no: String? = "",
     val zan: Int? = 0,
     val zhaiyao: String? = ""
-)
+):Parcelable
 
 class NChannelModelReq(
     private val command: Int = 30,

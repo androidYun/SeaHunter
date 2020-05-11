@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLogo"
-            app:layout_constraintWidth_percent="0.6">
+            app:layout_constraintWidth_percent="0.8">
 
 
             <EditText
@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lvNickName"
-            app:layout_constraintWidth_percent="0.6">
+            app:layout_constraintWidth_percent="0.8">
 
             <ImageView
                 android:id="@+id/ivHead"
@@ -90,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvConfirm"
-            app:layout_constraintWidth_percent="0.6">
+            app:layout_constraintWidth_percent="0.8">
 
             <TextView
                 android:id="@+id/tvAccountLogin"

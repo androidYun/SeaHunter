@@ -107,6 +107,7 @@
         </androidx.cardview.widget.CardView>
 
         <ImageView
+            android:id="@+id/ivIcon"
             android:layout_width="@dimen/dp_140"
             android:layout_height="@dimen/dp_140"
             android:layout_gravity="center_horizontal"

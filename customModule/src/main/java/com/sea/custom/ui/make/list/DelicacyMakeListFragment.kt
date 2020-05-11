@@ -11,13 +11,26 @@ import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
+import com.sea.custom.presenter.collection.DelicacyCollectionContact
+import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
+import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
+import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
 import kotlinx.android.synthetic.main.fragment_delicacy_make_list.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView {
+class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
+    DelicacyCollectionContact.IDelicacyCollectionView {
 
     private val mChannelPresenter by lazy {
         ChannelPresenter().apply {
+            attachView(
+                this@DelicacyMakeListFragment
+            )
+        }
+    }
+
+    private val mDelicacyCollectionPresenter by lazy {
+        DelicacyCollectionPresenter().apply {
             attachView(
                 this@DelicacyMakeListFragment
             )
@@ -59,13 +72,14 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView {
     }
 
     private fun initData() {
-        nChannelModelReq.channel_name=ChannelEnum.food.name
+        nChannelModelReq.channel_name = ChannelEnum.food.name
         nChannelModelReq.category_id = categoryId
         mChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeDelicacyMakeList.setOnRefreshListener {
+            nChannelModelReq.page_index = 1
             mChannelPresenter.loadChannel(nChannelModelReq)
         }
         mDelicacyMakeListAdapter.setOnLoadMoreListener({
@@ -75,6 +89,27 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView {
                 mDelicacyMakeListAdapter.loadMoreEnd()
             }
         }, rvDelicacyMakeList)
+        mDelicacyMakeListAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.rgbCollection -> {
+                    if (mDelicacyMakeListList[position].is_collect == false) {
+                        mDelicacyCollectionPresenter.loadDelicacyCollection(
+                            NDelicacyCollectionModelReq(
+                                channel_name = ChannelEnum.food.name,
+                                article_id = mDelicacyMakeListList[position].id ?: -1
+                            )
+                        )
+                    } else {
+                        mDelicacyCollectionPresenter.cancelDelicacyCollection(
+                            NCancelDelicacyCollectionModelReq(
+                                channel_name = ChannelEnum.food.name,
+                                article_id = mDelicacyMakeListList[position].id ?: -1
+                            )
+                        )
+                    }
+                }
+            }
+        }
     }
 
     override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
@@ -96,6 +131,15 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView {
         mDelicacyMakeListAdapter.loadMoreComplete()
     }
 
+    override fun loadDelicacyCollectionSuccess() {
+        nChannelModelReq.page_index = 1
+        mChannelPresenter.loadChannel(nChannelModelReq)
+    }
+
+    override fun loadDelicacyCollectionFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
     override fun showLoading() {
         showProgressDialog()
     }
@@ -105,12 +149,12 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView {
     }
 
     companion object {
-            private const val channel_key_id = "channel_key_id"
+        private const val channel_key_id = "channel_key_id"
 
-            fun getInstance(categoryId: Int = 0) = DelicacyMakeListFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(channel_key_id, categoryId)
-                }
+        fun getInstance(categoryId: Int = 0) = DelicacyMakeListFragment().apply {
+            arguments = Bundle().apply {
+                putInt(channel_key_id, categoryId)
             }
         }
+    }
 }

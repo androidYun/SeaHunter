@@ -29,16 +29,15 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(':baselibrary')
-    compile 'com.youth.banner:banner:2.0.0-alpha02'  //预览版
+    implementation 'com.youth.banner:banner:2.0.0-alpha02'  //预览版
     //完整版引入
     implementation 'com.shuyu:GSYVideoPlayer:7.1.3'
     implementation 'liji.library.dev:citypickerview:5.2.1'
     implementation 'com.google.android:flexbox:2.0.1'
     implementation 'com.amap.api:map2d:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
+    //搜索功能
+    implementation 'com.amap.api:search:latest.integration'
     implementation project(':publicmodule')
 }

@@ -1,8 +1,6 @@
-package com.sea.user.presenter.user
+package com.xhs.publicmodule.presenter.user
 
 import com.xhs.baselibrary.base.IBaseView
-import com.sea.user.R
-import com.sea.user.activity.login.UserInformModel
 
 interface UserInformContact {
 

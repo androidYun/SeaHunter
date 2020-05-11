@@ -1,17 +1,17 @@
-package com.sea.custom.presenter.comment
+package com.sea.custom.presenter.collection
 
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.sea.custom.api.CommentApi
+import com.sea.custom.api.DelicacyCollectionApi
 
 
-class CommentPresenter : IPresenter<CommentContact.ICommentView>(),
-    CommentContact.ICommentPresenter {
-    override fun loadComment(nCommentModelReq: NCommentModelReq) {
+class DelicacyCollectionPresenter : IPresenter<DelicacyCollectionContact.IDelicacyCollectionView>(),
+    DelicacyCollectionContact.IDelicacyCollectionPresenter {
+    override fun loadDelicacyCollection(nDelicacyCollectionModelReq: NDelicacyCollectionModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(CommentApi::class.java)
-            .loadComment(nCommentModelReq)
+            .create(DelicacyCollectionApi::class.java)
+            .loadDelicacyCollection(nDelicacyCollectionModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -23,19 +23,19 @@ class CommentPresenter : IPresenter<CommentContact.ICommentView>(),
             .subscribe(
                 {
                     if (it.code == 1) {
-                        softView.get()?.loadCommentSuccess(it.data)
+                        softView.get()?.loadDelicacyCollectionSuccess()
                     } else {
-                        softView.get()?.loadCommentFail(Throwable(it.msg))
+                        softView.get()?.loadDelicacyCollectionFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadCommentFail(throwable) }
+                }, { throwable -> softView.get()?.loadDelicacyCollectionFail(throwable) }
             )
     }
 
-    override fun submitComment(nCommentModelReq: NSubmitCommentModelReq) {
+    override fun cancelDelicacyCollection(nDelicacyCollectionModelReq: NCancelDelicacyCollectionModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(CommentApi::class.java)
-            .submitComment(nCommentModelReq)
+            .create(DelicacyCollectionApi::class.java)
+            .loadCancelDelicacyCollection(nDelicacyCollectionModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -47,12 +47,12 @@ class CommentPresenter : IPresenter<CommentContact.ICommentView>(),
             .subscribe(
                 {
                     if (it.code == 1) {
-                        softView.get()?.submitCommentSuccess()
+                        softView.get()?.loadDelicacyCollectionSuccess()
                     } else {
-                        softView.get()?.loadCommentFail(Throwable(it.msg))
+                        softView.get()?.loadDelicacyCollectionFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadCommentFail(throwable) }
+                }, { throwable -> softView.get()?.loadDelicacyCollectionFail(throwable) }
             )
     }
 }

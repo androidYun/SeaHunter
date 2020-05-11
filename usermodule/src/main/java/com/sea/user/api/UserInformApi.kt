@@ -7,10 +7,10 @@ import com.sea.user.activity.password.modify.NModifyPasswordModelReq
 import com.sea.user.activity.phone.NModifyPhoneModelReq
 import com.sea.user.activity.register.NRegisterModelReq
 import com.sea.user.activity.register.NRegisterModelResponse
-import com.sea.user.presenter.user.NUserInformReq
-import com.sea.user.presenter.user.NUserInformResponse
 import com.xhs.prison.model.NFillInformReq
 import com.xhs.prison.model.NForgetPasswordModelReq
+import com.xhs.publicmodule.presenter.user.NUserInformReq
+import com.xhs.publicmodule.presenter.user.NUserInformResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -35,8 +35,6 @@ interface UserInformApi {
     fun loadFillInform(@Body nFillInformReq: NFillInformReq): Observable<BaseEntry>
 
 
-    @POST("getdata.ashx")
-    fun loadUserInform(@Body nUserInformReq: NUserInformReq = NUserInformReq()): Observable<NUserInformResponse>
 
     @POST("getdata.ashx")
     fun loadModifyPhone(@Body nModifyPhoneModelReq: NModifyPhoneModelReq): Observable<BaseEntry>

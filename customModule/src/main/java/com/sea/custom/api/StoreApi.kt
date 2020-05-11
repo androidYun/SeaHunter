@@ -1,6 +1,5 @@
 package com.sea.custom.api
 
-import com.sea.custom.ui.mine.NMineResponse
 import com.sea.custom.ui.store.NStoreListModelReq
 import com.sea.custom.ui.store.NStoreListModelResponse
 import io.reactivex.Observable

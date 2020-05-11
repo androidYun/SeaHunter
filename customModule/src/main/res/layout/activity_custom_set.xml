@@ -56,7 +56,7 @@
             style="@style/itemTitleStyle"
             android:drawableStart="@mipmap/ic_set_version"
             android:drawablePadding="8dp"
-            android:text="笨笨更新" />
+            android:text="更新版本" />
 
         <TextView
             android:id="@+id/tvVersion"

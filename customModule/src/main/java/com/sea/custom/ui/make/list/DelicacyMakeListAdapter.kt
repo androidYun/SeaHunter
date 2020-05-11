@@ -2,7 +2,7 @@ package com.sea.custom.ui.make.list
 
 import android.content.Intent
 import android.view.View
-import android.widget.RadioButton
+import android.widget.CheckBox
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sea.custom.R
@@ -25,11 +25,12 @@ class DelicacyMakeListAdapter(mList: List<NChannelItem>) :
             VideoModel(item?.video_src ?: "", item?.title ?: "", item?.img_url ?: "")
         )
         helper?.setText(R.id.tvDelicacyName, item?.title)
-        helper?.getView<RadioButton>(R.id.rgbPraise)?.text = "${item?.zan}"
-        helper?.getView<RadioButton>(R.id.rgbComment)?.text = "${item?.comment_num}"
-        helper?.getView<RadioButton>(R.id.rgbCollection)?.text = "${item?.collect_num}"
-        helper?.getView<RadioButton>(R.id.rgbForward)?.text = "${item?.share}"
-        helper?.getView<RadioButton>(R.id.rgbComment)?.setOnClickListener {
+        helper?.getView<CheckBox>(R.id.rgbPraise)?.text = "${item?.zan}"
+        helper?.getView<CheckBox>(R.id.rgbComment)?.text = "${item?.comment_num}"
+        helper?.getView<CheckBox>(R.id.rgbCollection)?.text = "${item?.collect_num}"
+        helper?.getView<CheckBox>(R.id.rgbForward)?.text = "${item?.share}"
+        helper?.getView<CheckBox>(R.id.rgbCollection)?.isChecked = item?.is_collect ?: false
+        helper?.getView<CheckBox>(R.id.rgbComment)?.setOnClickListener {
             it.context.startActivity(
                 Intent(
                     it.context,
@@ -38,12 +39,12 @@ class DelicacyMakeListAdapter(mList: List<NChannelItem>) :
                     putExtras(
                         DelicacyCommentActivity.getInstance(
                             ChannelEnum.food.name,
-                            item?.id ?: -1,
-                            item?.video_src ?: ""
+                            item ?: NChannelItem()
                         )
                     )
                 })
         }
+        helper.addOnClickListener(R.id.rgbCollection)
     }
 
     override fun createBaseViewHolder(view: View?): BaseViewHolder {

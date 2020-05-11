@@ -11,10 +11,15 @@ import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
+import com.sea.custom.presenter.collection.DelicacyCollectionContact
+import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
+import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
+import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
 import kotlinx.android.synthetic.main.fragment_entertainment_list.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
+class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
+    DelicacyCollectionContact.IDelicacyCollectionView {
 
     private val nChannelPresenter by lazy {
         ChannelPresenter().apply {
@@ -24,6 +29,13 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
         }
     }
 
+    private val mDelicacyCollectionPresenter by lazy {
+        DelicacyCollectionPresenter().apply {
+            attachView(
+                this@EntertainmentListFragment
+            )
+        }
+    }
     private val nChannelModelReq = NChannelModelReq()
 
     private val categoryId by lazy { arguments?.getInt(channel_key_id) ?: 0 }
@@ -60,12 +72,13 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
 
     private fun initData() {
         nChannelModelReq.category_id = categoryId
-        nChannelModelReq.channel_name=ChannelEnum.arder.name
+        nChannelModelReq.channel_name = ChannelEnum.arder.name
         nChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeEntertainmentList.setOnRefreshListener {
+            nChannelModelReq.page_index = 1
             nChannelPresenter.loadChannel(nChannelModelReq)
         }
         mEntertainmentListAdapter.setOnLoadMoreListener({
@@ -75,6 +88,27 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
                 mEntertainmentListAdapter.loadMoreEnd()
             }
         }, rvEntertainmentList)
+        mEntertainmentListAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.rgbCollection -> {
+                    if (mChannelList[position].is_collect == false) {
+                        mDelicacyCollectionPresenter.loadDelicacyCollection(
+                            NDelicacyCollectionModelReq(
+                                channel_name = ChannelEnum.food.name,
+                                article_id = mChannelList[position].id ?: -1
+                            )
+                        )
+                    } else {
+                        mDelicacyCollectionPresenter.cancelDelicacyCollection(
+                            NCancelDelicacyCollectionModelReq(
+                                channel_name = ChannelEnum.food.name,
+                                article_id = mChannelList[position].id ?: -1
+                            )
+                        )
+                    }
+                }
+            }
+        }
     }
 
     override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
@@ -95,6 +129,14 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView {
         mEntertainmentListAdapter.loadMoreComplete()
     }
 
+    override fun loadDelicacyCollectionSuccess() {
+        nChannelModelReq.page_index = 1
+        nChannelPresenter.loadChannel(nChannelModelReq)
+    }
+
+    override fun loadDelicacyCollectionFail(throwable: Throwable) {
+        handleError(throwable)
+    }
 
     override fun showLoading() {
         showProgressDialog()

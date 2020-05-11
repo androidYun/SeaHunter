@@ -1,4 +1,5 @@
-package com.xhs.baselibrary.router
+package com.xhs.publicmodule.router
+
 
 /**
  * @ author guiyun.li
@@ -7,6 +8,6 @@ package com.xhs.baselibrary.router
  * description:
  */
 object RouterManager {
-     var searchRouter: ISeaRouter? = null
+    var seaRouter: ISeaRouter? = null
 
 }

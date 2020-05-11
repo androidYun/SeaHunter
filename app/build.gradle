@@ -12,6 +12,9 @@ android {
             storePassword '123456'
         }
     }
+    //MD5:  47:72:0B:94:BA:F8:5D:29:04:E6:77:FF:D3:DB:89:CE
+    //  SHA1: D4:FD:AB:E3:3F:09:85:D5:5D:80:E7:83:D3:0A:7F:BF:E8:14:94:50
+    //  SHA256: A9:7E:0D:CC:BC:79:B3:35:39:5A:10:36:06:C1:F8:6D:24:A4:F1:0F:EF:AD:56:26:FF:B4:A0:A4:9D:A2:48:5B
 
     compileSdkVersion VERSION_COMPILE_SDK
     buildToolsVersion BUILD_TOOLS_VERSION
@@ -24,7 +27,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
-            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","arm64-v8a","x86_64"
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
         }
     }
     compileOptions {
@@ -53,10 +56,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(':baselibrary')
     implementation project(':usermodule')
     implementation project(':customModule')
+    implementation project(':publicmodule')
 }

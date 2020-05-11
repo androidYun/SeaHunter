@@ -17,7 +17,7 @@ import com.sea.user.presenter.sea.order.NShopItemMode
 import com.sea.user.presenter.sea.order.PlaceOrderContact
 import com.sea.user.presenter.sea.order.PlaceOrderPresenter
 import com.sea.user.utils.sp.StoreShopSpUtils
-import com.sea.user.utils.sp.UserInformSpUtils
+import com.xhs.publicmodule.utils.sp.UserInformSpUtils
 import kotlinx.android.synthetic.main.activity_mall_confirm_order.*
 
 class MallConfirmOrderActivity : BaseActivity(),

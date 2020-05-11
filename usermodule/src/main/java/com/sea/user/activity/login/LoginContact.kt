@@ -1,6 +1,7 @@
 package com.sea.user.activity.login
 
 import com.xhs.baselibrary.base.IBaseView
+import com.xhs.publicmodule.presenter.user.UserInformModel
 
 interface LoginContact {
 
