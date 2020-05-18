@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import com.sea.user.R
-import com.xhs.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_modify_password.*

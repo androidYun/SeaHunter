@@ -11,10 +11,10 @@ import com.sea.user.activity.mall.SeaFoodMallActivity
 import com.sea.user.activity.password.ForgetPasswordActivity
 import com.sea.user.activity.register.RegisterActivity
 import com.sea.user.utils.DeviceUtils
-import com.xhs.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
-import com.xhs.publicmodule.presenter.user.UserInformModel
+import com.sea.publicmodule.presenter.user.UserInformModel
 import kotlinx.android.synthetic.main.activity_user_login.*
 import kotlinx.android.synthetic.main.include_shop_eye.*
 

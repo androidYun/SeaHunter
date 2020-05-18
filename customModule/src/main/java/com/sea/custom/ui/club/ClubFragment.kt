@@ -15,6 +15,7 @@ import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.banner.BannerContact
 import com.sea.custom.presenter.banner.BannerItem
 import com.sea.custom.presenter.banner.BannerPresenter
+import com.sea.custom.presenter.banner.NBannerModelReq
 import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
@@ -25,8 +26,10 @@ import com.sea.custom.ui.club.activity.ClubActivityActivity
 import com.sea.custom.ui.club.match.ClubMatchActivity
 import com.sea.custom.ui.member.MemberCustomActivity
 import com.sea.custom.utils.DeviceUtils
-import kotlinx.android.synthetic.main.fragment_club_layout.*
+import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_club_layout.*
+import kotlinx.android.synthetic.main.include_search_layout.*
 
 class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.IBannerView {
 
@@ -43,6 +46,11 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
     private lateinit var mRecommendActivityAdapter: RecommendActivityAdapter
 
     private val mRecommendList = mutableListOf<NChannelItem>()
+
+    private val nChannelModelReq = NChannelModelReq(
+        channel_name = ChannelEnum.activity.name,
+        is_red = 1
+    )
 
     /*首页banner*/
     private lateinit var shopBannerAdapter: ShopBannerAdapter
@@ -95,22 +103,17 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
 
     private fun initData() {
         nChannelPresenter.loadChannel(
-            NChannelModelReq(
-                channel_name = ChannelEnum.activity.name,
-                is_red = 1
-            )
+            nChannelModelReq
         )
-        bannerPresenter.loadBanner()
+        bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.club.name))
     }
 
     private fun initListener() {
         swipeLayout.setOnRefreshListener {
             bannerPresenter.loadBanner()
+            nChannelModelReq.page_index = 1
             nChannelPresenter.loadChannel(
-                NChannelModelReq(
-                    channel_name = ChannelEnum.activity.name,
-                    is_red = 1
-                )
+                nChannelModelReq
             )
         }
         tvClub.setOnClickListener {
@@ -124,6 +127,12 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
         }
         tvMember.setOnClickListener {
             startActivity(Intent(context, MemberCustomActivity::class.java))
+        }
+        lvSearchShop.setOnClickListener {
+            startActivityForResult(
+                Intent(context, SearchMallActivity::class.java),
+                SearchMallActivity.search_content_request_code
+            )
         }
     }
 
@@ -145,6 +154,18 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
         /*banner*/
         shopBannerAdapter = ShopBannerAdapter(mBannerList)
         bannerView.adapter = shopBannerAdapter
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SearchMallActivity.search_content_request_code && resultCode == SearchMallActivity.search_content_result_code) {
+            val searchContent = data?.getStringExtra(SearchMallActivity.search_content_key) ?: ""
+            nChannelModelReq.key = searchContent
+            nChannelModelReq.page_index = 1
+            nChannelPresenter.loadChannel(
+                nChannelModelReq
+            )
+        }
     }
 
     override fun loadBannerFail(throwable: Throwable) {

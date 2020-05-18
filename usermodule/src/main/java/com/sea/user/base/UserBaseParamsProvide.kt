@@ -1,7 +1,7 @@
 package com.sea.user.base
 
 import com.sea.user.common.Constants
-import com.xhs.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.init.BaseParamsProvide
 
 class UserBaseParamsProvide : BaseParamsProvide {

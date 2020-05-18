@@ -1,9 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xhs.publicmodule">
+    package="com.sea.publicmodule">
 
     <supports-screens android:requiresSmallestWidthDp="600" />
     <application>
-        <activity android:name=".activity.DataPickerActivity" />
-        <activity android:name=".activity.web.WebActivity" />
+        <activity android:name="com.sea.publicmodule.activity.DataPickerActivity" />
+        <activity android:name="com.sea.publicmodule.activity.web.WebActivity" />
+        <activity
+            android:name="com.sea.publicmodule.activity.search.SearchMallActivity"
+            android:label="@string/title_SearchStore"
+            android:theme="@style/whiteTheme" />
     </application>
 </manifest>

@@ -3,7 +3,7 @@ package com.sea.custom.ui.set
 import android.os.Bundle
 import com.sea.custom.R
 import com.xhs.baselibrary.base.BaseActivity
-import com.xhs.publicmodule.router.RouterManager
+import com.sea.publicmodule.router.RouterManager
 import kotlinx.android.synthetic.main.activity_custom_set.*
 
 class SetActivity : BaseActivity() {

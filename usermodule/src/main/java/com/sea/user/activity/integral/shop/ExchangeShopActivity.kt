@@ -21,7 +21,7 @@ import com.sea.user.presenter.sea.order.NShopItemMode
 import com.sea.user.presenter.sea.order.PlaceOrderContact
 import com.sea.user.presenter.sea.order.PlaceOrderPresenter
 import com.sea.user.utils.sp.StoreShopSpUtils
-import com.xhs.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 import kotlinx.android.synthetic.main.activity_exchange_shop.*
 import kotlin.math.abs

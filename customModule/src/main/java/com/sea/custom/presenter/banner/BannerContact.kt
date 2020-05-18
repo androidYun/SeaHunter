@@ -13,6 +13,6 @@ interface BannerContact {
     }
 
     interface IBannerPresenter {
-        fun loadBanner()
+        fun loadBanner(nBannerModelReq: NBannerModelReq = NBannerModelReq())
     }
 }

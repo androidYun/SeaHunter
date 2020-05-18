@@ -10,10 +10,6 @@ import com.sea.user.activity.mall.detail.NShopDetailModelReq
 import com.sea.user.activity.mall.detail.NShopDetailResponse
 import com.sea.user.activity.mall.order.list.NShopOrderListModelReq
 import com.sea.user.activity.mall.order.list.NShopOrderListModelResponse
-import com.sea.user.activity.mall.search.NAddSearchMallModelReq
-import com.sea.user.activity.mall.search.NHotSearchMallModelReq
-import com.sea.user.activity.mall.search.NSearchMallModelReq
-import com.sea.user.activity.mall.search.NSearchMallModelResponse
 import com.sea.user.activity.model.BaseEntry
 import com.sea.user.activity.shop.order.NShopOrderModelReq
 import com.sea.user.activity.shop.order.NShopOrderModelResponse
@@ -37,11 +33,7 @@ interface ShopApi {
     @POST("getdata.ashx")
     fun loadCancelOrder(@Body nCancelOrderModelReq: NCancelOrderModelReq): Observable<BaseEntry>
 
-    @POST("getdata.ashx")
-    fun loadAddSearch(@Body nAddSearchMallModelReq: NAddSearchMallModelReq): Observable<BaseEntry>
 
-    @POST("getdata.ashx")
-    fun loadHotSearchMall(@Body nHotSearchMallModelReq: NHotSearchMallModelReq): Observable<NSearchMallModelResponse>
 
 
     @POST("getdata.ashx")

@@ -10,7 +10,7 @@ import com.sea.custom.R
 import com.sea.custom.listener.ApplyMemberShipListener
 import com.sea.custom.presenter.apply.NApplyMemberModel
 import com.xhs.baselibrary.utils.ToastUtils
-import com.xhs.publicmodule.activity.DataPickerActivity
+import com.sea.publicmodule.activity.DataPickerActivity
 import kotlinx.android.synthetic.main.dialog_apply_membership_layout.*
 
 class ApplyShipDialog(
@@ -40,10 +40,7 @@ class ApplyShipDialog(
 
 
     private fun initListener() {
-        val name = tvName.text.toString()
-        val phone = tvPhone.text.toString()
-        val wechat = tvWechat.text.toString()
-        val birthday = tvBirthday.text.toString()
+
         tvBirthday.setOnClickListener {
             context.startActivityForResult(
                 Intent(
@@ -53,6 +50,10 @@ class ApplyShipDialog(
             )
         }
         tvSubmit.setOnClickListener {
+            val name = evName.text.toString()
+            val phone = evPhone.text.toString()
+            val wechat = evWechat.text.toString()
+            val birthday = tvBirthday.text.toString()
             if (name.isNullOrBlank()) {
                 ToastUtils.show("姓名不能为空")
                 return@setOnClickListener

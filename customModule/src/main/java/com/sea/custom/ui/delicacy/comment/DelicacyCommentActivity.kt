@@ -19,7 +19,7 @@ import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
-import com.xhs.publicmodule.utils.SoftKeyBoardListener
+import com.sea.publicmodule.utils.SoftKeyBoardListener
 import kotlinx.android.synthetic.main.activity_delicacy_comment.*
 import kotlinx.android.synthetic.main.include_work_operator.*
 

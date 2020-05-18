@@ -3,8 +3,8 @@ package com.sea.user.activity.mall.select
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.sea.user.R
-import com.sea.user.activity.mall.search.SearchMallActivity
 import com.sea.user.presenter.store.NStoreListItemModel
 import com.sea.user.presenter.store.NStoreListModelReq
 import com.sea.user.presenter.store.StoreListContact

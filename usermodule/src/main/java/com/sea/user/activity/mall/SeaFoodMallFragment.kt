@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.sea.user.R
 import com.sea.user.activity.mall.adapter.FoodFineAdapter
 import com.sea.user.activity.mall.adapter.FoodRecommendAdapter
@@ -20,7 +21,6 @@ import com.sea.user.activity.mall.adapter.FoodTypeAdapter
 import com.sea.user.activity.mall.adapter.KindFoodAdapter
 import com.sea.user.activity.mall.detail.ShopBannerAdapter
 import com.sea.user.activity.mall.list.MallListActivity
-import com.sea.user.activity.mall.search.SearchMallActivity
 import com.sea.user.activity.mall.select.SelectStoreActivity
 import com.sea.user.presenter.banner.BannerContact
 import com.sea.user.presenter.banner.BannerItem

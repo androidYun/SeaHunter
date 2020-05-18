@@ -18,6 +18,7 @@ import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.banner.BannerContact
 import com.sea.custom.presenter.banner.BannerItem
 import com.sea.custom.presenter.banner.BannerPresenter
+import com.sea.custom.presenter.banner.NBannerModelReq
 import com.sea.custom.presenter.category.CategoryContact
 import com.sea.custom.presenter.category.CategoryPresenter
 import com.sea.custom.presenter.category.NCategoryItem
@@ -34,10 +35,12 @@ import com.sea.custom.ui.delicacy.report.CheckReportActivity
 import com.sea.custom.ui.delicacy.store.StoreDelicacyActivity
 import com.sea.custom.ui.delicacy.vr.StoreVrActivity
 import com.sea.custom.utils.DeviceUtils
+import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.bannerView
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.swipeLayout
+import kotlinx.android.synthetic.main.include_search_layout.*
 
 class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.IBannerView,
     CategoryContact.ICategoryView {
@@ -47,6 +50,11 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
     private val mCategoryPresenter by lazy { CategoryPresenter().apply { attachView(this@DelicacyFragment) } }
 
     private val bannerPresenter by lazy { BannerPresenter().apply { attachView(this@DelicacyFragment) } }
+
+    private val nChannelModelReq = NChannelModelReq(
+        channel_name = ChannelEnum.dish.name,
+        is_red = 1
+    )
 
     private lateinit var mDelicacyKindAdapter: DelicacyKindAdapter
 
@@ -134,9 +142,9 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         }
     }
     private fun initData() {
-        mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
-        mChannelPresenter.loadChannel(NChannelModelReq(channel_name = ChannelEnum.food.name))
-        bannerPresenter.loadBanner()
+        mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.dish.name))
+        mChannelPresenter.loadChannel(nChannelModelReq)
+        bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.dish.name))
     }
 
     private fun initListener() {
@@ -159,8 +167,14 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         }
         swipeLayout.setOnRefreshListener {
             mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
-            mChannelPresenter.loadChannel(NChannelModelReq(channel_name = ChannelEnum.food.name))
+            mChannelPresenter.loadChannel(nChannelModelReq)
             bannerPresenter.loadBanner()
+        }
+        lvSearchShop.setOnClickListener {
+            startActivityForResult(
+                Intent(context, SearchMallActivity::class.java),
+                SearchMallActivity.search_content_request_code
+            )
         }
     }
 
@@ -207,6 +221,17 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         hideProgressDialog()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SearchMallActivity.search_content_request_code && resultCode == SearchMallActivity.search_content_result_code) {
+            val searchContent = data?.getStringExtra(SearchMallActivity.search_content_key) ?: ""
+            nChannelModelReq.key = searchContent
+            nChannelModelReq.page_index = 1
+            mChannelPresenter.loadChannel(
+                nChannelModelReq
+            )
+        }
+    }
     companion object {
         fun getInstance() = DelicacyFragment().apply {
             arguments = Bundle().apply { }

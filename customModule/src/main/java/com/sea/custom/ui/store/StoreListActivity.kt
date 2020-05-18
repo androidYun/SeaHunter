@@ -45,10 +45,11 @@ class StoreListActivity : BaseActivity(), StoreListContact.IStoreListView {
 
     private fun initListener() {
         swipeStoreList.setOnRefreshListener {
+
             mStoreListPresenter.loadStoreList(nStoreListReq)
         }
         tvProvince.setOnClickListener {
-//            ActivityUtils.getInstance()
+            //            ActivityUtils.getInstance()
 //                .showActivity(this@MainActivity, ProvinceActivity::class.java)
         }
         tvCity.setOnClickListener {
@@ -61,6 +62,7 @@ class StoreListActivity : BaseActivity(), StoreListContact.IStoreListView {
 
     override fun loadStoreListSuccess(mList: List<StoreListItem>, totalCount: Int) {
         this.totalCount = totalCount
+        mStoreListList.clear()
         mStoreListList.addAll(mList)
         mStoreListAdapter.notifyDataSetChanged()
         mStoreListAdapter.loadMoreComplete()

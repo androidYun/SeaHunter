@@ -1,7 +1,7 @@
 package com.sea.user.activity.login
 
 import android.os.Parcelable
-import com.xhs.publicmodule.presenter.user.UserInformModel
+import com.sea.publicmodule.presenter.user.UserInformModel
 import kotlinx.android.parcel.Parcelize
 
 class NLoginResponse(

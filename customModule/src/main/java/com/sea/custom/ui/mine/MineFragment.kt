@@ -18,14 +18,15 @@ import com.sea.custom.ui.store.StoreListActivity
 import kotlinx.android.synthetic.main.fragment_mine_layout.*
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
-import com.xhs.publicmodule.presenter.user.UserInformContact
-import com.xhs.publicmodule.presenter.user.UserInformModel
-import com.xhs.publicmodule.presenter.user.UserInformPresenter
-import com.xhs.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.publicmodule.presenter.user.UserInformContact
+import com.sea.publicmodule.presenter.user.UserInformModel
+import com.sea.publicmodule.presenter.user.UserInformPresenter
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 
 class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
 
-    private val mUserCenterPresenter by lazy { UserInformPresenter().apply { attachView(this@MineFragment) } }
+    private val mUserCenterPresenter by lazy { UserInformPresenter()
+        .apply { attachView(this@MineFragment) } }
 
 
     override fun onCreateView(

@@ -9,8 +9,8 @@ import com.sea.user.activity.register.NRegisterModelReq
 import com.sea.user.activity.register.NRegisterModelResponse
 import com.xhs.prison.model.NFillInformReq
 import com.xhs.prison.model.NForgetPasswordModelReq
-import com.xhs.publicmodule.presenter.user.NUserInformReq
-import com.xhs.publicmodule.presenter.user.NUserInformResponse
+import com.sea.publicmodule.presenter.user.NUserInformReq
+import com.sea.publicmodule.presenter.user.NUserInformResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET

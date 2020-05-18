@@ -28,7 +28,8 @@
             <com.youth.banner.Banner
                 android:id="@+id/bannerView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_200" />
+                android:layout_height="@dimen/dp_200"
+                android:layout_marginTop="@dimen/dp_10" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,8 +42,8 @@
                 <TextView
                     android:id="@+id/tvClub"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:drawableTop="@mipmap/index_nav1"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center"
@@ -53,8 +54,8 @@
                 <TextView
                     android:id="@+id/tvClubAction"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:drawableTop="@mipmap/index_nav2"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center"
@@ -65,8 +66,8 @@
                 <TextView
                     android:id="@+id/tvClubMatch"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:drawableTop="@mipmap/index_nav3"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center"
@@ -77,8 +78,8 @@
                 <TextView
                     android:id="@+id/tvMember"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:drawableTop="@mipmap/index_nav4"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center"

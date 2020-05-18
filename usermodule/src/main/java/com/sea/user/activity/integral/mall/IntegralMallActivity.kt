@@ -12,7 +12,7 @@ import com.sea.user.presenter.sea.mall.MallListContact
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.sea.user.presenter.sea.mall.MallListPresenter
 import com.sea.user.presenter.sea.mall.NMallListModelReq
-import com.xhs.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import kotlinx.android.synthetic.main.activity_integral_mall.*
 
 class IntegralMallActivity : BaseActivity(), MallListContact.IMallListView {

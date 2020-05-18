@@ -16,7 +16,8 @@ import com.sea.custom.ui.store.StoreListContact
 import com.sea.custom.ui.store.StoreListItem
 import com.sea.custom.ui.store.StoreListPresenter
 import com.xhs.baselibrary.base.BaseActivity
-import com.xhs.publicmodule.activity.DataPickerActivity
+import com.xhs.baselibrary.utils.ToastUtils
+import com.sea.publicmodule.activity.DataPickerActivity
 import kotlinx.android.synthetic.main.activity_member_ship_mode.*
 
 
@@ -75,6 +76,10 @@ class MembershipModeActivity : BaseActivity(), StoreListContact.IStoreListView,
                     nApplyMembershipReq.shop_id = 0
                     mApplyShipDialog = ApplyShipDialog(this, object : ApplyMemberShipListener {
                         override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
+                            nApplyMembershipReq.name=nApplyMemberModel.name
+                            nApplyMembershipReq.phone=nApplyMemberModel.phone
+                            nApplyMembershipReq.webchat=nApplyMemberModel.webchat
+                            nApplyMembershipReq.birthday=nApplyMemberModel.birthday
                             mApplyMembershipPresenter.loadApplyMembership(nApplyMembershipReq)
                         }
                     })
@@ -101,6 +106,7 @@ class MembershipModeActivity : BaseActivity(), StoreListContact.IStoreListView,
 
 
     override fun loadApplyMembershipSuccess() {
+        ToastUtils.show("申请成功,等待审核")
         mSelectStorePresenter.loadStoreList(nStoreListModelReq)
         mApplyShipDialog?.dismiss()
     }

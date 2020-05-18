@@ -40,28 +40,39 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40"
-        android:gravity="center_vertical"
-        android:text="热门搜索"
-        android:textColor="@color/color_6"
-        android:textSize="@dimen/sp_12" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHotSearch"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="历史搜索"
+            android:textColor="@color/color_6"
+            android:textSize="@dimen/sp_12" />
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="30dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            android:src="@drawable/icon_gray_delete" />
+    </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeSearchMall"
+        android:id="@+id/swipeSearch"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSearchMall"
+            android:id="@+id/rvSearch"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

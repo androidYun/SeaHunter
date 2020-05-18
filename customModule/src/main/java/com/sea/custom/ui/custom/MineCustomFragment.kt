@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.utils.DeviceUtils
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_custom.*
 
@@ -42,6 +44,11 @@ class MineCustomFragment : BaseFragment(), MineCustomContact.IMineCustomView {
     private fun initView() {
         mMineCustomAdapter = MineCustomAdapter(mDelicacyMakeList)
         rvMineCustom.layoutManager = LinearLayoutManager(context)
+        if (DeviceUtils.isTabletDevice()) {
+            rvMineCustom.layoutManager = GridLayoutManager(context, 2)
+        } else {
+            rvMineCustom.layoutManager = LinearLayoutManager(context)
+        }
         rvMineCustom.adapter = mMineCustomAdapter
     }
 

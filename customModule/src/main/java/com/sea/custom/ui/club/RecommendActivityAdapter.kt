@@ -8,7 +8,7 @@ import com.sea.custom.R
 import com.sea.custom.common.Constants
 import com.sea.custom.presenter.channel.NChannelItem
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
-import com.xhs.publicmodule.activity.web.WebActivity
+import com.sea.publicmodule.activity.web.WebActivity
 
 class RecommendActivityAdapter(mList: List<NChannelItem>) :
     BaseQuickAdapter<NChannelItem, BaseViewHolder>(R.layout.item_recommend_activity, mList) {

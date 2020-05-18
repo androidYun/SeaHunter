@@ -15,18 +15,19 @@ import com.sea.user.activity.set.SetActivity
 import com.sea.user.activity.wallet.MineWalletActivity
 import com.sea.user.common.Constants
 import com.sea.user.utils.DeviceUtils
-import com.xhs.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
-import com.xhs.publicmodule.presenter.user.UserInformContact
-import com.xhs.publicmodule.presenter.user.UserInformModel
-import com.xhs.publicmodule.presenter.user.UserInformPresenter
+import com.sea.publicmodule.presenter.user.UserInformContact
+import com.sea.publicmodule.presenter.user.UserInformModel
+import com.sea.publicmodule.presenter.user.UserInformPresenter
 import kotlinx.android.synthetic.main.fragment_user_center.*
 
 
 class UserCenterFragment : BaseFragment(), UserInformContact.IUserInformView {
 
-    private val mUserCenterPresenter by lazy { UserInformPresenter().apply { attachView(this@UserCenterFragment) } }
+    private val mUserCenterPresenter by lazy { UserInformPresenter()
+        .apply { attachView(this@UserCenterFragment) } }
 
 
     override fun onCreateView(

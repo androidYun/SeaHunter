@@ -36,10 +36,6 @@
             android:name=".activity.mall.list.MallListActivity"
             android:label="@string/title_MallList" />
         <activity
-            android:name=".activity.mall.search.SearchMallActivity"
-            android:label="@string/title_SearchStore"
-            android:theme="@style/whiteTheme" />
-        <activity
             android:name=".activity.mall.select.SelectStoreActivity"
             android:label="@string/title_SelectStore"
             android:theme="@style/grayTheme" />

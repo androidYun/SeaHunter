@@ -94,14 +94,14 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
                     if (mChannelList[position].is_collect == false) {
                         mDelicacyCollectionPresenter.loadDelicacyCollection(
                             NDelicacyCollectionModelReq(
-                                channel_name = ChannelEnum.food.name,
+                                channel_name = ChannelEnum.arder.name,
                                 article_id = mChannelList[position].id ?: -1
                             )
                         )
                     } else {
                         mDelicacyCollectionPresenter.cancelDelicacyCollection(
                             NCancelDelicacyCollectionModelReq(
-                                channel_name = ChannelEnum.food.name,
+                                channel_name = ChannelEnum.arder.name,
                                 article_id = mChannelList[position].id ?: -1
                             )
                         )

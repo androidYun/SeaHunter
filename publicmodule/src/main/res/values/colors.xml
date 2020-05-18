@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="user_theme_color">#37A2F5</color>
+    <color name="color_287CE0">#287CE0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_f7f7f7">#f7f7f7</color>
+    <color name="color_f2f2f2">#f2f2f2</color>
+    <color name="color_F8F6F9">#F8F6F9</color>
+    <color name="color_c5c5c5">#c5c5c5</color>
+    <color name="color_e4e4e4">#e4e4e4</color>
+    <color name="color_3">#333333</color>
+    <color name="color_6">#666666</color>
+    <color name="color_9">#999999</color>
+    <color name="color_8">#888888</color>
+    <color name="black">#000000</color>
+    <color name="color_bf0008">#bf0008</color>
+    <color name="color_ffe9ea">#ffe9ea</color>
+    <color name="color_c">#cccccc</color>
+    <color name="color_e2e2e2">#e2e2e2</color>
+    <color name="line_view">#e2e2e2</color>
+    <color name="color_FAF7F8">#FAF7F8</color>
+    <color name="color_f6f6f6">#f6f6f6</color>
+    <color name="color_747474">#747474</color>
+    <color name="color_39A0F3">#39A0F3</color>
+    <color name="color_EA2125">#EA2125</color>
+    <color name="color_c1220d">#c1220d</color>
+    <color name="color_737373">#737373</color>
+    <color name="color_F8F6F7">#F8F6F7</color>
+    <color name="color_129109">#129109</color>
+
+</resources>

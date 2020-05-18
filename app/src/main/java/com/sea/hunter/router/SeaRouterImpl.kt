@@ -1,28 +1,19 @@
 package com.sea.hunter.router
 
 import android.content.Intent
+import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.sea.user.activity.address.list.AddressListActivity
 import com.sea.user.activity.inform.FillInformActivity
 import com.sea.user.activity.login.LoginActivity
-import com.sea.user.activity.mall.search.SearchMallActivity
 import com.sea.user.activity.password.modify.ModifyPasswordActivity
 import com.sea.user.activity.phone.ModifyPhoneActivity
 import com.xhs.baselibrary.BaseApplication
-import com.xhs.publicmodule.router.ISeaRouter
+import com.sea.publicmodule.router.ISeaRouter
 
 
 class SeaRouterImpl : ISeaRouter {
 
-    override fun searchContent() {
-        BaseApplication.getsInstance()
-            .startActivity(
-                Intent(
-                    BaseApplication.getsInstance(),
-                    SearchMallActivity::class.java
-                ).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                })
-    }
+
 
     override fun loginOut() {
         BaseApplication.getsInstance()

@@ -8,9 +8,13 @@ import com.sea.custom.ui.entertainment.EntertainmentFragment
 import com.sea.custom.ui.make.DelicacyMakeFragment
 import com.sea.custom.ui.mine.MineFragment
 import com.xhs.baselibrary.base.BaseActivity
+import com.sea.publicmodule.presenter.version.CheckVersionContact
+import com.sea.publicmodule.presenter.version.CheckVersionPresenter
+import com.sea.publicmodule.presenter.version.NCheckVersionModelReq
+import com.sea.publicmodule.presenter.version.VersionModel
 import kotlinx.android.synthetic.main.activity_custom_main.*
 
-class CustomMainActivity : BaseActivity() {
+class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView {
 
     private lateinit var mClubFragment: ClubFragment
     private lateinit var mDelicacyFragment: DelicacyFragment
@@ -18,11 +22,21 @@ class CustomMainActivity : BaseActivity() {
     private lateinit var mEntertainmentFragment: EntertainmentFragment
     private lateinit var mMineFragment: MineFragment
 
+    private val mCheckVersionPresenter by lazy {
+        CheckVersionPresenter()
+            .apply { attachView(this@CustomMainActivity) }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_main)
         initView()
+        initData()
         initListener()
+    }
+
+    private fun initData() {
+        mCheckVersionPresenter.loadCheckVersion(NCheckVersionModelReq(versionName = BuildConfig.VERSION_NAME))
     }
 
     private fun initListener() {
@@ -46,6 +60,22 @@ class CustomMainActivity : BaseActivity() {
             }
 
         }
+    }
+
+    override fun loadCheckVersionSuccess(versionModel: VersionModel) {
+
+    }
+
+    override fun loadCheckVersionFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
+    override fun showLoading() {
+        showProgressDialog()
+    }
+
+    override fun hideLoading() {
+        hideProgressDialog()
     }
 
     /**

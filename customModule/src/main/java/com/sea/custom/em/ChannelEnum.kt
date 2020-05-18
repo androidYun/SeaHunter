@@ -10,7 +10,8 @@ enum class ChannelEnum(val channel: String) {
     arder("arder"),
     food("food"),
     report("report"),
-    fish("fish");
+    fish("fish"),
+    dish("dish");
 }
 
 /**

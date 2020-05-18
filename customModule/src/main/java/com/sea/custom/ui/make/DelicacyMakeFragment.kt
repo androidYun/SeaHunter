@@ -15,6 +15,7 @@ import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.banner.BannerContact
 import com.sea.custom.presenter.banner.BannerItem
 import com.sea.custom.presenter.banner.BannerPresenter
+import com.sea.custom.presenter.banner.NBannerModelReq
 import com.sea.custom.presenter.category.CategoryContact
 import com.sea.custom.presenter.category.CategoryPresenter
 import com.sea.custom.presenter.category.NCategoryItem
@@ -65,7 +66,7 @@ class DelicacyMakeFragment : BaseFragment(),
 
     private fun initData() {
         mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
-        bannerPresenter.loadBanner()
+        bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.food.name))
     }
 
     private fun initListener() {
