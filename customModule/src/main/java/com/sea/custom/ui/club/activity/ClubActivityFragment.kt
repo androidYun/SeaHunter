@@ -13,8 +13,8 @@ import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.utils.DeviceUtils
-import kotlinx.android.synthetic.main.fragment_activity_club.*
 import com.xhs.baselibrary.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_activity_club.*
 
 class ClubActivityFragment : BaseFragment(), ChannelContact.IChannelView {
 

@@ -3,9 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <include layout="@layout/include_search_layout" />
     <RadioGroup
         android:id="@+id/rgpView"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="@dimen/default_margin"

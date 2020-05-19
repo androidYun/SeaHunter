@@ -1,5 +1,6 @@
 package com.sea.custom.ui.make
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,10 +23,13 @@ import com.sea.custom.presenter.category.NCategoryItem
 import com.sea.custom.presenter.category.NCategoryModelReq
 import com.sea.custom.ui.adapter.ShopBannerAdapter
 import com.sea.custom.ui.make.list.DelicacyMakeListFragment
+import com.sea.custom.ui.result.DelicacyMakeResultActivity
+import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_delicacy_make.*
 import kotlinx.android.synthetic.main.fragment_delicacy_make.bannerView
 import kotlinx.android.synthetic.main.fragment_delicacy_make.swipeLayout
+import kotlinx.android.synthetic.main.include_search_layout.*
 import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
 class DelicacyMakeFragment : BaseFragment(),
@@ -70,6 +74,12 @@ class DelicacyMakeFragment : BaseFragment(),
     }
 
     private fun initListener() {
+        lvSearchShop.setOnClickListener {
+            startActivityForResult(
+                Intent(context, SearchMallActivity::class.java),
+                SearchMallActivity.search_content_request_code
+            )
+        }
         swipeLayout.setOnRefreshListener {
             mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
             bannerPresenter.loadBanner()
@@ -124,7 +134,17 @@ class DelicacyMakeFragment : BaseFragment(),
     override fun hideLoading() {
         hideProgressDialog()
     }
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SearchMallActivity.search_content_request_code && resultCode == SearchMallActivity.search_content_result_code) {
+            val searchContent = data?.getStringExtra(SearchMallActivity.search_content_key) ?: ""
+            startActivity(Intent(context, DelicacyMakeResultActivity::class.java).apply {
+                putExtras(
+                    DelicacyMakeResultActivity.getInstance(searchContent)
+                )
+            })
+        }
+    }
     companion object {
         fun getInstance() = DelicacyMakeFragment().apply {
             arguments = Bundle().apply { }

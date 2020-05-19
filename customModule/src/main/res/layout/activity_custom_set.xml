@@ -67,4 +67,14 @@
             android:textColor="@color/custom_theme_color"
             android:textSize="@dimen/sp_16" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvBackLogin"
+        style="@style/baseBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:text="退出登录" />
+
 </LinearLayout>

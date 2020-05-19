@@ -46,6 +46,24 @@
             android:name=".ui.delicacy.comment.DelicacyCommentActivity"
             android:label="@string/club_activity" />
         <activity
+            android:name=".ui.result.ClubSearchResultActivity"
+            android:label="@string/clubSearchResult" />
+        <activity
+            android:name=".ui.result.DelicacyMakeResultActivity"
+            android:label="@string/delicacyMakeSearchResult" />
+        <activity
+            android:name=".ui.result.EntertainmentSearchResultActivity"
+            android:label="@string/entertainmentSearchResult" />
+        <activity
+            android:name=".ui.result.XsDelicacyResultActivity"
+            android:label="@string/xsSearchResult" />
+        <activity
+            android:name=".ui.result.ClubMatchResultActivity"
+            android:label="@string/clubMatchSearchResult" />
+        <activity
+            android:name=".ui.result.ClubActivityResultActivity"
+            android:label="@string/clubActivitySearchResult" />
+        <activity
             android:name=".CustomMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />

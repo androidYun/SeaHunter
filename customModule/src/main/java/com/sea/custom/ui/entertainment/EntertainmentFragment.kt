@@ -1,5 +1,6 @@
 package com.sea.custom.ui.entertainment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +19,11 @@ import com.sea.custom.presenter.category.CategoryPresenter
 import com.sea.custom.presenter.category.NCategoryItem
 import com.sea.custom.presenter.category.NCategoryModelReq
 import com.sea.custom.ui.entertainment.list.EntertainmentListFragment
+import com.sea.custom.ui.result.EntertainmentSearchResultActivity
+import com.sea.publicmodule.activity.search.SearchMallActivity
 import kotlinx.android.synthetic.main.fragment_entertainment_layout.*
 import com.xhs.baselibrary.base.BaseFragment
+import kotlinx.android.synthetic.main.include_search_layout.*
 import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
 class EntertainmentFragment : BaseFragment(), CategoryContact.ICategoryView {
@@ -77,6 +81,12 @@ class EntertainmentFragment : BaseFragment(), CategoryContact.ICategoryView {
     }
 
     private fun initListener() {
+        lvSearchShop.setOnClickListener {
+            startActivityForResult(
+                Intent(context, SearchMallActivity::class.java),
+                SearchMallActivity.search_content_request_code
+            )
+        }
         swipeLayout.setOnRefreshListener {
             mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.arder.name))
         }
@@ -103,7 +113,17 @@ class EntertainmentFragment : BaseFragment(), CategoryContact.ICategoryView {
     override fun hideLoading() {
         hideProgressDialog()
     }
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SearchMallActivity.search_content_request_code && resultCode == SearchMallActivity.search_content_result_code) {
+            val searchContent = data?.getStringExtra(SearchMallActivity.search_content_key) ?: ""
+            startActivity(Intent(context, EntertainmentSearchResultActivity::class.java).apply {
+                putExtras(
+                    EntertainmentSearchResultActivity.getInstance(searchContent)
+                )
+            })
+        }
+    }
     companion object {
         fun getInstance() = EntertainmentFragment().apply {
             arguments = Bundle().apply { }

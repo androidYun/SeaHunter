@@ -25,6 +25,7 @@ import com.sea.custom.ui.club.about.AboutClubActivity
 import com.sea.custom.ui.club.activity.ClubActivityActivity
 import com.sea.custom.ui.club.match.ClubMatchActivity
 import com.sea.custom.ui.member.MemberCustomActivity
+import com.sea.custom.ui.result.ClubSearchResultActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
@@ -160,11 +161,11 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SearchMallActivity.search_content_request_code && resultCode == SearchMallActivity.search_content_result_code) {
             val searchContent = data?.getStringExtra(SearchMallActivity.search_content_key) ?: ""
-            nChannelModelReq.key = searchContent
-            nChannelModelReq.page_index = 1
-            nChannelPresenter.loadChannel(
-                nChannelModelReq
-            )
+            startActivity(Intent(context, ClubSearchResultActivity::class.java).apply {
+                putExtras(
+                    ClubSearchResultActivity.getInstance(searchContent)
+                )
+            })
         }
     }
 

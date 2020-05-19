@@ -1,5 +1,6 @@
 package com.sea.custom.ui.make.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +16,12 @@ import com.sea.custom.presenter.collection.DelicacyCollectionContact
 import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
 import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
 import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
+import com.sea.custom.ui.result.DelicacyMakeResultActivity
+import com.sea.custom.ui.result.XsDelicacyResultActivity
+import com.sea.publicmodule.activity.search.SearchMallActivity
 import kotlinx.android.synthetic.main.fragment_delicacy_make_list.*
 import com.xhs.baselibrary.base.BaseFragment
+import kotlinx.android.synthetic.main.include_search_layout.*
 
 class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
     DelicacyCollectionContact.IDelicacyCollectionView {

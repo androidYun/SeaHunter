@@ -34,6 +34,7 @@ import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceActivity
 import com.sea.custom.ui.delicacy.report.CheckReportActivity
 import com.sea.custom.ui.delicacy.store.StoreDelicacyActivity
 import com.sea.custom.ui.delicacy.vr.StoreVrActivity
+import com.sea.custom.ui.result.XsDelicacyResultActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
@@ -52,8 +53,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
     private val bannerPresenter by lazy { BannerPresenter().apply { attachView(this@DelicacyFragment) } }
 
     private val nChannelModelReq = NChannelModelReq(
-        channel_name = ChannelEnum.dish.name,
-        is_red = 1
+        channel_name = ChannelEnum.dish.name
     )
 
     private lateinit var mDelicacyKindAdapter: DelicacyKindAdapter
@@ -225,11 +225,11 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SearchMallActivity.search_content_request_code && resultCode == SearchMallActivity.search_content_result_code) {
             val searchContent = data?.getStringExtra(SearchMallActivity.search_content_key) ?: ""
-            nChannelModelReq.key = searchContent
-            nChannelModelReq.page_index = 1
-            mChannelPresenter.loadChannel(
-                nChannelModelReq
-            )
+            startActivity(Intent(context, XsDelicacyResultActivity::class.java).apply {
+                putExtras(
+                    XsDelicacyResultActivity.getInstance(searchContent)
+                )
+            })
         }
     }
     companion object {

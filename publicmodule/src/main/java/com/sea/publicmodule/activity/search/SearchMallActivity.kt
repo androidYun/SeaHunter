@@ -21,6 +21,8 @@ class SearchMallActivity : BaseActivity(), SearchMallContact.ISearchMallView {
 
     private val mHotList = mutableListOf<SearchItem>()
 
+    private val channelName by lazy { intent?.extras?.getString(channel_name_key) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +37,8 @@ class SearchMallActivity : BaseActivity(), SearchMallContact.ISearchMallView {
         val layoutManager = FlexboxLayoutManager(this)
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
-        rvSearch.layoutManager = layoutManager
-        rvSearch.adapter = mSearchHotAdapter
+        rvSearchContent.layoutManager = layoutManager
+        rvSearchContent.adapter = mSearchHotAdapter
         mSearchStorePresenter.loadSearch()
     }
 
@@ -81,6 +83,7 @@ class SearchMallActivity : BaseActivity(), SearchMallContact.ISearchMallView {
     }
 
 
+
     override fun clearSearch() {
         mSearchStorePresenter.loadSearch()
     }
@@ -118,6 +121,10 @@ class SearchMallActivity : BaseActivity(), SearchMallContact.ISearchMallView {
         const val search_content_request_code = 1000
         const val search_content_result_code = 1001
         const val search_content_key = "search_content_key"
-        fun getInstance() = Bundle().apply { }
+        private const val channel_name_key = "channel_name_key"
+        fun getInstance(channelName: String="") = Bundle().apply {
+            putString(channel_name_key, channelName)
+
+        }
     }
 }

@@ -42,7 +42,7 @@ class NChannelModelReq(
     private val command: Int = 30,
     var channel_name: String = "",
     var key: String = "",
-    var category_id: Int = 0,
+    var category_id: Int = -1,
     val page_size: Int = 20,
     var page_index: Int = 1,
     var sort: Int = 0,//排序 (0:默认 1：销量 2:最新 3：最热（查看最多），4,离我最近)

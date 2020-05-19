@@ -19,4 +19,6 @@ interface ISeaRouter {
 
     fun modifyUserInform()
 
+    fun jumpMainActivity()
+
 }

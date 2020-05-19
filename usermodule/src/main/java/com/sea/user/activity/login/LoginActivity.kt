@@ -15,6 +15,7 @@ import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import com.sea.publicmodule.presenter.user.UserInformModel
+import com.sea.publicmodule.router.RouterManager
 import kotlinx.android.synthetic.main.activity_user_login.*
 import kotlinx.android.synthetic.main.include_shop_eye.*
 
@@ -32,7 +33,12 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
 
 
     private fun initView() {
-
+        if (!UserInformSpUtils.getPhoneNumber().isNullOrBlank()) {
+            evUserName.setText(UserInformSpUtils.getPhoneNumber())
+        }
+        if (!UserInformSpUtils.getPassword().isNullOrBlank()) {
+            evPassword.setText(UserInformSpUtils.getPassword())
+        }
     }
 
     private fun initData() {
@@ -71,15 +77,15 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
         }
     }
 
-    override fun loadLoginSuccess(userInformModel: UserInformModel, phoneNumber: String, password: String) {
+    override fun loadLoginSuccess(
+        userInformModel: UserInformModel,
+        phoneNumber: String,
+        password: String
+    ) {
         UserInformSpUtils.setUserInformModel(userInformModel = userInformModel)
         UserInformSpUtils.setPhoneNumber(phoneNumber)
         UserInformSpUtils.setPassword(password)
-        if (DeviceUtils.isTabletDevice()) {
-            startActivity(Intent(this, SeaFoodMallActivity::class.java))
-        } else {
-            startActivity(Intent(this, SeaMainActivity::class.java))
-        }
+        RouterManager.seaRouter?.jumpMainActivity()
 
     }
 

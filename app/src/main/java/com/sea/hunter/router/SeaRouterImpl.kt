@@ -1,6 +1,7 @@
 package com.sea.hunter.router
 
 import android.content.Intent
+import com.sea.custom.CustomMainActivity
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.sea.user.activity.address.list.AddressListActivity
 import com.sea.user.activity.inform.FillInformActivity
@@ -65,6 +66,17 @@ class SeaRouterImpl : ISeaRouter {
                 Intent(
                     BaseApplication.getsInstance(),
                     FillInformActivity::class.java
+                ).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                })
+    }
+
+    override fun jumpMainActivity() {
+        BaseApplication.getsInstance()
+            .startActivity(
+                Intent(
+                    BaseApplication.getsInstance(),
+                    CustomMainActivity::class.java
                 ).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 })

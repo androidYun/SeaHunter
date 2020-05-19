@@ -15,8 +15,8 @@ import com.sea.custom.presenter.collection.DelicacyCollectionContact
 import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
 import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
 import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
-import kotlinx.android.synthetic.main.fragment_entertainment_list.*
 import com.xhs.baselibrary.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_entertainment_list.*
 
 class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
     DelicacyCollectionContact.IDelicacyCollectionView {

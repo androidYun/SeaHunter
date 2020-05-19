@@ -19,5 +19,6 @@ class SetActivity : BaseActivity() {
         tvModifyPassword.setOnClickListener { RouterManager.seaRouter?.modifyPassword() }
         tvModifyPhone.setOnClickListener { RouterManager.seaRouter?.modifyPhone() }
         tvModifyInform.setOnClickListener { RouterManager.seaRouter?.modifyUserInform() }
+        tvBackLogin.setOnClickListener { RouterManager.seaRouter?.loginOut() }
     }
 }
