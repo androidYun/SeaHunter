@@ -1,5 +1,6 @@
 package com.sea.custom.ui.delicacy
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,10 +39,14 @@ import com.sea.custom.ui.result.XsDelicacyResultActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
+import com.yzq.zxinglibrary.android.CaptureActivity
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.bannerView
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.swipeLayout
 import kotlinx.android.synthetic.main.include_search_layout.*
+import com.sea.custom.ui.vr.VrDetailActivity
+import com.yzq.zxinglibrary.common.Constant
+
 
 class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.IBannerView,
     CategoryContact.ICategoryView {
@@ -71,6 +76,8 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
     private lateinit var shopBannerAdapter: ShopBannerAdapter
 
     private val mBannerList = mutableListOf<String>()
+
+    private val REQUEST_CODE_SCAN = 100
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -126,6 +133,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         rvTodayOptimization.adapter = mToDayActivityAdapter
 
     }
+
     /**
      * Fragment中初始化Toolbar
      * @param toolbar
@@ -141,6 +149,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
             actionBar.setDisplayHomeAsUpEnabled(isDisplayHomeAsUp)
         }
     }
+
     private fun initData() {
         mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.dish.name))
         mChannelPresenter.loadChannel(nChannelModelReq)
@@ -175,6 +184,10 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
                 Intent(context, SearchMallActivity::class.java),
                 SearchMallActivity.search_content_request_code
             )
+        }
+        ivQrScan.setOnClickListener {
+            val intent = Intent(context, CaptureActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_SCAN)
         }
     }
 
@@ -213,6 +226,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
     override fun loadBannerFail(throwable: Throwable) {
         handleError(throwable)
     }
+
     override fun showLoading() {
         showProgressDialog()
     }
@@ -230,8 +244,16 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
                     XsDelicacyResultActivity.getInstance(searchContent)
                 )
             })
+        } else if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
+            val content = data?.getStringExtra(Constant.CODED_CONTENT) ?: ""
+            startActivity(Intent(context, VrDetailActivity::class.java).apply {
+                putExtras(
+                    VrDetailActivity.getInstance(content)
+                )
+            })
         }
     }
+
     companion object {
         fun getInstance() = DelicacyFragment().apply {
             arguments = Bundle().apply { }

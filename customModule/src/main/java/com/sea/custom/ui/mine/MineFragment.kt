@@ -81,7 +81,7 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
         }
 
         tvGoLook.setOnClickListener {
-            startActivity(Intent(context, CollectionActivity::class.java))
+            startActivity(Intent(context, MembershipModeActivity::class.java))
         }
         tvCustomized.setOnClickListener {
             startActivity(Intent(context, MineCustomActivity::class.java))

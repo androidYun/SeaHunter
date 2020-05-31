@@ -1,5 +1,6 @@
-rootProject.name='SeaHunter'
-include ':app', ':baselibrary'
+rootProject.name = 'SeaHunter'
+include ':app'
+include ':baselibrary'
 include ':usermodule'
 include ':customModule'
 include ':publicmodule'

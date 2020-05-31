@@ -56,6 +56,8 @@ dependencies {
     api deps.androidx_annotation
     kapt deps.glideprocessor
     api deps.pictureLibrary
+    api 'com.tencent.mars:mars-core:1.2.1'
+    api 'com.just.agentwebX5:agentwebX5:2.0.0'
 }
 repositories {
     mavenCentral()

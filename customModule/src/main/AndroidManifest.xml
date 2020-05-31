@@ -28,6 +28,9 @@
             android:name=".ui.custom.MineCustomActivity"
             android:label="@string/title_MineCustom" />
         <activity
+            android:name=".ui.vr.VrDetailActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
             android:name=".ui.club.match.ClubMatchActivity"
             android:label="@string/title_ClubMatch" />
         <activity

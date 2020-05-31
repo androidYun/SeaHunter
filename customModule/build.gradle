@@ -40,4 +40,5 @@ dependencies {
     //搜索功能
     implementation 'com.amap.api:search:latest.integration'
     implementation project(':publicmodule')
+    implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'
 }

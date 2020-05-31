@@ -19,4 +19,6 @@ data class StoreListItem(
     val is_join: Boolean = false,
     val mobile: String = "",
     val title: String = "",
+    val vr_url: String = "",
+    val img_url: String = "",
     val webchat: String = "")

@@ -7,6 +7,7 @@ import com.lljjcoder.citywheel.CityConfig
 import com.lljjcoder.style.citylist.CityListSelectActivity
 import com.lljjcoder.style.citythreelist.AreaActivity
 import com.sea.custom.R
+import com.sea.custom.ui.vr.VrDetailActivity
 import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_store_list.*
 
@@ -45,7 +46,6 @@ class StoreListActivity : BaseActivity(), StoreListContact.IStoreListView {
 
     private fun initListener() {
         swipeStoreList.setOnRefreshListener {
-
             mStoreListPresenter.loadStoreList(nStoreListReq)
         }
         tvProvince.setOnClickListener {

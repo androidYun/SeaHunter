@@ -1,7 +1,9 @@
 package com.sea.custom
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.sea.custom.common.Constants
 import com.sea.custom.ui.club.ClubFragment
 import com.sea.custom.ui.delicacy.DelicacyFragment
 import com.sea.custom.ui.entertainment.EntertainmentFragment
@@ -12,6 +14,7 @@ import com.sea.publicmodule.presenter.version.CheckVersionContact
 import com.sea.publicmodule.presenter.version.CheckVersionPresenter
 import com.sea.publicmodule.presenter.version.NCheckVersionModelReq
 import com.sea.publicmodule.presenter.version.VersionModel
+import com.xhs.baselibrary.ui.update.UpdateActivity
 import kotlinx.android.synthetic.main.activity_custom_main.*
 
 class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView {
@@ -63,7 +66,27 @@ class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView
     }
 
     override fun loadCheckVersionSuccess(versionModel: VersionModel) {
-
+        if (BuildConfig.VERSION_NAME != versionModel.version) {
+            val baseUrl = versionModel?.apple_url?.substringBeforeLast("/").plus("/")
+            val apkName = versionModel?.apple_url?.substringAfterLast("/") ?: ""
+            if (baseUrl.isNullOrBlank() || apkName.isNullOrBlank()) {
+                return
+            }
+            startActivity(
+                Intent(
+                    this,
+                    UpdateActivity::class.java
+                ).apply {
+                    putExtras(
+                        UpdateActivity.setArgument(
+                            "",
+                            apkName,
+                            baseUrl,
+                            versionModel?.forced == 1
+                        )
+                    )
+                })
+        }
     }
 
     override fun loadCheckVersionFail(throwable: Throwable) {

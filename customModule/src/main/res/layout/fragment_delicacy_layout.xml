@@ -21,16 +21,26 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_50"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <include layout="@layout/include_search_layout" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <include layout="@layout/include_search_layout" />
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/ivQrScan"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingEnd="@dimen/default_padding"
+                    android:src="@mipmap/icon_scan" />
             </LinearLayout>
 
             <com.youth.banner.Banner
