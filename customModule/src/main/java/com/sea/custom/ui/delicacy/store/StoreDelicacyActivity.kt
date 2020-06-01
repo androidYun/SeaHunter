@@ -11,10 +11,14 @@ import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.ui.delicacy.ToDayActivityAdapter
+import com.sea.custom.ui.entertainment.list.EntertainmentListFragment
 import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.activity_store_delicacy.*
 
-class StoreDelicacyActivity : BaseActivity(), ChannelContact.IChannelView{
+class StoreDelicacyActivity : BaseActivity(), ChannelContact.IChannelView {
+    private val categoryId by lazy {
+        intent?.extras?.getInt(channel_key_id) ?: null
+    }
 
     private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@StoreDelicacyActivity) } }
 
@@ -49,12 +53,14 @@ class StoreDelicacyActivity : BaseActivity(), ChannelContact.IChannelView{
     }
 
     private fun initData() {
-        nChannelModelReq.channel_name=ChannelEnum.shop.name
+        nChannelModelReq.channel_name = ChannelEnum.dish.name
+        nChannelModelReq.category_id = categoryId
         mChannelPresenter.loadChannel(nChannelModelReq)
     }
 
     private fun initListener() {
         swipeStoreDelicacy.setOnRefreshListener {
+            nChannelModelReq.page_index = 1
             mChannelPresenter.loadChannel(nChannelModelReq)
         }
         mToDayActivityAdapter.setOnLoadMoreListener({
@@ -94,6 +100,9 @@ class StoreDelicacyActivity : BaseActivity(), ChannelContact.IChannelView{
     }
 
     companion object {
-        fun getInstance() = Bundle().apply { }
+        private const val channel_key_id = "channel_key_id"
+        fun getInstance(categoryId: Int) = Bundle().apply {
+            putInt(channel_key_id, categoryId)
+        }
     }
 }

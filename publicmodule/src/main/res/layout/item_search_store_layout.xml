@@ -6,6 +6,7 @@
     android:layout_marginStart="@dimen/dp_3"
     android:layout_marginEnd="@dimen/dp_3"
     android:gravity="center"
+    android:layout_marginTop="5dp"
     android:background="@drawable/shape_hot_search"
     android:text="雅漾喷雾"
     android:textColor="@color/color_3"

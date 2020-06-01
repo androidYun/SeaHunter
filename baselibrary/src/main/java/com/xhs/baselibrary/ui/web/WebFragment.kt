@@ -4,11 +4,9 @@ import android.app.Activity
 import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.webkit.*
+import com.tencent.smtt.sdk.WebViewCallbackClient
 import com.xhs.baselibrary.BaseApplication
 import com.xhs.baselibrary.R
 import com.xhs.baselibrary.base.BaseFragment
@@ -137,6 +135,14 @@ open class WebFragment : BaseFragment() {
         if (webView.canGoBack()) {
             webView.goBack()
         } else {
+            if (webView != null) {
+                webView.visibility = View.GONE
+                webView.loadUrl("about:blank")
+                webView.stopLoading()
+                webView.webChromeClient = null
+                webView.webViewClient = null
+                webView.destroy()
+            }
             activity.finish()
         }
     }

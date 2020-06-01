@@ -16,8 +16,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.crash.CrashActivity" />
         <activity android:name=".ui.update.UpdateActivity" />
+        <activity android:name=".ui.web.X5WebActivity" />
         <activity android:name=".ui.date.SelectDateSlotActivity" />
-
+        <!-- 腾讯X5内核初始化 -->
+        <service android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+            android:label="dexopt"
+            android:process=":dexopt" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

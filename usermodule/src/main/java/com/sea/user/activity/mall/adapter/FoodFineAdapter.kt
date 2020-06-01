@@ -1,7 +1,6 @@
 package com.sea.user.activity.mall.adapter
 
 import android.content.Intent
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

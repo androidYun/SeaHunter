@@ -58,6 +58,13 @@
             android:name=".ui.result.EntertainmentSearchResultActivity"
             android:label="@string/entertainmentSearchResult" />
         <activity
+            android:name=".ui.delicacy.introduce.DelicacyIntroduceResultActivity"
+            android:label="@string/IntroduceSearchResult" />
+
+        <activity
+            android:name=".ui.delicacy.vr.list.StoreVrResultActivity"
+            android:label="@string/storeVrSearchResult" />
+        <activity
             android:name=".ui.result.XsDelicacyResultActivity"
             android:label="@string/xsSearchResult" />
         <activity

@@ -16,6 +16,8 @@
     <string name="xsSearchResult">西沙美食搜索</string>
     <string name="delicacyMakeSearchResult">美食制作搜索</string>
     <string name="entertainmentSearchResult">娱乐搜索</string>
+    <string name="IntroduceSearchResult">渔获介绍</string>
+    <string name="storeVrSearchResult">门店Vr搜索</string>
     <string name="clubActivitySearchResult">俱乐部活动搜索</string>
     <string name="clubMatchSearchResult">俱乐部比赛搜索</string>
     <string name="title_MemberCustom">会员定制</string>
