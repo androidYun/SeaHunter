@@ -20,19 +20,21 @@ class SplashActivity : AppCompatActivity() {
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_splash)
         PermissionsUtils.showSystemSetting = true
         PermissionsUtils.getInstance().chekPermissions(this, permissions, object : PermissionsUtils.IPermissionsResult {
             override fun passPermissions() {
                 val phoneNumber = UserInformSpUtils.getPhoneNumber("")
                 val password = UserInformSpUtils.getPassword("")
-                if (phoneNumber.isNullOrBlank() || password.isNullOrBlank()) {
-                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                } else {
-                    startActivity(Intent(this@SplashActivity, CustomMainActivity::class.java))
-                }
-                finish()
+                Handler().postDelayed({
+                    if (phoneNumber.isNullOrBlank() || password.isNullOrBlank()) {
+                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    } else {
+                        startActivity(Intent(this@SplashActivity, CustomMainActivity::class.java))
+                    }
+                    finish()
+                }, 1000)
+
             }
 
             override fun forbidPermissions() {
