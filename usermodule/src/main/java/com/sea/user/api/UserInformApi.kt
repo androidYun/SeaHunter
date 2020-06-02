@@ -28,7 +28,7 @@ interface UserInformApi {
     @GET("getdata.ashx")
     fun loadVersionCode(@Query("phoneNumber") phoneNumber: String): Observable<BaseEntry>
 
-    @GET("getdata.ashx")
+    @POST("getdata.ashx")
     fun loadForgetPassword(@Body nForgetPasswordModelReq: NForgetPasswordModelReq): Observable<BaseEntry>
 
     @POST("getdata.ashx")

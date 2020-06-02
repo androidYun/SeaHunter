@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/lvNickName"
             app:layout_constraintWidth_percent="0.8">
 
-            <ImageView
+            <com.xhs.baselibrary.weight.RoundImageView
                 android:id="@+id/ivHead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

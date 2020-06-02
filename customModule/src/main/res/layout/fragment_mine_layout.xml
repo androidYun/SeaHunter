@@ -28,7 +28,7 @@
                 android:paddingStart="@dimen/default_padding"
                 android:paddingEnd="@dimen/default_padding">
 
-                <ImageView
+                <com.xhs.baselibrary.weight.RoundImageView
                     android:id="@+id/ivHead"
                     android:layout_width="@dimen/dp_72"
                     android:layout_height="@dimen/dp_72"
