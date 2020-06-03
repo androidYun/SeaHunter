@@ -1,13 +1,19 @@
 package com.sea.custom.ui.mine
 
+import android.Manifest
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import com.sea.custom.CustomMainActivity
 import com.sea.custom.R
 import com.sea.custom.common.Constants
 import com.sea.custom.ui.collection.CollectionActivity
@@ -22,11 +28,14 @@ import com.sea.publicmodule.presenter.user.UserInformContact
 import com.sea.publicmodule.presenter.user.UserInformModel
 import com.sea.publicmodule.presenter.user.UserInformPresenter
 import com.sea.publicmodule.utils.sp.UserInformSpUtils
+import com.xhs.baselibrary.utils.PermissionsUtils
 
 class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
 
-    private val mUserCenterPresenter by lazy { UserInformPresenter()
-        .apply { attachView(this@MineFragment) } }
+    private val mUserCenterPresenter by lazy {
+        UserInformPresenter()
+            .apply { attachView(this@MineFragment) }
+    }
 
 
     override fun onCreateView(
@@ -96,7 +105,51 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
         tvSet.setOnClickListener {
             startActivity(Intent(context, SetActivity::class.java))
         }
+        tvContactOus.setOnClickListener {
+            PermissionsUtils.getInstance()
+                .chekPermissions(
+                    activity,
+                    permissions,
+                    object : PermissionsUtils.IPermissionsResult {
+                        override fun passPermissions() {
+                            val intent = Intent(Intent.ACTION_CALL)
+                            val data = Uri.parse("tel:18328331313")
+                            intent.data = data
+                            startActivity(intent)
+                        }
+
+                        override fun forbidPermissions() {
+                            Toast.makeText(
+                                context,
+                                "您没有允许部分权限，可能会导致部分功能不能正常使用，如需正常使用  请允许权限",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            Handler().postDelayed({
+                                activity?.let {
+                                    ActivityCompat.requestPermissions(
+                                        activity!!,
+                                        permissions,
+                                        PermissionsUtils.getInstance().mRequestCode
+                                    )
+                                }
+                            }, 500)
+                        }
+                    })
+        }
     }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        //就多一个参数this
+        PermissionsUtils.getInstance().onRequestPermissionsResult(activity, requestCode, permissions, grantResults)
+    }
+    private val permissions = arrayOf(
+        Manifest.permission.CALL_PHONE
+    )
 
     override fun loadUserInformSuccess(userInformModel: UserInformModel) {
         UserInformSpUtils.setUserInformModel(userInformModel)

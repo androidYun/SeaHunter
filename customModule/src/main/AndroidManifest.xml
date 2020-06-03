@@ -43,7 +43,7 @@
         <activity
             android:name=".ui.club.about.AboutClubActivity"
             android:label="@string/about_club" />
-        <activity android:name=".web.ChannelWebDetailActivity"/>
+        <activity android:name=".web.ChannelWebDetailActivity" />
         <activity
             android:name=".ui.club.activity.ClubActivityActivity"
             android:label="@string/club_activity" />
@@ -77,6 +77,7 @@
             android:label="@string/clubActivitySearchResult" />
         <activity
             android:name=".CustomMainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
     </application>

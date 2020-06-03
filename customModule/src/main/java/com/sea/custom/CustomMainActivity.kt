@@ -126,4 +126,20 @@ class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView
         beginTransaction.add(R.id.frameLayout, mClubFragment)
         beginTransaction.commit()
     }
+
+    // Activity中
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // 获取到Activity下的Fragment
+        val fragments = supportFragmentManager.fragments
+        // 查找在Fragment中onRequestPermissionsResult方法并调用
+        for (fragment in fragments) {
+            fragment?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+    }
+
 }

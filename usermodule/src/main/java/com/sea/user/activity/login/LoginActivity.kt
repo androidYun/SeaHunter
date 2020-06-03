@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.text.InputType
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.KeyEvent
+import android.view.MotionEvent
 import com.sea.user.R
 import com.sea.user.activity.main.SeaMainActivity
 import com.sea.user.activity.mall.SeaFoodMallActivity
@@ -86,7 +88,16 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
         UserInformSpUtils.setPhoneNumber(phoneNumber)
         UserInformSpUtils.setPassword(password)
         RouterManager.seaRouter?.jumpMainActivity()
+        finish()
 
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent?): Boolean {
+        return if (event?.keyCode == KeyEvent.KEYCODE_BACK) {
+            true
+        } else {
+            super.dispatchKeyEvent(event)
+        }
     }
 
     override fun loadLoginFail(throwable: Throwable) {

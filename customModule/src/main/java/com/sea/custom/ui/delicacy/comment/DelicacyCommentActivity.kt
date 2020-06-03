@@ -115,6 +115,12 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
                 article_id = mChannelItem.id ?: -1
             )
         )
+        nPraiseShareModelReq.channel_name = channelName
+        nPraiseShareModelReq.article_id = mChannelItem.id ?: -1
+        nPraiseShareModelReq.click_type = 1
+        mPraiseSharePresenter.loadPraiseShare(
+            nPraiseShareModelReq
+        )
     }
 
     private fun initListener() {
