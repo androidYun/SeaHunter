@@ -35,6 +35,7 @@ import com.sea.custom.ui.delicacy.adapter.DelicacyTypeAdapter
 import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceActivity
 import com.sea.custom.ui.delicacy.report.CheckReportActivity
 import com.sea.custom.ui.delicacy.store.StoreDelicacyActivity
+import com.sea.custom.ui.delicacy.vr.StoreVr2Activity
 import com.sea.custom.ui.delicacy.vr.StoreVrActivity
 import com.sea.custom.ui.result.XsDelicacyResultActivity
 import com.sea.custom.utils.DeviceUtils
@@ -164,7 +165,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
                     startActivity(Intent(context, StoreDelicacyActivity::class.java))
                 }
                 1 -> {
-                    startActivity(Intent(context, StoreVrActivity::class.java))
+                    startActivity(Intent(context, StoreVr2Activity::class.java))
                 }
                 2 -> {
                     startActivity(Intent(context, CheckReportActivity::class.java))

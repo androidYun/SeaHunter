@@ -56,10 +56,10 @@ public class RecyclerItemNormalHolder extends RecyclerItemBaseHolder {
         String url;
         String title;
         if (position % 2 == 0) {
-            url = videoModel.getVideoUrl();
+            url =  Constants.baseUrl.concat(videoModel.getVideoUrl());
             title = videoModel.getTitle();
         } else {
-            url = videoModel.getVideoUrl();
+            url =  Constants.baseUrl.concat(videoModel.getVideoUrl());
             title = videoModel.getTitle();
         }
 

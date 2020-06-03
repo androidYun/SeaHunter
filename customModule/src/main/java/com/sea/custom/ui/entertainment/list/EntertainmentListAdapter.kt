@@ -30,6 +30,7 @@ class EntertainmentListAdapter(mList: List<NChannelItem>) :
         helper?.getView<CheckBox>(R.id.rgbCollection)?.text = "${item?.collect_num}"
         helper?.getView<CheckBox>(R.id.rgbForward)?.text = "${item?.share}"
         helper?.getView<CheckBox>(R.id.rgbCollection)?.isChecked = item?.is_collect ?: false
+        helper?.getView<CheckBox>(R.id.rgbCollection)?.isChecked = item?.is_collect ?: false
         helper?.getView<CheckBox>(R.id.rgbComment)?.setOnClickListener {
             it.context.startActivity(
                 Intent(
@@ -45,6 +46,7 @@ class EntertainmentListAdapter(mList: List<NChannelItem>) :
                 })
         }
         helper.addOnClickListener(R.id.rgbCollection)
+        helper.addOnClickListener(R.id.rgbPraise)
     }
 
     override fun createBaseViewHolder(view: View?): BaseViewHolder {

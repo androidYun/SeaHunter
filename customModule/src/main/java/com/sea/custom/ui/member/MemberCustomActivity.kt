@@ -5,23 +5,43 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.custom.R
+import com.sea.custom.dialog.CustomServicesDialog
 import com.sea.custom.em.ChannelEnum
+import com.sea.custom.listener.ApplyMemberShipListener
+import com.sea.custom.presenter.apply.ApplyMembershipContact
+import com.sea.custom.presenter.apply.ApplyMembershipPresenter
+import com.sea.custom.presenter.apply.NApplyMemberModel
+import com.sea.custom.presenter.apply.NApplyMembershipReq
 import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.utils.DeviceUtils
+import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_member_custom.*
 
-class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView {
+class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView , ApplyMembershipContact.IApplyMembershipView{
 
     private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@MemberCustomActivity) } }
+
+
+    private val mApplyMembershipPresenter by lazy {
+        ApplyMembershipPresenter().apply {
+            attachView(
+                this@MemberCustomActivity
+            )
+        }
+    }
 
     private val mNChannelModelReq = NChannelModelReq()
 
     private val mMemberCustomList = mutableListOf<NChannelItem>()
 
     private lateinit var mMemberCustomAdapter: MemberCustomAdapter
+
+    private val nApplyMembershipReq = NApplyMembershipReq()
+
+    private var mApplyShipDialog: CustomServicesDialog? = null
 
     private var totalCount = 0
 
@@ -46,6 +66,7 @@ class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView {
 
     private fun initData() {
         mNChannelModelReq.channel_name = ChannelEnum.service.name
+        nApplyMembershipReq.channel_name = ChannelEnum.service.name
         mChannelPresenter.loadChannel(mNChannelModelReq)
     }
 
@@ -60,7 +81,23 @@ class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView {
                 mMemberCustomAdapter.loadMoreEnd()
             }
         }, rvMemberCustom)
-    }
+        mMemberCustomAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.tvCustomMember -> {
+                        nApplyMembershipReq.article_id = mMemberCustomList[position].id ?: 0
+                        mApplyShipDialog = CustomServicesDialog(this, object : ApplyMemberShipListener {
+                            override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
+                                nApplyMembershipReq.name=nApplyMemberModel.name
+                                nApplyMembershipReq.phone=nApplyMemberModel.phone
+                                nApplyMembershipReq.address=nApplyMemberModel.address
+                                mApplyMembershipPresenter.loadApplyMembership(nApplyMembershipReq)
+                            }
+                        })
+                        mApplyShipDialog?.show()
+                    }
+                }
+            }
+        }
 
 
     override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
@@ -80,7 +117,15 @@ class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView {
         swipeMemberCustom.isRefreshing
         mMemberCustomAdapter.loadMoreComplete()
     }
+    override fun loadApplyMembershipSuccess() {
+        ToastUtils.show("申请成功,等待审核")
+        mChannelPresenter.loadChannel(mNChannelModelReq)
+        mApplyShipDialog?.dismiss()
+    }
 
+    override fun loadApplyMembershipFail(throwable: Throwable) {
+        handleError(throwable)
+    }
 
     override fun showLoading() {
         showProgressDialog()

@@ -69,6 +69,7 @@ class DelicacyIntroduceActivity : BaseActivity(), CategoryContact.ICategoryView 
     override fun hideLoading() {
         hideProgressDialog()
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SearchMallActivity.search_content_request_code && resultCode == SearchMallActivity.search_content_result_code) {
@@ -80,9 +81,10 @@ class DelicacyIntroduceActivity : BaseActivity(), CategoryContact.ICategoryView 
             })
         }
     }
+
     inner class DelicacyIntroducePageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            return DelicacyIntroduceFragment.getInstance()
+            return DelicacyIntroduceFragment.getInstance(mDelicacyIntroduceList[position].id)
         }
 
         override fun getCount(): Int {

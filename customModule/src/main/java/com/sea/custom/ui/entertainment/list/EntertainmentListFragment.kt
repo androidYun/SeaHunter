@@ -15,11 +15,14 @@ import com.sea.custom.presenter.collection.DelicacyCollectionContact
 import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
 import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
 import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
+import com.sea.custom.presenter.praise.NPraiseShareModelReq
+import com.sea.custom.presenter.praise.PraiseShareContact
+import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_entertainment_list.*
 
 class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
-    DelicacyCollectionContact.IDelicacyCollectionView {
+    DelicacyCollectionContact.IDelicacyCollectionView, PraiseShareContact.IPraiseShareView {
 
     private val nChannelPresenter by lazy {
         ChannelPresenter().apply {
@@ -37,6 +40,10 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
         }
     }
     private val nChannelModelReq = NChannelModelReq()
+
+    private val mPraiseSharePresenter by lazy { PraiseSharePresenter().apply { attachView(this@EntertainmentListFragment) } }
+
+    private val nPraiseShareModelReq = NPraiseShareModelReq()
 
     private val categoryId by lazy { arguments?.getInt(channel_key_id) ?: 0 }
 
@@ -107,6 +114,14 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
                         )
                     }
                 }
+                R.id.rgbPraise -> {
+                    nPraiseShareModelReq.channel_name = ChannelEnum.arder.name
+                    nPraiseShareModelReq.article_id = mChannelList[position].id ?: -1
+                    nPraiseShareModelReq.click_type = 2
+                    mPraiseSharePresenter.loadPraiseShare(
+                        nPraiseShareModelReq
+                    )
+                }
             }
         }
     }
@@ -135,6 +150,16 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
     }
 
     override fun loadDelicacyCollectionFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
+
+    override fun loadPraiseShareSuccess(content: Any) {
+        nChannelModelReq.page_index = 1
+        nChannelPresenter.loadChannel(nChannelModelReq)
+    }
+
+    override fun loadPraiseShareFail(throwable: Throwable) {
         handleError(throwable)
     }
 

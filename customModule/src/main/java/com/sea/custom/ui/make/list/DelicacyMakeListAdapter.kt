@@ -45,6 +45,7 @@ class DelicacyMakeListAdapter(mList: List<NChannelItem>) :
                 })
         }
         helper.addOnClickListener(R.id.rgbCollection)
+        helper.addOnClickListener(R.id.tvDelicacyStatus)
     }
 
     override fun createBaseViewHolder(view: View?): BaseViewHolder {

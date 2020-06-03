@@ -31,13 +31,5 @@ class MineCustomPresenter : IPresenter<MineCustomContact.IMineCustomView>(),
                     //这里面是回调成功的方法
                 }, { throwable -> softView.get()?.loadMineCustomFail(throwable) }
             )
-        softView.get()?.loadMineCustomSuccess(
-            listOf(
-                MineCustomItem(),
-                MineCustomItem(),
-                MineCustomItem(),
-                MineCustomItem()
-            ), 10
-        )
     }
 }

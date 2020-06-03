@@ -7,7 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.dialog.ApplyShipDialog
+import com.sea.custom.dialog.CustomServicesDialog
 import com.sea.custom.em.ChannelEnum
+import com.sea.custom.listener.ApplyMemberShipListener
+import com.sea.custom.presenter.apply.ApplyMembershipContact
+import com.sea.custom.presenter.apply.ApplyMembershipPresenter
+import com.sea.custom.presenter.apply.NApplyMemberModel
+import com.sea.custom.presenter.apply.NApplyMembershipReq
 import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
@@ -16,18 +23,29 @@ import com.sea.custom.presenter.collection.DelicacyCollectionContact
 import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
 import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
 import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
+import com.sea.custom.ui.membership.MembershipModeAdapter
 import com.sea.custom.ui.result.DelicacyMakeResultActivity
 import com.sea.custom.ui.result.XsDelicacyResultActivity
+import com.sea.custom.ui.store.StoreListItem
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import kotlinx.android.synthetic.main.fragment_delicacy_make_list.*
 import com.xhs.baselibrary.base.BaseFragment
+import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.include_search_layout.*
 
 class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
-    DelicacyCollectionContact.IDelicacyCollectionView {
+    DelicacyCollectionContact.IDelicacyCollectionView, ApplyMembershipContact.IApplyMembershipView {
 
     private val mChannelPresenter by lazy {
         ChannelPresenter().apply {
+            attachView(
+                this@DelicacyMakeListFragment
+            )
+        }
+    }
+
+    private val mApplyMembershipPresenter by lazy {
+        ApplyMembershipPresenter().apply {
             attachView(
                 this@DelicacyMakeListFragment
             )
@@ -41,7 +59,9 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
             )
         }
     }
+    private val nApplyMembershipReq = NApplyMembershipReq()
 
+    private var mApplyShipDialog: CustomServicesDialog? = null
     private val nChannelModelReq = NChannelModelReq()
 
     private val categoryId by lazy { arguments?.getInt(channel_key_id) ?: 0 }
@@ -77,6 +97,7 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
     }
 
     private fun initData() {
+        nApplyMembershipReq.channel_name = ChannelEnum.food.name
         nChannelModelReq.channel_name = ChannelEnum.food.name
         nChannelModelReq.category_id = categoryId
         mChannelPresenter.loadChannel(nChannelModelReq)
@@ -113,6 +134,20 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
                         )
                     }
                 }
+                R.id.tvDelicacyStatus -> {
+                    activity?.let {
+                        nApplyMembershipReq.article_id = mDelicacyMakeListList[position].id ?: 0
+                        mApplyShipDialog = CustomServicesDialog(activity!!, object : ApplyMemberShipListener {
+                            override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
+                                nApplyMembershipReq.name=nApplyMemberModel.name
+                                nApplyMembershipReq.phone=nApplyMemberModel.phone
+                                nApplyMembershipReq.address=nApplyMemberModel.address
+                                mApplyMembershipPresenter.loadApplyMembership(nApplyMembershipReq)
+                            }
+                        })
+                        mApplyShipDialog?.show()
+                    }
+                }
             }
         }
     }
@@ -142,6 +177,16 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
     }
 
     override fun loadDelicacyCollectionFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
+    override fun loadApplyMembershipSuccess() {
+        ToastUtils.show("申请成功,等待审核")
+        mChannelPresenter.loadChannel(nChannelModelReq)
+        mApplyShipDialog?.dismiss()
+    }
+
+    override fun loadApplyMembershipFail(throwable: Throwable) {
         handleError(throwable)
     }
 

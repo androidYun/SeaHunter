@@ -9,12 +9,13 @@
         <activity
             android:name=".ui.member.MemberCustomActivity"
             android:label="@string/title_MemberCustom" />
-        <activity
-            android:name=".ui.delicacy.vr.StoreVrActivity"
-            android:label="@string/title_StoreVr" />
+
         <activity
             android:name=".ui.delicacy.introduce.DelicacyIntroduceActivity"
             android:label="@string/title_DelicacyIntroduce" />
+        <activity
+            android:name=".ui.delicacy.vr.StoreVr2Activity"
+            android:label="@string/title_StoreVr" />
         <activity
             android:name=".ui.delicacy.report.CheckReportActivity"
             android:label="@string/title_CheckReport" />
@@ -42,6 +43,7 @@
         <activity
             android:name=".ui.club.about.AboutClubActivity"
             android:label="@string/about_club" />
+        <activity android:name=".web.ChannelWebDetailActivity"/>
         <activity
             android:name=".ui.club.activity.ClubActivityActivity"
             android:label="@string/club_activity" />

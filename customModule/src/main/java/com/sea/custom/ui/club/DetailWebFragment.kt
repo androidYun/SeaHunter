@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import com.sea.custom.R
-import com.sea.custom.presenter.channel.detail.ChannelDetail
+import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.detail.ChannelDetailContact
 import com.sea.custom.presenter.channel.detail.ChannelDetailPresenter
 import com.sea.custom.presenter.channel.detail.NChannelDetailModelReq
@@ -189,7 +189,7 @@ class DetailWebFragment : BaseFragment(), ChannelDetailContact.IChannelDetailVie
         }
     }
 
-    override fun loadChannelDetailSuccess(channelDetail: ChannelDetail) {
+    override fun loadChannelDetailSuccess(channelDetail: NChannelItem) {
         webView.loadData(varjs + channelDetail.content, "text/html", "UTF-8");
     }
 

@@ -8,7 +8,6 @@ import com.sea.custom.R
 import com.sea.custom.common.Constants
 import com.sea.custom.presenter.category.NCategoryItem
 import com.sea.custom.ui.delicacy.store.StoreDelicacyActivity
-import com.sea.publicmodule.activity.web.WebActivity
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 
 class DelicacyKindAdapter(mList: List<NCategoryItem>) :

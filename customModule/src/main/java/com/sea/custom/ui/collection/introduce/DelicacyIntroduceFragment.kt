@@ -7,20 +7,41 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
 import com.sea.custom.em.ChannelEnum
+import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.presenter.collection.DelicacyCollectionContact
+import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
+import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
+import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
+import com.sea.custom.presenter.praise.NPraiseShareModelReq
+import com.sea.custom.presenter.praise.PraiseShareContact
+import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.sea.custom.ui.collection.CollectionContact
-import com.sea.custom.ui.collection.CollectionItem
 import com.sea.custom.ui.collection.CollectionPresenter
 import com.sea.custom.ui.collection.NCollectionModelReq
 import kotlinx.android.synthetic.main.fragment_activity_delicacy_introduce.*
 import com.xhs.baselibrary.base.BaseFragment
 
-class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionView {
+class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionView,
+    DelicacyCollectionContact.IDelicacyCollectionView, PraiseShareContact.IPraiseShareView {
+
+    private val mDelicacyCollectionPresenter by lazy {
+        DelicacyCollectionPresenter().apply {
+            attachView(
+                this@DelicacyIntroduceFragment
+            )
+        }
+    }
 
     private val mCollectionPresenter by lazy { CollectionPresenter().apply { attachView(this@DelicacyIntroduceFragment) } }
 
     private val nDelicacyMakeReq = NCollectionModelReq()
 
-    private val mDelicacyIntroduceList = mutableListOf<CollectionItem>()
+
+    private val mPraiseSharePresenter by lazy { PraiseSharePresenter().apply { attachView(this@DelicacyIntroduceFragment) } }
+
+    private val nPraiseShareModelReq = NPraiseShareModelReq()
+
+    private val mDelicacyIntroduceList = mutableListOf<NChannelItem>()
 
     private lateinit var mDelicacyIntroduceAdapter: DelicacyIntroduceAdapter
 
@@ -67,9 +88,29 @@ class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionV
                 mDelicacyIntroduceAdapter.loadMoreEnd()
             }
         }, rvDelicacyIntroduce)
+        mDelicacyIntroduceAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.rgbCollection -> {
+                    mDelicacyCollectionPresenter.cancelDelicacyCollection(
+                        NCancelDelicacyCollectionModelReq(
+                            channel_name = ChannelEnum.arder.name,
+                            article_id = mDelicacyIntroduceList[position].id ?: -1
+                        )
+                    )
+                }
+                R.id.rgbPraise -> {
+                    nPraiseShareModelReq.channel_name = ChannelEnum.arder.name
+                    nPraiseShareModelReq.article_id = mDelicacyIntroduceList[position].id ?: -1
+                    nPraiseShareModelReq.click_type = 2
+                    mPraiseSharePresenter.loadPraiseShare(
+                        nPraiseShareModelReq
+                    )
+                }
+            }
+        }
     }
 
-    override fun loadCollectionSuccess(mList: List<CollectionItem>, totalCount: Int) {
+    override fun loadCollectionSuccess(mList: List<NChannelItem>, totalCount: Int) {
         if (nDelicacyMakeReq.page_index == 1) {
             mDelicacyIntroduceList.clear()
         }
@@ -86,6 +127,25 @@ class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionV
         handleError(throwable)
         swipeDelicacyIntroduce.isRefreshing = false
         mDelicacyIntroduceAdapter.loadMoreComplete()
+    }
+
+    override fun loadDelicacyCollectionSuccess() {
+        nDelicacyMakeReq.page_index = 1
+        mCollectionPresenter.loadCollection(nDelicacyMakeReq)
+    }
+
+    override fun loadDelicacyCollectionFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
+
+    override fun loadPraiseShareSuccess(content: Any) {
+        nDelicacyMakeReq.page_index = 1
+        mCollectionPresenter.loadCollection(nDelicacyMakeReq)
+    }
+
+    override fun loadPraiseShareFail(throwable: Throwable) {
+        handleError(throwable)
     }
 
     override fun showLoading() {

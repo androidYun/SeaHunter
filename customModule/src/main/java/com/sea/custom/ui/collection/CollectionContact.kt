@@ -1,13 +1,13 @@
 package com.sea.custom.ui.collection
 
+import com.sea.custom.presenter.channel.NChannelItem
 import com.xhs.baselibrary.base.IBaseView
-import com.sea.custom.R
 
 interface CollectionContact {
 
     interface ICollectionView : IBaseView {
 
-        fun loadCollectionSuccess(mList: List<CollectionItem>, totalCount: Int)
+        fun loadCollectionSuccess(mList: List<NChannelItem>, totalCount: Int)
 
         fun loadCollectionFail(throwable: Throwable)
 

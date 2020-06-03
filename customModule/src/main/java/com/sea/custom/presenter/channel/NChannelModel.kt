@@ -9,10 +9,10 @@ class NChannelResponse(
     val data: List<NChannelItem> = listOf(),
     val totalCount: Int
 )
+
 @Parcelize
 data class NChannelItem(
     val address: String? = "",
-    val albums: String? = "",
     val category_id: Int? = 0,
     val channel_id: Int? = 0,
     val click: Int? = 0,
@@ -35,8 +35,9 @@ data class NChannelItem(
     val weight: String? = "",
     val worker_no: String? = "",
     val zan: Int? = 0,
-    val zhaiyao: String? = ""
-):Parcelable
+    val zhaiyao: String? = "",
+    val vr_url: String? = ""
+) : Parcelable
 
 class NChannelModelReq(
     private val command: Int = 30,

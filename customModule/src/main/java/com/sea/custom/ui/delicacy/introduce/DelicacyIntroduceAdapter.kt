@@ -7,8 +7,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sea.custom.R
 import com.sea.custom.common.Constants
+import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.channel.NChannelItem
-import com.sea.publicmodule.activity.web.WebActivity
+import com.sea.custom.web.ChannelWebDetailActivity
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 
 class DelicacyIntroduceAdapter(mList: List<NChannelItem>) :
@@ -24,9 +25,11 @@ class DelicacyIntroduceAdapter(mList: List<NChannelItem>) :
             Constants.baseUrl.plus(item?.img_url ?: "")
         )
         helper?.getView<ConstraintLayout>(R.id.lvShopDetail)?.setOnClickListener {
-            it.context.startActivity(Intent(it.context, WebActivity::class.java).apply {
-                putExtras(
-                    WebActivity.getInstance(item?.content ?: "", item?.title ?: "")
+            it.context.startActivity(Intent(it.context, ChannelWebDetailActivity::class.java).apply {
+                ChannelWebDetailActivity.getInstance(
+                    item?.id ?: 0,
+                    ChannelEnum.dish.name,
+                    item?.title ?: ""
                 )
             })
         }

@@ -31,7 +31,7 @@ data class NSubmitCommentModelReq(
      var channel_name: String = "",
      var content: String = "",
      var article_id: Int = -1,
-     var parent_id: Int = -1
+     var parent_id: Int = 0
 
 )
 

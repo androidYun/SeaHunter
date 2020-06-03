@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_70"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvMembership"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/dp_6">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/dp_32"
+                    android:paddingTop="@dimen/dp_70"
+                    android:paddingEnd="@dimen/dp_32"
+                    android:paddingBottom="@dimen/dp_32">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_46"
+                        android:gravity="center"
+                        android:text="申请入会"
+                        android:textColor="@color/color_3"
+                        android:textSize="@dimen/sp_18" />
+
+                    <EditText
+                        android:id="@+id/evName"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+
+
+                        android:background="@drawable/shape_circle_radius_border_color_6"
+                        android:hint="请填写姓名"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:textColorHint="@color/color_9" />
+
+                    <EditText
+                        android:id="@+id/evPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:background="@drawable/shape_circle_radius_border_color_6"
+                        android:hint="请填写联系方式"
+                        android:inputType="phone"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:textColorHint="@color/color_9" />
+
+                    <EditText
+                        android:id="@+id/evAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_80"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:background="@drawable/shape_circle_radius_border_color_6"
+                        android:gravity="top"
+                        android:hint="请填写详细地址"
+                        android:padding="@dimen/dp_8"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:textColorHint="@color/color_9" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="提交之后会有门店联系您"
+                        android:textColor="@color/color_9"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/tvSubmit"
+                        style="@style/baseBtnStyle"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp_40"
+                        android:text="提交" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="@dimen/dp_140"
+            android:layout_height="@dimen/dp_140"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/icon_membership"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

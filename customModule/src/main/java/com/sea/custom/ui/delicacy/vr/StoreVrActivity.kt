@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.sea.custom.R
-import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceResultActivity
 import com.sea.custom.ui.delicacy.vr.list.StoreVrListFragment
 import com.sea.custom.ui.delicacy.vr.list.StoreVrResultActivity
 import com.sea.publicmodule.activity.search.SearchMallActivity
