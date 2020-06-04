@@ -28,6 +28,8 @@ class DelicacyMakeAdapter(mList: List<NChannelItem>) :
         helper?.getView<CheckBox>(R.id.rgbCollection)?.isChecked = true
         helper?.getView<CheckBox>(R.id.rgbForward)?.text = "${item.share}"
         helper?.getView<CheckBox>(R.id.rgbForward)?.isEnabled = false
+        helper?.getView<CheckBox>(R.id.rgbPraise)?.isChecked = item?.is_zan ?: false
+        helper?.getView<CheckBox>(R.id.rgbPraise)?.isEnabled = item?.is_zan != true//如果点过赞  就不能点了
         helper?.getView<CheckBox>(R.id.rgbComment)?.setOnClickListener {
             it.context.startActivity(
                 Intent(
@@ -36,7 +38,7 @@ class DelicacyMakeAdapter(mList: List<NChannelItem>) :
                 ).apply {
                     putExtras(
                         DelicacyCommentActivity.getInstance(
-                            ChannelEnum.arder.name,
+                            ChannelEnum.food.name,
                             item ?: NChannelItem()
                         )
                     )

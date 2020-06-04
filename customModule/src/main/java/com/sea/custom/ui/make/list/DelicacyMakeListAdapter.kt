@@ -30,6 +30,8 @@ class DelicacyMakeListAdapter(mList: List<NChannelItem>) :
         helper?.getView<CheckBox>(R.id.rgbCollection)?.text = "${item?.collect_num}"
         helper?.getView<CheckBox>(R.id.rgbForward)?.text = "${item?.share}"
         helper?.getView<CheckBox>(R.id.rgbCollection)?.isChecked = item?.is_collect ?: false
+        helper?.getView<CheckBox>(R.id.rgbPraise)?.isChecked = item?.is_zan ?: false
+        helper?.getView<CheckBox>(R.id.rgbPraise)?.isEnabled = item?.is_zan != true//如果点过赞  就不能点了
         helper?.getView<CheckBox>(R.id.rgbComment)?.setOnClickListener {
             it.context.startActivity(
                 Intent(

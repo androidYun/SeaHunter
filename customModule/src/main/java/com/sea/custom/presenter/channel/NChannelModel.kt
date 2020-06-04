@@ -36,6 +36,7 @@ data class NChannelItem(
     val worker_no: String? = "",
     val zan: Int? = 0,
     val zhaiyao: String? = "",
+    val is_zan: Boolean? = false,
     val vr_url: String? = ""
 ) : Parcelable
 

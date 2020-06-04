@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -248,6 +249,8 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
         rgbForward.text = "${mChannelItem?.share}"
         rgbComment.text = "${mChannelItem?.comment_num}"
         rgbCollection.isChecked = mChannelItem.is_collect ?: false
+        rgbPraise?.isChecked = mChannelItem?.is_zan ?: false
+        rgbPraise?.isEnabled = mChannelItem?.is_zan != true//如果点过赞  就不能点了
     }
 
     override fun loadChannelDetailFail(throwable: Throwable) {
