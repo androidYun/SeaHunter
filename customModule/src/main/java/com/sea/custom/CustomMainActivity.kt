@@ -3,19 +3,20 @@ package com.sea.custom
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.sea.custom.common.Constants
 import com.sea.custom.ui.club.ClubFragment
 import com.sea.custom.ui.delicacy.DelicacyFragment
 import com.sea.custom.ui.entertainment.EntertainmentFragment
 import com.sea.custom.ui.make.DelicacyMakeFragment
 import com.sea.custom.ui.mine.MineFragment
-import com.xhs.baselibrary.base.BaseActivity
 import com.sea.publicmodule.presenter.version.CheckVersionContact
 import com.sea.publicmodule.presenter.version.CheckVersionPresenter
 import com.sea.publicmodule.presenter.version.NCheckVersionModelReq
 import com.sea.publicmodule.presenter.version.VersionModel
+import com.shuyu.gsyvideoplayer.GSYVideoManager
+import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.ui.update.UpdateActivity
 import kotlinx.android.synthetic.main.activity_custom_main.*
+
 
 class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView {
 
@@ -140,6 +141,27 @@ class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView
         for (fragment in fragments) {
             fragment?.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
+    }
+    override fun onBackPressed() {
+        if (GSYVideoManager.backFromWindowFull(this)) {
+            return
+        }
+        super.onBackPressed()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GSYVideoManager.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GSYVideoManager.onResume(false)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GSYVideoManager.releaseAllVideos()
     }
 
 }

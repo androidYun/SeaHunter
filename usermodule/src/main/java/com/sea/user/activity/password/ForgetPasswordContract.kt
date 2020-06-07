@@ -1,7 +1,6 @@
 package com.sea.user.activity.password
 
 import com.xhs.baselibrary.base.IBaseView
-import com.xhs.prison.model.NForgetPasswordModelReq
 
 /**
  * @ author guiyun.li

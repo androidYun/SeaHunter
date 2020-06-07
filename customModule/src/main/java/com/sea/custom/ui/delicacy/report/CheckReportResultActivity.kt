@@ -17,9 +17,11 @@ import com.sea.publicmodule.activity.search.SearchMallActivity
 import kotlinx.android.synthetic.main.activity_check_report.*
 import kotlinx.android.synthetic.main.include_search_layout.*
 
-class CheckReportActivity : BaseActivity(), ChannelContact.IChannelView {
+class CheckReportResultActivity : BaseActivity(), ChannelContact.IChannelView {
 
-    private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@CheckReportActivity) } }
+    private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@CheckReportResultActivity) } }
+
+    private val searchContent by lazy { intent.extras?.getString(search_result_key) ?: "" }
 
     private val nChannelModelReq = NChannelModelReq()
 
@@ -31,7 +33,7 @@ class CheckReportActivity : BaseActivity(), ChannelContact.IChannelView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_check_report)
+        setContentView(R.layout.activity_check_report_result)
         initView()
         initData()
         initListener()
@@ -52,6 +54,7 @@ class CheckReportActivity : BaseActivity(), ChannelContact.IChannelView {
 
     private fun initData() {
         nChannelModelReq.channel_name = ChannelEnum.report.name
+        nChannelModelReq.key = searchContent
         mChannelPresenter.loadChannel(nChannelModelReq)
     }
 
@@ -66,11 +69,27 @@ class CheckReportActivity : BaseActivity(), ChannelContact.IChannelView {
                 mCheckReportAdapter.loadMoreEnd()
             }
         }, rvCheckReport)
-        lvSearchShop.setOnClickListener {
-            startActivityForResult(
-                Intent(this, SearchMallActivity::class.java),
-                SearchMallActivity.search_content_request_code
-            )
+        mCheckReportAdapter.setOnItemClickListener { _, _, position ->
+            when (position) {
+                0 -> {
+
+                }
+                1 -> {
+
+                }
+                2 -> {
+                    startActivity(Intent(this, CheckReportResultActivity::class.java))
+                }
+                3 -> {
+
+                }
+            }
+            lvSearchShop.setOnClickListener {
+                startActivityForResult(
+                    Intent(this, SearchMallActivity::class.java),
+                    SearchMallActivity.search_content_request_code
+                )
+            }
         }
     }
 
@@ -97,9 +116,9 @@ class CheckReportActivity : BaseActivity(), ChannelContact.IChannelView {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SearchMallActivity.search_content_request_code && resultCode == SearchMallActivity.search_content_result_code) {
             val searchContent = data?.getStringExtra(SearchMallActivity.search_content_key) ?: ""
-            startActivity(Intent(this, CheckReportResultActivity::class.java).apply {
+            startActivity(Intent(this, DelicacyIntroduceResultActivity::class.java).apply {
                 putExtras(
-                    CheckReportResultActivity.getInstance(searchContent)
+                    DelicacyIntroduceResultActivity.getInstance(searchContent)
                 )
             })
         }
@@ -114,6 +133,10 @@ class CheckReportActivity : BaseActivity(), ChannelContact.IChannelView {
     }
 
     companion object {
-        fun getInstance() = Bundle().apply { }
+        private const val search_result_key = "search_result_key"
+        fun getInstance(searchContent: String = "") = Bundle().apply {
+            putString(search_result_key, searchContent)
+
+        }
     }
 }

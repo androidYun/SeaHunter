@@ -1,23 +1,17 @@
-package com.sea.user.activity.register
+package com.sea.user.activity.login.version
 
-import com.sea.user.api.UserInformApi
 import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
+import com.sea.user.api.VersionLoginApi
 
-/**
- * @ author guiyun.li
- * @ Email xyz_6776.@163.com
- * @ date 31/12/2019.
- * description:
- */
-class RegisterPresenter : IPresenter<RegisterContract.IRegisterView>(),
-    RegisterContract.IRegisterPresenter {
 
-    override fun loadRegister(nRegisterModelReq: NRegisterModelReq) {
+class VersionLoginPresenter : IPresenter<VersionLoginContact.IVersionLoginView>(),
+    VersionLoginContact.IVersionLoginPresenter {
+    override fun loadVersionLogin(nVersionLoginModelReq: NVersionLoginModelReq) {
         RetrofitUtils.getRetrofit()
-            .create(UserInformApi::class.java)
-            .loadRegister(nRegisterModelReq)
+            .create(VersionLoginApi::class.java)
+            .loadVersionLogin(nVersionLoginModelReq)
             .compose(RxUtils.getSchedulerTransformer())
             .compose(RxUtils.bindToLifecycle(softView.get()))
             .doOnSubscribe { disposable ->
@@ -30,12 +24,13 @@ class RegisterPresenter : IPresenter<RegisterContract.IRegisterView>(),
             .subscribe(
                 {
                     if (it.code == 1) {
-                        softView.get()?.loadRegisterSuccess(it.data)
+                        softView.get()
+                            ?.loadVersionLoginSuccess(it.data, nVersionLoginModelReq.phone)
                     } else {
-                        softView.get()?.loadRegisterFail(Throwable(it.msg))
+                        softView.get()?.loadVersionLoginFail(Throwable(it.msg))
                     }
                     //这里面是回调成功的方法
-                }, { throwable -> softView.get()?.loadRegisterFail(throwable) }
+                }, { throwable -> softView.get()?.loadVersionLoginFail(throwable) }
             )
     }
 }

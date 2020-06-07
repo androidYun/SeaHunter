@@ -17,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginTop="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin">
 
 
@@ -25,6 +24,7 @@
             android:id="@+id/tvDelicacyName"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:paddingTop="@dimen/default_padding"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_16"
@@ -33,6 +33,8 @@
         <TextView
             android:id="@+id/tvDelicacyStatus"
             android:layout_width="wrap_content"
+            android:paddingStart="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
             android:drawablePadding="@dimen/dp_8"
             android:layout_height="wrap_content"
             android:drawableStart="@mipmap/icon_custom"

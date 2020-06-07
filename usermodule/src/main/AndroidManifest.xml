@@ -5,6 +5,7 @@
     <supports-screens android:requiresSmallestWidthDp="600" />
 
     <application>
+
         <activity
             android:name=".activity.password.modify.ModifyPasswordActivity"
             android:label="@string/title_ModifyPassword" />
@@ -86,6 +87,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.login.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".activity.login.version.VersionLoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />

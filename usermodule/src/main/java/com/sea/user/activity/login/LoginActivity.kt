@@ -7,6 +7,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.KeyEvent
 import android.view.MotionEvent
+import com.crashlytics.android.Crashlytics
 import com.sea.user.R
 import com.sea.user.activity.main.SeaMainActivity
 import com.sea.user.activity.mall.SeaFoodMallActivity
@@ -18,8 +19,11 @@ import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import com.sea.publicmodule.presenter.user.UserInformModel
 import com.sea.publicmodule.router.RouterManager
+import com.sea.user.activity.login.version.VersionLoginActivity
 import kotlinx.android.synthetic.main.activity_user_login.*
 import kotlinx.android.synthetic.main.include_shop_eye.*
+import java.lang.NullPointerException
+import java.util.concurrent.TimeoutException
 
 class LoginActivity : BaseActivity(), LoginContact.ILoginView {
 
@@ -35,16 +39,16 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
 
 
     private fun initView() {
-        if (!UserInformSpUtils.getPhoneNumber().isNullOrBlank()) {
-            evUserName.setText(UserInformSpUtils.getPhoneNumber())
-        }
-        if (!UserInformSpUtils.getPassword().isNullOrBlank()) {
-            evPassword.setText(UserInformSpUtils.getPassword())
-        }
+//        if (!UserInformSpUtils.getPhoneNumber().isNullOrBlank()) {
+//            evUserName.setText(UserInformSpUtils.getPhoneNumber())
+//        }
+//        if (!UserInformSpUtils.getPassword().isNullOrBlank()) {
+//            evPassword.setText(UserInformSpUtils.getPassword())
+//        }
     }
 
     private fun initData() {
-
+        UserInformSpUtils.clearUserInform()//清除用户
     }
 
     private fun initListener() {
@@ -71,8 +75,8 @@ class LoginActivity : BaseActivity(), LoginContact.ILoginView {
             }
             mLoginPresenter.loadLogin(NLoginModelReq(phone = userName, password = password))
         }
-        tvRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+        tvSmsLogin.setOnClickListener {
+            startActivity(Intent(this, VersionLoginActivity::class.java))
         }
         tvForgetPassword.setOnClickListener {
             startActivity(Intent(this, ForgetPasswordActivity::class.java))

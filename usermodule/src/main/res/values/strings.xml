@@ -2,6 +2,7 @@
     <string name="title_activity_null">蓝海猎人</string>
     <string name="title_Login">蓝海猎人</string>
     <string name="new_user_register">新用户注册</string>
+    <string name="sms_login">短信登录</string>
     <string name="forget_password">忘记密码</string>
     <string name="login">登录</string>
     <string name="please_input_password">请输入密码</string>
@@ -53,4 +54,5 @@
     <string name="title_ModityPhone">修改密码</string>
     <string name="title_ModifyPhone">修改手机号</string>
     <string name="title_ModifyPassword">修改密码</string>
+    <string name="title_VersionLogin">验证码登录</string>
 </resources>

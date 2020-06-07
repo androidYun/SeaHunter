@@ -14,9 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding">
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -99,7 +97,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRecommendAction"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/dp_8" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

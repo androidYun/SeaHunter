@@ -2,6 +2,7 @@ package com.sea.publicmodule.utils.sp
 
 import com.xhs.baselibrary.utils.sp.BaseSharePreUtils
 import com.sea.publicmodule.presenter.user.UserInformModel
+import com.xhs.baselibrary.BaseApplication
 
 object UserInformSpUtils {
     private var baseSharePreUtils: BaseSharePreUtils
@@ -17,6 +18,7 @@ object UserInformSpUtils {
 
     private var userInformModel: UserInformModel =
         UserInformModel()
+
     fun getUserInformModel(): UserInformModel {
         if (userInformModel == null || userInformModel.id < 0) {
             userInformModel = baseSharePreUtils.get(
@@ -49,8 +51,21 @@ object UserInformSpUtils {
         return baseSharePreUtils.get(sea_hunter_user_password_key, default)
     }
 
+    fun clearUserInform() {
+        baseSharePreUtils.clear(BaseApplication.getsInstance())
+    }
+
+    private var userId: Int = -1
+
     fun getUserId(): Int {
+        if (userId != -1) {
+            return userId
+        }
         return getUserInformModel().id
+    }
+
+    fun setUserId(userId: Int) {
+        this.userId = userId
     }
 
 

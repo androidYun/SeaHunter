@@ -7,13 +7,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
 import com.sea.custom.common.Constants
-import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.detail.ChannelDetailContact
 import com.sea.custom.presenter.channel.detail.ChannelDetailPresenter
@@ -27,12 +25,12 @@ import com.sea.custom.presenter.praise.NPraiseShareModelReq
 import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.sea.custom.ui.collection.NCollectionModelReq
+import com.sea.publicmodule.utils.SoftKeyBoardListener
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
-import com.sea.publicmodule.utils.SoftKeyBoardListener
 import kotlinx.android.synthetic.main.activity_delicacy_comment.*
 import kotlinx.android.synthetic.main.include_work_operator.*
 
@@ -90,6 +88,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
             Constants.baseUrl + mChannelItem.img_url
         )
         gsyVideoPlayer.thumbImageView = imageView
+        gsyVideoPlayer.backButton.visibility = View.GONE
     }
 
 
@@ -265,15 +264,6 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
         hideProgressDialog()
     }
 
-    override fun onPause() {
-        super.onPause()
-        gsyVideoPlayer.onVideoPause();
-    }
-
-    override fun onResume() {
-        super.onResume()
-        gsyVideoPlayer.onVideoResume();
-    }
 
     override fun onBackPressed() { //先返回正常状态
         if (resources.configuration.orientation === ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
@@ -292,8 +282,20 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        gsyVideoPlayer.onVideoPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        gsyVideoPlayer.onVideoResume()
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
+        GSYVideoManager.releaseAllVideos();
     }
 
     companion object {

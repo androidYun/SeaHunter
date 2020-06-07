@@ -24,7 +24,7 @@ class CheckReportAdapter(mList: List<NChannelItem>) :
                 putExtras(
                     ChannelWebDetailActivity.getInstance(
                         item?.id ?: 0,
-                        ChannelEnum.dish.name,
+                        ChannelEnum.report.name,
                         item?.title ?: ""
                     )
                 )

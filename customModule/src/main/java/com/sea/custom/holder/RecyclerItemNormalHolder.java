@@ -79,8 +79,8 @@ public class RecyclerItemNormalHolder extends RecyclerItemBaseHolder {
                 .setLockLand(true)
                 .setPlayTag(TAG)
                 .setMapHeadData(header)
-                .setShowFullAnimation(true)
-                .setNeedLockFull(true)
+                .setShowFullAnimation(false)
+                .setNeedLockFull(false)
                 .setPlayPosition(position)
                 .setVideoAllCallBack(new GSYSampleCallBack() {
                     @Override

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
+
     <LinearLayout
         android:id="@+id/lvSearchShop"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_46"
+        android:layout_height="@dimen/dp_42"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/dp_8"
         android:background="@drawable/shape_search_bg"
-        android:gravity="center"
-      >
+        android:gravity="center">
 
         <ImageView
             android:layout_width="wrap_content"

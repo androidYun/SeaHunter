@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
@@ -18,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.8">
+            app:layout_constraintWidth_percent="0.9">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvMembership"
@@ -40,7 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_46"
                         android:gravity="center"
-                        android:text="申请入会"
+                        android:text="上门定制服务"
                         android:textColor="@color/color_3"
                         android:textSize="@dimen/sp_18" />
 
@@ -112,5 +113,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:id="@+id/ivCancel"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:src="@mipmap/ic_cancel" />
 
 </LinearLayout>

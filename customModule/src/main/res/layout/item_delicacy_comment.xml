@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_3"
-            android:textSize="@dimen/sp_13"
+            android:textSize="@dimen/sp_15"
             tools:text="深海" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_6"
             android:textColor="@color/black"
-            android:textSize="11sp"
+            android:textSize="14sp"
             tools:text="看着很好吃的样子" />
 
         <LinearLayout
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_9"
-                android:textSize="@dimen/sp_11"
+                android:textSize="@dimen/sp_12"
                 tools:text="2019-08-01  12:24:56" />
 
             <TextView
@@ -58,7 +58,7 @@
                 android:paddingEnd="@dimen/dp_30"
                 android:text="回复"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_11" />
+                android:textSize="@dimen/sp_14" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

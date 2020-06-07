@@ -12,7 +12,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.sea.custom.R
@@ -36,18 +35,15 @@ import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceActivity
 import com.sea.custom.ui.delicacy.report.CheckReportActivity
 import com.sea.custom.ui.delicacy.store.StoreDelicacyActivity
 import com.sea.custom.ui.delicacy.vr.StoreVr2Activity
-import com.sea.custom.ui.delicacy.vr.StoreVrActivity
 import com.sea.custom.ui.result.XsDelicacyResultActivity
+import com.sea.custom.ui.vr.VrDetailActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
 import com.yzq.zxinglibrary.android.CaptureActivity
-import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
-import kotlinx.android.synthetic.main.fragment_delicacy_layout.bannerView
-import kotlinx.android.synthetic.main.fragment_delicacy_layout.swipeLayout
-import kotlinx.android.synthetic.main.include_search_layout.*
-import com.sea.custom.ui.vr.VrDetailActivity
 import com.yzq.zxinglibrary.common.Constant
+import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
+import kotlinx.android.synthetic.main.include_search_layout.*
 
 
 class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.IBannerView,
@@ -248,6 +244,9 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
             })
         } else if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
             val content = data?.getStringExtra(Constant.CODED_CONTENT) ?: ""
+            if (content.isNullOrBlank() || !content.contains("hnzhiling.com", false)) {
+                return
+            }
             startActivity(Intent(context, VrDetailActivity::class.java).apply {
                 putExtras(
                     VrDetailActivity.getInstance(content)

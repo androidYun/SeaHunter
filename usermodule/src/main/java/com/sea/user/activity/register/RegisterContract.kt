@@ -12,7 +12,7 @@ interface RegisterContract {
 
     interface IRegisterView : IBaseView {
 
-        fun loadRegisterSuccess()
+        fun loadRegisterSuccess(userId: String)
 
         fun loadRegisterFail(throwable: Throwable)
 

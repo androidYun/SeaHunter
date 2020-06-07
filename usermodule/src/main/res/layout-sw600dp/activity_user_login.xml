@@ -37,8 +37,8 @@
                 android:drawablePadding="@dimen/dp_10"
                 android:hint="@string/please_input_account"
                 android:inputType="phone"
-                android:maxLength="11"
                 android:lines="1"
+                android:maxLength="11"
                 android:singleLine="true"
                 android:textColor="@color/color_3"
                 android:textColorHint="@color/color_e4e4e4" />
@@ -98,12 +98,12 @@
             app:layout_constraintWidth_percent="0.6">
 
             <TextView
-                android:id="@+id/tvRegister"
+                android:id="@+id/tvSmsLogin"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="@string/new_user_register"
+                android:text="@string/sms_login"
                 android:textColor="@color/user_theme_color"
                 android:textSize="@dimen/sp_16" />
 

@@ -20,7 +20,11 @@ class DelicacyCommentAdapter(mList: List<CommentItem>) :
             helper?.getView(R.id.ivHead),
             Constants.baseUrl.plus(item.avatar)
         )
-        helper?.setText(R.id.tvName, item.user_name)
+        if (!item.user_name.isNullOrBlank())
+            helper?.setText(R.id.tvName, "${item.user_name}: ")
+        else {
+            helper?.setText(R.id.tvName, "")
+        }
         helper?.setText(R.id.tvContent, item.content)
         helper?.setText(R.id.tvTime, item.add_time)
         val recyclerView = helper?.getView<RecyclerView>(R.id.rvApplyComment)

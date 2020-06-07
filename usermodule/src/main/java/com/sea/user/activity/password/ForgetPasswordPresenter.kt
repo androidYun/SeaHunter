@@ -5,7 +5,6 @@ import com.xhs.baselibrary.base.IPresenter
 import com.xhs.baselibrary.base.example.ExampleApi
 import com.xhs.baselibrary.net.retrifit.RetrofitUtils
 import com.xhs.baselibrary.net.util.RxUtils
-import com.xhs.prison.model.NForgetPasswordModelReq
 
 /**
  * @ author guiyun.li

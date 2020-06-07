@@ -20,6 +20,9 @@
             android:name=".ui.delicacy.report.CheckReportActivity"
             android:label="@string/title_CheckReport" />
         <activity
+            android:name=".ui.delicacy.report.CheckReportResultActivity"
+            android:label="@string/title_CheckReport_result" />
+        <activity
             android:name=".ui.store.StoreListActivity"
             android:label="@string/title_StoreList" />
         <activity
@@ -49,6 +52,7 @@
             android:label="@string/club_activity" />
         <activity
             android:name=".ui.delicacy.comment.DelicacyCommentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/club_activity" />
         <activity
             android:name=".ui.result.ClubSearchResultActivity"
@@ -77,6 +81,7 @@
             android:label="@string/clubActivitySearchResult" />
         <activity
             android:name=".CustomMainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />

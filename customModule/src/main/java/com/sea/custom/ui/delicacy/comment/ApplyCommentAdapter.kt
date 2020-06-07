@@ -14,7 +14,11 @@ class ApplyCommentAdapter(mList: List<CommentItem>) :
         mList
     ) {
     override fun convert(helper: BaseViewHolder?, item: CommentItem) {
-        helper?.setText(R.id.tvName, item.user_name)
+        if (!item.user_name.isNullOrBlank())
+            helper?.setText(R.id.tvName, "${item.user_name}: ")
+        else {
+            helper?.setText(R.id.tvName, "")
+        }
         helper?.setText(R.id.tvContent, item.content)
     }
 }

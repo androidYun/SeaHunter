@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="UserAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="UserAppTheme" parent="Theme.AppCompat.Light">
         <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:windowBackground">@mipmap/bg_white</item>
         <item name="android:actionBarSize">44dp</item>
         <item name="actionBarSize">44dp</item>
-        <item name="colorPrimary">@color/user_theme_color</item>
-        <item name="colorPrimaryDark">@color/user_theme_color</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
     </style>
 
     <style name="grayNoActionBarTheme" parent="NoActionBarTheme">

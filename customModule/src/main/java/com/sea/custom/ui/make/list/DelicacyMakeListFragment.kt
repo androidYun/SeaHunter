@@ -1,13 +1,11 @@
 package com.sea.custom.ui.make.list
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
-import com.sea.custom.dialog.ApplyShipDialog
 import com.sea.custom.dialog.CustomServicesDialog
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.listener.ApplyMemberShipListener
@@ -23,17 +21,15 @@ import com.sea.custom.presenter.collection.DelicacyCollectionContact
 import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
 import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
 import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
-import com.sea.custom.ui.membership.MembershipModeAdapter
-import com.sea.custom.ui.result.DelicacyMakeResultActivity
-import com.sea.custom.ui.result.XsDelicacyResultActivity
-import com.sea.custom.ui.store.StoreListItem
-import com.sea.publicmodule.activity.search.SearchMallActivity
-import kotlinx.android.synthetic.main.fragment_delicacy_make_list.*
+import com.sea.custom.presenter.praise.NPraiseShareModelReq
+import com.sea.custom.presenter.praise.PraiseShareContact
+import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.ToastUtils
-import kotlinx.android.synthetic.main.include_search_layout.*
+import kotlinx.android.synthetic.main.fragment_delicacy_make_list.*
 
 class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
+    PraiseShareContact.IPraiseShareView,
     DelicacyCollectionContact.IDelicacyCollectionView, ApplyMembershipContact.IApplyMembershipView {
 
     private val mChannelPresenter by lazy {
@@ -59,6 +55,10 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
             )
         }
     }
+
+    private val mPraiseSharePresenter by lazy { PraiseSharePresenter().apply { attachView(this@DelicacyMakeListFragment) } }
+
+    private val nPraiseShareModelReq = NPraiseShareModelReq()
     private val nApplyMembershipReq = NApplyMembershipReq()
 
     private var mApplyShipDialog: CustomServicesDialog? = null
@@ -137,16 +137,27 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
                 R.id.tvDelicacyStatus -> {
                     activity?.let {
                         nApplyMembershipReq.article_id = mDelicacyMakeListList[position].id ?: 0
-                        mApplyShipDialog = CustomServicesDialog(activity!!, object : ApplyMemberShipListener {
-                            override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
-                                nApplyMembershipReq.name=nApplyMemberModel.name
-                                nApplyMembershipReq.phone=nApplyMemberModel.phone
-                                nApplyMembershipReq.address=nApplyMemberModel.address
-                                mApplyMembershipPresenter.loadApplyMembership(nApplyMembershipReq)
-                            }
-                        })
+                        mApplyShipDialog =
+                            CustomServicesDialog(activity!!, object : ApplyMemberShipListener {
+                                override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
+                                    nApplyMembershipReq.name = nApplyMemberModel.name
+                                    nApplyMembershipReq.phone = nApplyMemberModel.phone
+                                    nApplyMembershipReq.address = nApplyMemberModel.address
+                                    mApplyMembershipPresenter.loadApplyMembership(
+                                        nApplyMembershipReq
+                                    )
+                                }
+                            })
                         mApplyShipDialog?.show()
                     }
+                }
+                R.id.rgbPraise -> {
+                    nPraiseShareModelReq.channel_name = ChannelEnum.food.name
+                    nPraiseShareModelReq.article_id = mDelicacyMakeListList[position].id ?: -1
+                    nPraiseShareModelReq.click_type = 2
+                    mPraiseSharePresenter.loadPraiseShare(
+                        nPraiseShareModelReq
+                    )
                 }
             }
         }
@@ -187,6 +198,15 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
     }
 
     override fun loadApplyMembershipFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
+    override fun loadPraiseShareSuccess(content: Any) {
+        nChannelModelReq.page_index = 1
+        mChannelPresenter.loadChannel(nChannelModelReq)
+    }
+
+    override fun loadPraiseShareFail(throwable: Throwable) {
         handleError(throwable)
     }
 

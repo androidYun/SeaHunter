@@ -29,7 +29,7 @@ class ClubMatchAdapter(mList: List<NChannelItem>) :
                     putExtras(
                         ChannelWebDetailActivity.getInstance(
                             item?.id ?: 0,
-                            ChannelEnum.club.name,
+                            ChannelEnum.game.name,
                             item?.title ?: ""
                         )
                     )

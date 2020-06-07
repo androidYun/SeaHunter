@@ -35,7 +35,7 @@
                 android:background="@null"
                 android:drawableStart="@mipmap/ic_account"
                 android:drawablePadding="@dimen/dp_10"
-                android:hint="@string/please_input_account"
+                android:hint="@string/please_input_phone"
                 android:inputType="phone"
                 android:maxLength="11"
                 android:lines="1"
@@ -44,11 +44,12 @@
                 android:textColorHint="@color/color_e4e4e4" />
         </LinearLayout>
 
+
         <LinearLayout
-            android:id="@+id/lvPassword"
+            android:id="@+id/lvVersionCode"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_46"
-            android:layout_marginTop="@dimen/dp_32"
+            android:layout_marginTop="@dimen/dp_40"
             android:background="@drawable/shape_user_name_background"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/default_padding"
@@ -58,24 +59,36 @@
             app:layout_constraintTop_toBottomOf="@+id/lvUserName"
             app:layout_constraintWidth_percent="0.8">
 
-
             <EditText
-                android:id="@+id/evPassword"
+                android:id="@+id/evVersionCode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
-                android:drawableStart="@mipmap/ic_password"
+                android:drawableStart="@mipmap/ic_verification_code"
                 android:drawablePadding="@dimen/dp_10"
-                android:hint="@string/please_input_password"
-                android:inputType="textPassword"
+                android:hint="@string/please_input_version_code"
                 android:lines="1"
                 android:singleLine="true"
+                android:inputType="number"
                 android:textColor="@color/color_3"
-                android:textColorHint="@color/color_e4e4e4" />
+                android:textColorHint="@color/color_c5c5c5" />
 
-            <include layout="@layout/include_shop_eye" />
+            <View
+                android:layout_width="@dimen/dp_2"
+                android:layout_height="@dimen/dp_20"
+                android:background="@color/user_theme_color" />
+
+            <TextView
+                android:id="@+id/tvVersionCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="@string/get_version_code"
+                android:textColor="@color/user_theme_color"
+                android:textSize="@dimen/sp_14" />
         </LinearLayout>
+
 
         <TextView
             android:id="@+id/tvLogin"
@@ -84,39 +97,9 @@
             android:text="@string/login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lvPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/lvVersionCode" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp_46"
-            android:layout_marginTop="@dimen/dp_32"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLogin"
-            app:layout_constraintWidth_percent="0.8">
 
-            <TextView
-                android:id="@+id/tvSmsLogin"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="@string/sms_login"
-                android:textColor="@color/user_theme_color"
-                android:textSize="@dimen/sp_14" />
-
-            <TextView
-                android:id="@+id/tvForgetPassword"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|end"
-                android:text="@string/forget_password"
-                android:textColor="@color/user_theme_color"
-                android:textSize="@dimen/sp_14" />
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import com.sea.custom.CustomMainActivity
 import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.sea.user.activity.login.LoginActivity
+import com.sea.user.activity.login.version.VersionLoginActivity
 import com.xhs.baselibrary.utils.PermissionsUtils
 
 class SplashActivity : AppCompatActivity() {
@@ -27,8 +28,8 @@ class SplashActivity : AppCompatActivity() {
                 val phoneNumber = UserInformSpUtils.getPhoneNumber("")
                 val password = UserInformSpUtils.getPassword("")
                 Handler().postDelayed({
-                    if (phoneNumber.isNullOrBlank() || password.isNullOrBlank()) {
-                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    if (phoneNumber.isNullOrBlank()) {
+                        startActivity(Intent(this@SplashActivity, VersionLoginActivity::class.java))
                     } else {
                         startActivity(Intent(this@SplashActivity, CustomMainActivity::class.java))
                     }

@@ -22,7 +22,7 @@ class MemberCustomAdapter(mList: List<NChannelItem>) :
         val recyclerItemViewHolder = helper as RecyclerItemNormalHolder
         recyclerItemViewHolder.recyclerBaseAdapter = this
         recyclerItemViewHolder.onBind(
-            0,
+            helper.layoutPosition,
             VideoModel(item.video_src ?: "", item.title ?: "", item.img_url ?: "")
         )
         helper?.setText(R.id.tvTitle, item?.title ?: "")

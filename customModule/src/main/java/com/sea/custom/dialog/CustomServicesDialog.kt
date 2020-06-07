@@ -63,7 +63,7 @@ class CustomServicesDialog(
             nApplyMemberModel.address = address
             applyMemberShipListener.applyMemberShipSuccess(nApplyMemberModel)
         }
-
+        ivCancel.setOnClickListener { this.dismiss() }
     }
 
 }

@@ -54,7 +54,7 @@
                 android:background="@drawable/shape_apply_comment"
                 android:gravity="center"
                 android:hint="我来说两句"
-                android:textSize="@dimen/sp_11" />
+                android:textSize="@dimen/sp_14" />
 
             <include
                 android:id="@+id/includeStatus"

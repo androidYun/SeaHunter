@@ -80,12 +80,12 @@ class ClubMatchActivity : BaseActivity(), ChannelContact.IChannelView {
                 }
                 R.id.btnNew -> {
                     nChannelModelReq.page_index=1
-                    nChannelModelReq.sort = 1
+                    nChannelModelReq.sort = 2
                     nChannelPresenter.loadChannel(nChannelModelReq)
                 }
                 R.id.btnMore -> {
                     nChannelModelReq.page_index=1
-                    nChannelModelReq.sort = 2
+                    nChannelModelReq.sort = 3
                     nChannelPresenter.loadChannel(nChannelModelReq)
                 }
             }

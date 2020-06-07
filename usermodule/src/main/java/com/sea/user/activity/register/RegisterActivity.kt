@@ -3,6 +3,7 @@ package com.sea.user.activity.register
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.sea.user.R
 import com.sea.user.activity.inform.FillInformActivity
 import com.sea.user.activity.password.ForgetPasswordActivity
@@ -104,7 +105,10 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,
         }
     }
 
-    override fun loadRegisterSuccess() {
+    override fun loadRegisterSuccess(userId: String) {
+        if (!userId.isNullOrBlank()) {
+            UserInformSpUtils.setUserId(userId = userId.toInt())
+        }
         startActivity(Intent(this, FillInformActivity::class.java))
     }
 
@@ -116,6 +120,11 @@ class RegisterActivity : BaseActivity(), RegisterContract.IRegisterView,
     override fun loadVersionCodeSuccess(authCode: String) {
         this.authCode = authCode
         timeCountDown.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timeCountDown.cancel()
     }
 
     override fun loadVersionCodeFail(throwable: Throwable) {

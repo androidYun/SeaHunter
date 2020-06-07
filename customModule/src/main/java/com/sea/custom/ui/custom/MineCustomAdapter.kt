@@ -16,7 +16,7 @@ class MineCustomAdapter(mList: List<MineCustomItem>) :
         val recyclerItemViewHolder = helper as RecyclerItemNormalHolder
         recyclerItemViewHolder.recyclerBaseAdapter = this
         recyclerItemViewHolder.onBind(
-            0,
+            helper.layoutPosition,
             VideoModel(
                 item.article?.fields?.video_src ?: "",
                 item.article?.title ?: "",

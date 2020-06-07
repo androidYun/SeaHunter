@@ -76,7 +76,7 @@ class ApplyShipDialog(
             nApplyMemberModel.birthday = birthday
             applyMemberShipListener.applyMemberShipSuccess(nApplyMemberModel)
         }
-
+        ivCancel.setOnClickListener { this.dismiss() }
     }
 
     fun setBirthDay(birthday: String) {

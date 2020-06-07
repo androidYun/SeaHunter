@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sea.custom.R
 import com.sea.custom.em.ChannelEnum
+import com.sea.custom.holder.RecyclerItemNormalHolder
 import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
@@ -18,8 +20,10 @@ import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
 import com.sea.custom.presenter.praise.NPraiseShareModelReq
 import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_entertainment_list.*
+
 
 class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
     DelicacyCollectionContact.IDelicacyCollectionView, PraiseShareContact.IPraiseShareView {
@@ -70,10 +74,12 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
         initListener()
     }
 
+    var linearLayoutManager: LinearLayoutManager? = null
 
     private fun initView() {
         mEntertainmentListAdapter = EntertainmentListAdapter(mChannelList)
-        rvEntertainmentList.layoutManager = LinearLayoutManager(context)
+        linearLayoutManager = LinearLayoutManager(context)
+        rvEntertainmentList.layoutManager = linearLayoutManager
         rvEntertainmentList.adapter = mEntertainmentListAdapter
     }
 
@@ -124,6 +130,32 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
                 }
             }
         }
+        var firstVisibleItem = 0
+        var lastVisibleItem = 0
+        rvEntertainmentList.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+           override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView!!, newState)
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView!!, dx, dy)
+                firstVisibleItem = linearLayoutManager!!.findFirstVisibleItemPosition()
+                lastVisibleItem = linearLayoutManager!!.findLastVisibleItemPosition()
+                //大于0说明有播放
+                if (GSYVideoManager.instance().playPosition >= 0) { //当前播放的位置
+                    val position = GSYVideoManager.instance().playPosition
+                    //对应的播放列表TAG
+                    if (GSYVideoManager.instance().playTag == RecyclerItemNormalHolder.TAG && (position < firstVisibleItem || position > lastVisibleItem)) { //如果滑出去了上面和下面就是否，和今日头条一样
+//是否全屏
+                        if (!GSYVideoManager.isFullState(activity)) {
+                            GSYVideoManager.releaseAllVideos()
+                            mEntertainmentListAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+            }
+        })
+
     }
 
     override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
@@ -169,6 +201,22 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
 
     override fun hideLoading() {
         hideProgressDialog()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        GSYVideoManager.onResume(false);
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GSYVideoManager.onPause();
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GSYVideoManager.releaseAllVideos();
     }
 
     companion object {

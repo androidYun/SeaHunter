@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
-
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 android {
     signingConfigs {
         config {
@@ -19,6 +19,7 @@ android {
     compileSdkVersion VERSION_COMPILE_SDK
     buildToolsVersion BUILD_TOOLS_VERSION
     defaultConfig {
+        applicationId "com.sea.hunter"
         minSdkVersion VERSION_MIN_SDK
         targetSdkVersion VERSION_TARGET_SDK
         versionCode VERSION_CODE
@@ -57,6 +58,9 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation 'com.google.firebase:firebase-analytics:17.4.3'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.1'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation project(':baselibrary')
     implementation project(':usermodule')
     implementation project(':customModule')

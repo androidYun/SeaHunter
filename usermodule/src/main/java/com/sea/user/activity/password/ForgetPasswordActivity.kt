@@ -8,10 +8,12 @@ import android.text.method.PasswordTransformationMethod
 import com.sea.user.R
 import com.sea.user.activity.login.LoginActivity
 import com.sea.user.activity.register.RegisterActivity
+import com.sea.user.presenter.version.NVersionCodeModelReq
+import com.sea.user.presenter.version.VersionCodeContact
+import com.sea.user.presenter.version.VersionCodePresenter
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.TimeCountDown
 import com.xhs.baselibrary.utils.ToastUtils
-import com.xhs.prison.model.NForgetPasswordModelReq
 import kotlinx.android.synthetic.main.activity_forget_password.*
 import kotlinx.android.synthetic.main.include_shop_eye.*
 
@@ -21,14 +23,24 @@ import kotlinx.android.synthetic.main.include_shop_eye.*
  * @ date 31/12/2019.
  * description:
  */
-class ForgetPasswordActivity : BaseActivity(), ForgetPasswordContract.IForgetPasswordView {
+class ForgetPasswordActivity : BaseActivity(), ForgetPasswordContract.IForgetPasswordView,
+    VersionCodeContact.IVersionCodeView {
 
     private val forgetPasswordPresenter by lazy {
         ForgetPasswordPresenter().apply {
             attachView(this@ForgetPasswordActivity)
         }
     }
+
+    private val versionCodePresenter by lazy { VersionCodePresenter().apply { attachView(this@ForgetPasswordActivity) } }
     private lateinit var timeCountDown: TimeCountDown
+
+    //加密验证码
+    private var authCode = ""
+
+
+    private val nForgetPasswordModelReq = NForgetPasswordModelReq()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,10 +85,16 @@ class ForgetPasswordActivity : BaseActivity(), ForgetPasswordContract.IForgetPas
                 ToastUtils.show("密码不能为空")
                 return@setOnClickListener
             }
-            forgetPasswordPresenter.loadForgetPassword(NForgetPasswordModelReq())
+            nForgetPasswordModelReq.phone = userName
+            nForgetPasswordModelReq.password = password
+            nForgetPasswordModelReq.input_code = versionCode
+            nForgetPasswordModelReq.auth_code = authCode
+            forgetPasswordPresenter.loadForgetPassword(nForgetPasswordModelReq)
         }
         tvVersionCode.setOnClickListener {
             timeCountDown.start()
+            val phoneNumber = evUserName.text.toString()
+            versionCodePresenter.loadVersionCode(NVersionCodeModelReq(phone = phoneNumber))
         }
         tvAccountLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -86,20 +104,28 @@ class ForgetPasswordActivity : BaseActivity(), ForgetPasswordContract.IForgetPas
         }
     }
 
-    override fun loadForgetPasswordSuccess() {
+    override fun loadVersionCodeSuccess(versionCode: String) {
+        this.authCode = versionCode
+    }
 
+    override fun loadVersionCodeFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
+    override fun loadForgetPasswordSuccess() {
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     override fun loadForgetPasswordFail(throwable: Throwable) {
-
+        handleError(throwable)
     }
 
     override fun showLoading() {
-
+        showProgressDialog()
     }
 
     override fun hideLoading() {
-
+        hideProgressDialog()
     }
 
     companion object {

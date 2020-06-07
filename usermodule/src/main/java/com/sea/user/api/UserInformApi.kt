@@ -3,14 +3,12 @@ package com.sea.user.api
 import com.sea.user.activity.login.NLoginModelReq
 import com.sea.user.activity.login.NLoginResponse
 import com.sea.user.activity.model.BaseEntry
+import com.sea.user.activity.password.NForgetPasswordModelReq
 import com.sea.user.activity.password.modify.NModifyPasswordModelReq
 import com.sea.user.activity.phone.NModifyPhoneModelReq
 import com.sea.user.activity.register.NRegisterModelReq
 import com.sea.user.activity.register.NRegisterModelResponse
 import com.xhs.prison.model.NFillInformReq
-import com.xhs.prison.model.NForgetPasswordModelReq
-import com.sea.publicmodule.presenter.user.NUserInformReq
-import com.sea.publicmodule.presenter.user.NUserInformResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
