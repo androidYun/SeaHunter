@@ -55,6 +55,8 @@ class DelicacyMakeResultActivity : BaseActivity(), ChannelContact.IChannelView {
             )
         }
         mDelicacyMakeListAdapter = DelicacyMakeListAdapter(mDelicacyMakeListList)
+        mDelicacyMakeListAdapter.emptyView =
+            emptyView
         rvSearchResult.layoutManager =
             LinearLayoutManager(this)
         rvSearchResult.adapter = mDelicacyMakeListAdapter

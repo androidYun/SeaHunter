@@ -43,6 +43,8 @@ class MineCustomFragment : BaseFragment(), MineCustomContact.IMineCustomView {
 
     private fun initView() {
         mMineCustomAdapter = MineCustomAdapter(mDelicacyMakeList)
+        mMineCustomAdapter.emptyView =
+            emptyView
         rvMineCustom.layoutManager = LinearLayoutManager(context)
         if (DeviceUtils.isTabletDevice()) {
             rvMineCustom.layoutManager = GridLayoutManager(context, 2)

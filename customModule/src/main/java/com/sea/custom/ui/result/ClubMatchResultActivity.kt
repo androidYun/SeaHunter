@@ -53,6 +53,8 @@ class ClubMatchResultActivity : BaseActivity(), ChannelContact.IChannelView {
             )
         }
         mClubMatchAdapter = ClubMatchAdapter(mClubMatchList)
+        mClubMatchAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvSearchResult.layoutManager = GridLayoutManager(this, 2)
         } else {

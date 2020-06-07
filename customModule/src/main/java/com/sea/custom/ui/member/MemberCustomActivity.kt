@@ -56,6 +56,8 @@ class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView , Apply
 
     private fun initView() {
         mMemberCustomAdapter = MemberCustomAdapter(mMemberCustomList)
+        mMemberCustomAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvMemberCustom.layoutManager = GridLayoutManager(this, 2)
         } else {

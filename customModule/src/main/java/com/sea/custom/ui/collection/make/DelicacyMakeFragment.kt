@@ -68,6 +68,8 @@ class DelicacyMakeFragment : BaseFragment(), CollectionContact.ICollectionView,
 
     private fun initView() {
         mDelicacyMakeAdapter = DelicacyMakeAdapter(mDelicacyMakeList)
+        mDelicacyMakeAdapter.emptyView =
+            emptyView
         rvDelicacyMake.layoutManager = LinearLayoutManager(context)
         rvDelicacyMake.adapter = mDelicacyMakeAdapter
     }

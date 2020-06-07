@@ -11,6 +11,7 @@ import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.ui.delicacy.ToDayActivityAdapter
+import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceAdapter
 import com.sea.custom.ui.entertainment.list.EntertainmentListFragment
 import com.sea.custom.utils.DeviceUtils
 import kotlinx.android.synthetic.main.activity_store_delicacy.*
@@ -42,6 +43,8 @@ class StoreDelicacyActivity : BaseActivity(), ChannelContact.IChannelView {
 
     private fun initView() {
         mToDayActivityAdapter = ToDayActivityAdapter(mStoreDelicacyList)
+        mToDayActivityAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvStoreDelicacy.layoutManager =
                 GridLayoutManager(this, 4)

@@ -54,6 +54,8 @@ class StoreVrResultActivity : BaseActivity(), ChannelContact.IChannelView {
             )
         }
         mStoreVrListAdapter = StoreVrListAdapter(mStoreVrListList)
+        mStoreVrListAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvSearchResult.layoutManager = GridLayoutManager(this, 2)
         } else {

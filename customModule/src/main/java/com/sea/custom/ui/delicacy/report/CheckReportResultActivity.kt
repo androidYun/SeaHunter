@@ -3,8 +3,6 @@ package com.sea.custom.ui.delicacy.report
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
 import com.sea.custom.R
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.channel.ChannelContact
@@ -14,6 +12,7 @@ import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceResultActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
+import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_check_report.*
 import kotlinx.android.synthetic.main.include_search_layout.*
 
@@ -42,6 +41,8 @@ class CheckReportResultActivity : BaseActivity(), ChannelContact.IChannelView {
 
     private fun initView() {
         mCheckReportAdapter = CheckReportAdapter(mCheckReportList)
+        mCheckReportAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvCheckReport.layoutManager =
                 GridLayoutManager(this, 4)

@@ -40,6 +40,8 @@ class CheckReportActivity : BaseActivity(), ChannelContact.IChannelView {
 
     private fun initView() {
         mCheckReportAdapter = CheckReportAdapter(mCheckReportList)
+        mCheckReportAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvCheckReport.layoutManager =
                 GridLayoutManager(this, 4)

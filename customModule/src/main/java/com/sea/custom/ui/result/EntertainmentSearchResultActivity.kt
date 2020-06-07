@@ -51,6 +51,8 @@ class EntertainmentSearchResultActivity : BaseActivity(), ChannelContact.IChanne
             )
         }
         mEntertainmentListAdapter = EntertainmentListAdapter(mChannelList)
+        mEntertainmentListAdapter.emptyView =
+            emptyView
         rvSearchResult.layoutManager =
             LinearLayoutManager(this)
         rvSearchResult.adapter = mEntertainmentListAdapter

@@ -1,10 +1,13 @@
 package com.xhs.baselibrary.base;
 
 import android.content.pm.PackageManager;
+import android.view.View;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.trello.rxlifecycle3.components.support.RxFragment;
+import com.xhs.baselibrary.R;
 import com.xhs.baselibrary.utils.ToastUtils;
 import com.xhs.baselibrary.weight.LoadingDialog;
 
@@ -149,6 +152,9 @@ public class BaseFragment extends RxFragment {
         if (mLoading != null) {
             mLoading.cancel();
         }
+    }
+    public View getEmptyView() {
+        return getLayoutInflater().inflate(R.layout.empty_data_layout, null);
     }
 
 }

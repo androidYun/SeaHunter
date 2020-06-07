@@ -49,6 +49,8 @@ class ClubActivityFragment : BaseFragment(), ChannelContact.IChannelView {
 
     private fun initView() {
         mClubActivityAdapter = ClubActivityAdapter(mClubActivityList)
+        mClubActivityAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvClubActivity.layoutManager = GridLayoutManager(context, 2)
         } else {

@@ -47,6 +47,8 @@ class ClubMatchActivity : BaseActivity(), ChannelContact.IChannelView {
 
     private fun initView() {
         mClubMatchAdapter = ClubMatchAdapter(mClubMatchList)
+        mClubMatchAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvClubMatch.layoutManager = GridLayoutManager(this, 2)
         } else {

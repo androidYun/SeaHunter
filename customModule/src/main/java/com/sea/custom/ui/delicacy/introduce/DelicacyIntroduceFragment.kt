@@ -53,6 +53,8 @@ class DelicacyIntroduceFragment : BaseFragment(), ChannelContact.IChannelView {
 
     private fun initView() {
         mDelicacyIntroduceAdapter = DelicacyIntroduceAdapter(mDelicacyIntroduceList)
+        mDelicacyIntroduceAdapter.emptyView =
+            emptyView
         rvDelicacyIntroduce.layoutManager = LinearLayoutManager(context)
         rvDelicacyIntroduce.adapter = mDelicacyIntroduceAdapter
     }

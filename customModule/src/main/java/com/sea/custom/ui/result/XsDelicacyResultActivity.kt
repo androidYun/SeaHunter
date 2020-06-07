@@ -54,6 +54,8 @@ class XsDelicacyResultActivity : BaseActivity(), ChannelContact.IChannelView {
             )
         }
         mToDayActivityAdapter = ToDayActivityAdapter(toDayActivityList)
+        mToDayActivityAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvSearchResult.layoutManager =
                 GridLayoutManager(this, 4)

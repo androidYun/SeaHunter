@@ -36,6 +36,8 @@ class StoreListActivity : BaseActivity(), StoreListContact.IStoreListView {
     private fun initView() {
         val cityConfig = CityConfig.Builder().build()
         mStoreListAdapter = StoreListAdapter(mStoreListList)
+        mStoreListAdapter.emptyView =
+            emptyView
         rvStoreList.layoutManager = LinearLayoutManager(this)
         rvStoreList.adapter = mStoreListAdapter
     }

@@ -56,6 +56,8 @@ class MembershipModeActivity : BaseActivity(), StoreListContact.IStoreListView,
 
     private fun initView() {
         mMembershipModeAdapter = MembershipModeAdapter(mMembershipModeList)
+        mMembershipModeAdapter.emptyView =
+            emptyView
         rvMembershipMode.layoutManager = LinearLayoutManager(this)
         rvMembershipMode.adapter = mMembershipModeAdapter
     }

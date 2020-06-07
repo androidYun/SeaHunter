@@ -54,6 +54,8 @@ class ClubSearchResultActivity : BaseActivity(), ChannelContact.IChannelView {
             )
         }
         mRecommendActivityAdapter = RecommendActivityAdapter(mRecommendList)
+            mRecommendActivityAdapter.emptyView =
+                emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvSearchResult.layoutManager = GridLayoutManager(this, 2)
         } else {

@@ -3,10 +3,13 @@ package com.xhs.baselibrary.base;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import android.view.View;
 import android.view.WindowManager;
 
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
@@ -191,6 +194,10 @@ public class BaseActivity extends RxAppCompatActivity {
         if (mLoading != null) {
             mLoading.cancel();
         }
+    }
+
+    public View getEmptyView() {
+        return getLayoutInflater().inflate(R.layout.empty_data_layout, null);
     }
 
 

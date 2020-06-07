@@ -39,6 +39,8 @@ class StoreVr2Activity : BaseActivity(), StoreListContact.IStoreListView {
 
     private fun initView() {
         mStoreVrListAdapter = StoreVr2ListAdapter(mStoreListList)
+        mStoreVrListAdapter.emptyView =
+            emptyView
         rvStoreList.layoutManager = LinearLayoutManager(this)
         rvStoreList.adapter = mStoreVrListAdapter
     }
