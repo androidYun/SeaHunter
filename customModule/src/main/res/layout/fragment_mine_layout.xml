@@ -52,11 +52,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    tools:text="好用记得分享哦~"
                     android:textColor="@color/color_9"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBottom_toBottomOf="@+id/ivHead"
-                    app:layout_constraintStart_toStartOf="@+id/tvUserName" />
+                    app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                    android:text="好用记得分享哦~" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,27 +68,40 @@
                 android:background="@drawable/shape_mine_vip_level"
                 android:padding="@dimen/default_padding">
 
-                <TextView
-                    android:id="@+id/tvVipLevel"
+                <LinearLayout
+                    android:id="@+id/lvLevel"
                     android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@mipmap/icon_vip_logo"
-                    android:drawablePadding="@dimen/dp_8"
-                    tools:text="高级会员"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_16"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ivVip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_vip_logo" />
+
+                    <TextView
+                        android:id="@+id/tvVipLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_16"
+                        tools:text="高级会员" />
+                </LinearLayout>
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_margin"
-                    tools:text="专享定制服务~"
+                    android:text="专享定制服务~"
                     android:textColor="#ffffffff"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvVipLevel" />
+                    app:layout_constraintTop_toBottomOf="@+id/lvLevel" />
 
                 <TextView
                     android:id="@+id/tvGoLook"

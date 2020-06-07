@@ -55,7 +55,10 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
 
     private fun initData() {
         evUserName.setText(UserInformSpUtils.getUserInformModel().nick_name)
-        ImageLoader.loadCircleImageView(ivUploadHead as ImageView, UserInformSpUtils.getUserInformModel().avatar)
+        ImageLoader.loadCircleImageView(
+            ivUploadHead as ImageView,
+            UserInformSpUtils.getUserInformModel().avatar
+        )
     }
 
     private fun initListener() {
@@ -96,7 +99,10 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .forResult(object : OnResultCallbackListener {
                     override fun onResult(result: MutableList<LocalMedia>) {
-                        ImageLoader.loadCircleImageView(ivUploadHead as ImageView, result[0].cutPath)
+                        ImageLoader.loadCircleImageView(
+                            ivUploadHead as ImageView,
+                            result[0].cutPath
+                        )
                         updateImagePresenter.loadUpdateImage("user", result[0].cutPath)
                     }
 
@@ -108,7 +114,7 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
     }
 
     override fun loadFillInformSuccess() {
-        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
     override fun loadFillInformFail(throwable: Throwable) {

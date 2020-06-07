@@ -29,6 +29,9 @@ import com.sea.custom.ui.result.ClubSearchResultActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
+import com.xhs.baselibrary.utils.UIUtils
+import com.youth.banner.config.IndicatorConfig
+import com.youth.banner.indicator.CircleIndicator
 import kotlinx.android.synthetic.main.fragment_club_layout.*
 import kotlinx.android.synthetic.main.include_search_layout.*
 
@@ -84,6 +87,10 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
             rvRecommendAction.layoutManager = LinearLayoutManager(context)
         }
         rvRecommendAction.adapter = mRecommendActivityAdapter
+        bannerView.setIndicatorNormalColor(UIUtils.getInstance().getColor(R.color.color_9))
+        bannerView.setIndicatorSelectedColor(UIUtils.getInstance().getColor(R.color.custom_theme_color))
+        bannerView.setIndicatorGravity(IndicatorConfig.Direction.CENTER).indicator =
+            CircleIndicator(context)
     }
 
     /**
@@ -111,7 +118,7 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
 
     private fun initListener() {
         swipeLayout.setOnRefreshListener {
-            bannerPresenter.loadBanner()
+            bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.club.name))
             nChannelModelReq.page_index = 1
             nChannelPresenter.loadChannel(
                 nChannelModelReq

@@ -92,6 +92,8 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
 
     private fun initView() {
         mDelicacyMakeListAdapter = DelicacyMakeListAdapter(mDelicacyMakeListList)
+        mDelicacyMakeListAdapter.emptyView =
+            emptyView
         rvDelicacyMakeList.layoutManager = LinearLayoutManager(context)
         rvDelicacyMakeList.adapter = mDelicacyMakeListAdapter
     }

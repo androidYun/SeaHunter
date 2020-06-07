@@ -88,6 +88,7 @@
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvConfirm"
             app:layout_constraintWidth_percent="0.6">

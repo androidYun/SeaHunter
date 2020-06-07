@@ -75,6 +75,11 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
     }
 
     private fun initData() {
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         mUserCenterPresenter.loadUserInform()
     }
 
@@ -155,6 +160,12 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
         UserInformSpUtils.setUserInformModel(userInformModel)
         tvUserName.text = userInformModel.nick_name
         tvVipLevel.text = userInformModel.group_name
+        if(userInformModel.group_id==1){
+            ivVip.setImageResource(R.mipmap.vip_ordinary)
+        }else{
+            ivVip.setImageResource(R.mipmap.vip_senior)
+
+        }
         ImageLoader.loadCircleImageView(
             ivHead,
             Constants.baseUrl.plus(userInformModel.avatar.replace("//", "/"))

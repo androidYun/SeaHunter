@@ -27,6 +27,8 @@
 
             <com.youth.banner.Banner
                 android:id="@+id/bannerView"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_200"
                 android:layout_marginTop="@dimen/dp_10" />
@@ -100,7 +102,7 @@
                 android:id="@+id/rvRecommendAction"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="@dimen/dp_8" />
+                android:layout_marginBottom="@dimen/dp_8" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

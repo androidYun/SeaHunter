@@ -40,6 +40,9 @@ import com.sea.custom.ui.vr.VrDetailActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
+import com.xhs.baselibrary.utils.UIUtils
+import com.youth.banner.config.IndicatorConfig
+import com.youth.banner.indicator.CircleIndicator
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.common.Constant
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
@@ -97,11 +100,21 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
     private fun initView() {
         /*种类*/
         val layoutManager = FlexboxLayoutManager(context)
-        layoutManager.flexDirection = FlexDirection.ROW
-        layoutManager.justifyContent = JustifyContent.CENTER
-        rvDelicacyKind.layoutManager = layoutManager
+        if (DeviceUtils.isTabletDevice()) {
+            layoutManager.flexDirection = FlexDirection.ROW
+            layoutManager.justifyContent = JustifyContent.CENTER
+            rvDelicacyKind.layoutManager = layoutManager
+        } else {
+            rvDelicacyKind.layoutManager = GridLayoutManager(context, 4)
+        }
+
         mDelicacyKindAdapter = DelicacyKindAdapter(delicacyKindList)
         rvDelicacyKind.adapter = mDelicacyKindAdapter
+
+        bannerView.setIndicatorNormalColor(UIUtils.getInstance().getColor(R.color.color_9))
+        bannerView.setIndicatorSelectedColor(UIUtils.getInstance().getColor(R.color.custom_theme_color))
+        bannerView.setIndicatorGravity(IndicatorConfig.Direction.CENTER).indicator =
+            CircleIndicator(context)
 
         /*类型*/
         delicacyTypeList.clear()
@@ -173,9 +186,9 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
 
         }
         swipeLayout.setOnRefreshListener {
-            mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
+            mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.dish.name))
             mChannelPresenter.loadChannel(nChannelModelReq)
-            bannerPresenter.loadBanner()
+            bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.dish.name))
         }
         lvSearchShop.setOnClickListener {
             startActivityForResult(

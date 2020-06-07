@@ -26,6 +26,9 @@ import com.sea.custom.ui.make.list.DelicacyMakeListFragment
 import com.sea.custom.ui.result.DelicacyMakeResultActivity
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
+import com.xhs.baselibrary.utils.UIUtils
+import com.youth.banner.config.IndicatorConfig
+import com.youth.banner.indicator.CircleIndicator
 import kotlinx.android.synthetic.main.fragment_delicacy_make.*
 import kotlinx.android.synthetic.main.fragment_delicacy_make.bannerView
 import kotlinx.android.synthetic.main.fragment_delicacy_make.swipeLayout
@@ -66,6 +69,10 @@ class DelicacyMakeFragment : BaseFragment(),
         mEntertainmentPagerAdapter = EntertainmentPageAdapter(childFragmentManager)
         viewPager.adapter = mEntertainmentPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
+        bannerView.setIndicatorNormalColor(UIUtils.getInstance().getColor(R.color.color_9))
+        bannerView.setIndicatorSelectedColor(UIUtils.getInstance().getColor(R.color.custom_theme_color))
+        bannerView.setIndicatorGravity(IndicatorConfig.Direction.CENTER).indicator =
+            CircleIndicator(context)
     }
 
     private fun initData() {
@@ -82,7 +89,7 @@ class DelicacyMakeFragment : BaseFragment(),
         }
         swipeLayout.setOnRefreshListener {
             mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
-            bannerPresenter.loadBanner()
+            bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.food.name))
         }
     }
 

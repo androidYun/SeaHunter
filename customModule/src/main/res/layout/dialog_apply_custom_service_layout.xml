@@ -49,9 +49,7 @@
                         android:id="@+id/evName"
                         android:layout_width="match_parent"
                         android:layout_height="46dp"
-
-
-                        android:background="@drawable/shape_circle_radius_border_color_6"
+                        android:background="@drawable/shape_circle_radius_border_color_dedede"
                         android:hint="请填写姓名"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
@@ -62,7 +60,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="46dp"
                         android:layout_marginTop="@dimen/default_margin"
-                        android:background="@drawable/shape_circle_radius_border_color_6"
+                        android:background="@drawable/shape_circle_radius_border_color_dedede"
                         android:hint="请填写联系方式"
                         android:inputType="phone"
                         android:paddingStart="@dimen/default_padding"
@@ -74,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_80"
                         android:layout_marginTop="@dimen/default_margin"
-                        android:background="@drawable/shape_circle_radius_border_color_6"
+                        android:background="@drawable/shape_circle_radius_border_color_dedede"
                         android:gravity="top"
                         android:hint="请填写详细地址"
                         android:padding="@dimen/dp_8"

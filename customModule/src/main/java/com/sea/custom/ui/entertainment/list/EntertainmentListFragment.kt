@@ -78,6 +78,8 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
 
     private fun initView() {
         mEntertainmentListAdapter = EntertainmentListAdapter(mChannelList)
+        mEntertainmentListAdapter.emptyView =
+            emptyView
         linearLayoutManager = LinearLayoutManager(context)
         rvEntertainmentList.layoutManager = linearLayoutManager
         rvEntertainmentList.adapter = mEntertainmentListAdapter
