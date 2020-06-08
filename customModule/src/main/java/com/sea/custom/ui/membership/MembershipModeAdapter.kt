@@ -51,8 +51,7 @@ class MembershipModeAdapter(mList: List<StoreListItem>) :
                     val geocodeAddress = geocodeAddressList[0]
                     ImageLoader.loadImageWithUrl(
                         helper?.getView(R.id.ivMapView),
-                  "http://restapi.amap.com/v3/staticmap?location=${geocodeAddress.latLonPoint.longitude},${geocodeAddress.latLonPoint.latitude}&zoom=13&size=750*300&markers=mid,,A:116.481485,39.990464&key=bf4b7cf518727bd82c78d18362b1de3a"
-
+                        "http://restapi.amap.com/v3/staticmap?location=${geocodeAddress.latLonPoint.longitude},${geocodeAddress.latLonPoint.latitude}&zoom=13&size=750*300&markers=mid,,A:116.481485,39.990464&key=dea6adf9386772a0f3efb5530633da79"
                     )
                 }
             }

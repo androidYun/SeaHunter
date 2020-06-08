@@ -161,10 +161,9 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
         tvUserName.text = userInformModel.nick_name
         tvVipLevel.text = userInformModel.group_name
         if(userInformModel.group_id==1){
-            ivVip.setImageResource(R.mipmap.vip_ordinary)
+            ivUserVip.setImageResource(R.mipmap.vip_ordinary)
         }else{
-            ivVip.setImageResource(R.mipmap.vip_senior)
-
+            ivUserVip.setImageResource(R.mipmap.vip_senior)
         }
         ImageLoader.loadCircleImageView(
             ivHead,

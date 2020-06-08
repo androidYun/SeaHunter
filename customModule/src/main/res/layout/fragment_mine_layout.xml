@@ -36,27 +36,42 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvUserName"
+                <LinearLayout
+                    android:id="@+id/lvHead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/default_margin"
-                    android:layout_marginTop="6dp"
-                    android:textColor="#ff000000"
-                    android:textSize="@dimen/sp_18"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     app:layout_constraintStart_toEndOf="@+id/ivHead"
-                    app:layout_constraintTop_toTopOf="@+id/ivHead"
-                    tools:text="深海" />
+                    app:layout_constraintTop_toTopOf="@+id/ivHead">
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ff000000"
+                        android:textSize="@dimen/sp_18"
+                        tools:text="深海" />
+
+                    <ImageView
+                        android:id="@+id/ivUserVip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:src="@mipmap/vip_ordinary" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
+                    android:text="好用记得分享哦~"
                     android:textColor="@color/color_9"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBottom_toBottomOf="@+id/ivHead"
-                    app:layout_constraintStart_toStartOf="@+id/tvUserName"
-                    android:text="好用记得分享哦~" />
+                    app:layout_constraintStart_toStartOf="@+id/lvHead" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,8 +86,8 @@
                 <LinearLayout
                     android:id="@+id/lvLevel"
                     android:layout_width="wrap_content"
-                    android:gravity="center_vertical"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
