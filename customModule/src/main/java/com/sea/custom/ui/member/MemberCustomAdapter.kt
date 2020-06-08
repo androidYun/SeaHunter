@@ -12,6 +12,7 @@ import com.sea.custom.em.ChannelEnum
 import com.sea.custom.holder.RecyclerItemNormalHolder
 import com.sea.custom.model.VideoModel
 import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.ui.member.detail.MemberCustomDetailActivity
 import com.sea.custom.web.ChannelWebDetailActivity
 import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.utils.UIUtils
@@ -28,10 +29,15 @@ class MemberCustomAdapter(mList: List<NChannelItem>) :
         helper?.setText(R.id.tvTitle, item?.title ?: "")
         if (UserInformSpUtils.getUserInformModel().group_id == 1) {
             helper.getView<ImageView>(R.id.ivCustomStatus)
-                .setImageResource(R.mipmap.vip_ordinary)//普通
+                .setImageResource(R.mipmap.vip_registered)//普通
             helper.getView<TextView>(R.id.tvCustomMember)
                 .setTextColor(UIUtils.getInstance().getColor(R.color.custom_theme_color))
-        } else {
+        } else if (UserInformSpUtils.getUserInformModel().group_id == 2) {
+            helper.getView<ImageView>(R.id.ivCustomStatus)
+                .setImageResource(R.mipmap.vip_ordinary)//Vip
+            helper.getView<TextView>(R.id.tvCustomMember)
+                .setTextColor(UIUtils.getInstance().getColor(R.color.custom_theme_color))
+        } else if (UserInformSpUtils.getUserInformModel().group_id == 3) {
             helper.getView<ImageView>(R.id.ivCustomStatus)
                 .setImageResource(R.mipmap.vip_senior)//Vip
             helper.getView<TextView>(R.id.tvCustomMember)
@@ -42,14 +48,10 @@ class MemberCustomAdapter(mList: List<NChannelItem>) :
             it.context.startActivity(
                 Intent(
                     it.context,
-                    ChannelWebDetailActivity::class.java
+                    MemberCustomDetailActivity::class.java
                 ).apply {
                     putExtras(
-                        ChannelWebDetailActivity.getInstance(
-                            item?.id ?: 0,
-                            ChannelEnum.service.name,
-                            item?.title ?: ""
-                        )
+                        MemberCustomDetailActivity.getInstance(nChannelItem = item)
                     )
                 })
         }

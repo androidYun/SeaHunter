@@ -134,8 +134,8 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
         }
         var firstVisibleItem = 0
         var lastVisibleItem = 0
-        rvEntertainmentList.addOnScrollListener(object :RecyclerView.OnScrollListener(){
-           override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        rvEntertainmentList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView!!, newState)
             }
 
@@ -159,6 +159,8 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
         })
 
     }
+
+
 
     override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
         if (nChannelModelReq.page_index == 1) {
@@ -208,17 +210,22 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
 
     override fun onResume() {
         super.onResume()
-        GSYVideoManager.onResume(false);
+        GSYVideoManager.onResume(false)
     }
 
     override fun onPause() {
         super.onPause()
-        GSYVideoManager.onPause();
+        GSYVideoManager.onPause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        GSYVideoManager.releaseAllVideos();
+        GSYVideoManager.releaseAllVideos()
+    }
+
+
+    fun onBackPressed(): Boolean {
+        return GSYVideoManager.backFromWindowFull(activity)
     }
 
     companion object {

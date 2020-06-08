@@ -29,6 +29,7 @@ import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.UIUtils
 import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
+import kotlinx.android.synthetic.main.activity_member_custom_detail.*
 import kotlinx.android.synthetic.main.fragment_delicacy_make.*
 import kotlinx.android.synthetic.main.fragment_delicacy_make.bannerView
 import kotlinx.android.synthetic.main.fragment_delicacy_make.swipeLayout
@@ -69,10 +70,9 @@ class DelicacyMakeFragment : BaseFragment(),
         mEntertainmentPagerAdapter = EntertainmentPageAdapter(childFragmentManager)
         viewPager.adapter = mEntertainmentPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
-        bannerView.setIndicatorNormalColor(UIUtils.getInstance().getColor(R.color.color_9))
-        bannerView.setIndicatorSelectedColor(UIUtils.getInstance().getColor(R.color.custom_theme_color))
-        bannerView.setIndicatorGravity(IndicatorConfig.Direction.CENTER).indicator =
-            CircleIndicator(context)
+        shopBannerAdapter = ShopBannerAdapter(mBannerList)
+        bannerView.addBannerLifecycleObserver(this).setAdapter(shopBannerAdapter)
+            .setIndicator(CircleIndicator(context)).start()
     }
 
     private fun initData() {
@@ -126,8 +126,7 @@ class DelicacyMakeFragment : BaseFragment(),
         mBannerList.clear()
         mBannerList.addAll(data.map { it.img_url })
         /*banner*/
-        shopBannerAdapter = ShopBannerAdapter(mBannerList)
-        bannerView.adapter = shopBannerAdapter
+        shopBannerAdapter.notifyDataSetChanged()
     }
 
     override fun loadBannerFail(throwable: Throwable) {

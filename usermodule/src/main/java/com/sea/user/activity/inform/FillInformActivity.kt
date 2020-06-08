@@ -8,18 +8,21 @@ import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
+import com.sea.publicmodule.activity.model.MessageEvent
 import com.sea.user.R
 import com.sea.user.activity.login.LoginActivity
 import com.sea.user.activity.password.ForgetPasswordActivity
 import com.sea.user.presenter.update.UpdateImageContact
 import com.sea.user.presenter.update.UpdateImagePresenter
 import com.sea.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.user.common.Constants
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.baselibrary.utils.imageLoader.GlideEngine
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 import com.xhs.prison.model.NFillInformReq
 import kotlinx.android.synthetic.main.activity_fill_inform.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * @ author guiyun.li
@@ -55,10 +58,13 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
 
     private fun initData() {
         evUserName.setText(UserInformSpUtils.getUserInformModel().nick_name)
-        ImageLoader.loadCircleImageView(
-            ivUploadHead as ImageView,
-            UserInformSpUtils.getUserInformModel().avatar
-        )
+        if (!UserInformSpUtils.getUserInformModel().avatar.isNullOrBlank()) {
+            ImageLoader.loadCircleImageView(
+                ivUploadHead as ImageView,
+                Constants.baseUrl.plus(UserInformSpUtils.getUserInformModel().avatar)
+            )
+        }
+
     }
 
     private fun initListener() {
@@ -114,6 +120,7 @@ class FillInformActivity : BaseActivity(), FillInformContract.IFillInformView,
     }
 
     override fun loadFillInformSuccess() {
+        EventBus.getDefault().post(MessageEvent())
         finish()
     }
 

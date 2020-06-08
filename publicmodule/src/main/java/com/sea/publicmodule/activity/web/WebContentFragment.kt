@@ -31,7 +31,6 @@ class WebContentFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_content_web, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -44,7 +43,7 @@ class WebContentFragment : BaseFragment() {
     }
 
     private fun initData() {
-        webView.loadData(varjs +webContent, "text/html", "UTF-8");
+        webView.loadData(varjs +webContent, "text/html", "UTF-8")
     }
 
 
@@ -68,6 +67,9 @@ class WebContentFragment : BaseFragment() {
             setting.mediaPlaybackRequiresUserGesture = false
         }
 
+        //设置载入页面自适应手机屏幕，居中显示
+        setting.useWideViewPort = true
+        setting.loadWithOverviewMode = true
         setting.javaScriptEnabled = true//设置WebView是否允许执行JavaScript脚本,默认false
         setting.setSupportZoom(true)//WebView是否支持使用屏幕上的缩放控件和手势进行缩放,默认值true
         setting.builtInZoomControls = true//是否使用内置的缩放机制
@@ -177,9 +179,6 @@ class WebContentFragment : BaseFragment() {
             webView.destroy()
         }
     }
-
-
-
     companion object {
 
         private const val web_content_key = "web_content_key"

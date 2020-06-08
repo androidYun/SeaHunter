@@ -22,6 +22,7 @@ import com.sea.custom.presenter.category.NCategoryModelReq
 import com.sea.custom.ui.entertainment.list.EntertainmentListFragment
 import com.sea.custom.ui.result.EntertainmentSearchResultActivity
 import com.sea.publicmodule.activity.search.SearchMallActivity
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import kotlinx.android.synthetic.main.fragment_entertainment_layout.*
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.include_search_layout.*
@@ -124,6 +125,9 @@ class EntertainmentFragment : BaseFragment(), CategoryContact.ICategoryView {
                 )
             })
         }
+    }
+    fun onBackPressed(): Boolean {
+        return GSYVideoManager.backFromWindowFull(activity)
     }
     companion object {
         fun getInstance() = EntertainmentFragment().apply {

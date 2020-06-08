@@ -13,7 +13,10 @@ class NChannelResponse(
 @Parcelize
 data class NChannelItem(
     val address: String? = "",
+    val albums: List<Album?>? = listOf(),
     val category_id: Int? = 0,
+    val category_name: String? = "",
+    val mater: String? = "",
     val channel_id: Int? = 0,
     val click: Int? = 0,
     val collect_num: Int? = 0,
@@ -50,3 +53,14 @@ class NChannelModelReq(
     var sort: Int = 0,//排序 (0:默认 1：销量 2:最新 3：最热（查看最多），4,离我最近)
     var is_red: Int = -1//is_red  推荐：1，其他不要求
 )
+
+@Parcelize
+data class Album(
+    val add_time: String? = "",
+    val article_id: Int? = 0,
+    val channel_id: Int? = 0,
+    val id: Int? = 0,
+    val original_path: String? = "",
+    val remark: String? = "",
+    val thumb_path: String? = ""
+) : Parcelable

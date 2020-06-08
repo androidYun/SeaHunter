@@ -8,6 +8,7 @@ import com.sea.custom.R
 import com.sea.custom.common.Constants
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.ui.delicacy.detail.DelicacyDetailActivity
 import com.sea.custom.web.ChannelWebDetailActivity
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 
@@ -20,12 +21,10 @@ class ToDayActivityAdapter(mList: List<NChannelItem>) :
             Constants.baseUrl.plus(item.img_url)
         )
         helper?.getView<LinearLayout>(R.id.lvShopDetail)?.setOnClickListener {
-            it.context.startActivity(Intent(it.context, ChannelWebDetailActivity::class.java).apply {
+            it.context.startActivity(Intent(it.context, DelicacyDetailActivity::class.java).apply {
                 putExtras(
-                    ChannelWebDetailActivity.getInstance(
-                        item?.id ?: 0,
-                        ChannelEnum.dish.name,
-                        item?.title ?: ""
+                    DelicacyDetailActivity.getInstance(
+                        item
                     )
                 )
             })

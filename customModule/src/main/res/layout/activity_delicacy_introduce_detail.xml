@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeMemberCustomDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.youth.banner.Banner
+                        android:id="@+id/bannerView"
+                        app:indicator_normal_color="@color/black"
+                        app:indicator_selected_color="@color/custom_theme_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_200" />
+
+                    <ImageView
+                        android:id="@+id/ivBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:src="@mipmap/ic_arrow_back" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:text="西沙泥鳅" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:background="#f7f7f7"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="科目"
+                            android:textColor="@color/color_9"
+                            android:textSize="@dimen/sp_12" />
+
+                        <TextView
+                            android:id="@+id/tvCategoryName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            tools:text="鱼类" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="产地"
+                            android:textColor="@color/color_9"
+                            android:textSize="@dimen/sp_12" />
+
+                        <TextView
+                            android:id="@+id/tvPlace"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            tools:text="鱼类" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="可食用方式"
+                            android:textColor="@color/color_9"
+                            android:textSize="@dimen/sp_12" />
+
+                        <TextView
+                            android:id="@+id/tvEatWay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            tools:text="鱼类" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

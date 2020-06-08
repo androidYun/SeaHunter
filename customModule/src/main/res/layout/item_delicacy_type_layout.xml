@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
-    android:layout_marginTop="@dimen/default_margin"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="@dimen/dp_8"
+    android:layout_marginBottom="8dp"
     android:layout_weight="1"
     app:cardCornerRadius="4dp">
 

@@ -39,13 +39,14 @@ import com.sea.custom.ui.result.XsDelicacyResultActivity
 import com.sea.custom.ui.vr.VrDetailActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
+import com.uuzuche.lib_zxing.activity.CaptureActivity
+import com.uuzuche.lib_zxing.activity.CodeUtils
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.UIUtils
 import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
-import com.yzq.zxinglibrary.android.CaptureActivity
-import com.yzq.zxinglibrary.common.Constant
 import kotlinx.android.synthetic.main.fragment_delicacy_layout.*
+import kotlinx.android.synthetic.main.fragment_delicacy_layout.bannerView
 import kotlinx.android.synthetic.main.include_search_layout.*
 
 
@@ -142,7 +143,9 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
                 GridLayoutManager(context, 2)
         }
         rvTodayOptimization.adapter = mToDayActivityAdapter
-
+        shopBannerAdapter = ShopBannerAdapter(mBannerList)
+        bannerView.addBannerLifecycleObserver(this).setAdapter(shopBannerAdapter)
+            .setIndicator(CircleIndicator(context)).start()
     }
 
     /**
@@ -230,8 +233,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         mBannerList.clear()
         mBannerList.addAll(data.map { it.img_url })
         /*banner*/
-        shopBannerAdapter = ShopBannerAdapter(mBannerList)
-        bannerView.adapter = shopBannerAdapter
+        shopBannerAdapter.notifyDataSetChanged()
     }
 
     override fun loadBannerFail(throwable: Throwable) {
@@ -255,16 +257,22 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
                     XsDelicacyResultActivity.getInstance(searchContent)
                 )
             })
-        } else if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
-            val content = data?.getStringExtra(Constant.CODED_CONTENT) ?: ""
-            if (content.isNullOrBlank() || !content.contains("hnzhiling.com", false)) {
-                return
+        } else if (requestCode == REQUEST_CODE_SCAN) {
+            if (null != data) {
+                val bundle = data.extras ?: return
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    val content = data?.getStringExtra(CodeUtils.RESULT_STRING)
+                    if (content.isNullOrBlank() || !content.contains("hnzhiling.com", false)) {
+                        return
+                    }
+                    startActivity(Intent(context, VrDetailActivity::class.java).apply {
+                        putExtras(
+                            VrDetailActivity.getInstance(content)
+                        )
+                    })
+                }
+
             }
-            startActivity(Intent(context, VrDetailActivity::class.java).apply {
-                putExtras(
-                    VrDetailActivity.getInstance(content)
-                )
-            })
         }
     }
 

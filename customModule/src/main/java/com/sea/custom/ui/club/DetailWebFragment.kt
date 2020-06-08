@@ -192,7 +192,7 @@ class DetailWebFragment : BaseFragment(), ChannelDetailContact.IChannelDetailVie
     }
 
     override fun loadChannelDetailSuccess(channelDetail: NChannelItem) {
-        webView.loadData(varjs + channelDetail.content, "text/html", "UTF-8");
+        webView.loadData(varjs + channelDetail.content, "text/html", "UTF-8")
     }
 
     override fun loadChannelDetailFail(throwable: Throwable) {

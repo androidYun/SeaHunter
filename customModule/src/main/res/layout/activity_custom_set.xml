@@ -39,7 +39,8 @@
         android:drawableEnd="@mipmap/icon_arrow"
         android:drawablePadding="8dp"
         android:text="修改密码"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tvModifyPhone"

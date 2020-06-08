@@ -9,6 +9,7 @@ import com.sea.custom.R
 import com.sea.custom.common.Constants
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.channel.NChannelItem
+import com.sea.custom.ui.delicacy.introduce.detail.DelicacyIntroduceDetailActivity
 import com.sea.custom.web.ChannelWebDetailActivity
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 
@@ -17,7 +18,7 @@ class DelicacyIntroduceAdapter(mList: List<NChannelItem>) :
         R.layout.item_delicacy_introduce_layout,
         mList
     ) {
-    override fun convert(helper: BaseViewHolder?, item: NChannelItem?) {
+    override fun convert(helper: BaseViewHolder?, item: NChannelItem) {
         helper?.setText(R.id.tvFishName, item?.title ?: "")
         helper?.setText(R.id.tvIntroduce, item?.zhaiyao ?: "")
         ImageLoader.loadImageWithUrl(
@@ -25,13 +26,17 @@ class DelicacyIntroduceAdapter(mList: List<NChannelItem>) :
             Constants.baseUrl.plus(item?.img_url ?: "")
         )
         helper?.getView<ConstraintLayout>(R.id.lvShopDetail)?.setOnClickListener {
-            it.context.startActivity(Intent(it.context, ChannelWebDetailActivity::class.java).apply {
-                ChannelWebDetailActivity.getInstance(
-                    item?.id ?: 0,
-                    ChannelEnum.dish.name,
-                    item?.title ?: ""
-                )
-            })
+            it.context.startActivity(
+                Intent(
+                    it.context,
+                    DelicacyIntroduceDetailActivity::class.java
+                ).apply {
+                    putExtras(
+                        DelicacyIntroduceDetailActivity.getInstance(
+                            item
+                        )
+                    )
+                })
         }
     }
 }

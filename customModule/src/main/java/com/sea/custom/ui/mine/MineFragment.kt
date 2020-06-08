@@ -28,9 +28,15 @@ import com.sea.publicmodule.presenter.user.UserInformContact
 import com.sea.publicmodule.presenter.user.UserInformModel
 import com.sea.publicmodule.presenter.user.UserInformPresenter
 import com.sea.publicmodule.utils.sp.UserInformSpUtils
+import com.xhs.baselibrary.base.BaseLazyFragment
 import com.xhs.baselibrary.utils.PermissionsUtils
+import org.greenrobot.eventbus.ThreadMode
+import org.greenrobot.eventbus.Subscribe
+import com.sea.publicmodule.activity.model.MessageEvent
+import org.greenrobot.eventbus.EventBus
 
-class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
+
+class MineFragment : BaseLazyFragment(), UserInformContact.IUserInformView {
 
     private val mUserCenterPresenter by lazy {
         UserInformPresenter()
@@ -43,6 +49,7 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        EventBus.getDefault().register(this)
         return LayoutInflater.from(context).inflate(R.layout.fragment_mine_layout, container, false)
     }
 
@@ -78,10 +85,19 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
 
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onFragmentVisibleChange(isVisible: Boolean) {
         mUserCenterPresenter.loadUserInform()
     }
+
+    override fun onFragmentFirstVisible() {
+        mUserCenterPresenter.loadUserInform()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: MessageEvent) {
+        mUserCenterPresenter.loadUserInform()
+    }
+
 
     private fun initListener() {
         swipeLayout.setOnRefreshListener { mUserCenterPresenter.loadUserInform() }
@@ -143,6 +159,7 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
                     })
         }
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,
@@ -150,8 +167,10 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         //就多一个参数this
-        PermissionsUtils.getInstance().onRequestPermissionsResult(activity, requestCode, permissions, grantResults)
+        PermissionsUtils.getInstance()
+            .onRequestPermissionsResult(activity, requestCode, permissions, grantResults)
     }
+
     private val permissions = arrayOf(
         Manifest.permission.CALL_PHONE
     )
@@ -160,10 +179,10 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
         UserInformSpUtils.setUserInformModel(userInformModel)
         tvUserName.text = userInformModel.nick_name
         tvVipLevel.text = userInformModel.group_name
-        if(userInformModel.group_id==1){
-            ivUserVip.setImageResource(R.mipmap.vip_ordinary)
-        }else{
-            ivUserVip.setImageResource(R.mipmap.vip_senior)
+        when {
+            userInformModel.group_id == 1 -> ivUserVip.setImageResource(R.mipmap.vip_registered)
+            userInformModel.group_id == 2 -> ivUserVip.setImageResource(R.mipmap.vip_ordinary)
+            userInformModel.group_id == 3 -> ivUserVip.setImageResource(R.mipmap.vip_senior)
         }
         ImageLoader.loadCircleImageView(
             ivHead,
@@ -183,6 +202,11 @@ class MineFragment : BaseFragment(), UserInformContact.IUserInformView {
 
     override fun hideLoading() {
         hideProgressDialog()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
     companion object {

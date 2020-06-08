@@ -23,4 +23,5 @@
     <string name="clubMatchSearchResult">俱乐部比赛搜索</string>
     <string name="title_MemberCustom">会员定制</string>
     <string name="title_StoreDelicacy">店内美食</string>
+    <string name="title_MemberCustomDetail">会员定制</string>
 </resources>

@@ -56,10 +56,10 @@ public class RecyclerItemNormalHolder extends RecyclerItemBaseHolder {
         String url;
         String title;
         if (position % 2 == 0) {
-            url =  Constants.baseUrl.concat(videoModel.getVideoUrl());
+            url = Constants.baseUrl.concat(videoModel.getVideoUrl());
             title = videoModel.getTitle();
         } else {
-            url =  Constants.baseUrl.concat(videoModel.getVideoUrl());
+            url = Constants.baseUrl.concat(videoModel.getVideoUrl());
             title = videoModel.getTitle();
         }
 
@@ -88,7 +88,7 @@ public class RecyclerItemNormalHolder extends RecyclerItemBaseHolder {
                         super.onPrepared(url, objects);
                         if (!gsyVideoPlayer.isIfCurrentIsFullscreen()) {
                             //静音
-                            GSYVideoManager.instance().setNeedMute(true);
+                            GSYVideoManager.instance().setNeedMute(false);
                         }
 
                     }
@@ -97,7 +97,7 @@ public class RecyclerItemNormalHolder extends RecyclerItemBaseHolder {
                     public void onQuitFullscreen(String url, Object... objects) {
                         super.onQuitFullscreen(url, objects);
                         //全屏不静音
-                        GSYVideoManager.instance().setNeedMute(true);
+                        GSYVideoManager.instance().setNeedMute(false);
                     }
 
                     @Override
@@ -114,6 +114,9 @@ public class RecyclerItemNormalHolder extends RecyclerItemBaseHolder {
 
         //设置返回键
         gsyVideoPlayer.getBackButton().setVisibility(View.GONE);
+
+        //设置全屏按键功能
+        gsyVideoPlayer.getFullscreenButton().setVisibility(View.GONE);
 
         //设置全屏按键功能
         gsyVideoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {

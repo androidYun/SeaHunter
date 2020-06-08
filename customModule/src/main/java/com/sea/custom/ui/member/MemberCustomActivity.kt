@@ -17,6 +17,7 @@ import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.utils.DeviceUtils
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_member_custom.*
 
@@ -128,6 +129,28 @@ class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView , Apply
     override fun loadApplyMembershipFail(throwable: Throwable) {
         handleError(throwable)
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        GSYVideoManager.onResume(false)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GSYVideoManager.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GSYVideoManager.releaseAllVideos()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+
 
     override fun showLoading() {
         showProgressDialog()

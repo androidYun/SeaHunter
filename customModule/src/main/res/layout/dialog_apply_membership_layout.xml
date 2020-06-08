@@ -49,10 +49,9 @@
                         android:id="@+id/evName"
                         android:layout_width="match_parent"
                         android:layout_height="46dp"
-
-
                         android:background="@drawable/shape_circle_radius_border_color_dedede"
                         android:hint="请填写姓名"
+                        android:textSize="@dimen/sp_14"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
                         android:textColorHint="@color/color_9" />
@@ -65,6 +64,7 @@
                         android:background="@drawable/shape_circle_radius_border_color_dedede"
                         android:hint="请填写联系方式"
                         android:inputType="phone"
+                        android:textSize="@dimen/sp_14"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
                         android:textColorHint="@color/color_9" />
@@ -76,6 +76,7 @@
                         android:layout_marginTop="@dimen/default_margin"
                         android:background="@drawable/shape_circle_radius_border_color_dedede"
                         android:hint="请填写微信号"
+                        android:textSize="@dimen/sp_14"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
                         android:textColorHint="@color/color_9" />
@@ -88,6 +89,7 @@
                         android:background="@drawable/shape_circle_radius_border_color_dedede"
                         android:gravity="center_vertical"
                         android:hint="请选择生日"
+                        android:textSize="@dimen/sp_14"
                         android:paddingStart="@dimen/default_padding"
                         android:paddingEnd="@dimen/default_padding"
                         android:textColorHint="@color/color_9" />

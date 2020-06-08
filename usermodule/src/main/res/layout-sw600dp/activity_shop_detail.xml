@@ -24,6 +24,8 @@
                     android:id="@+id/bannerView"
                     android:paddingStart="@dimen/default_padding"
                     android:paddingEnd="@dimen/default_padding"
+                    app:indicator_normal_color="@color/black"
+                    app:indicator_selected_color="@color/user_theme_color"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_200" />
 

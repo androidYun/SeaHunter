@@ -4,12 +4,20 @@
 
     <application>
         <activity
+            android:name=".ui.member.detail.MemberCustomDetailActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".ui.delicacy.introduce.detail.DelicacyIntroduceDetailActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".ui.delicacy.detail.DelicacyDetailActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
             android:name=".ui.delicacy.store.StoreDelicacyActivity"
             android:label="@string/title_StoreDelicacy" />
         <activity
             android:name=".ui.member.MemberCustomActivity"
             android:label="@string/title_MemberCustom" />
-
         <activity
             android:name=".ui.delicacy.introduce.DelicacyIntroduceActivity"
             android:label="@string/title_DelicacyIntroduce" />
@@ -66,7 +74,6 @@
         <activity
             android:name=".ui.delicacy.introduce.DelicacyIntroduceResultActivity"
             android:label="@string/IntroduceSearchResult" />
-
         <activity
             android:name=".ui.delicacy.vr.list.StoreVrResultActivity"
             android:label="@string/storeVrSearchResult" />

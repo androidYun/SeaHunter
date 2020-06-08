@@ -23,6 +23,8 @@
                 <com.youth.banner.Banner
                     android:id="@+id/bannerView"
                     android:paddingStart="@dimen/default_padding"
+                    app:indicator_normal_color="@color/black"
+                    app:indicator_selected_color="@color/custom_theme_color"
                     android:paddingEnd="@dimen/default_padding"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_200" />

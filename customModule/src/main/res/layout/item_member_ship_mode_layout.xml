@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -103,25 +104,35 @@
                     tools:text="四川省成都市青羊长顺上街127号宽窄巷子东北角" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/ivMapView"
-                android:layout_width="@dimen/dp_400"
-                android:layout_height="@dimen/dp_200"
-                android:layout_marginTop="20dp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvMemberShipMode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="@dimen/default_margin"
-                android:background="@drawable/shape_custom_member_ship_mode"
-                android:paddingStart="@dimen/default_padding"
-                android:paddingTop="5dp"
-                android:paddingEnd="@dimen/default_padding"
-                android:paddingBottom="5dp"
-                android:text="申请入会"
-                android:textColor="@color/custom_theme_color" />
+                <ImageView
+                    android:id="@+id/ivMapView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_200"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.9" />
+
+                <TextView
+                    android:id="@+id/tvMemberShipMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:background="@drawable/shape_custom_member_ship_mode"
+                    android:paddingStart="@dimen/default_padding"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="@dimen/default_padding"
+                    android:paddingBottom="5dp"
+                    android:text="申请入会"
+                    android:textColor="@color/custom_theme_color"
+                    app:layout_constraintEnd_toEndOf="@+id/ivMapView"
+                    app:layout_constraintStart_toStartOf="@+id/ivMapView"
+                    app:layout_constraintTop_toBottomOf="@+id/ivMapView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </LinearLayout>
 

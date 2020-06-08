@@ -146,6 +146,9 @@ class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView
         if (GSYVideoManager.backFromWindowFull(this)) {
             return
         }
+        if (mEntertainmentFragment.onBackPressed()) {
+            return
+        }
         super.onBackPressed()
     }
 

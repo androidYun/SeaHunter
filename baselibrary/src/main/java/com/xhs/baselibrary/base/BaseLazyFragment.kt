@@ -106,9 +106,7 @@ abstract class  BaseLazyFragment:BaseFragment() {
      * @param isVisible true  不可见 -> 可见
      * false 可见  -> 不可见
      */
-    private fun onFragmentVisibleChange(isVisible: Boolean) {
-
-    }
+    abstract fun onFragmentVisibleChange(isVisible: Boolean)
 
     /**
      * 在fragment首次可见时回调，可在这里进行加载数据，保证只在第一次打开Fragment时才会加载数据，

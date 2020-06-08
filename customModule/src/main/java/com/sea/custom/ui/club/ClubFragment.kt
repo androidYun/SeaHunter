@@ -1,6 +1,7 @@
 package com.sea.custom.ui.club
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,8 @@ import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.UIUtils
 import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.indicator.RectangleIndicator
+import com.youth.banner.indicator.RoundLinesIndicator
 import kotlinx.android.synthetic.main.fragment_club_layout.*
 import kotlinx.android.synthetic.main.include_search_layout.*
 
@@ -87,10 +90,6 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
             rvRecommendAction.layoutManager = LinearLayoutManager(context)
         }
         rvRecommendAction.adapter = mRecommendActivityAdapter
-        bannerView.setIndicatorNormalColor(UIUtils.getInstance().getColor(R.color.color_9))
-        bannerView.setIndicatorSelectedColor(UIUtils.getInstance().getColor(R.color.custom_theme_color))
-        bannerView.setIndicatorGravity(IndicatorConfig.Direction.CENTER).indicator =
-            CircleIndicator(context)
     }
 
     /**
@@ -110,6 +109,9 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
     }
 
     private fun initData() {
+        shopBannerAdapter = ShopBannerAdapter(mBannerList)
+        bannerView.addBannerLifecycleObserver(this).setAdapter(shopBannerAdapter)
+            .setIndicator(CircleIndicator(context)).start()
         nChannelPresenter.loadChannel(
             nChannelModelReq
         )
@@ -160,8 +162,7 @@ class ClubFragment : BaseFragment(), ChannelContact.IChannelView, BannerContact.
         mBannerList.clear()
         mBannerList.addAll(data.map { it.img_url })
         /*banner*/
-        shopBannerAdapter = ShopBannerAdapter(mBannerList)
-        bannerView.adapter = shopBannerAdapter
+        shopBannerAdapter.notifyDataSetChanged()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

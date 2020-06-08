@@ -7,6 +7,7 @@ import com.sea.user.activity.integral.shop.ExchangeShopActivity
 import com.sea.user.activity.mall.detail.*
 import com.sea.user.presenter.sea.mall.MallListItem
 import com.xhs.baselibrary.base.BaseActivity
+import com.youth.banner.indicator.CircleIndicator
 import kotlinx.android.synthetic.main.activity_integral_shop_detail.*
 import kotlin.math.abs
 
@@ -21,7 +22,7 @@ class IntegralShopDetailActivity : BaseActivity(),
     }
 
 
-    private var shopBannerAdapter: ShopBannerAdapter? = null
+    private lateinit var shopBannerAdapter: ShopBannerAdapter
 
     private val mBannerList = mutableListOf<String>()
 
@@ -36,7 +37,9 @@ class IntegralShopDetailActivity : BaseActivity(),
 
 
     private fun initView() {
-
+        shopBannerAdapter = ShopBannerAdapter(mBannerList)
+        bannerView.addBannerLifecycleObserver(this).setAdapter(shopBannerAdapter)
+            .setIndicator(CircleIndicator(this)).start()
     }
 
     private fun initData() {
@@ -57,8 +60,7 @@ class IntegralShopDetailActivity : BaseActivity(),
     override fun loadShopDetailSuccess(nShopDetailModel: NShopDetailModel) {
         mBannerList.clear()
         mBannerList.addAll(nShopDetailModel.bannerList)
-        shopBannerAdapter = ShopBannerAdapter(mBannerList)
-        bannerView.adapter = shopBannerAdapter
+        shopBannerAdapter?.notifyDataSetChanged()
         tvShopName.text = nShopDetailModel.title
         tvShopRemark.text = nShopDetailModel.tags
         tvShopIntegral.text = "${abs(nShopDetailModel.point.toInt())}"
