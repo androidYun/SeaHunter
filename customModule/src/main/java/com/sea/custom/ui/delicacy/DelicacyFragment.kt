@@ -267,7 +267,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
                     }
                     startActivity(Intent(context, VrDetailActivity::class.java).apply {
                         putExtras(
-                            VrDetailActivity.getInstance(content)
+                            VrDetailActivity.getInstance(content,"产品溯源")
                         )
                     })
                 }
