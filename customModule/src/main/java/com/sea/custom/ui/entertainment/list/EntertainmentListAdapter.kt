@@ -48,6 +48,7 @@ class EntertainmentListAdapter(mList: List<NChannelItem>) :
         }
         helper.addOnClickListener(R.id.rgbCollection)
         helper.addOnClickListener(R.id.rgbPraise)
+        helper.addOnClickListener(R.id.rgbForward)
     }
 
     override fun createBaseViewHolder(view: View?): BaseViewHolder {

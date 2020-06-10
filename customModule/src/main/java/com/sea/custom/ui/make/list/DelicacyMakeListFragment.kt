@@ -24,6 +24,11 @@ import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
 import com.sea.custom.presenter.praise.NPraiseShareModelReq
 import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
+import com.sea.publicmodule.dialog.ShareCallBack
+import com.sea.publicmodule.dialog.WxDialog
+import com.sea.publicmodule.utils.weixin.ShareContentWebpage
+import com.sea.publicmodule.utils.weixin.WeixiShareUtil
+import com.sea.publicmodule.utils.weixin.WeixinShareManager
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_delicacy_make_list.*
@@ -160,6 +165,27 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
                     mPraiseSharePresenter.loadPraiseShare(
                         nPraiseShareModelReq
                     )
+                }
+                R.id.rgbForward -> {
+                    if (!WeixiShareUtil.isWxAppInstalledAndSupported(context)) {
+                        ToastUtils.show("请安装微信")
+                        return@setOnItemChildClickListener
+                    }
+                    context?.let {
+                        WxDialog(context!!, object : ShareCallBack {
+                            override fun shareWxSuccess(shareType: Int) {
+                                val wsm = WeixinShareManager.getInstance(context)
+                                wsm.shareByWeixin(
+                                    ShareContentWebpage(
+                                        "分享标题", "分享描述",
+                                        "www.baidu.com", R.drawable.ic_citypicker_bar_back
+                                    ),
+                                    shareType
+                                )
+                            }
+                        }).show()
+                    }
+
                 }
             }
         }

@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.amap.api:location:latest.integration'
     //搜索功能
     implementation 'com.amap.api:search:latest.integration'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation project(':publicmodule')
     implementation 'cn.yipianfengye.android:zxing-library:2.2'
 }

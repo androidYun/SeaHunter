@@ -47,6 +47,7 @@ class DelicacyIntroduceAdapter(mList: List<NChannelItem>) :
         }
         helper.addOnClickListener(R.id.rgbCollection)
         helper.addOnClickListener(R.id.rgbPraise)
+        helper.addOnClickListener(R.id.rgbForward)
     }
 
 

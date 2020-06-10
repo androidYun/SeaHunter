@@ -102,9 +102,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         /*种类*/
         val layoutManager = FlexboxLayoutManager(context)
         if (DeviceUtils.isTabletDevice()) {
-            layoutManager.flexDirection = FlexDirection.ROW
-            layoutManager.justifyContent = JustifyContent.CENTER
-            rvDelicacyKind.layoutManager = layoutManager
+            rvDelicacyKind.layoutManager = GridLayoutManager(context, 8)
         } else {
             rvDelicacyKind.layoutManager = GridLayoutManager(context, 4)
         }
@@ -125,7 +123,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         delicacyTypeList.add(NDelicacyTypeItem("渔获介绍", "介绍详细", R.mipmap.nav_introduce))
         if (DeviceUtils.isTabletDevice()) {
             rvDelicacyType.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                GridLayoutManager(context, 2)
         } else {
             rvDelicacyType.layoutManager =
                 GridLayoutManager(context, 2)

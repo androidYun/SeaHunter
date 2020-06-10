@@ -18,8 +18,14 @@ import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.sea.custom.ui.collection.CollectionContact
 import com.sea.custom.ui.collection.CollectionPresenter
 import com.sea.custom.ui.collection.NCollectionModelReq
+import com.sea.publicmodule.dialog.ShareCallBack
+import com.sea.publicmodule.dialog.WxDialog
+import com.sea.publicmodule.utils.weixin.ShareContentWebpage
+import com.sea.publicmodule.utils.weixin.WeixiShareUtil
+import com.sea.publicmodule.utils.weixin.WeixinShareManager
 import kotlinx.android.synthetic.main.fragment_activity_delicacy_introduce.*
 import com.xhs.baselibrary.base.BaseFragment
+import com.xhs.baselibrary.utils.ToastUtils
 
 class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionView,
     DelicacyCollectionContact.IDelicacyCollectionView, PraiseShareContact.IPraiseShareView {
@@ -107,6 +113,27 @@ class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionV
                     mPraiseSharePresenter.loadPraiseShare(
                         nPraiseShareModelReq
                     )
+                }
+                R.id.rgbForward -> {
+                    if (!WeixiShareUtil.isWxAppInstalledAndSupported(context)) {
+                        ToastUtils.show("请安装微信")
+                        return@setOnItemChildClickListener
+                    }
+                    context?.let {
+                        WxDialog(context!!, object : ShareCallBack {
+                            override fun shareWxSuccess(shareType: Int) {
+                                val wsm = WeixinShareManager.getInstance(context)
+                                wsm.shareByWeixin(
+                                    ShareContentWebpage(
+                                        "分享标题", "分享描述",
+                                        "www.baidu.com", R.mipmap.ic_wx_circle
+                                    ),
+                                    shareType
+                                )
+                            }
+                        }).show()
+                    }
+
                 }
             }
         }

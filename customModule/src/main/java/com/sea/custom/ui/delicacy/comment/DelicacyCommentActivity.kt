@@ -25,7 +25,12 @@ import com.sea.custom.presenter.praise.NPraiseShareModelReq
 import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.sea.custom.ui.collection.NCollectionModelReq
+import com.sea.publicmodule.dialog.ShareCallBack
+import com.sea.publicmodule.dialog.WxDialog
 import com.sea.publicmodule.utils.SoftKeyBoardListener
+import com.sea.publicmodule.utils.weixin.ShareContentWebpage
+import com.sea.publicmodule.utils.weixin.WeixiShareUtil
+import com.sea.publicmodule.utils.weixin.WeixinShareManager
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.xhs.baselibrary.base.BaseActivity
@@ -68,7 +73,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     private val mCommentItemList = mutableListOf<CommentItem>()
 
     private lateinit var mDelicacyCommentAdapter: DelicacyCommentAdapter
-    var gsyVideoOptionBuilder: GSYVideoOptionBuilder? = null
+    private var gsyVideoOptionBuilder: GSYVideoOptionBuilder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -187,6 +192,25 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
             mPraiseSharePresenter.loadPraiseShare(
                 nPraiseShareModelReq
             )
+        }
+        rgbForward.setOnClickListener {
+            if (!WeixiShareUtil.isWxAppInstalledAndSupported(this)) {
+                ToastUtils.show("请安装微信")
+                return@setOnClickListener
+            }
+            WxDialog(this, object : ShareCallBack {
+                override fun shareWxSuccess(shareType: Int) {
+                    val wsm =
+                        WeixinShareManager.getInstance(this@DelicacyCommentActivity)
+                    wsm.shareByWeixin(
+                        ShareContentWebpage(
+                            mChannelItem.title, mChannelItem.sub_title,
+                            mChannelItem.content, R.mipmap.logo
+                        ),
+                        shareType
+                    )
+                }
+            }).show()
         }
     }
 
