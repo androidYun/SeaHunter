@@ -14,6 +14,7 @@ import com.sea.hunter.SeaHunterApplication
 import com.sea.publicmodule.activity.model.ShareMessageEvent
 import com.sea.publicmodule.common.CommonParamsUtils
 import com.sea.publicmodule.utils.weixin.WeixiShareUtil
+import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import com.tencent.mm.opensdk.modelbase.BaseReq
 import com.tencent.mm.opensdk.modelbase.BaseResp
@@ -86,6 +87,7 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler,
 
 
     override fun loadPraiseShareSuccess(content: Any) {
+
         EventBus.getDefault().post(ShareMessageEvent())
         finish()
     }

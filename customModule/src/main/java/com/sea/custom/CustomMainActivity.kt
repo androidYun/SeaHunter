@@ -13,6 +13,7 @@ import com.sea.publicmodule.presenter.version.CheckVersionPresenter
 import com.sea.publicmodule.presenter.version.NCheckVersionModelReq
 import com.sea.publicmodule.presenter.version.VersionModel
 import com.shuyu.gsyvideoplayer.GSYVideoManager
+import com.tencent.bugly.crashreport.CrashReport
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.ui.update.UpdateActivity
 import kotlinx.android.synthetic.main.activity_custom_main.*
