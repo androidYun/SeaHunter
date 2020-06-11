@@ -18,6 +18,8 @@ import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.sea.custom.ui.collection.CollectionContact
 import com.sea.custom.ui.collection.CollectionPresenter
 import com.sea.custom.ui.collection.NCollectionModelReq
+import com.sea.publicmodule.activity.model.ShareMessageEvent
+import com.sea.publicmodule.common.CommonParamsUtils
 import com.sea.publicmodule.dialog.ShareCallBack
 import com.sea.publicmodule.dialog.WxDialog
 import com.sea.publicmodule.utils.weixin.ShareContentWebpage
@@ -26,6 +28,9 @@ import com.sea.publicmodule.utils.weixin.WeixinShareManager
 import kotlinx.android.synthetic.main.fragment_activity_delicacy_introduce.*
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.ToastUtils
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionView,
     DelicacyCollectionContact.IDelicacyCollectionView, PraiseShareContact.IPraiseShareView {
@@ -59,6 +64,7 @@ class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionV
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        EventBus.getDefault().register(this)
         return LayoutInflater.from(context)
             .inflate(R.layout.fragment_activity_delicacy_introduce, container, false)
     }
@@ -123,6 +129,8 @@ class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionV
                         WxDialog(context!!, object : ShareCallBack {
                             override fun shareWxSuccess(shareType: Int) {
                                 val wsm = WeixinShareManager.getInstance(context)
+                                CommonParamsUtils.articleId = mDelicacyIntroduceList[position].id ?: -1
+                                CommonParamsUtils.channelName = ChannelEnum.arder.name
                                 wsm.shareByWeixin(
                                     ShareContentWebpage(
                                         "分享标题", "分享描述",
@@ -175,6 +183,21 @@ class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionV
 
     override fun loadPraiseShareFail(throwable: Throwable) {
         handleError(throwable)
+    }
+
+    /**
+     * 分享成功加载列表
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ShareMessageEvent) {
+        nDelicacyMakeReq.page_index = 1
+        mCollectionPresenter.loadCollection(nDelicacyMakeReq)
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun showLoading() {

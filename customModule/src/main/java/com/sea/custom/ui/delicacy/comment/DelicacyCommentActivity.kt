@@ -12,6 +12,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
 import com.sea.custom.common.Constants
+import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.detail.ChannelDetailContact
 import com.sea.custom.presenter.channel.detail.ChannelDetailPresenter
@@ -25,6 +26,8 @@ import com.sea.custom.presenter.praise.NPraiseShareModelReq
 import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.sea.custom.ui.collection.NCollectionModelReq
+import com.sea.publicmodule.activity.model.ShareMessageEvent
+import com.sea.publicmodule.common.CommonParamsUtils
 import com.sea.publicmodule.dialog.ShareCallBack
 import com.sea.publicmodule.dialog.WxDialog
 import com.sea.publicmodule.utils.SoftKeyBoardListener
@@ -38,6 +41,9 @@ import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 import kotlinx.android.synthetic.main.activity_delicacy_comment.*
 import kotlinx.android.synthetic.main.include_work_operator.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
@@ -78,6 +84,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_delicacy_comment)
+        EventBus.getDefault().register(this)
         initView()
         initData()
         initListener()
@@ -202,6 +209,8 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
                 override fun shareWxSuccess(shareType: Int) {
                     val wsm =
                         WeixinShareManager.getInstance(this@DelicacyCommentActivity)
+                    CommonParamsUtils.articleId = mChannelItem.id ?: -1
+                    CommonParamsUtils.channelName = channelName
                     wsm.shareByWeixin(
                         ShareContentWebpage(
                             mChannelItem.title, mChannelItem.sub_title,
@@ -279,6 +288,16 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     override fun loadChannelDetailFail(throwable: Throwable) {
         handleError(throwable)
     }
+    /**
+     * 分享成功加载列表
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ShareMessageEvent) {
+        mChannelDetailPresenter.loadChannelDetail(nChannelDetailModelReq = nChannelDetailModelReq)
+    }
+
+
+
 
     override fun showLoading() {
         showProgressDialog()
@@ -319,6 +338,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
 
     override fun onDestroy() {
         super.onDestroy()
+        EventBus.getDefault().unregister(this)
         GSYVideoManager.releaseAllVideos();
     }
 

@@ -20,6 +20,8 @@ import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
 import com.sea.custom.presenter.praise.NPraiseShareModelReq
 import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
+import com.sea.publicmodule.activity.model.ShareMessageEvent
+import com.sea.publicmodule.common.CommonParamsUtils
 import com.sea.publicmodule.dialog.ShareCallBack
 import com.sea.publicmodule.dialog.WxDialog
 import com.sea.publicmodule.utils.weixin.ShareContentWebpage
@@ -29,6 +31,9 @@ import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_entertainment_list.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
@@ -69,6 +74,7 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        EventBus.getDefault().register(this)
         return LayoutInflater.from(context)
             .inflate(R.layout.fragment_entertainment_list, container, false)
     }
@@ -145,10 +151,12 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
                         WxDialog(context!!, object : ShareCallBack {
                             override fun shareWxSuccess(shareType: Int) {
                                 val wsm = WeixinShareManager.getInstance(context)
+                                CommonParamsUtils.articleId = mChannelList[position].id ?: -1
+                                CommonParamsUtils.channelName = ChannelEnum.arder.name
                                 wsm.shareByWeixin(
                                     ShareContentWebpage(
                                         "分享标题", "分享描述",
-                                        "www.baidu.com", R.drawable.ic_citypicker_bar_back
+                                        "www.baidu.com", R.mipmap.logo
                                     ),
                                     shareType
                                 )
@@ -249,6 +257,18 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
     override fun onDestroy() {
         super.onDestroy()
         GSYVideoManager.releaseAllVideos()
+        EventBus.getDefault().unregister(this)
+    }
+
+    /**
+     * 分享成功加载列表
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ShareMessageEvent) {
+        nChannelModelReq.page_index = 1
+        nChannelPresenter.loadChannel(
+            nChannelModelReq
+        )
     }
 
 

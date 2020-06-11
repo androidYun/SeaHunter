@@ -12,6 +12,7 @@ import io.fabric.sdk.android.Fabric
 
 class SeaHunterApplication : BaseApplication() {
 
+
     override fun onCreate() {
         super.onCreate()
         initBaseProvide()
@@ -28,4 +29,5 @@ class SeaHunterApplication : BaseApplication() {
         BaseParamsClient.getInstance().init(UserBaseParamsProvide())
 
     }
+
 }

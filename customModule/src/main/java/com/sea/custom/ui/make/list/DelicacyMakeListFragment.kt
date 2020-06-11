@@ -24,6 +24,8 @@ import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
 import com.sea.custom.presenter.praise.NPraiseShareModelReq
 import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
+import com.sea.publicmodule.activity.model.ShareMessageEvent
+import com.sea.publicmodule.common.CommonParamsUtils
 import com.sea.publicmodule.dialog.ShareCallBack
 import com.sea.publicmodule.dialog.WxDialog
 import com.sea.publicmodule.utils.weixin.ShareContentWebpage
@@ -32,6 +34,9 @@ import com.sea.publicmodule.utils.weixin.WeixinShareManager
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_delicacy_make_list.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
     PraiseShareContact.IPraiseShareView,
@@ -83,6 +88,7 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        EventBus.getDefault().register(this)
         return LayoutInflater.from(context)
             .inflate(R.layout.fragment_delicacy_make_list, container, false)
     }
@@ -175,10 +181,12 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
                         WxDialog(context!!, object : ShareCallBack {
                             override fun shareWxSuccess(shareType: Int) {
                                 val wsm = WeixinShareManager.getInstance(context)
+                                CommonParamsUtils.articleId = mDelicacyMakeListList[position].id ?: -1
+                                CommonParamsUtils.channelName = ChannelEnum.food.name
                                 wsm.shareByWeixin(
                                     ShareContentWebpage(
                                         "分享标题", "分享描述",
-                                        "www.baidu.com", R.drawable.ic_citypicker_bar_back
+                                        "www.baidu.com", R.mipmap.logo
                                     ),
                                     shareType
                                 )
@@ -238,6 +246,21 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
         handleError(throwable)
     }
 
+    /**
+     * 分享成功加载列表
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ShareMessageEvent) {
+        nChannelModelReq.page_index = 1
+        mChannelPresenter.loadChannel(nChannelModelReq)
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
+
     override fun showLoading() {
         showProgressDialog()
     }
@@ -245,6 +268,7 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
     override fun hideLoading() {
         hideProgressDialog()
     }
+
 
     companion object {
         private const val channel_key_id = "channel_key_id"

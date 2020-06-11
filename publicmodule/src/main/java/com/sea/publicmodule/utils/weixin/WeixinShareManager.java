@@ -149,7 +149,6 @@ public class WeixinShareManager {
         } else {
             msg.thumbData = WeixiShareUtil.bmpToByteArray(thumb, true);
         }
-
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = buildTransaction("webpage");
         req.message = msg;

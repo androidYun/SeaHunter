@@ -10,6 +10,9 @@ import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
 
 import com.sea.hunter.R
+import com.sea.hunter.SeaHunterApplication
+import com.sea.publicmodule.activity.model.ShareMessageEvent
+import com.sea.publicmodule.common.CommonParamsUtils
 import com.sea.publicmodule.utils.weixin.WeixiShareUtil
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import com.tencent.mm.opensdk.modelbase.BaseReq
@@ -19,11 +22,12 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
+import org.greenrobot.eventbus.EventBus
 
-class WXEntryActivity : AppCompatActivity(), IWXAPIEventHandler,
+class WXEntryActivity : BaseActivity(), IWXAPIEventHandler,
     PraiseShareContact.IPraiseShareView {
     private val mPraiseSharePresenter by lazy { PraiseSharePresenter().apply { attachView(this@WXEntryActivity) } }
-    private val nPraiseShareModelReq = NPraiseShareModelReq()
+    private val nPraiseShareModelReq = NPraiseShareModelReq(click_type = 3)
 
     private var wxapi: IWXAPI? = null
 
@@ -31,14 +35,13 @@ class WXEntryActivity : AppCompatActivity(), IWXAPIEventHandler,
         super.onNewIntent(intent)
         setIntent(intent)
         val channelName = intent.extras?.getString("channelName")
-        println("打印参数" + channelName)
         wxapi!!.handleIntent(intent, this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wxentry)
-
+        val channelName = intent.extras?.getString("channelName")
         wxapi = WXAPIFactory.createWXAPI(this, WeixiShareUtil.getWeixinAppId())
         wxapi!!.handleIntent(intent, this)
     }
@@ -60,8 +63,9 @@ class WXEntryActivity : AppCompatActivity(), IWXAPIEventHandler,
             BaseResp.ErrCode.ERR_OK -> when (baseResp.type) {
                 // ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX是微信分享，api自带
                 ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX -> {
-                    ToastUtils.show("分享成功")
-                     mPraiseSharePresenter.loadPraiseShare(nPraiseShareModelReq)
+                    nPraiseShareModelReq.article_id = CommonParamsUtils.articleId
+                    nPraiseShareModelReq.channel_name = CommonParamsUtils.channelName
+                    mPraiseSharePresenter.loadPraiseShare(nPraiseShareModelReq)
                 }
                 else -> {
                 }
@@ -80,7 +84,9 @@ class WXEntryActivity : AppCompatActivity(), IWXAPIEventHandler,
         }
     }
 
+
     override fun loadPraiseShareSuccess(content: Any) {
+        EventBus.getDefault().post(ShareMessageEvent())
         finish()
     }
 

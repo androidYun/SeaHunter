@@ -22,6 +22,9 @@ import com.sea.custom.presenter.praise.NPraiseShareModelReq
 import com.sea.custom.presenter.praise.PraiseShareContact
 import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.sea.custom.ui.make.list.DelicacyMakeListAdapter
+import com.sea.publicmodule.activity.model.MessageEvent
+import com.sea.publicmodule.activity.model.ShareMessageEvent
+import com.sea.publicmodule.common.CommonParamsUtils
 import com.sea.publicmodule.dialog.ShareCallBack
 import com.sea.publicmodule.dialog.WxDialog
 import com.sea.publicmodule.utils.weixin.ShareContentWebpage
@@ -30,8 +33,12 @@ import com.sea.publicmodule.utils.weixin.WeixinShareManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_search_result.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
-class DelicacyMakeResultActivity : BaseActivity(), ChannelContact.IChannelView, PraiseShareContact.IPraiseShareView,
+class DelicacyMakeResultActivity : BaseActivity(), ChannelContact.IChannelView,
+    PraiseShareContact.IPraiseShareView,
     DelicacyCollectionContact.IDelicacyCollectionView, ApplyMembershipContact.IApplyMembershipView {
     private val nChannelModelReq = NChannelModelReq(
         channel_name = ChannelEnum.food.name
@@ -75,6 +82,7 @@ class DelicacyMakeResultActivity : BaseActivity(), ChannelContact.IChannelView, 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
+        EventBus.getDefault().unregister(this)
         initView()
         initData()
         initListener()
@@ -132,10 +140,12 @@ class DelicacyMakeResultActivity : BaseActivity(), ChannelContact.IChannelView, 
                         override fun shareWxSuccess(shareType: Int) {
                             val wsm =
                                 WeixinShareManager.getInstance(this@DelicacyMakeResultActivity)
+                            CommonParamsUtils.articleId = mDelicacyMakeListList[position].id ?: -1
+                            CommonParamsUtils.channelName = ChannelEnum.food.name
                             wsm.shareByWeixin(
                                 ShareContentWebpage(
                                     "分享标题", "分享描述",
-                                    "www.baidu.com", R.drawable.ic_citypicker_bar_back
+                                    "www.baidu.com", R.mipmap.logo
                                 ),
                                 shareType
                             )
@@ -214,6 +224,22 @@ class DelicacyMakeResultActivity : BaseActivity(), ChannelContact.IChannelView, 
 
     override fun loadPraiseShareFail(throwable: Throwable) {
         handleError(throwable)
+    }
+
+    /**
+     * 分享成功加载列表
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ShareMessageEvent) {
+        nChannelModelReq.page_index = 1
+        nChannelPresenter.loadChannel(
+            nChannelModelReq
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
 

@@ -62,6 +62,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:17.0.1'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'cn.yipianfengye.android:zxing-library:2.2'
+    implementation 'org.greenrobot:eventbus:3.2.0'
     implementation project(':baselibrary')
     implementation project(':usermodule')
     implementation project(':customModule')
