@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.common.Constants
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.collection.DelicacyCollectionContact
@@ -133,8 +134,9 @@ class DelicacyIntroduceFragment : BaseFragment(), CollectionContact.ICollectionV
                                 CommonParamsUtils.channelName = ChannelEnum.arder.name
                                 wsm.shareByWeixin(
                                     ShareContentWebpage(
-                                        "分享标题", "分享描述",
-                                        "www.baidu.com", R.mipmap.ic_wx_circle
+                                        mDelicacyIntroduceList[position].title,
+                                        mDelicacyIntroduceList[position].zhaiyao ?: "",
+                                        Constants.shareUrl, R.mipmap.ic_wx_circle
                                     ),
                                     shareType
                                 )

@@ -213,8 +213,8 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
                     CommonParamsUtils.channelName = channelName
                     wsm.shareByWeixin(
                         ShareContentWebpage(
-                            mChannelItem.title, mChannelItem.sub_title,
-                            mChannelItem.content, R.mipmap.logo
+                            mChannelItem.title, mChannelItem.zhaiyao ?: "",
+                           Constants.shareUrl, R.mipmap.logo
                         ),
                         shareType
                     )
@@ -288,6 +288,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     override fun loadChannelDetailFail(throwable: Throwable) {
         handleError(throwable)
     }
+
     /**
      * 分享成功加载列表
      */
@@ -295,8 +296,6 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     fun onMessageEvent(event: ShareMessageEvent) {
         mChannelDetailPresenter.loadChannelDetail(nChannelDetailModelReq = nChannelDetailModelReq)
     }
-
-
 
 
     override fun showLoading() {

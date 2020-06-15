@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sea.custom.R
+import com.sea.custom.common.Constants
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.holder.RecyclerItemNormalHolder
 import com.sea.custom.presenter.channel.ChannelContact
@@ -155,8 +156,10 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
                                 CommonParamsUtils.channelName = ChannelEnum.arder.name
                                 wsm.shareByWeixin(
                                     ShareContentWebpage(
-                                        "分享标题", "分享描述",
-                                        "www.baidu.com", R.mipmap.logo
+                                        mChannelList[position].title,
+                                        mChannelList[position].zhaiyao ?: "",
+                                        Constants.shareUrl,
+                                        R.mipmap.logo
                                     ),
                                     shareType
                                 )
