@@ -5,5 +5,5 @@ object Constants {
 
     const val netBaseUrl = baseUrl.plus("/handle/")
 
-    const val shareUrl = "http://www.baidu.com"
+    const val shareUrl = "hunter.hnzhiling.com/app/index.html"
 }

@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -108,6 +110,20 @@ public class ImageLoader {
                 .into(view);
     }
 
+    public static void loadImageRoundedCorners(ImageView view, String url, int radius) {
+        // 设置图片圆角角度
+        RoundedCorners roundedCorners = new RoundedCorners(radius);
+        // 通过RequestOptions扩展功能
+        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(radius * 2, radius * 2).circleCrop();
+        GlideApp.with(view.getContext())
+                .asBitmap()
+                .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .placeholder(R.color.base_color_accent)
+                .apply(options)
+                .into(view);
+    }
+
     public static void loadImageWithPath(ImageView view, String path) {
         GlideApp.with(view.getContext())
                 .asBitmap()
@@ -118,6 +134,7 @@ public class ImageLoader {
                 .centerCrop()
                 .into(view);
     }
+
     public static void loadImageForVideo(ImageView view, String path) {
         Glide.with(view.getContext()).load(path).into(view);
     }

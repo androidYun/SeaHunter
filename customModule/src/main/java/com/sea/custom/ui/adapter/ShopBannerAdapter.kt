@@ -1,25 +1,30 @@
 package com.sea.custom.ui.adapter
 
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
+import com.sea.custom.R
 import com.sea.custom.common.Constants
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
+import com.xhs.baselibrary.weight.ShapedImageView
 import com.youth.banner.adapter.BannerAdapter
 
 
-class ShopBannerAdapter(mList:List<String>) : BannerAdapter<String, ShopBannerAdapter.BannerViewHolder>(mList) {
+class ShopBannerAdapter(mList: List<String>, private val isFullScreen: Boolean = false) :
+    BannerAdapter<String, ShopBannerAdapter.BannerViewHolder>(mList) {
 
     override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
-        val imageView = ImageView(parent!!.context)
-        //注意，必须设置为match_parent，这个是viewpager2强制要求的
-        imageView.layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
+        return BannerViewHolder(
+            if (isFullScreen) {
+                LayoutInflater.from(parent?.context)
+                    .inflate(R.layout.item_full_screen_banner_layout, parent, false)
+            } else {
+                LayoutInflater.from(parent?.context)
+                    .inflate(R.layout.item_banner_layout, parent, false)
+            }
         )
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        return BannerViewHolder(imageView)
     }
 
     override fun onBindView(holder: BannerViewHolder?, data: String?, position: Int, size: Int) {
@@ -31,12 +36,14 @@ class ShopBannerAdapter(mList:List<String>) : BannerAdapter<String, ShopBannerAd
 
     class BannerViewHolder(
         @NonNull
-        view: ImageView
+        view: View
     ) :
         RecyclerView.ViewHolder(view) {
-        var imageView: ImageView
+        private var inflaterView: View = view
+        var imageView: ShapedImageView
+
         init {
-            imageView = view
+            imageView = inflaterView.findViewById(R.id.ivBannerView)
         }
     }
 }

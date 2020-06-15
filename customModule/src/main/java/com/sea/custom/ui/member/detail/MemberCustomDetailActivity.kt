@@ -1,5 +1,6 @@
 package com.sea.custom.ui.member.detail
 
+import android.app.AlertDialog
 import android.os.Bundle
 import com.sea.custom.R
 import com.sea.custom.dialog.CustomServicesDialog
@@ -76,7 +77,7 @@ class MemberCustomDetailActivity : BaseActivity(), ChannelDetailContact.IChannel
                 tvCustomMember.setTextColor(UIUtils.getInstance().getColor(R.color.color_774e2a))
             }
         }
-        shopBannerAdapter = ShopBannerAdapter(mBannerList)
+        shopBannerAdapter = ShopBannerAdapter(mBannerList,true)
         bannerView.addBannerLifecycleObserver(this).setAdapter(shopBannerAdapter)
             .setIndicator(CircleIndicator(this)).start()
     }
@@ -100,6 +101,16 @@ class MemberCustomDetailActivity : BaseActivity(), ChannelDetailContact.IChannel
 
     private fun initListener() {
         tvCustomized.setOnClickListener {
+            if (mChannelItem.group_id ?: 0 > UserInformSpUtils.getUserInformModel().group_id) {
+                AlertDialog.Builder(this).setTitle("提示")
+                    .setMessage("由于您的等级不够，暂时不能定制，请联系门店升级。")
+                    .setPositiveButton(
+                        "确定"
+                    ) { dialog, _ -> dialog.dismiss() }
+                    .create()
+                    .show()
+               return@setOnClickListener
+            }
             nApplyMembershipReq.article_id = mChannelItem.id ?: -1
             mApplyShipDialog = CustomServicesDialog(this, object : ApplyMemberShipListener {
                 override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {

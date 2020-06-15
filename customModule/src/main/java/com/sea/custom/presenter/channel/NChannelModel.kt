@@ -40,7 +40,8 @@ data class NChannelItem(
     val zan: Int? = 0,
     val zhaiyao: String? = "",
     val is_zan: Boolean? = false,
-    val vr_url: String? = ""
+    val vr_url: String? = "",
+    val group_id: Int? = -1
 ) : Parcelable
 
 class NChannelModelReq(

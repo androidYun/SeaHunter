@@ -1,7 +1,6 @@
 package com.sea.custom.ui.club
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,11 +29,7 @@ import com.sea.custom.ui.result.ClubSearchResultActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
-import com.xhs.baselibrary.utils.UIUtils
-import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
-import com.youth.banner.indicator.RectangleIndicator
-import com.youth.banner.indicator.RoundLinesIndicator
 import kotlinx.android.synthetic.main.fragment_club_layout.*
 import kotlinx.android.synthetic.main.include_search_layout.*
 

@@ -1,5 +1,6 @@
 package com.sea.custom.ui.result
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
@@ -28,6 +29,7 @@ import com.sea.publicmodule.activity.model.ShareMessageEvent
 import com.sea.publicmodule.common.CommonParamsUtils
 import com.sea.publicmodule.dialog.ShareCallBack
 import com.sea.publicmodule.dialog.WxDialog
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.sea.publicmodule.utils.weixin.ShareContentWebpage
 import com.sea.publicmodule.utils.weixin.WeixiShareUtil
 import com.sea.publicmodule.utils.weixin.WeixinShareManager
@@ -110,6 +112,16 @@ class DelicacyMakeResultActivity : BaseActivity(), ChannelContact.IChannelView,
                     }
                 }
                 R.id.tvDelicacyStatus -> {
+                    if (mDelicacyMakeListList[position].group_id ?: 0 > UserInformSpUtils.getUserInformModel().group_id) {
+                        AlertDialog.Builder(this).setTitle("提示")
+                            .setMessage("由于您的等级不够，暂时不能定制，请联系门店升级。")
+                            .setPositiveButton(
+                                "确定"
+                            ) { dialog, _ -> dialog.dismiss() }
+                            .create()
+                            .show()
+                        return@setOnItemChildClickListener
+                    }
                     nApplyMembershipReq.article_id = mDelicacyMakeListList[position].id ?: 0
                     mApplyShipDialog =
                         CustomServicesDialog(this, object : ApplyMemberShipListener {

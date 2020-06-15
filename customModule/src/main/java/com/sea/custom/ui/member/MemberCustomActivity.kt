@@ -1,5 +1,7 @@
 package com.sea.custom.ui.member
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,11 +19,13 @@ import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.utils.DeviceUtils
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.xhs.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_member_custom.*
 
-class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView , ApplyMembershipContact.IApplyMembershipView{
+class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView,
+    ApplyMembershipContact.IApplyMembershipView {
 
     private val mChannelPresenter by lazy { ChannelPresenter().apply { attachView(this@MemberCustomActivity) } }
 
@@ -87,20 +91,30 @@ class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView , Apply
         mMemberCustomAdapter.setOnItemChildClickListener { _, view, position ->
             when (view.id) {
                 R.id.tvCustomMember -> {
-                        nApplyMembershipReq.article_id = mMemberCustomList[position].id ?: 0
-                        mApplyShipDialog = CustomServicesDialog(this, object : ApplyMemberShipListener {
-                            override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
-                                nApplyMembershipReq.name=nApplyMemberModel.name
-                                nApplyMembershipReq.phone=nApplyMemberModel.phone
-                                nApplyMembershipReq.address=nApplyMemberModel.address
-                                mApplyMembershipPresenter.loadApplyMembership(nApplyMembershipReq)
-                            }
-                        })
-                        mApplyShipDialog?.show()
+                    if (mMemberCustomList[position].group_id ?: 0 > UserInformSpUtils.getUserInformModel().group_id) {
+                        AlertDialog.Builder(this).setTitle("提示")
+                            .setMessage("由于您的等级不够，暂时不能定制，请联系门店升级。")
+                            .setPositiveButton(
+                                "确定"
+                            ) { dialog, _ -> dialog.dismiss() }
+                            .create()
+                            .show()
+                        return@setOnItemChildClickListener
                     }
+                    nApplyMembershipReq.article_id = mMemberCustomList[position].id ?: 0
+                    mApplyShipDialog = CustomServicesDialog(this, object : ApplyMemberShipListener {
+                        override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
+                            nApplyMembershipReq.name = nApplyMemberModel.name
+                            nApplyMembershipReq.phone = nApplyMemberModel.phone
+                            nApplyMembershipReq.address = nApplyMemberModel.address
+                            mApplyMembershipPresenter.loadApplyMembership(nApplyMembershipReq)
+                        }
+                    })
+                    mApplyShipDialog?.show()
                 }
             }
         }
+    }
 
 
     override fun loadChannelSuccess(mList: List<NChannelItem>, totalCount: Int) {
@@ -120,6 +134,7 @@ class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView , Apply
         swipeMemberCustom.isRefreshing
         mMemberCustomAdapter.loadMoreComplete()
     }
+
     override fun loadApplyMembershipSuccess() {
         ToastUtils.show("申请成功,等待审核")
         mChannelPresenter.loadChannel(mNChannelModelReq)
@@ -149,7 +164,6 @@ class MemberCustomActivity : BaseActivity(), ChannelContact.IChannelView , Apply
     override fun onBackPressed() {
         super.onBackPressed()
     }
-
 
 
     override fun showLoading() {
