@@ -32,10 +32,5 @@ class EntertainmentListPresenter : IPresenter<EntertainmentListContact.IEntertai
                     //这里面是回调成功的方法
                 }, { throwable -> softView.get()?.loadEntertainmentListFail(throwable) }
             )
-        softView.get()
-            ?.loadEntertainmentListSuccess(
-                listOf(EntertainmentListItem(), EntertainmentListItem()),
-                20
-            )
     }
 }

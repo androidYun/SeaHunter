@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipeLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,11 +28,11 @@
 
             <com.youth.banner.Banner
                 android:id="@+id/bannerView"
-                app:indicator_normal_color="@color/black"
-                app:indicator_selected_color="@color/custom_theme_color"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_200"
-                android:layout_marginTop="@dimen/dp_10" />
+                android:layout_marginTop="@dimen/dp_10"
+                app:indicator_normal_color="@color/black"
+                app:indicator_selected_color="@color/custom_theme_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,6 +101,48 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRecommendAction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="—   西沙美食推荐   —"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDelicacy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="—   美食制作推荐   —"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDelicacyMake"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="—   加入我们   —"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvStoreList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/dp_8" />
