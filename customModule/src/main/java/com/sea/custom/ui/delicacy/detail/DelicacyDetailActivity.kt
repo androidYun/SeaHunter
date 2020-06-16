@@ -38,7 +38,7 @@ class DelicacyDetailActivity : BaseActivity(), ChannelDetailContact.IChannelDeta
 
 
     private fun initView() {
-        shopBannerAdapter = ShopBannerAdapter(mBannerList)
+        shopBannerAdapter = ShopBannerAdapter(mBannerList,true)
         bannerView.addBannerLifecycleObserver(this).setAdapter(shopBannerAdapter)
             .setIndicator(CircleIndicator(this)).start()
     }

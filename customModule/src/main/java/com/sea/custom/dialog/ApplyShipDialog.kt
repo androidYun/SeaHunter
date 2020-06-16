@@ -12,6 +12,8 @@ import com.sea.custom.presenter.apply.NApplyMemberModel
 import com.xhs.baselibrary.utils.ToastUtils
 import com.sea.publicmodule.activity.DataPickerActivity
 import kotlinx.android.synthetic.main.dialog_apply_membership_layout.*
+import android.app.DatePickerDialog
+import java.util.*
 
 class ApplyShipDialog(
     private val context: Activity,
@@ -49,6 +51,12 @@ class ApplyShipDialog(
                 ), 0
             )
         }
+        tvBirthday.setOnClickListener {
+            showDatePickDialog(DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                nApplyMemberModel.birthday = "$year-${month + 1}-$day"
+                tvBirthday.text = "$year-${month + 1}-$day"
+            })
+        }
         tvSubmit.setOnClickListener {
             val name = evName.text.toString()
             val phone = evPhone.text.toString()
@@ -77,6 +85,25 @@ class ApplyShipDialog(
             applyMemberShipListener.applyMemberShipSuccess(nApplyMemberModel)
         }
         ivCancel.setOnClickListener { this.dismiss() }
+    }
+
+    /**
+     * @description 选择日期弹出框
+     * @param listener 选择日期确定后执行的接口
+     * @param curDate 当前显示的日期
+     * @return
+     * @author wqy
+     * @time 2020-1-6 14:23
+     */
+    private fun showDatePickDialog(listener: DatePickerDialog.OnDateSetListener) {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        var year = calendar.get(Calendar.YEAR)
+        var month = calendar.get(Calendar.MONTH)
+        var day = calendar.get(Calendar.DAY_OF_MONTH)
+        val datePickerDialog =
+            DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT, listener, year, month, day)
+        datePickerDialog.show()
     }
 
     fun setBirthDay(birthday: String) {

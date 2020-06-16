@@ -1,5 +1,6 @@
 package com.sea.custom.ui.club
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +12,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.common.Constants
 import com.sea.custom.dialog.ApplyShipDialog
+import com.sea.custom.dialog.CustomServicesDialog
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.listener.ApplyMemberShipListener
 import com.sea.custom.presenter.apply.ApplyMembershipContact
@@ -26,6 +29,13 @@ import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
+import com.sea.custom.presenter.collection.DelicacyCollectionContact
+import com.sea.custom.presenter.collection.DelicacyCollectionPresenter
+import com.sea.custom.presenter.collection.NCancelDelicacyCollectionModelReq
+import com.sea.custom.presenter.collection.NDelicacyCollectionModelReq
+import com.sea.custom.presenter.praise.NPraiseShareModelReq
+import com.sea.custom.presenter.praise.PraiseShareContact
+import com.sea.custom.presenter.praise.PraiseSharePresenter
 import com.sea.custom.ui.adapter.ShopBannerAdapter
 import com.sea.custom.ui.club.about.AboutClubActivity
 import com.sea.custom.ui.club.activity.ClubActivityActivity
@@ -39,8 +49,18 @@ import com.sea.custom.ui.store.NStoreListModelReq
 import com.sea.custom.ui.store.StoreListContact
 import com.sea.custom.ui.store.StoreListItem
 import com.sea.custom.ui.store.StoreListPresenter
+import com.sea.custom.ui.vr.VrDetailActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
+import com.sea.publicmodule.common.CommonParamsUtils
+import com.sea.publicmodule.dialog.ShareCallBack
+import com.sea.publicmodule.dialog.WxDialog
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
+import com.sea.publicmodule.utils.weixin.ShareContentWebpage
+import com.sea.publicmodule.utils.weixin.WeixiShareUtil
+import com.sea.publicmodule.utils.weixin.WeixinShareManager
+import com.uuzuche.lib_zxing.activity.CaptureActivity
+import com.uuzuche.lib_zxing.activity.CodeUtils
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.ToastUtils
 import com.youth.banner.indicator.CircleIndicator
@@ -48,6 +68,8 @@ import kotlinx.android.synthetic.main.fragment_club_layout.*
 import kotlinx.android.synthetic.main.include_search_layout.*
 
 class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.IClubView,
+    PraiseShareContact.IPraiseShareView,
+    DelicacyCollectionContact.IDelicacyCollectionView,
     ApplyMembershipContact.IApplyMembershipView,
     StoreListContact.IStoreListView {
 
@@ -89,6 +111,18 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
     private val mMembershipModeList = mutableListOf<StoreListItem>()
 
     private lateinit var mMembershipModeAdapter: MembershipModeAdapter
+    /*收藏*/
+    private val mDelicacyCollectionPresenter by lazy {
+        DelicacyCollectionPresenter().apply {
+            attachView(
+                this@ClubFragment
+            )
+        }
+    }
+    /*点赞*/
+    private val mPraiseSharePresenter by lazy { PraiseSharePresenter().apply { attachView(this@ClubFragment) } }
+
+    private val nPraiseShareModelReq = NPraiseShareModelReq()
 
     private val mApplyMembershipPresenter by lazy {
         ApplyMembershipPresenter().apply {
@@ -100,6 +134,7 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
     private val mSelectStorePresenter by lazy { StoreListPresenter().apply { attachView(this@ClubFragment) } }
     private val nStoreListModelReq = NStoreListModelReq()
     private var mApplyShipDialog: ApplyShipDialog? = null
+    private var mCustomServicesDialog: CustomServicesDialog? = null
 
 
     /*首页banner*/
@@ -185,11 +220,19 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
 
     }
 
+    private val REQUEST_CODE_SCAN = 100
     private fun initListener() {
         swipeLayout.setOnRefreshListener {
             bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.club.name))
+            /*请求数据*/
             nRecommendActivityChannelModelReq.page_index = 1
-            nClubMainPresenter.loadDelicacy(nRecommendActivityChannelModelReq)
+            nDelicacyChannelModelReq.page_index = 1
+            nDelicacyMakeChannelModelReq.page_index = 1
+            nClubMainPresenter.loadRecommendActivityClub(nRecommendActivityChannelModelReq)
+            nClubMainPresenter.loadDelicacy(nDelicacyChannelModelReq)
+            nClubMainPresenter.loadDelicacyMake(nDelicacyMakeChannelModelReq)
+            /*入会方式*/
+            mSelectStorePresenter.loadStoreList(nStoreListModelReq)
         }
         tvClub.setOnClickListener {
             startActivity(Intent(context, AboutClubActivity::class.java))
@@ -203,13 +246,17 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
         tvMember.setOnClickListener {
             startActivity(Intent(context, MemberCustomActivity::class.java))
         }
+        tvScan.setOnClickListener {
+            val intent = Intent(context, CaptureActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_SCAN)
+        }
         lvSearchShop.setOnClickListener {
             startActivityForResult(
                 Intent(context, SearchMallActivity::class.java),
                 SearchMallActivity.search_content_request_code
             )
         }
-        mMembershipModeAdapter.setOnItemChildClickListener { adapter, view, position ->
+        mMembershipModeAdapter.setOnItemChildClickListener { _, view, position ->
             when (view.id) {
                 R.id.tvMemberShipMode -> {
                     nApplyMembershipReq.article_id = mMembershipModeList[position].id ?: 0
@@ -232,6 +279,88 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
                 }
             }
         }
+        mDelicacyMakeListAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.rgbCollection -> {
+                    if (mDelicacyMakeListList[position].is_collect == false) {
+                        mDelicacyCollectionPresenter.loadDelicacyCollection(
+                            NDelicacyCollectionModelReq(
+                                channel_name = ChannelEnum.food.name,
+                                article_id = mDelicacyMakeListList[position].id ?: -1
+                            )
+                        )
+                    } else {
+                        mDelicacyCollectionPresenter.cancelDelicacyCollection(
+                            NCancelDelicacyCollectionModelReq(
+                                channel_name = ChannelEnum.food.name,
+                                article_id = mDelicacyMakeListList[position].id ?: -1
+                            )
+                        )
+                    }
+                }
+                R.id.tvDelicacyStatus -> {
+                    activity?.let {
+                        if (mDelicacyMakeListList[position].group_id ?: 0 > UserInformSpUtils.getUserInformModel().group_id) {
+                            AlertDialog.Builder(context).setTitle("提示")
+                                .setMessage("由于您的等级不够，暂时不能定制，请联系门店升级。")
+                                .setPositiveButton(
+                                    "确定"
+                                ) { dialog, _ -> dialog.dismiss() }
+                                .create()
+                                .show()
+                            return@setOnItemChildClickListener
+                        }
+                        nApplyMembershipReq.article_id = mDelicacyMakeListList[position].id ?: 0
+                        mCustomServicesDialog =
+                            CustomServicesDialog(activity!!, object : ApplyMemberShipListener {
+                                override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
+                                    nApplyMembershipReq.name = nApplyMemberModel.name
+                                    nApplyMembershipReq.phone = nApplyMemberModel.phone
+                                    nApplyMembershipReq.address = nApplyMemberModel.address
+                                    mApplyMembershipPresenter.loadApplyMembership(
+                                        nApplyMembershipReq
+                                    )
+                                }
+                            })
+                        mCustomServicesDialog?.show()
+                    }
+                }
+                R.id.rgbPraise -> {
+                    nPraiseShareModelReq.channel_name = ChannelEnum.food.name
+                    nPraiseShareModelReq.article_id = mDelicacyMakeListList[position].id ?: -1
+                    nPraiseShareModelReq.click_type = 2
+                    mPraiseSharePresenter.loadPraiseShare(
+                        nPraiseShareModelReq
+                    )
+                }
+                R.id.rgbForward -> {
+                    if (!WeixiShareUtil.isWxAppInstalledAndSupported(context)) {
+                        ToastUtils.show("请安装微信")
+                        return@setOnItemChildClickListener
+                    }
+                    context?.let {
+                        WxDialog(context!!, object : ShareCallBack {
+                            override fun shareWxSuccess(shareType: Int) {
+                                val wsm = WeixinShareManager.getInstance(context)
+                                CommonParamsUtils.articleId =
+                                    mDelicacyMakeListList[position].id ?: -1
+                                CommonParamsUtils.channelName = ChannelEnum.food.name
+                                wsm.shareByWeixin(
+                                    ShareContentWebpage(
+                                        mDelicacyMakeListList[position].title,
+                                        mDelicacyMakeListList[position].zhaiyao,
+                                        Constants.shareUrl,
+                                        R.mipmap.logo
+                                    ),
+                                    shareType
+                                )
+                            }
+                        }).show()
+                    }
+
+                }
+            }
+        }
     }
 
 
@@ -251,6 +380,22 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
                     ClubSearchResultActivity.getInstance(searchContent)
                 )
             })
+        } else if (requestCode == REQUEST_CODE_SCAN) {
+            if (null != data) {
+                val bundle = data.extras ?: return
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    val content = data?.getStringExtra(CodeUtils.RESULT_STRING)
+                    if (content.isNullOrBlank() || !content.contains("hnzhiling.com", false)) {
+                        return
+                    }
+                    startActivity(Intent(context, VrDetailActivity::class.java).apply {
+                        putExtras(
+                            VrDetailActivity.getInstance(content, "产品溯源")
+                        )
+                    })
+                }
+
+            }
         }
     }
 
@@ -271,13 +416,22 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
 
     override fun loadDelicacySuccess(mList: List<NChannelItem>) {
         toDayActivityList.clear()
-        toDayActivityList.addAll(mList)
+        toDayActivityList.addAll(
+            if (!mList.isNullOrEmpty() && mList.size >= 8) {
+                mList.subList(0, 8)
+            } else mList
+        )
         mToDayActivityAdapter.notifyDataSetChanged()
         swipeLayout.isRefreshing = false
     }
 
     override fun loadDelicacyMakeSuccess(mList: List<NChannelItem>) {
-        mDelicacyMakeListList.addAll(mList)
+        mDelicacyMakeListList.clear()
+        mDelicacyMakeListList.addAll(
+            if (!mList.isNullOrEmpty() && mList.size >= 8) {
+                mList.subList(0, 8)
+            } else mList
+        )
         mDelicacyMakeListAdapter.notifyDataSetChanged()
         mDelicacyMakeListAdapter.loadMoreComplete()
         swipeLayout.isRefreshing = false
@@ -285,7 +439,11 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
 
     override fun loadStoreListSuccess(mList: List<StoreListItem>, totalCount: Int) {
         mMembershipModeList.clear()
-        mMembershipModeList.addAll(mList)
+        mMembershipModeList.addAll(
+            if (!mList.isNullOrEmpty() && mList.size >= 8) {
+                mList.subList(0, 8)
+            } else mList
+        )
         mMembershipModeAdapter.notifyDataSetChanged()
         mMembershipModeAdapter.loadMoreComplete()
         swipeLayout.isRefreshing = false
@@ -302,9 +460,26 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
         ToastUtils.show("申请成功,等待审核")
         mSelectStorePresenter.loadStoreList(nStoreListModelReq)
         mApplyShipDialog?.dismiss()
+        mCustomServicesDialog?.dismiss()
     }
 
     override fun loadApplyMembershipFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
+    override fun loadDelicacyCollectionSuccess() {
+        nClubMainPresenter.loadDelicacyMake(nDelicacyMakeChannelModelReq)
+    }
+
+    override fun loadDelicacyCollectionFail(throwable: Throwable) {
+        handleError(throwable)
+    }
+
+    override fun loadPraiseShareSuccess(content: Any) {
+        nClubMainPresenter.loadDelicacyMake(nDelicacyMakeChannelModelReq)
+    }
+
+    override fun loadPraiseShareFail(throwable: Throwable) {
         handleError(throwable)
     }
 
