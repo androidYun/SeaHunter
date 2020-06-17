@@ -75,7 +75,9 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        EventBus.getDefault().register(this)
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
         return LayoutInflater.from(context)
             .inflate(R.layout.fragment_entertainment_list, container, false)
     }
@@ -260,7 +262,9 @@ class EntertainmentListFragment : BaseFragment(), ChannelContact.IChannelView,
     override fun onDestroy() {
         super.onDestroy()
         GSYVideoManager.releaseAllVideos()
-        EventBus.getDefault().unregister(this)
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this)
+        }
     }
 
     /**

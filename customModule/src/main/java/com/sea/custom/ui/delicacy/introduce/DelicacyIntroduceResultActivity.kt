@@ -16,11 +16,11 @@ import kotlinx.android.synthetic.main.activity_search_result.*
 
 class DelicacyIntroduceResultActivity : BaseActivity(), ChannelContact.IChannelView {
     private val nChannelModelReq = NChannelModelReq(
-        channel_name = ChannelEnum.dish.name
     )
     private lateinit var mDelicacyIntroduceAdapter: DelicacyIntroduceAdapter
 
     private val searchContent by lazy { intent.extras?.getString(search_result_key) ?: "" }
+    private val channelName by lazy { intent.extras?.getString(channel_name_key) ?: "" }
 
     private val mDelicacyIntroduceList = mutableListOf<NChannelItem>()
     private val nChannelPresenter by lazy {
@@ -40,6 +40,7 @@ class DelicacyIntroduceResultActivity : BaseActivity(), ChannelContact.IChannelV
 
     private fun initData() {
         nChannelModelReq.key = searchContent
+        nChannelModelReq.channel_name = channelName
         nChannelPresenter.loadChannel(
             nChannelModelReq
         )
@@ -53,8 +54,8 @@ class DelicacyIntroduceResultActivity : BaseActivity(), ChannelContact.IChannelV
             )
         }
         mDelicacyIntroduceAdapter = DelicacyIntroduceAdapter(mDelicacyIntroduceList)
-                mDelicacyIntroduceAdapter.emptyView =
-                emptyView
+        mDelicacyIntroduceAdapter.emptyView =
+            emptyView
         if (DeviceUtils.isTabletDevice()) {
             rvSearchResult.layoutManager = GridLayoutManager(this, 2)
         } else {
@@ -86,8 +87,10 @@ class DelicacyIntroduceResultActivity : BaseActivity(), ChannelContact.IChannelV
 
     companion object {
         private const val search_result_key = "search_result_key"
-        fun getInstance(searchContent: String = "") = Bundle().apply {
+        private const val channel_name_key = "channel_name_key"
+        fun getInstance(searchContent: String = "", channelName: String = "") = Bundle().apply {
             putString(search_result_key, searchContent)
+            putString(channel_name_key, channelName)
 
         }
     }

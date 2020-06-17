@@ -25,8 +25,6 @@ import com.sea.custom.presenter.banner.BannerContact
 import com.sea.custom.presenter.banner.BannerItem
 import com.sea.custom.presenter.banner.BannerPresenter
 import com.sea.custom.presenter.banner.NBannerModelReq
-import com.sea.custom.presenter.channel.ChannelContact
-import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
 import com.sea.custom.presenter.collection.DelicacyCollectionContact
@@ -43,7 +41,8 @@ import com.sea.custom.ui.club.match.ClubMatchActivity
 import com.sea.custom.ui.delicacy.ToDayActivityAdapter
 import com.sea.custom.ui.make.list.DelicacyMakeListAdapter
 import com.sea.custom.ui.member.MemberCustomActivity
-import com.sea.custom.ui.membership.MembershipModeAdapter
+import com.sea.custom.ui.membership.MainMembershipModeAdapter
+import com.sea.custom.ui.membership.MembershipModeActivity
 import com.sea.custom.ui.result.ClubSearchResultActivity
 import com.sea.custom.ui.store.NStoreListModelReq
 import com.sea.custom.ui.store.StoreListContact
@@ -64,6 +63,8 @@ import com.uuzuche.lib_zxing.activity.CodeUtils
 import com.xhs.baselibrary.base.BaseFragment
 import com.xhs.baselibrary.utils.ToastUtils
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.transformer.ZoomOutPageTransformer
+import com.youth.banner.util.BannerUtils
 import kotlinx.android.synthetic.main.fragment_club_layout.*
 import kotlinx.android.synthetic.main.include_search_layout.*
 
@@ -110,7 +111,7 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
 
     private val mMembershipModeList = mutableListOf<StoreListItem>()
 
-    private lateinit var mMembershipModeAdapter: MembershipModeAdapter
+    private lateinit var mMembershipModeAdapter: MainMembershipModeAdapter
     /*收藏*/
     private val mDelicacyCollectionPresenter by lazy {
         DelicacyCollectionPresenter().apply {
@@ -183,7 +184,9 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
     private fun initData() {
         shopBannerAdapter = ShopBannerAdapter(mBannerList)
         bannerView.addBannerLifecycleObserver(this).setAdapter(shopBannerAdapter)
+            .setBannerRound2(BannerUtils.dp2px(8f))
             .setIndicator(CircleIndicator(context)).start()
+
         bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.club.name))
         /*推荐活动*/
         mRecommendActivityAdapter = RecommendActivityAdapter(mRecommendList)
@@ -208,7 +211,7 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
         rvDelicacyMake.layoutManager = LinearLayoutManager(context)
         rvDelicacyMake.adapter = mDelicacyMakeListAdapter
         /*入会方式*/
-        mMembershipModeAdapter = MembershipModeAdapter(mMembershipModeList)
+        mMembershipModeAdapter = MainMembershipModeAdapter(mMembershipModeList)
         rvStoreList.layoutManager = LinearLayoutManager(context)
         rvStoreList.adapter = mMembershipModeAdapter
         /*请求数据*/
@@ -249,6 +252,10 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
         tvScan.setOnClickListener {
             val intent = Intent(context, CaptureActivity::class.java)
             startActivityForResult(intent, REQUEST_CODE_SCAN)
+        }
+        tvMemberShipMode.setOnClickListener {
+            val intent = Intent(context, MembershipModeActivity::class.java)
+            startActivity(intent)
         }
         lvSearchShop.setOnClickListener {
             startActivityForResult(

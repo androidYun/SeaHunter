@@ -41,8 +41,8 @@ class SetActivity : BaseActivity(), CheckVersionContact.ICheckVersionView {
         tvBackLogin.setOnClickListener { RouterManager.seaRouter?.loginOut() }
         tvVersion.setOnClickListener {
             if (versionModel != null && BuildConfig.VERSION_NAME != versionModel?.version) {
-                val baseUrl = versionModel?.apple_url?.substringBeforeLast("/").plus("/")
-                val apkName = versionModel?.apple_url?.substringAfterLast("/") ?: ""
+                val baseUrl = versionModel?.android_url?.substringBeforeLast("/").plus("/")
+                val apkName = versionModel?.android_url?.substringAfterLast("/") ?: ""
                 if (baseUrl.isNullOrBlank() || apkName.isNullOrBlank()) {
                     return@setOnClickListener
                 }

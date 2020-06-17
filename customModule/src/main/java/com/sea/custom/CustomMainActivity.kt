@@ -69,8 +69,8 @@ class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView
 
     override fun loadCheckVersionSuccess(versionModel: VersionModel) {
         if (BuildConfig.VERSION_NAME != versionModel.version) {
-            val baseUrl = versionModel?.apple_url?.substringBeforeLast("/").plus("/")
-            val apkName = versionModel?.apple_url?.substringAfterLast("/") ?: ""
+            val baseUrl = versionModel?.android_url?.substringBeforeLast("/").plus("/")
+            val apkName = versionModel?.android_url?.substringAfterLast("/") ?: ""
             if (baseUrl.isNullOrBlank() || apkName.isNullOrBlank()) {
                 return
             }

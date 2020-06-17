@@ -111,16 +111,13 @@ public class ImageLoader {
     }
 
     public static void loadImageRoundedCorners(ImageView view, String url, int radius) {
-        // 设置图片圆角角度
-        RoundedCorners roundedCorners = new RoundedCorners(radius);
-        // 通过RequestOptions扩展功能
-        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(radius * 2, radius * 2).circleCrop();
         GlideApp.with(view.getContext())
-                .asBitmap()
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .placeholder(R.color.base_color_accent)
-                .apply(options)
+                .apply(new RequestOptions()
+                        .transform(new GlideRoundTransform(radius)))
+                .placeholder(R.color.base_color_efefef)
+                .error(R.color.base_color_efefef)
+                .centerCrop()
                 .into(view);
     }
 

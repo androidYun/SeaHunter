@@ -58,7 +58,7 @@
             android:button="@null"
             android:drawableTop="@drawable/select_main_tab_entertainment"
             android:gravity="center"
-            android:text="娱乐"
+            android:text="休闲娱乐"
             android:textColor="@drawable/custom_main_text_selector" />
 
         <RadioButton

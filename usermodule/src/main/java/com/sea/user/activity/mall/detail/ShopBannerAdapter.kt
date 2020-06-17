@@ -10,7 +10,8 @@ import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 import com.youth.banner.adapter.BannerAdapter
 
 
-class ShopBannerAdapter(mList:List<String>) : BannerAdapter<String, ShopBannerAdapter.BannerViewHolder>(mList) {
+class ShopBannerAdapter(mList: List<String>) :
+    BannerAdapter<String, ShopBannerAdapter.BannerViewHolder>(mList) {
 
     override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
         val imageView = ImageView(parent!!.context)
@@ -24,10 +25,11 @@ class ShopBannerAdapter(mList:List<String>) : BannerAdapter<String, ShopBannerAd
     }
 
     override fun onBindView(holder: BannerViewHolder?, data: String?, position: Int, size: Int) {
-        ImageLoader.loadImageWithUrl(
+        ImageLoader.loadImageRoundedCorners(
             holder?.imageView,
-            Constants.baseUrl.plus(data)
+            Constants.baseUrl.plus(data), 8
         )
+
     }
 
     class BannerViewHolder(
@@ -36,6 +38,7 @@ class ShopBannerAdapter(mList:List<String>) : BannerAdapter<String, ShopBannerAd
     ) :
         RecyclerView.ViewHolder(view) {
         var imageView: ImageView
+
         init {
             imageView = view
         }

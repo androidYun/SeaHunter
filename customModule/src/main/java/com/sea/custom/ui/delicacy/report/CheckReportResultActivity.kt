@@ -119,7 +119,10 @@ class CheckReportResultActivity : BaseActivity(), ChannelContact.IChannelView {
             val searchContent = data?.getStringExtra(SearchMallActivity.search_content_key) ?: ""
             startActivity(Intent(this, DelicacyIntroduceResultActivity::class.java).apply {
                 putExtras(
-                    DelicacyIntroduceResultActivity.getInstance(searchContent)
+                    DelicacyIntroduceResultActivity.getInstance(
+                        searchContent,
+                        ChannelEnum.report.name
+                    )
                 )
             })
         }

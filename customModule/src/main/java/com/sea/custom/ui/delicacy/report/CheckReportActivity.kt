@@ -3,17 +3,15 @@ package com.sea.custom.ui.delicacy.report
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
 import com.sea.custom.R
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.presenter.channel.ChannelContact
 import com.sea.custom.presenter.channel.ChannelPresenter
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.NChannelModelReq
-import com.sea.custom.ui.delicacy.introduce.DelicacyIntroduceResultActivity
 import com.sea.custom.utils.DeviceUtils
 import com.sea.publicmodule.activity.search.SearchMallActivity
+import com.xhs.baselibrary.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_check_report.*
 import kotlinx.android.synthetic.main.include_search_layout.*
 

@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.xhs.baselibrary.weight.ShapedImageView
+    <ImageView
         android:id="@+id/ivBannerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:shape_mode="round_rect" />
+        android:layout_height="match_parent" />
 </LinearLayout>

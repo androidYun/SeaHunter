@@ -13,21 +13,24 @@ import com.sea.custom.ui.store.StoreListItem
 import com.xhs.baselibrary.BaseApplication
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
 
-class MembershipModeAdapter(mList: List<StoreListItem>) :
+class MainMembershipModeAdapter(mList: List<StoreListItem>) :
     BaseQuickAdapter<StoreListItem, BaseViewHolder>(
-        R.layout.item_member_ship_mode_layout,
+        R.layout.item_mian_club_member_ship_mode_layout,
         mList
     ) {
     override fun convert(helper: BaseViewHolder?, item: StoreListItem) {
-
         helper?.setText(R.id.tvStoreName, item.title)
         helper?.setText(R.id.tvPhone, item.mobile)
         helper?.setText(R.id.tvWxChat, item.webchat)
         helper?.setText(R.id.tvStoreAddress, item.address)
+        ImageLoader.loadImageRoundedCorners(
+            helper?.getView(R.id.ivStoreHead),
+            Constants.baseUrl.plus(item.img_url), 4
+        )
         loadMapView(helper, item)
         if (item.is_join) {
             helper?.setText(R.id.tvMemberShipMode, "已申请")
-            helper?.getView<TextView>(R.id.tvMemberShipMode)?.isClickable = true
+            helper?.getView<TextView>(R.id.tvMemberShipMode)?.isClickable = false
         } else {
             helper?.setText(R.id.tvMemberShipMode, "申请入会")
             helper?.getView<TextView>(R.id.tvMemberShipMode)?.isClickable = true
@@ -49,10 +52,9 @@ class MembershipModeAdapter(mList: List<StoreListItem>) :
                 val geocodeAddressList = geocodeResult?.geocodeAddressList
                 if (!geocodeAddressList.isNullOrEmpty()) {
                     val geocodeAddress = geocodeAddressList[0]
-                    ImageLoader.loadImageWithUrl(
+                    ImageLoader.loadImageRoundedCorners(
                         helper?.getView(R.id.ivMapView),
-                        "http://restapi.amap.com/v3/staticmap?location=${geocodeAddress.latLonPoint.longitude},${geocodeAddress.latLonPoint.latitude}&zoom=13&size=750*300&markers=mid,,A:116.481485,39.990464&key=bf4b7cf518727bd82c78d18362b1de3a"
-                    )
+                        "http://restapi.amap.com/v3/staticmap?location=${geocodeAddress.latLonPoint.longitude},${geocodeAddress.latLonPoint.latitude}&zoom=13&size=750*300&markers=mid,,A:116.481485,39.990464&key=bf4b7cf518727bd82c78d18362b1de3a",8)
                 }
             }
         })

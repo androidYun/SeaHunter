@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipeLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,21 +36,21 @@
 
                 <ImageView
                     android:id="@+id/ivQrScan"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="@dimen/dp_10"
                     android:paddingEnd="@dimen/default_padding"
-                    android:src="@mipmap/icon_scan" />
+                    android:src="@mipmap/icon_scan"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <com.youth.banner.Banner
-                app:indicator_normal_color="@color/black"
-                app:indicator_selected_color="@color/custom_theme_color"
                 android:id="@+id/bannerView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_200"
-                android:layout_marginTop="@dimen/default_margin" />
+                android:layout_marginTop="@dimen/default_margin"
+                app:indicator_normal_color="@color/black"
+                app:indicator_selected_color="@color/custom_theme_color" />
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -78,7 +78,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTodayOptimization"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_8" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
