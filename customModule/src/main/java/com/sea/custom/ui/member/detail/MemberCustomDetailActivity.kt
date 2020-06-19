@@ -10,10 +10,6 @@ import com.sea.custom.presenter.apply.ApplyMembershipContact
 import com.sea.custom.presenter.apply.ApplyMembershipPresenter
 import com.sea.custom.presenter.apply.NApplyMemberModel
 import com.sea.custom.presenter.apply.NApplyMembershipReq
-import com.sea.custom.presenter.banner.BannerContact
-import com.sea.custom.presenter.banner.BannerItem
-import com.sea.custom.presenter.banner.BannerPresenter
-import com.sea.custom.presenter.banner.NBannerModelReq
 import com.sea.custom.presenter.channel.NChannelItem
 import com.sea.custom.presenter.channel.detail.ChannelDetailContact
 import com.sea.custom.presenter.channel.detail.ChannelDetailPresenter

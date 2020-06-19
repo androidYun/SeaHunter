@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
+import com.sea.custom.common.Constants
 import com.sea.custom.dialog.CustomServicesDialog
 import com.sea.custom.em.ChannelEnum
 import com.sea.custom.listener.ApplyMemberShipListener
@@ -197,8 +198,9 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
                                 CommonParamsUtils.channelName = ChannelEnum.food.name
                                 wsm.shareByWeixin(
                                     ShareContentWebpage(
-                                        "分享标题", "分享描述",
-                                        "www.baidu.com", R.mipmap.logo
+                                        mDelicacyMakeListList[position].title,    mDelicacyMakeListList[position].zhaiyao,
+                                        Constants.shareUrl,
+                                        R.mipmap.logo
                                     ),
                                     shareType
                                 )

@@ -109,6 +109,8 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
     /*入会*/
     private val nApplyMembershipReq = NApplyMembershipReq()
 
+    private val nCustomServiceReq = NApplyMembershipReq()
+
     private val mMembershipModeList = mutableListOf<StoreListItem>()
 
     private lateinit var mMembershipModeAdapter: MainMembershipModeAdapter
@@ -267,6 +269,7 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
             when (view.id) {
                 R.id.tvMemberShipMode -> {
                     nApplyMembershipReq.article_id = mMembershipModeList[position].id ?: 0
+                    nApplyMembershipReq.channel_name = ChannelEnum.shop.name
                     nApplyMembershipReq.shop_id = 0
                     activity?.let {
                         mApplyShipDialog =
@@ -317,15 +320,16 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
                                 .show()
                             return@setOnItemChildClickListener
                         }
-                        nApplyMembershipReq.article_id = mDelicacyMakeListList[position].id ?: 0
+                        nCustomServiceReq.article_id = mDelicacyMakeListList[position].id ?: 0
+                        nCustomServiceReq.channel_name = ChannelEnum.food.name
                         mCustomServicesDialog =
                             CustomServicesDialog(activity!!, object : ApplyMemberShipListener {
                                 override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
-                                    nApplyMembershipReq.name = nApplyMemberModel.name
-                                    nApplyMembershipReq.phone = nApplyMemberModel.phone
-                                    nApplyMembershipReq.address = nApplyMemberModel.address
+                                    nCustomServiceReq.name = nApplyMemberModel.name
+                                    nCustomServiceReq.phone = nApplyMemberModel.phone
+                                    nCustomServiceReq.address = nApplyMemberModel.address
                                     mApplyMembershipPresenter.loadApplyMembership(
-                                        nApplyMembershipReq
+                                        nCustomServiceReq
                                     )
                                 }
                             })

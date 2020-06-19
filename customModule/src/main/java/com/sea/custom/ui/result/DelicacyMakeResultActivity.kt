@@ -123,6 +123,7 @@ class DelicacyMakeResultActivity : BaseActivity(), ChannelContact.IChannelView,
                         return@setOnItemChildClickListener
                     }
                     nApplyMembershipReq.article_id = mDelicacyMakeListList[position].id ?: 0
+                    nApplyMembershipReq.channel_name = ChannelEnum.food.name
                     mApplyShipDialog =
                         CustomServicesDialog(this, object : ApplyMemberShipListener {
                             override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {

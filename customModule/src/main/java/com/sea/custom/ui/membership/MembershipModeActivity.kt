@@ -63,7 +63,7 @@ class MembershipModeActivity : BaseActivity(), StoreListContact.IStoreListView,
     }
 
     private fun initData() {
-        nApplyMembershipReq.channel_name = ChannelEnum.food.name
+        nApplyMembershipReq.channel_name = ChannelEnum.shop.name
         mSelectStorePresenter.loadStoreList(nStoreListModelReq)
     }
 
@@ -74,7 +74,7 @@ class MembershipModeActivity : BaseActivity(), StoreListContact.IStoreListView,
         mMembershipModeAdapter.setOnItemChildClickListener { adapter, view, position ->
             when (view.id) {
                 R.id.tvMemberShipMode -> {
-                    nApplyMembershipReq.article_id = mMembershipModeList[position].id ?: 0
+                    nApplyMembershipReq.article_id = mMembershipModeList[position].id
                     nApplyMembershipReq.shop_id = 0
                     mApplyShipDialog = ApplyShipDialog(this, object : ApplyMemberShipListener {
                         override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {

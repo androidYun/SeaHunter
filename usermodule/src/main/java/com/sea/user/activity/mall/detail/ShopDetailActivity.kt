@@ -206,7 +206,7 @@ class ShopDetailActivity : BaseActivity(), ShopDetailContact.IShopDetailView,
             nEditShopCarModelReq.article_id = nShopDetailModel.id
             nEditShopCarModelReq.goods_id = 0
         }
-        webView.loadUrl("https://www.baidu.com/")
+        webView.loadUrl(nShopDetailModel.content)
     }
 
     override fun loadShopDetailFail(throwable: Throwable) {
