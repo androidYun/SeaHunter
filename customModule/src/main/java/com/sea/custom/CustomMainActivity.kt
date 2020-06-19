@@ -2,6 +2,8 @@ package com.sea.custom
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.sea.custom.ui.club.ClubFragment
 import com.sea.custom.ui.delicacy.DelicacyFragment
@@ -13,7 +15,6 @@ import com.sea.publicmodule.presenter.version.CheckVersionPresenter
 import com.sea.publicmodule.presenter.version.NCheckVersionModelReq
 import com.sea.publicmodule.presenter.version.VersionModel
 import com.shuyu.gsyvideoplayer.GSYVideoManager
-import com.tencent.bugly.crashreport.CrashReport
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.ui.update.UpdateActivity
 import kotlinx.android.synthetic.main.activity_custom_main.*
@@ -143,6 +144,7 @@ class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView
             fragment?.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
     }
+
     override fun onBackPressed() {
         if (GSYVideoManager.backFromWindowFull(this)) {
             return
@@ -168,4 +170,26 @@ class CustomMainActivity : BaseActivity(), CheckVersionContact.ICheckVersionView
         GSYVideoManager.releaseAllVideos()
     }
 
+    /**
+     * 第二种办法
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    var firstTime = 0L
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
+            val secondTime = System.currentTimeMillis()
+
+            if (secondTime - firstTime > 2000) {
+                Toast.makeText(this@CustomMainActivity, "再按一次退出程序", Toast.LENGTH_SHORT).show()
+                firstTime = secondTime
+                return true
+            } else {
+                System.exit(0)
+            }
+        }
+        return super.onKeyDown(keyCode, event)
+    }
 }
