@@ -11,6 +11,7 @@
     <color name="base_black">#000000</color>
     <color name="base_transparent">#00000000</color>
     <color name="base_translucent">#80000000</color>
+    <color name="transparent_background">#50000000</color>
     <color name="base_color_efefef">#EFEFEF</color>
     <color name="base_color_5">#c2c2c2</color>
     <color name="base_color_24">#3975f9</color>

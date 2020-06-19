@@ -30,11 +30,10 @@ class MainMembershipModeAdapter(mList: List<StoreListItem>) :
         loadMapView(helper, item)
         if (item.is_join) {
             helper?.setText(R.id.tvMemberShipMode, "已申请")
-            helper?.getView<TextView>(R.id.tvMemberShipMode)?.isClickable = false
         } else {
             helper?.setText(R.id.tvMemberShipMode, "申请入会")
-            helper?.getView<TextView>(R.id.tvMemberShipMode)?.isClickable = true
         }
+        helper?.getView<TextView>(R.id.tvMemberShipMode)?.isClickable = !item.is_join
         helper?.addOnClickListener(R.id.tvMemberShipMode)
     }
 

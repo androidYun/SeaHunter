@@ -71,17 +71,20 @@ class MembershipModeActivity : BaseActivity(), StoreListContact.IStoreListView,
         swipeMembershipMode.setOnRefreshListener {
             mSelectStorePresenter.loadStoreList(nStoreListModelReq)
         }
-        mMembershipModeAdapter.setOnItemChildClickListener { adapter, view, position ->
+        mMembershipModeAdapter.setOnItemChildClickListener { _, view, position ->
             when (view.id) {
                 R.id.tvMemberShipMode -> {
+                    if (mMembershipModeList[position].is_join) {
+                        return@setOnItemChildClickListener
+                    }
                     nApplyMembershipReq.article_id = mMembershipModeList[position].id
                     nApplyMembershipReq.shop_id = 0
                     mApplyShipDialog = ApplyShipDialog(this, object : ApplyMemberShipListener {
                         override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
-                            nApplyMembershipReq.name=nApplyMemberModel.name
-                            nApplyMembershipReq.phone=nApplyMemberModel.phone
-                            nApplyMembershipReq.webchat=nApplyMemberModel.webchat
-                            nApplyMembershipReq.birthday=nApplyMemberModel.birthday
+                            nApplyMembershipReq.name = nApplyMemberModel.name
+                            nApplyMembershipReq.phone = nApplyMemberModel.phone
+                            nApplyMembershipReq.webchat = nApplyMemberModel.webchat
+                            nApplyMembershipReq.birthday = nApplyMemberModel.birthday
                             mApplyMembershipPresenter.loadApplyMembership(nApplyMembershipReq)
                         }
                     })

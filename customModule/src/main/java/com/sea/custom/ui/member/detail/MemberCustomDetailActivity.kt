@@ -26,9 +26,9 @@ import kotlinx.android.synthetic.main.activity_member_custom_detail.*
 class MemberCustomDetailActivity : BaseActivity(), ChannelDetailContact.IChannelDetailView,
     ApplyMembershipContact.IApplyMembershipView {
 
-    private val mChannelItem by lazy {
-        intent?.extras?.getParcelable(Channel_Item_key) ?: NChannelItem()
-    }
+    private var mChannelItem: NChannelItem? = null
+
+    private val id by lazy { intent?.extras?.getInt(Channel_Item_id_key) ?: -1 }
 
     private val nApplyMembershipReq = NApplyMembershipReq()
 
@@ -68,36 +68,35 @@ class MemberCustomDetailActivity : BaseActivity(), ChannelDetailContact.IChannel
                 ivCustomStatus.setImageResource(R.mipmap.vip_ordinary)
                 tvCustomMember.setTextColor(UIUtils.getInstance().getColor(R.color.custom_theme_color))
             }
-            UserInformSpUtils.getUserInformModel().group_id == 3 ->{
+            UserInformSpUtils.getUserInformModel().group_id == 3 -> {
                 ivCustomStatus.setImageResource(R.mipmap.vip_senior)
                 tvCustomMember.setTextColor(UIUtils.getInstance().getColor(R.color.color_774e2a))
             }
         }
-        shopBannerAdapter = ShopBannerAdapter(mBannerList,true)
+        shopBannerAdapter = ShopBannerAdapter(mBannerList, true)
         bannerView.addBannerLifecycleObserver(this).setAdapter(shopBannerAdapter)
             .setIndicator(CircleIndicator(this)).start()
     }
 
     private fun initData() {
-        tvTitle.text = mChannelItem.title
         nApplyMembershipReq.channel_name = ChannelEnum.service.name
         supportFragmentManager.beginTransaction()
             .add(
                 R.id.frameLayout,
-                DetailWebFragment.getInstance(mChannelItem.id ?: -1, ChannelEnum.service.name)
+                DetailWebFragment.getInstance(id ?: -1, ChannelEnum.service.name)
             )
             .commit()
         mChannelDetailPresenter.loadChannelDetail(
             NChannelDetailModelReq(
                 channel_name = ChannelEnum.service.name,
-                id = mChannelItem.id ?: -1
+                id = id
             )
         )
     }
 
     private fun initListener() {
         tvCustomized.setOnClickListener {
-            if (mChannelItem.group_id ?: 0 > UserInformSpUtils.getUserInformModel().group_id) {
+            if (mChannelItem?.group_id ?: 0 > UserInformSpUtils.getUserInformModel().group_id) {
                 AlertDialog.Builder(this).setTitle("提示")
                     .setMessage("由于您的等级不够，暂时不能定制，请联系门店升级。")
                     .setPositiveButton(
@@ -105,9 +104,9 @@ class MemberCustomDetailActivity : BaseActivity(), ChannelDetailContact.IChannel
                     ) { dialog, _ -> dialog.dismiss() }
                     .create()
                     .show()
-               return@setOnClickListener
+                return@setOnClickListener
             }
-            nApplyMembershipReq.article_id = mChannelItem.id ?: -1
+            nApplyMembershipReq.article_id = mChannelItem?.id ?: -1
             mApplyShipDialog = CustomServicesDialog(this, object : ApplyMemberShipListener {
                 override fun applyMemberShipSuccess(nApplyMemberModel: NApplyMemberModel) {
                     nApplyMembershipReq.name = nApplyMemberModel.name
@@ -122,7 +121,7 @@ class MemberCustomDetailActivity : BaseActivity(), ChannelDetailContact.IChannel
             mChannelDetailPresenter.loadChannelDetail(
                 NChannelDetailModelReq(
                     channel_name = ChannelEnum.service.name,
-                    id = mChannelItem.id ?: -1
+                    id = mChannelItem?.id ?: -1
                 )
             )
         }
@@ -130,6 +129,8 @@ class MemberCustomDetailActivity : BaseActivity(), ChannelDetailContact.IChannel
     }
 
     override fun loadChannelDetailSuccess(content: NChannelItem) {
+        this.mChannelItem = content
+        tvTitle.text = mChannelItem?.title ?: ""
         mBannerList.clear()
         if (!content.albums.isNullOrEmpty()) {
             mBannerList.addAll(content.albums.map { it?.original_path ?: "" })
@@ -166,11 +167,11 @@ class MemberCustomDetailActivity : BaseActivity(), ChannelDetailContact.IChannel
     }
 
     companion object {
-        private const val Channel_Item_key = "Channel_Item_key"
+        private const val Channel_Item_id_key = "Channel_Item_id_key"
         fun getInstance(
-            nChannelItem: NChannelItem
+            id: Int
         ) = Bundle().apply {
-            putParcelable(Channel_Item_key, nChannelItem)
+            putInt(Channel_Item_id_key, id)
         }
     }
 }

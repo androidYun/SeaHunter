@@ -11,6 +11,7 @@ import com.sea.publicmodule.presenter.version.NCheckVersionModelReq
 import com.sea.publicmodule.presenter.version.VersionModel
 import com.xhs.baselibrary.base.BaseActivity
 import com.sea.publicmodule.router.RouterManager
+import com.sea.publicmodule.utils.sp.UserInformSpUtils
 import com.xhs.baselibrary.ui.update.UpdateActivity
 import kotlinx.android.synthetic.main.activity_custom_set.*
 
@@ -30,6 +31,7 @@ class SetActivity : BaseActivity(), CheckVersionContact.ICheckVersionView {
     }
 
     private fun initData() {
+        tvMemberLevel.text = UserInformSpUtils.getUserInformModel().group_name
         mCheckVersionPresenter.loadCheckVersion(NCheckVersionModelReq(versionName = BuildConfig.VERSION_NAME))
     }
 

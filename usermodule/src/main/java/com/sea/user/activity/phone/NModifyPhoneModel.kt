@@ -8,4 +8,7 @@ class NModifyPhoneResponse(
     class Data
 }
 
-class NModifyPhoneModelReq(private val command: Int = 6, val mobile: String = "")
+class NModifyPhoneModelReq(
+    private val command: Int = 6, val mobile: String = "",
+    val auth_code: String = "", val input_code: String = ""
+)

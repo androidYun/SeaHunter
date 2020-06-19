@@ -15,7 +15,7 @@ class ClubActivityAdapter(mList: List<NChannelItem>) :
     BaseQuickAdapter<NChannelItem, BaseViewHolder>(R.layout.item_activity_club_layout, mList) {
     override fun convert(helper: BaseViewHolder?, item: NChannelItem) {
         helper?.setText(R.id.tvActivityTitle, item.title)
-        helper?.setText(R.id.tvActivityContent, item.content)
+        helper?.setText(R.id.tvActivityContent, item.zhaiyao)
         helper?.setText(R.id.tvActivityTitle, item.title)
         ImageLoader.loadImageWithUrl(
             helper?.getView(R.id.ivActivityImage),

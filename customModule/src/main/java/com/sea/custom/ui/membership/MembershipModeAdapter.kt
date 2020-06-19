@@ -1,6 +1,5 @@
 package com.sea.custom.ui.membership
 
-import android.widget.TextView
 import com.amap.api.services.geocoder.GeocodeQuery
 import com.amap.api.services.geocoder.GeocodeResult
 import com.amap.api.services.geocoder.GeocodeSearch
@@ -8,7 +7,6 @@ import com.amap.api.services.geocoder.RegeocodeResult
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sea.custom.R
-import com.sea.custom.common.Constants
 import com.sea.custom.ui.store.StoreListItem
 import com.xhs.baselibrary.BaseApplication
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
@@ -27,10 +25,8 @@ class MembershipModeAdapter(mList: List<StoreListItem>) :
         loadMapView(helper, item)
         if (item.is_join) {
             helper?.setText(R.id.tvMemberShipMode, "已申请")
-            helper?.getView<TextView>(R.id.tvMemberShipMode)?.isClickable = true
         } else {
             helper?.setText(R.id.tvMemberShipMode, "申请入会")
-            helper?.getView<TextView>(R.id.tvMemberShipMode)?.isClickable = true
         }
         helper?.addOnClickListener(R.id.tvMemberShipMode)
     }

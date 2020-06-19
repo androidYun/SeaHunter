@@ -38,7 +38,7 @@ class DelicacyMakeAdapter(mList: List<NChannelItem>) :
                     putExtras(
                         DelicacyCommentActivity.getInstance(
                             ChannelEnum.food.name,
-                            item ?: NChannelItem()
+                            item?.id ?: -1
                         )
                     )
                 })

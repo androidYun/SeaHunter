@@ -99,7 +99,7 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
 
     /*西沙没事*/
     private val nDelicacyChannelModelReq =
-        NChannelModelReq(channel_name = ChannelEnum.dish.name, category_id = 0)
+        NChannelModelReq(channel_name = ChannelEnum.dish.name, category_id = 0,is_red = 1)
     private lateinit var mToDayActivityAdapter: ToDayActivityAdapter
     private val toDayActivityList = mutableListOf<NChannelItem>()
     /*美食制作*/
@@ -268,6 +268,9 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
         mMembershipModeAdapter.setOnItemChildClickListener { _, view, position ->
             when (view.id) {
                 R.id.tvMemberShipMode -> {
+                    if (mMembershipModeList[position].is_join) {
+                        return@setOnItemChildClickListener
+                    }
                     nApplyMembershipReq.article_id = mMembershipModeList[position].id ?: 0
                     nApplyMembershipReq.channel_name = ChannelEnum.shop.name
                     nApplyMembershipReq.shop_id = 0

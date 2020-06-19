@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.view.WindowManager
 import com.xhs.baselibrary.R
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.SystemUtils
@@ -57,6 +58,8 @@ class UpdateActivity : BaseActivity(), UpdateContact.UpdateView {
         if (isForceUpdate) {
             tvCancelUpdate.visibility = View.GONE
         }
+        val supportActionBar = supportActionBar
+        supportActionBar?.hide()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -70,10 +73,16 @@ class UpdateActivity : BaseActivity(), UpdateContact.UpdateView {
         tvCancelUpdate!!.setOnClickListener { finish() }
 
         tvOkUpdate!!.setOnClickListener {
-            checkPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+            checkPermissions(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
         }
         if (isForceUpdate) {
-            checkPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+            checkPermissions(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
         }
     }
 
@@ -83,7 +92,10 @@ class UpdateActivity : BaseActivity(), UpdateContact.UpdateView {
     }
 
     override fun updateFinish(filePath: String) {
-        if (!filePath.isNullOrEmpty() && File(filePath).exists() && SystemUtils.isAppInstalled(filePath)) {
+        if (!filePath.isNullOrEmpty() && File(filePath).exists() && SystemUtils.isAppInstalled(
+                filePath
+            )
+        ) {
             SystemUtils.install(filePath)
             finish()
         } else {
@@ -132,10 +144,10 @@ class UpdateActivity : BaseActivity(), UpdateContact.UpdateView {
         private const val IS_FORCE_UPDATE_KEY = "IS_FORCE_UPDATE_KEY"
 
         fun setArgument(
-                updateContent: String,
-                apkName: String,
-                apkUrl: String,
-                isForceUpdate: Boolean
+            updateContent: String,
+            apkName: String,
+            apkUrl: String,
+            isForceUpdate: Boolean
         ): Bundle {
             val bundle = Bundle()
             bundle.putString(UPDATE_CONTENT_KEY, updateContent)

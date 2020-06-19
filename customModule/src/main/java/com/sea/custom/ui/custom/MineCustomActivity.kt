@@ -13,10 +13,11 @@ import com.sea.custom.em.ChannelEnum
 import com.sea.custom.ui.collection.introduce.DelicacyIntroduceFragment
 import com.sea.custom.ui.collection.make.DelicacyMakeFragment
 import com.sea.custom.utils.DeviceUtils
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import kotlinx.android.synthetic.main.activity_mine_custom.*
 import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
-class MineCustomActivity : BaseActivity(){
+class MineCustomActivity : BaseActivity() {
 
     private val mMineCollectionList = mutableListOf<String>()
 
@@ -33,6 +34,21 @@ class MineCustomActivity : BaseActivity(){
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.tabMode = TabLayout.MODE_FIXED
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GSYVideoManager.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GSYVideoManager.onResume(false)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GSYVideoManager.releaseAllVideos()
     }
 }
 

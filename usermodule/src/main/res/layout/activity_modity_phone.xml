@@ -83,6 +83,33 @@
                 android:textColor="@color/user_theme_color"
                 android:textSize="@dimen/sp_14" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lvPhone"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_46"
+            android:layout_marginTop="@dimen/dp_40"
+            android:background="@drawable/shape_user_name_background"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/default_padding"
+            android:paddingEnd="@dimen/default_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lvVersionCode"
+            app:layout_constraintWidth_percent="0.8">
+
+            <EditText
+                android:id="@+id/evPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawableStart="@mipmap/ic_account"
+                android:drawablePadding="@dimen/dp_10"
+                android:hint="@string/please_input_phone"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:textColor="@color/color_3"
+                android:textColorHint="@color/color_c5c5c5" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvConfirm"
@@ -91,7 +118,7 @@
             android:text="@string/confirm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lvVersionCode"
+            app:layout_constraintTop_toBottomOf="@+id/lvPhone"
             app:layout_constraintWidth_percent="0.8" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

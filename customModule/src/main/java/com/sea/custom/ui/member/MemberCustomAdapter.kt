@@ -51,7 +51,7 @@ class MemberCustomAdapter(mList: List<NChannelItem>) :
                     MemberCustomDetailActivity::class.java
                 ).apply {
                     putExtras(
-                        MemberCustomDetailActivity.getInstance(nChannelItem = item)
+                        MemberCustomDetailActivity.getInstance(id = item.id ?: -1)
                     )
                 })
         }

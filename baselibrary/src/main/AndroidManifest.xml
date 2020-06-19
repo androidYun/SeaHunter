@@ -2,7 +2,6 @@
     package="com.xhs.baselibrary">
 
 
-
     <application android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".ui.photo_selector.PhotoSelectActivity"
@@ -19,7 +18,8 @@
         <activity android:name=".ui.web.X5WebActivity" />
         <activity android:name=".ui.date.SelectDateSlotActivity" />
         <!-- 腾讯X5内核初始化 -->
-        <service android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+        <service
+            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
             android:label="dexopt"
             android:process=":dexopt" />
         <provider

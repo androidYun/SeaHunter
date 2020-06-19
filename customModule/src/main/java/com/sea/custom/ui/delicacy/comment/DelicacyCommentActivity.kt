@@ -74,7 +74,10 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     private val nCollectionModelReq = NCollectionModelReq()
 
     private val channelName by lazy { intent?.extras?.getString(channel_name_key) ?: "" }
-    private lateinit var mChannelItem: NChannelItem
+    private var mChannelItem: NChannelItem? = null
+
+    private val id by lazy { intent?.extras?.getInt(channel_item_id_key) ?: -1 }
+
 
     private val mCommentItemList = mutableListOf<CommentItem>()
 
@@ -88,7 +91,6 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
         initView()
         initData()
         initListener()
-        initOptionsBuilder()
     }
 
     private fun initOptionsBuilder() {
@@ -97,7 +99,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         ImageLoader.loadImageWithUrl(
             imageView,
-            Constants.baseUrl + mChannelItem.img_url
+            Constants.baseUrl + mChannelItem?.img_url
         )
         gsyVideoPlayer.thumbImageView = imageView
         gsyVideoPlayer.backButton.visibility = View.GONE
@@ -105,9 +107,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
 
 
     private fun initView() {
-        mChannelItem = intent?.extras?.getParcelable(Channel_Item_key) ?: NChannelItem()
         gsyVideoOptionBuilder = GSYVideoOptionBuilder()
-        gsyVideoPlayer.setUp(Constants.baseUrl + mChannelItem.video_src, true, "")
         mDelicacyCommentAdapter = DelicacyCommentAdapter(mCommentItemList)
         rvDelicacyComment.layoutManager = LinearLayoutManager(this)
         rvDelicacyComment.adapter = mDelicacyCommentAdapter
@@ -116,19 +116,19 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     private fun initData() {
         //详情
         nChannelDetailModelReq.channel_name = channelName
-        nChannelDetailModelReq.id = mChannelItem.id ?: -1
+        nChannelDetailModelReq.id = id
         mChannelDetailPresenter.loadChannelDetail(nChannelDetailModelReq = nChannelDetailModelReq)
         //请求评论列表
         nCommentModelReq.channel_name = channelName
-        nCommentModelReq.article_id = mChannelItem.id ?: -1
+        nCommentModelReq.article_id = id
         mDelicacyCommentPresenter.loadComment(
             NCommentModelReq(
                 channel_name = channelName,
-                article_id = mChannelItem.id ?: -1
+                article_id = id
             )
         )
         nPraiseShareModelReq.channel_name = channelName
-        nPraiseShareModelReq.article_id = mChannelItem.id ?: -1
+        nPraiseShareModelReq.article_id = id
         nPraiseShareModelReq.click_type = 1
         mPraiseSharePresenter.loadPraiseShare(
             nPraiseShareModelReq
@@ -170,31 +170,31 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
             mDelicacyCommentPresenter.loadComment(
                 NCommentModelReq(
                     channel_name = channelName,
-                    article_id = mChannelItem.id ?: -1
+                    article_id = id
                 )
             )
             mChannelDetailPresenter.loadChannelDetail(nChannelDetailModelReq = nChannelDetailModelReq)
         }
         rgbCollection.setOnClickListener {
-            if (mChannelItem.is_collect == false) {
+            if (mChannelItem?.is_collect == false) {
                 mDelicacyCollectionPresenter.loadDelicacyCollection(
                     NDelicacyCollectionModelReq(
                         channel_name = channelName,
-                        article_id = mChannelItem.id ?: -1
+                        article_id = id
                     )
                 )
             } else {
                 mDelicacyCollectionPresenter.cancelDelicacyCollection(
                     NCancelDelicacyCollectionModelReq(
                         channel_name = channelName,
-                        article_id = mChannelItem.id ?: -1
+                        article_id = id
                     )
                 )
             }
         }
         rgbPraise.setOnClickListener {
             nPraiseShareModelReq.channel_name = channelName
-            nPraiseShareModelReq.article_id = mChannelItem.id ?: -1
+            nPraiseShareModelReq.article_id = id
             nPraiseShareModelReq.click_type = 2
             mPraiseSharePresenter.loadPraiseShare(
                 nPraiseShareModelReq
@@ -209,12 +209,12 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
                 override fun shareWxSuccess(shareType: Int) {
                     val wsm =
                         WeixinShareManager.getInstance(this@DelicacyCommentActivity)
-                    CommonParamsUtils.articleId = mChannelItem.id ?: -1
+                    CommonParamsUtils.articleId = id
                     CommonParamsUtils.channelName = channelName
                     wsm.shareByWeixin(
                         ShareContentWebpage(
-                            mChannelItem.title, mChannelItem.zhaiyao ?: "",
-                           Constants.shareUrl, R.mipmap.logo
+                            mChannelItem?.title, mChannelItem?.zhaiyao ?: "",
+                            Constants.shareUrl, R.mipmap.logo
                         ),
                         shareType
                     )
@@ -246,7 +246,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
         mDelicacyCommentPresenter.loadComment(
             NCommentModelReq(
                 channel_name = channelName,
-                article_id = mChannelItem.id ?: -1
+                article_id = id
             )
         )
     }
@@ -276,6 +276,8 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
 
     override fun loadChannelDetailSuccess(mChannelItem: NChannelItem) {
         this.mChannelItem = mChannelItem
+        initOptionsBuilder()
+        gsyVideoPlayer.setUp(Constants.baseUrl + mChannelItem.video_src, true, "")
         rgbPraise.text = "${mChannelItem?.zan}"
         rgbCollection.text = "${mChannelItem?.collect_num}"
         rgbForward.text = "${mChannelItem?.share}"
@@ -343,13 +345,14 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
 
     companion object {
         private const val channel_name_key = "channel_name_key"
+        private const val channel_item_id_key = "channel_item_id_key"
         private const val Channel_Item_key = "Channel_Item_key"
         fun getInstance(
             channelName: String,
-            nChannelItem: NChannelItem
+            id: Int = -1
         ) = Bundle().apply {
             putString(channel_name_key, channelName)
-            putParcelable(Channel_Item_key, nChannelItem)
+            putInt(channel_item_id_key, id)
         }
     }
 }

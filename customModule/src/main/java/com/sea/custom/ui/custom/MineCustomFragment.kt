@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sea.custom.R
 import com.sea.custom.utils.DeviceUtils
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.xhs.baselibrary.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_custom.*
 
@@ -42,7 +43,7 @@ class MineCustomFragment : BaseFragment(), MineCustomContact.IMineCustomView {
 
 
     private fun initView() {
-        mMineCustomAdapter = MineCustomAdapter(mDelicacyMakeList)
+        mMineCustomAdapter = MineCustomAdapter(mDelicacyMakeList, channelName)
         mMineCustomAdapter.emptyView =
             emptyView
         rvMineCustom.layoutManager = LinearLayoutManager(context)
@@ -77,8 +78,9 @@ class MineCustomFragment : BaseFragment(), MineCustomContact.IMineCustomView {
         if (nMineCustomModelReq.page_index == 1) {
             mDelicacyMakeList.clear()
         }
+
         this.totalCount = totalCount
-        mDelicacyMakeList.addAll(mList)
+        mDelicacyMakeList.addAll(mList.filter { !it.article?.title.isNullOrBlank() })
         mMineCustomAdapter.notifyDataSetChanged()
         mMineCustomAdapter.loadMoreComplete()
         swipeMineCustom.isRefreshing = false
@@ -98,6 +100,17 @@ class MineCustomFragment : BaseFragment(), MineCustomContact.IMineCustomView {
 
     override fun hideLoading() {
         hideProgressDialog()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        GSYVideoManager.onResume(false)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GSYVideoManager.onPause()
     }
 
     companion object {

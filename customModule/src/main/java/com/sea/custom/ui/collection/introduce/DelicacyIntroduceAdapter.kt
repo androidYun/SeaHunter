@@ -21,7 +21,10 @@ class DelicacyIntroduceAdapter(mList: List<NChannelItem>) :
     override fun convert(helper: BaseViewHolder?, item: NChannelItem?) {
         val recyclerItemViewHolder = helper as RecyclerItemNormalHolder
         recyclerItemViewHolder.recyclerBaseAdapter = this
-        recyclerItemViewHolder.onBind( helper.layoutPosition, VideoModel(item?.video_src?:"", item?.title?:"",item?.img_url?:""))
+        recyclerItemViewHolder.onBind(
+            helper.layoutPosition,
+            VideoModel(item?.video_src ?: "", item?.title ?: "", item?.img_url ?: "")
+        )
         helper?.setText(R.id.tvDelicacyName, item?.title)
         helper?.getView<CheckBox>(R.id.rgbPraise)?.text = "${item?.zan}"
         helper?.getView<CheckBox>(R.id.rgbComment)?.text = "${item?.comment_num}"
@@ -39,7 +42,7 @@ class DelicacyIntroduceAdapter(mList: List<NChannelItem>) :
                     putExtras(
                         DelicacyCommentActivity.getInstance(
                             ChannelEnum.arder.name,
-                            item ?: NChannelItem()
+                            item?.id ?: -1
                         )
                     )
                 })

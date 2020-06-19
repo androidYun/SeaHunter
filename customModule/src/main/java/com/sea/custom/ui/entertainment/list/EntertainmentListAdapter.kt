@@ -41,7 +41,7 @@ class EntertainmentListAdapter(mList: List<NChannelItem>) :
                     putExtras(
                         DelicacyCommentActivity.getInstance(
                             ChannelEnum.arder.name,
-                            item ?: NChannelItem()
+                            item?.id ?: -1
                         )
                     )
                 })

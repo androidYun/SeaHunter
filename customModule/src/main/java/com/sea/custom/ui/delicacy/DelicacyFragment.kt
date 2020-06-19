@@ -60,7 +60,8 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
     private val bannerPresenter by lazy { BannerPresenter().apply { attachView(this@DelicacyFragment) } }
 
     private val nChannelModelReq = NChannelModelReq(
-        channel_name = ChannelEnum.dish.name
+        channel_name = ChannelEnum.dish.name,
+        is_red = 1
     )
 
     private lateinit var mDelicacyKindAdapter: DelicacyKindAdapter

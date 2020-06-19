@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50"
                 android:gravity="center"
-                android:text="—   今日优选   —"
+                android:text="—   推荐榜单   —"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_18" />
 

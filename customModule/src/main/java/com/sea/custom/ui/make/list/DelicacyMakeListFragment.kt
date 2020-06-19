@@ -91,7 +91,9 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        EventBus.getDefault().register(this)
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
         return LayoutInflater.from(context)
             .inflate(R.layout.fragment_delicacy_make_list, container, false)
     }
@@ -194,11 +196,13 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
                         WxDialog(context!!, object : ShareCallBack {
                             override fun shareWxSuccess(shareType: Int) {
                                 val wsm = WeixinShareManager.getInstance(context)
-                                CommonParamsUtils.articleId = mDelicacyMakeListList[position].id ?: -1
+                                CommonParamsUtils.articleId =
+                                    mDelicacyMakeListList[position].id ?: -1
                                 CommonParamsUtils.channelName = ChannelEnum.food.name
                                 wsm.shareByWeixin(
                                     ShareContentWebpage(
-                                        mDelicacyMakeListList[position].title,    mDelicacyMakeListList[position].zhaiyao,
+                                        mDelicacyMakeListList[position].title,
+                                        mDelicacyMakeListList[position].zhaiyao,
                                         Constants.shareUrl,
                                         R.mipmap.logo
                                     ),
@@ -272,7 +276,9 @@ class DelicacyMakeListFragment : BaseFragment(), ChannelContact.IChannelView,
 
     override fun onDestroy() {
         super.onDestroy()
-        EventBus.getDefault().unregister(this)
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this)
+        }
     }
 
     override fun showLoading() {

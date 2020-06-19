@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -17,7 +18,7 @@
             style="@style/itemContentTextViewStyle"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="普通会员"
+            tools:text="普通会员"
             android:textColor="@color/custom_theme_color"
             android:textSize="@dimen/sp_14" />
     </LinearLayout>

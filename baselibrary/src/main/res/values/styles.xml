@@ -45,11 +45,11 @@
         <item name="contentInsetStart">0dp</item>
     </style>
 
-    <style name="theme_fullScreen" parent="Theme.AppCompat.NoActionBar">
+    <style name="theme_fullScreen" parent="Theme.AppCompat">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/transparent_background</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     </style>
 
 </resources>

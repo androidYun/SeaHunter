@@ -37,6 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:maxLines="2"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/default_margin"
             android:textColor="@color/color_6"
             android:textSize="@dimen/sp_12"
             tools:text="『原卡佩迪恩岛 Carpe Diem』『2019盛大开业·海上乐园』5晚连住+一价全包+赠出海活动+超大房间..." />

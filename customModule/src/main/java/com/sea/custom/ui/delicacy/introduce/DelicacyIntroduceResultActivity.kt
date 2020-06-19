@@ -56,11 +56,7 @@ class DelicacyIntroduceResultActivity : BaseActivity(), ChannelContact.IChannelV
         mDelicacyIntroduceAdapter = DelicacyIntroduceAdapter(mDelicacyIntroduceList)
         mDelicacyIntroduceAdapter.emptyView =
             emptyView
-        if (DeviceUtils.isTabletDevice()) {
-            rvSearchResult.layoutManager = GridLayoutManager(this, 2)
-        } else {
-            rvSearchResult.layoutManager = LinearLayoutManager(this)
-        }
+        rvSearchResult.layoutManager = LinearLayoutManager(this)
         rvSearchResult.adapter = mDelicacyIntroduceAdapter
     }
 
