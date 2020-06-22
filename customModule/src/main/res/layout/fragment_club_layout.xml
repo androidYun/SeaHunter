@@ -37,9 +37,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingTop="@dimen/default_padding"
-                android:paddingBottom="@dimen/default_padding"
-                android:layout_height="wrap_content">
+                android:paddingBottom="@dimen/default_padding">
 
                 <TextView
                     android:id="@+id/tvMember"
@@ -179,6 +179,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
+                android:text="—   娱乐休闲   —"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEntertainmentList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
                 android:text="—   加入我们   —"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -187,7 +201,9 @@
                 android:id="@+id/rvStoreList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/dp_8" />
+                android:layout_marginBottom="@dimen/dp_8"
+                android:paddingStart="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_8" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

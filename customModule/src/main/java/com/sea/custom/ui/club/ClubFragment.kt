@@ -39,6 +39,7 @@ import com.sea.custom.ui.club.about.AboutClubActivity
 import com.sea.custom.ui.club.activity.ClubActivityActivity
 import com.sea.custom.ui.club.match.ClubMatchActivity
 import com.sea.custom.ui.delicacy.ToDayActivityAdapter
+import com.sea.custom.ui.entertainment.list.EntertainmentListAdapter
 import com.sea.custom.ui.make.list.DelicacyMakeListAdapter
 import com.sea.custom.ui.member.MemberCustomActivity
 import com.sea.custom.ui.membership.MainMembershipModeAdapter
@@ -99,7 +100,7 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
 
     /*西沙没事*/
     private val nDelicacyChannelModelReq =
-        NChannelModelReq(channel_name = ChannelEnum.dish.name, category_id = 0,is_red = 1)
+        NChannelModelReq(channel_name = ChannelEnum.dish.name, category_id = 0, is_red = 1)
     private lateinit var mToDayActivityAdapter: ToDayActivityAdapter
     private val toDayActivityList = mutableListOf<NChannelItem>()
     /*美食制作*/
@@ -138,6 +139,14 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
     private val nStoreListModelReq = NStoreListModelReq()
     private var mApplyShipDialog: ApplyShipDialog? = null
     private var mCustomServicesDialog: CustomServicesDialog? = null
+
+    /*娱乐休闲*/
+    private val nEntertainmentChannelModelReq =
+        NChannelModelReq(channel_name = ChannelEnum.arder.name, category_id = 0)
+
+    private lateinit var mEntertainmentListAdapter: EntertainmentListAdapter
+
+    private val mEntertainmentChannelList = mutableListOf<NChannelItem>()
 
 
     /*首页banner*/
@@ -212,14 +221,24 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
         mDelicacyMakeListAdapter = DelicacyMakeListAdapter(mDelicacyMakeListList)
         rvDelicacyMake.layoutManager = LinearLayoutManager(context)
         rvDelicacyMake.adapter = mDelicacyMakeListAdapter
+        /*娱乐休闲*/
+        mEntertainmentListAdapter = EntertainmentListAdapter(mEntertainmentChannelList)
+        rvEntertainmentList.layoutManager = LinearLayoutManager(context)
+        rvEntertainmentList.adapter = mEntertainmentListAdapter
         /*入会方式*/
         mMembershipModeAdapter = MainMembershipModeAdapter(mMembershipModeList)
-        rvStoreList.layoutManager = LinearLayoutManager(context)
+        if (DeviceUtils.isTabletDevice()) {
+            rvStoreList.layoutManager = GridLayoutManager(context, 2)
+        } else {
+            rvStoreList.layoutManager = LinearLayoutManager(context)
+        }
         rvStoreList.adapter = mMembershipModeAdapter
         /*请求数据*/
         nClubMainPresenter.loadRecommendActivityClub(nRecommendActivityChannelModelReq)
         nClubMainPresenter.loadDelicacy(nDelicacyChannelModelReq)
         nClubMainPresenter.loadDelicacyMake(nDelicacyMakeChannelModelReq)
+        /*娱乐休闲*/
+        nClubMainPresenter.loadEntertainmentList(nEntertainmentChannelModelReq)
         /*入会方式*/
         mSelectStorePresenter.loadStoreList(nStoreListModelReq)
 
@@ -375,6 +394,61 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
                 }
             }
         }
+        mEntertainmentListAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.rgbCollection -> {
+                    if (mEntertainmentChannelList[position].is_collect == false) {
+                        mDelicacyCollectionPresenter.loadDelicacyCollection(
+                            NDelicacyCollectionModelReq(
+                                channel_name = ChannelEnum.arder.name,
+                                article_id = mEntertainmentChannelList[position].id ?: -1
+                            )
+                        )
+                    } else {
+                        mDelicacyCollectionPresenter.cancelDelicacyCollection(
+                            NCancelDelicacyCollectionModelReq(
+                                channel_name = ChannelEnum.arder.name,
+                                article_id = mEntertainmentChannelList[position].id ?: -1
+                            )
+                        )
+                    }
+                }
+                R.id.rgbPraise -> {
+                    nPraiseShareModelReq.channel_name = ChannelEnum.arder.name
+                    nPraiseShareModelReq.article_id = mEntertainmentChannelList[position].id ?: -1
+                    nPraiseShareModelReq.click_type = 2
+                    mPraiseSharePresenter.loadPraiseShare(
+                        nPraiseShareModelReq
+                    )
+                }
+                R.id.rgbForward -> {
+                    if (!WeixiShareUtil.isWxAppInstalledAndSupported(context)) {
+                        ToastUtils.show("请安装微信")
+                        return@setOnItemChildClickListener
+                    }
+                    context?.let {
+                        WxDialog(context!!, object : ShareCallBack {
+                            override fun shareWxSuccess(shareType: Int) {
+                                val wsm = WeixinShareManager.getInstance(context)
+                                CommonParamsUtils.articleId =
+                                    mEntertainmentChannelList[position].id ?: -1
+                                CommonParamsUtils.channelName = ChannelEnum.arder.name
+                                wsm.shareByWeixin(
+                                    ShareContentWebpage(
+                                        mEntertainmentChannelList[position].title,
+                                        mEntertainmentChannelList[position].zhaiyao ?: "",
+                                        Constants.shareUrl,
+                                        R.mipmap.logo
+                                    ),
+                                    shareType
+                                )
+                            }
+                        }).show()
+                    }
+
+                }
+            }
+        }
     }
 
 
@@ -463,6 +537,16 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
         swipeLayout.isRefreshing = false
     }
 
+    override fun loadEntertainmentListSuccess(mList: List<NChannelItem>) {
+        mEntertainmentChannelList.clear()
+        mEntertainmentChannelList.addAll(
+            if (!mList.isNullOrEmpty() && mList.size >= 8) {
+                mList.subList(0, 8)
+            } else mList
+        )
+        mEntertainmentListAdapter.notifyDataSetChanged()
+        swipeLayout.isRefreshing = false
+    }
 
     override fun loadStoreListFail(throwable: Throwable) {
         handleError(throwable)
@@ -483,6 +567,7 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
 
     override fun loadDelicacyCollectionSuccess() {
         nClubMainPresenter.loadDelicacyMake(nDelicacyMakeChannelModelReq)
+        nClubMainPresenter.loadEntertainmentList(nEntertainmentChannelModelReq)
     }
 
     override fun loadDelicacyCollectionFail(throwable: Throwable) {
@@ -491,6 +576,7 @@ class ClubFragment : BaseFragment(), BannerContact.IBannerView, ClubMainContact.
 
     override fun loadPraiseShareSuccess(content: Any) {
         nClubMainPresenter.loadDelicacyMake(nDelicacyMakeChannelModelReq)
+        nClubMainPresenter.loadEntertainmentList(nEntertainmentChannelModelReq)
     }
 
     override fun loadPraiseShareFail(throwable: Throwable) {

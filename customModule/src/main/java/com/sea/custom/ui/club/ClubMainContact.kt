@@ -12,6 +12,7 @@ interface ClubMainContact {
         fun loadRecommendActivitySuccess(mList: List<NChannelItem>)
         fun loadDelicacySuccess(mList: List<NChannelItem>)
         fun loadDelicacyMakeSuccess(mList: List<NChannelItem>)
+        fun loadEntertainmentListSuccess(mList: List<NChannelItem>)
         fun loadFail(throwable: Throwable)
 
     }
@@ -20,5 +21,6 @@ interface ClubMainContact {
         fun loadRecommendActivityClub(nChannelModelReq: NChannelModelReq)
         fun loadDelicacy(nChannelModelReq: NChannelModelReq)
         fun loadDelicacyMake(nChannelModelReq: NChannelModelReq)
+        fun loadEntertainmentList(nChannelModelReq: NChannelModelReq)
     }
 }

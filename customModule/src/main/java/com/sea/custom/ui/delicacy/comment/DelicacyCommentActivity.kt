@@ -36,6 +36,8 @@ import com.sea.publicmodule.utils.weixin.WeixiShareUtil
 import com.sea.publicmodule.utils.weixin.WeixinShareManager
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
+import com.shuyu.gsyvideoplayer.utils.OrientationUtils
+import com.tencent.mars.comm.PlatformComm.context
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.utils.ToastUtils
 import com.xhs.baselibrary.utils.imageLoader.ImageLoader
@@ -49,6 +51,8 @@ import org.greenrobot.eventbus.ThreadMode
 class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     ChannelDetailContact.IChannelDetailView, DelicacyCollectionContact.IDelicacyCollectionView,
     PraiseShareContact.IPraiseShareView {
+
+    private lateinit var orientationUtils: OrientationUtils
 
     private val mDelicacyCommentPresenter by lazy { CommentPresenter().apply { attachView(this@DelicacyCommentActivity) } }
 
@@ -103,6 +107,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
         )
         gsyVideoPlayer.thumbImageView = imageView
         gsyVideoPlayer.backButton.visibility = View.GONE
+        gsyVideoPlayer.fullscreenButton.visibility = View.VISIBLE
     }
 
 
@@ -114,6 +119,8 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     }
 
     private fun initData() {
+        //设置旋转
+        orientationUtils =  OrientationUtils(this, gsyVideoPlayer)
         //详情
         nChannelDetailModelReq.channel_name = channelName
         nChannelDetailModelReq.id = id
@@ -221,6 +228,11 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
                 }
             }).show()
         }
+        //设置全屏按键功能
+        gsyVideoPlayer.fullscreenButton.setOnClickListener {
+            orientationUtils.resolveByClick()
+        }
+
     }
 
     private fun showSoftInputFromWindow(editText: EditText) {
@@ -320,7 +332,7 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             super.onBackPressed()
         } else {
-            Handler().postDelayed(Runnable {
+            Handler().postDelayed({
                 finish()
             }, 500)
         }
@@ -340,7 +352,9 @@ class DelicacyCommentActivity : BaseActivity(), CommentContact.ICommentView,
     override fun onDestroy() {
         super.onDestroy()
         EventBus.getDefault().unregister(this)
-        GSYVideoManager.releaseAllVideos();
+        GSYVideoManager.releaseAllVideos()
+        if (orientationUtils != null)
+            orientationUtils.releaseListener()
     }
 
     companion object {

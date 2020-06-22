@@ -67,13 +67,38 @@
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginEnd="@dimen/dp_8" />
 
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50"
-                android:gravity="center"
-                android:text="—   推荐榜单   —"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_18" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="—   推荐榜单   —"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/lvLookMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableEnd="@mipmap/ic_theme_arrow_next"
+                    android:drawablePadding="@dimen/dp_8"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/default_padding"
+                    android:text="查看更多"
+                    android:textColor="@color/user_theme_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTodayOptimization"

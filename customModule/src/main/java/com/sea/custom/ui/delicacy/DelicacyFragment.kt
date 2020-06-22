@@ -118,7 +118,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
 
         /*类型*/
         delicacyTypeList.clear()
-        delicacyTypeList.add(NDelicacyTypeItem("店内美食", "全部美食", R.mipmap.nav_food))
+        delicacyTypeList.add(NDelicacyTypeItem("食材溯源", "扫码查看", R.mipmap.nav_food))
         delicacyTypeList.add(NDelicacyTypeItem("门店VR", "立体展示", R.mipmap.nav_vr))
         delicacyTypeList.add(NDelicacyTypeItem("检测报告", "权威检测", R.mipmap.nav_report))
         delicacyTypeList.add(NDelicacyTypeItem("渔获介绍", "介绍详细", R.mipmap.nav_introduce))
@@ -173,7 +173,8 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         mDelicacyTypeAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> {
-                    startActivity(Intent(context, StoreDelicacyActivity::class.java))
+                    val intent = Intent(context, CaptureActivity::class.java)
+                    startActivityForResult(intent, REQUEST_CODE_SCAN)
                 }
                 1 -> {
                     startActivity(Intent(context, StoreVr2Activity::class.java))
@@ -201,6 +202,9 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         ivQrScan.setOnClickListener {
             val intent = Intent(context, CaptureActivity::class.java)
             startActivityForResult(intent, REQUEST_CODE_SCAN)
+        }
+        lvLookMore.setOnClickListener {
+            startActivity(Intent(context, StoreDelicacyActivity::class.java))
         }
     }
 
@@ -266,7 +270,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
                     }
                     startActivity(Intent(context, VrDetailActivity::class.java).apply {
                         putExtras(
-                            VrDetailActivity.getInstance(content,"产品溯源")
+                            VrDetailActivity.getInstance(content, "产品溯源")
                         )
                     })
                 }

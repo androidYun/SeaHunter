@@ -77,4 +77,27 @@ class ClubMainPresenter : IPresenter<ClubMainContact.IClubView>(), ClubMainConta
                     //这里面是回调成功的方法
                 }, { throwable -> softView.get()?.loadFail(throwable) })
     }
+
+    override fun loadEntertainmentList(nChannelModelReq: NChannelModelReq) {
+        RetrofitUtils.getRetrofit()
+            .create(ChannelApi::class.java)
+            .loadChannel(nChannelModelReq)
+            .compose(RxUtils.getSchedulerTransformer())
+            .compose(RxUtils.bindToLifecycle(softView.get()))
+            .doOnSubscribe { disposable ->
+                addDisposable(disposable)
+                softView.get()?.showLoading()
+            }.doFinally {
+                softView.get()?.hideLoading()
+            }
+            .subscribe(
+                {
+                    if (it.code == 1) {
+                        softView.get()?.loadEntertainmentListSuccess(it.data)
+                    } else {
+                        softView.get()?.loadFail(Throwable(it.msg))
+                    }
+                    //这里面是回调成功的方法
+                }, { throwable -> softView.get()?.loadFail(throwable) })
+    }
 }

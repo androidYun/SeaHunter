@@ -116,7 +116,7 @@ public class RecyclerItemNormalHolder extends RecyclerItemBaseHolder {
         gsyVideoPlayer.getBackButton().setVisibility(View.GONE);
 
         //设置全屏按键功能
-        gsyVideoPlayer.getFullscreenButton().setVisibility(View.GONE);
+        //  gsyVideoPlayer.getFullscreenButton().setVisibility(View.GONE);
 
         //设置全屏按键功能
         gsyVideoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
