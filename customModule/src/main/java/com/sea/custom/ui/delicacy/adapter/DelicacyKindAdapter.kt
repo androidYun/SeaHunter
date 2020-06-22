@@ -22,11 +22,20 @@ class DelicacyKindAdapter(mList: List<NCategoryItem>) :
         )
         helper?.setText(R.id.tvKindTitle, item.title)
         helper?.getView<LinearLayout>(R.id.lvShopDetail)?.setOnClickListener {
-            it.context.startActivity(
-                Intent(
-                    it.context,
-                    StoreDelicacyActivity::class.java
-                ).apply { putExtras(StoreDelicacyActivity.getInstance(item.id)) })
+            if (helper.layoutPosition == mData.size-1) {
+                it.context.startActivity(
+                    Intent(
+                        it.context,
+                        StoreDelicacyActivity::class.java
+                    )
+                )
+            } else {
+                it.context.startActivity(
+                    Intent(
+                        it.context,
+                        StoreDelicacyActivity::class.java
+                    ).apply { putExtras(StoreDelicacyActivity.getInstance(item.id)) })
+            }
         }
     }
 }
