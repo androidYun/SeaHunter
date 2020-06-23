@@ -57,8 +57,7 @@
                 android:id="@+id/rvDelicacyKind"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
-                android:layout_marginBottom="@dimen/default_margin" />
+                android:layout_marginTop="8dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDelicacyType"
@@ -90,7 +89,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:drawableEnd="@mipmap/ic_theme_arrow_next"
-                    android:drawablePadding="@dimen/dp_8"
                     android:gravity="center"
                     android:paddingEnd="@dimen/default_padding"
                     android:text="查看更多"

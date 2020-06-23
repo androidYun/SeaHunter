@@ -103,7 +103,7 @@ class DelicacyFragment : BaseFragment(), ChannelContact.IChannelView, BannerCont
         /*种类*/
         val layoutManager = FlexboxLayoutManager(context)
         if (DeviceUtils.isTabletDevice()) {
-            rvDelicacyKind.layoutManager = GridLayoutManager(context, 8)
+            rvDelicacyKind.layoutManager = GridLayoutManager(context, 4)
         } else {
             rvDelicacyKind.layoutManager = GridLayoutManager(context, 4)
         }

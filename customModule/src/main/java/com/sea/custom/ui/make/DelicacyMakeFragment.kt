@@ -26,15 +26,9 @@ import com.sea.custom.ui.make.list.DelicacyMakeListFragment
 import com.sea.custom.ui.result.DelicacyMakeResultActivity
 import com.sea.publicmodule.activity.search.SearchMallActivity
 import com.xhs.baselibrary.base.BaseFragment
-import com.xhs.baselibrary.utils.UIUtils
-import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
-import kotlinx.android.synthetic.main.activity_member_custom_detail.*
-import kotlinx.android.synthetic.main.fragment_delicacy_make.*
-import kotlinx.android.synthetic.main.fragment_delicacy_make.bannerView
-import kotlinx.android.synthetic.main.fragment_delicacy_make.swipeLayout
+import kotlinx.android.synthetic.main.fragment_delicacy_make2.*
 import kotlinx.android.synthetic.main.include_search_layout.*
-import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
 class DelicacyMakeFragment : BaseFragment(),
     BannerContact.IBannerView,
@@ -55,7 +49,7 @@ class DelicacyMakeFragment : BaseFragment(),
         savedInstanceState: Bundle?
     ): View? {
         return LayoutInflater.from(context)
-            .inflate(R.layout.fragment_delicacy_make, container, false)
+            .inflate(R.layout.fragment_delicacy_make2, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -87,10 +81,6 @@ class DelicacyMakeFragment : BaseFragment(),
                 SearchMallActivity.search_content_request_code
             )
         }
-        swipeLayout.setOnRefreshListener {
-            mCategoryPresenter.loadCategory(NCategoryModelReq(channel_name = ChannelEnum.food.name))
-            bannerPresenter.loadBanner(NBannerModelReq(channel_name = ChannelEnum.food.name))
-        }
     }
 
     /**
@@ -113,12 +103,10 @@ class DelicacyMakeFragment : BaseFragment(),
         mDelicacyMakeList.clear()
         mDelicacyMakeList.addAll(mCategoryList)
         mEntertainmentPagerAdapter.notifyDataSetChanged()
-        swipeLayout.isRefreshing = false
     }
 
     override fun loadCategoryFail(throwable: Throwable) {
         handleError(throwable)
-        swipeLayout.isRefreshing = false
     }
 
 

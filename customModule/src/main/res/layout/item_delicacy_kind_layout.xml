@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lvShopDetail"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/lvShopDetail"
     android:layout_marginStart="@dimen/default_margin"
     android:layout_marginEnd="@dimen/default_margin"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp_8"
+    android:paddingBottom="@dimen/dp_8">
 
     <ImageView
         android:id="@+id/ivDelicacyKind"

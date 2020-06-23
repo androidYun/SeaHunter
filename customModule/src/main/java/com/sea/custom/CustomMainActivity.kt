@@ -17,6 +17,8 @@ import com.sea.publicmodule.presenter.version.VersionModel
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.xhs.baselibrary.base.BaseActivity
 import com.xhs.baselibrary.ui.update.UpdateActivity
+import com.xhs.baselibrary.utils.PhoneInfo
+import com.xhs.baselibrary.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_custom_main.*
 
 

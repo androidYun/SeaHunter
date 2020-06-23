@@ -15,6 +15,8 @@ import com.sea.custom.ui.adapter.web.WebViewItem
 import com.sea.custom.ui.adapter.web.WebViewPageAdapter
 import com.sea.custom.ui.club.DetailWebFragment
 import com.xhs.baselibrary.base.BaseActivity
+import com.xhs.baselibrary.utils.PhoneInfo
+import com.xhs.baselibrary.utils.UIUtils
 import kotlinx.android.synthetic.main.include_tab_viewpage.*
 
 class AboutClubActivity : BaseActivity(), ChannelContact.IChannelView {

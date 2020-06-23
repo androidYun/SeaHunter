@@ -111,7 +111,8 @@
                     android:gravity="center"
                     android:text="溯源扫码"
                     android:textColor="@color/color_3"
-                    android:textSize="@dimen/sp_12" />
+                    android:textSize="@dimen/sp_12"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvMemberShipMode"
@@ -125,7 +126,8 @@
                     android:gravity="center"
                     android:text="入会方式"
                     android:textColor="@color/color_3"
-                    android:textSize="@dimen/sp_12" />
+                    android:textSize="@dimen/sp_12"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <TextView

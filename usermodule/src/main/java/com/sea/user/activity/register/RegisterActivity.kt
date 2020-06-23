@@ -11,8 +11,10 @@ import com.sea.user.presenter.version.NVersionCodeModelReq
 import com.sea.user.presenter.version.VersionCodeContact
 import com.sea.user.presenter.version.VersionCodePresenter
 import com.xhs.baselibrary.base.BaseActivity
+import com.xhs.baselibrary.utils.PhoneInfo
 import com.xhs.baselibrary.utils.TimeCountDown
 import com.xhs.baselibrary.utils.ToastUtils
+import com.xhs.baselibrary.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_user_login.evPassword
 import kotlinx.android.synthetic.main.activity_user_login.tvForgetPassword

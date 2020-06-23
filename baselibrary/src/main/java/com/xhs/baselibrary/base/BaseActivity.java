@@ -16,6 +16,8 @@ import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 import com.xhs.baselibrary.R;
 import com.xhs.baselibrary.dialog.base.CommonDialog;
 import com.xhs.baselibrary.utils.KindPhonePermissionUtils;
+import com.xhs.baselibrary.utils.PhoneInfo;
+import com.xhs.baselibrary.utils.StatusBarUtil;
 import com.xhs.baselibrary.utils.ToastUtils;
 import com.xhs.baselibrary.weight.LoadingDialog;
 
@@ -34,6 +36,7 @@ public class BaseActivity extends RxAppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtil.setStatusBar(this, getResources().getColor(R.color.base_color_30000000));
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
